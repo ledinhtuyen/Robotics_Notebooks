@@ -99,24 +99,24 @@
 
 ```mermaid
 flowchart TB
-  P["① Robot Physics<br/>FK / IK · Jacobian · Dynamics<br/>L0–L2"]
-  C["② Robot Control<br/>PD · Impedance · WBC · MPC<br/>L3–L4"]
-  RL["③ RL<br/>MDP → Actor-Critic → PPO<br/>L5.1–L5.2"]
-  IL["③ IL / Motion Imitation<br/>BC · DAgger · DeepMimic · AMP<br/>L5.3–L5.4"]
-  S2R["④ Sim2Real<br/>DR · SysID · Teacher-Student<br/>L6"]
+  P["① Vật lý robot<br/>FK / IK · Jacobian · Động lực học<br/>L0–L2"]
+  C["② Điều khiển robot<br/>PD · Impedance · WBC · MPC<br/>L3–L4"]
+  RL["③ Học tăng cường (RL)<br/>MDP → Actor-Critic → PPO<br/>L5.1–L5.2"]
+  IL["③ Học bắt chước / Mô phỏng chuyển động<br/>BC · DAgger · DeepMimic · AMP<br/>L5.3–L5.4"]
+  S2R["④ Mô phỏng sang thực tế (Sim2Real)<br/>DR · SysID · Teacher-Student<br/>L6"]
   TF["⑤ Transformer / VLM<br/>token · QKV · ViT<br/>L8"]
-  GEN["⑥ Action Generation<br/>Diffusion · Flow Matching · DiT<br/>→ Action Chunk · L9"]
-  VLA["⑦ VLA / Foundation Policy<br/>π0 · GR00T<br/>L10"]
-  WM["⑧ World Model<br/>Cosmos<br/>L11"]
-  SIM["Simulation / Data<br/>Isaac Sim · Isaac Lab<br/>L11"]
-  DEP["Deployment<br/>ONNX · TensorRT · ROS2<br/>L12"]
-  HW["Real Robot<br/>CAN / EtherCAT · Motor<br/>L12"]
+  GEN["⑥ Sinh hành động<br/>Diffusion · Flow Matching · DiT<br/>→ Action Chunk · L9"]
+  VLA["⑦ VLA / Chính sách nền tảng<br/>π0 · GR00T<br/>L10"]
+  WM["⑧ Mô hình thế giới<br/>Cosmos<br/>L11"]
+  SIM["Mô phỏng / Dữ liệu<br/>Isaac Sim · Isaac Lab<br/>L11"]
+  DEP["Triển khai<br/>ONNX · TensorRT · ROS2<br/>L12"]
+  HW["Robot thực<br/>CAN / EtherCAT · Động cơ<br/>L12"]
 
   P --> C --> RL --> S2R
   C --> IL --> S2R
   RL --> IL
   S2R --> TF --> GEN --> VLA --> WM --> SIM --> DEP --> HW
-  IL -. BC 是动作生成的起点 .-> GEN
+  IL -. BC là nền tảng của sinh hành động .-> GEN
 
   classDef trunk fill:#142a3a,stroke:#00d4ff,stroke-width:2px,color:#fff
   classDef ext fill:#0d4f5c,stroke:#00d4ff,stroke-width:2px,color:#fff
@@ -137,19 +137,19 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-  Img["Camera image"] --> VT["Patch → visual token"]
-  Lang["Language instruction"] --> TT["Text token"]
-  St["Robot state<br/>q · q̇ · IMU"] --> SE["State embedding"]
-  VT --> VLM["VLM · System 2<br/>语义理解 / 任务推理"]
+  Img["Ảnh camera"] --> VT["Patch → token thị giác"]
+  Lang["Chỉ thị ngôn ngữ"] --> TT["Token văn bản"]
+  St["Trạng thái robot<br/>q · q̇ · IMU"] --> SE["Mã hóa trạng thái"]
+  VT --> VLM["VLM · Hệ thống 2<br/>Hiểu ngữ nghĩa / suy luận nhiệm vụ"]
   TT --> VLM
-  VLM --> AE["Action Expert · System 1<br/>Flow Matching / Diffusion · DiT"]
+  VLM --> AE["Bộ chuyên gia hành động · Hệ thống 1<br/>Flow Matching / Diffusion · DiT"]
   SE --> AE
-  AE --> AC["Action chunk<br/>a_t … a_t+H"]
-  AC --> LL["低层策略 / WBC<br/>RL tracking policy 或 QP"]
+  AE --> AC["Chuỗi hành động<br/>a_t … a_t+H"]
+  AC --> LL["Chính sách tầng thấp / WBC<br/>Chính sách bám quỹ đạo RL hoặc QP"]
   LL --> QT["q_target / τ_ff"]
-  QT --> PD["PD / 阻抗（常在驱动器内）<br/>τ = Kp(q_des − q) + Kd(q̇_des − q̇)"]
+  QT --> PD["PD / điều khiển trở kháng (thường chạy trong bộ truyền động)<br/>τ = Kp(q_des − q) + Kd(q̇_des − q̇)"]
   PD --> BUS["CAN / EtherCAT"]
-  BUS --> M["电机电流环 → torque"]
+  BUS --> M["Vòng điều khiển dòng động cơ → mô-men"]
 ```
 
 电机编码器与 IMU 的读数再作为下一拍的 Robot state 反馈回来，形成闭环。
@@ -337,74 +337,74 @@ flowchart LR
 
 ---
 
-## L0 数学与编程基础
+## L0 Khái niệm cơ bản về toán học và lập trình
 
-**这条不需要深入，但不能跳过。**
+**Bạn không cần phải đi sâu vào phần này, nhưng bạn không thể bỏ qua nó.**
 
-> **场景隐喻：** 你刚拿到一台机器人，但连"它的胳膊指哪个方向"都没法用代码描述——L0 给你"机器人世界的最底层词汇表"：向量、矩阵、旋转、变换。
+> **Cảnh ẩn dụ:** Bạn vừa có một con robot, nhưng bạn thậm chí không thể mô tả bằng mã "hướng cánh tay của nó" -L0 Cung cấp cho bạn "từ vựng cấp độ thấp nhất của thế giới robot": vectơ, ma trận, xoay, biến đổi.
 
-> **这一层为什么存在：** 之后每一层的公式都把"位姿 / 速度 / 力"当作黑话。没有 L0，每读一行公式都要现场查。
+> **Tại sao lớp này tồn tại:** Các công thức ở mỗi cấp độ tiếp theo coi "vị trí/vận tốc/lực" là tiếng lóng. KHÔNG L0, mỗi lần đọc một dòng công thức phải kiểm tra ngay tại chỗ.
 
-### 英文缩写速查（L0）
+### Kiểm tra nhanh chữ viết tắt tiếng Anh (L0）
 
-| 缩写 | 英文全称 | 简要说明 |
+| viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| SE(3) | Special Euclidean Group in 3D | 三维刚体位姿（旋转 + 平移）的数学群。 |
-| SO(3) | Special Orthogonal Group in 3D | 三维旋转矩阵构成的群；\(R^\top R=I,\ \det R=1\)。 |
-| PoE | Product of Exponentials | 用关节螺旋轴的矩阵指数连乘表示正运动学。 |
-| FK | Forward Kinematics | 关节变量 → 末端位姿（L0 常先接触概念，L1 深入）。 |
-| QP | Quadratic Programming | 二次规划；后续 MPC / WBC 的基础优化形式。 |
-| SVD | Singular Value Decomposition | 奇异值分解；理解雅可比秩、冗余度时常用。 |
+| SE(3) | Nhóm Euclide đặc biệt trong không gian 3D | Nhóm toán học của các tư thế cơ thể cứng nhắc ba chiều (xoay + dịch chuyển). |
+| SO(3) | Nhóm trực giao đặc biệt trong 3D | Một nhóm bao gồm các ma trận quay ba chiều;\(R^\top R=I,\ \det R=1\)。 |
+| PoE | Sản phẩm của số mũ | Động học thuận được biểu diễn bằng ma trận nhân theo hàm mũ của các trục xoắn ốc. |
+| FK | Chuyển tiếp động học | biến khớp → tư thế cuối (L0 Luôn luôn tiếp xúc với các khái niệm trước tiên,L1 đi sâu). |
+| QP | Lập trình bậc hai | quy hoạch thứ cấp; theo dõi MPC / WBC dạng tối ưu hóa cơ bản. |
+| SVD | Phân tách giá trị số ít | Phân rã giá trị số ít; thường được sử dụng khi hiểu thứ hạng Jacobian và sự dư thừa. |
 
-### 前置知识
-- 高中数学 + 一点微积分直觉
-- 会写 Python（能读、能改、能跑通）
+### kiến thức tiên quyết
+- Toán THPT + một chút trực giác tính toán
+- Có thể viết Python (có thể đọc, sửa đổi và chạy)
 
-### 核心问题
-- 线性代数在机器人里到底怎么用（矩阵、向量、变换）
-- 优化问题的直觉是什么
+### vấn đề cốt lõi
+- Cách sử dụng đại số tuyến tính trong robot (ma trận, vectơ, phép biến đổi)
+- Trực giác cho các vấn đề tối ưu hóa là gì?
 
-### 推荐做什么
-- 把 Python / NumPy / Pinocchio 环境的代码跑通一套
-- 不用刷题，但要有手感和直觉
-- 用 Modern Robotics 配套 Python 库跑通 `MatrixExp3`、`MatrixExp6`、`FKinSpace` 这类最小函数，确认自己能把矩阵指数和刚体位姿变换连起来
+### Những gì được khuyến khích
+- Đặt Python/ NumPy / Pinocchio Một bộ mã môi trường có thể được chạy qua
+- Không cần nghiên cứu câu hỏi nhưng cần có cảm nhận và trực giác
+- sử dụng Modern Robotics Toàn bộ thư viện Python được hỗ trợ `MatrixExp3`、`MatrixExp6`、`FKinSpace` Đối với loại chức năng tối thiểu này, hãy xác nhận rằng bạn có thể kết nối chỉ số ma trận và chuyển đổi tư thế cơ thể cứng nhắc.
 
-### 推荐读什么
-- **[线性代数学习策展](../wiki/entities/linear-algebra-curriculum.md)**（L0 主入口）：[Georgia Tech *Interactive Linear Algebra*](https://textbooks.math.gatech.edu/ila/) + [Axler *Linear Algebra Done Right* 4e（PDF）](https://linear.axler.net/LADR4e.pdf) + [3Blue1Brown 几何直觉](https://www.3blue1brown.com/topics/linear-algebra)；扩展材料（Strang 18.06 等）见策展页
-- [Modern Robotics](../wiki/entities/modern-robotics-book.md) Ch 2-3：Configuration Space、Rigid-Body Motions
-- [SE(3) 表示](../wiki/formalizations/se3-representation.md)
-- [旋转表示方法对比（SO(3)）](../wiki/comparisons/so3-rotation-representations.md) — 欧拉 / 四元数 / 矩阵 / so(3) / 6D 优劣与选型
+### Đọc gì
+- **[Giám tuyển học đại số tuyến tính](../wiki/entities/linear-algebra-curriculum.md)**（L0 Cổng chính):[Georgia Tech *Đại số tuyến tính tương tác*](https://textbooks.math.gatech.edu/ila/) + [Axler *Đại số tuyến tính Thực hiện đúng* 4e（PDF）](https://linear.axler.net/LADR4e.pdf) + [3Blue1Brown trực giác hình học](https://www.3blue1brown.com/topics/linear-algebra);Tài liệu mở rộng (Strang 18.06, v.v.) xem trang giám tuyển
+- [Modern Robotics](../wiki/entities/modern-robotics-book.md) Ch 2-3: Không gian cấu hình, Chuyển động cơ thể cứng nhắc
+- [SE(3) thể hiện](../wiki/formalizations/se3-representation.md)
+- [So sánh các phương pháp biểu diễn xoay (SO(3)）](../wiki/comparisons/so3-rotation-representations.md) — Euler/quaternion/ma trận/so(3) / Ưu nhược điểm 6D và lựa chọn
 - [Pinocchio](../wiki/entities/pinocchio.md) / [Crocoddyl](../wiki/entities/crocoddyl.md)
-- 背景偏 **工业臂 / 非科班自学**：[开源机器人学学习指南（qqfly）](../wiki/entities/learn-robotics-qqfly-guide.md) 的 Craig 入门与编程实践清单
+- Nền bù đắp **Cánh tay công nghiệp/tự học không chuyên ngành**：[Hướng dẫn nghiên cứu robot nguồn mở (qqfly)](../wiki/entities/learn-robotics-qqfly-guide.md) Danh sách kiểm tra thực hành lập trình và bắt đầu của Craig
 
-### 学完输出什么
-- 能用 NumPy 写简单矩阵运算
-- 能跑通一个机械臂正运动学 Demo
+### Kết quả đầu ra sau khi học là gì
+- Có thể được sử dụng NumPy Viết các phép toán ma trận đơn giản
+- Có thể chạy qua bản demo động học chuyển tiếp của cánh tay robot
 
-### 自测题（学完应能答出）
-- 旋转矩阵 \(R\) 为什么不能直接做加法 / 插值？想插值两个朝向你会用什么替代？
-- 给定 SE(3) 元素 \(g = (R, p)\)，向量 \(v\) 在新坐标系下表示是什么形式？
-- 矩阵指数 \(\exp([\omega]_\times)\) 和欧拉角 / 四元数描述旋转，分别的优劣是什么？
+### Câu hỏi tự kiểm tra (có thể trả lời sau khi học)
+- ma trận xoay \(R\) Tại sao chúng ta không thể thực hiện phép cộng/nội suy trực tiếp? Thay vào đó, bạn sẽ sử dụng cái gì để nội suy giữa hai hướng?
+- được cho SE(3) yếu tố \(g = (R, p)\), vectơ \(v\) Biểu diễn trong hệ tọa độ mới là gì?
+- chỉ số ma trận \(\exp([\omega]_\times)\) Những ưu điểm và nhược điểm của việc mô tả phép quay với góc/bậc bốn Euler là gì?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+<summary>Câu trả lời tham khảo (bấm vào để mở rộng)</summary>
 
 ```mermaid
 flowchart TD
-  A[需要插值 / 组合两个朝向] --> B{"在 SO(3) 流形上操作?"}
-  B -->|否：逐元素加减| X["结果一般不正交，跳出 SO(3)"]
-  B -->|是| C{更偏好哪种表示?}
-  C -->|四元数| D[SLERP 插值]
-  C -->|旋转矩阵 / 李代数| E["$$R(t)=R_0\exp\!\big(t\log(R_0^{\mathsf T}R_1)\big)$$"]
-  F["SE(3) 作用在几何对象"] --> G{点还是方向向量?}
-  G -->|点| H["$$v' = Rv + p$$"]
-  G -->|方向，不受平移| I["$$v' = Rv$$"]
+  A[Cần nội suy / kết hợp hai hướng] --> B{"Thao tác trên đa tạp SO(3)?"}
+  B -->|Không: cộng/trừ từng phần tử| X["Kết quả thường không trực giao, nằm ngoài SO(3)"]
+  B -->|Có| C{Ưu tiên cách biểu diễn nào?}
+  C -->|Quaternion| D[Nội suy SLERP]
+  C -->|Ma trận quay / đại số Lie| E["$$R(t)=R_0\exp\!\big(t\log(R_0^{\mathsf T}R_1)\big)$$"]
+  F["SE(3) tác động lên đối tượng hình học"] --> G{Điểm hay vectơ hướng?}
+  G -->|Điểm| H["$$v' = Rv + p$$"]
+  G -->|Hướng, không chịu tịnh tiến| I["$$v' = Rv$$"]
 ```
 
 <ol>
-<li><strong>R 为何不能直接相加 / 插值：</strong> 旋转矩阵属于 SO(3) 流形（\(R^\top R=I,\ \det R=1\)），不是向量空间；逐元素相加或线性插值后一般不再正交，会跳出 SO(3)。插值朝向要在流形上做：四元数 SLERP，或在李代数上 \(R(t)=R_0\exp\!\big(t\log(R_0^\top R_1)\big)\)。</li>
-<li><strong>SE(3) 作用在点 / 向量：</strong> 齐次坐标下 \(\tilde v' = g\,\tilde v\)，展开即 \(v' = Rv + p\)（点，受平移）；若 \(v\) 是自由方向向量（不受平移），则只旋转 \(v' = Rv\)。关键是区分"点"与"方向"。</li>
-<li><strong>矩阵指数 / 欧拉角 / 四元数：</strong> 旋转矩阵 + 矩阵指数无奇异、可直接复合、与 twist / 李代数统一（PoE、Jacobian 都基于它），但 9 数 + 6 约束冗余；欧拉角仅 3 数、直观，但有万向锁奇异、不唯一、插值差；四元数 4 数、无奇异、复合 / SLERP 高效稳定，但双重覆盖（\(q\) 与 \(-q\) 表示同一旋转）。工程上内部计算用四元数、链式 FK 用矩阵 / 矩阵指数、欧拉角只做人读的输入输出。</li>
+<li><strong>Tại sao R không thể thêm/nội suy trực tiếp:</strong> Ma trận xoay thuộc về SO(3) đa dạng (\(R^\top R=I,\ \det R=1\)), không phải là không gian vectơ; sau khi cộng từng phần tử hoặc nội suy tuyến tính, nó thường không còn trực giao và sẽ nhảy ra ngoài SO(3). Hướng nội suy nên được thực hiện trên đa tạp: quaternion SLERP, hoặc trên đại số Lie \(R(t)=R_0\exp\!\big(t\log(R_0^\top R_1)\big)\)。</li>
+<li><strong>SE(3) Hành động trên điểm/vectơ:</strong> Dưới tọa độ đồng nhất \(\tilde v' = g\,\tilde v\), khai triển đó là \(v' = Rv + p\)(điểm, có thể dịch); nếu như \(v\) là vectơ hướng tự do (không chịu sự dịch chuyển) thì nó chỉ quay \(v' = Rv\). Điều quan trọng là phải phân biệt giữa "điểm" và "hướng".</li>
+<li><strong>Số mũ ma trận/góc Euler/bậc bốn:</strong> Ma trận quay + số mũ ma trận không có điểm kỳ dị, có thể được gộp trực tiếp và thống nhất với đại số xoắn / Lie (PoE、Jacobian dựa trên nó), nhưng 9 số + 6 ràng buộc là dư thừa; Góc Euler chỉ có 3 số, trực quan nhưng có tính kỳ dị khóa vạn năng, không duy nhất và sai phân nội suy; quaternion là 4 số, không có số kỳ dị, hợp số/ SLERP Hiệu quả và ổn định, nhưng độ phủ sóng gấp đôi (\(q\) Và \(-q\) đại diện cho cùng một phép quay). Các biểu thức bậc bốn và chuỗi được sử dụng để tính toán nội bộ trong kỹ thuật FK Chỉ sử dụng ma trận/chỉ số ma trận và góc Euler cho đầu vào và đầu ra mà con người có thể đọc được.</li>
 </ol>
 </details>
 

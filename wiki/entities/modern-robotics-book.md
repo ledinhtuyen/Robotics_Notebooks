@@ -25,98 +25,98 @@ sources:
 summary: "Lynch & Park 的现代机器人学经典教材，独特之处是全程使用李群 / 螺旋理论作为统一数学语言，覆盖配置空间到全身控制、抓取、移动机器人的完整体系，是本知识库传统机器人学部分的主要参考底座。"
 ---
 
-# Modern Robotics (Lynch-Park 教材)
+# Modern Robotics (Sách giáo khoa Lynch-Park)
 
-**Modern Robotics: Mechanics, Planning, and Control** 是 Kevin M. Lynch（Northwestern）与 Frank C. Park（SNU）2017 年由 Cambridge University Press 出版的本科级机器人学教材。它在传统教材（Craig、Spong、Siciliano）之外提供了**用李群 / 螺旋理论统一描述刚体运动、运动学与动力学**的视角，配套 Coursera 6 门专项课程与开源库，是本知识库传统机器人学部分的主要参考底座。
+**Modern Robotics: Cơ học, lập kế hoạch và kiểm soát** là Kevin M. Lynch (Tây Bắc) và Frank C. Park (SNU), một cuốn sách giáo khoa về robot dành cho sinh viên đại học do Nhà xuất bản Đại học Cambridge xuất bản năm 2017. Nó vượt xa các sách giáo khoa truyền thống (Craig, Spong, Siciliano) để cung cấp**Sử dụng lý thuyết nhóm Lie/xoắn ốc để thống nhất chuyển động của vật rắn, động học và động lực học**phối cảnh, hỗ trợ 6 khóa học đặc biệt của Coursera và các thư viện nguồn mở, đồng thời là cơ sở tham khảo chính cho phần robot truyền thống trong cơ sở kiến ​​thức này.
 
-## 英文缩写速查
+## Kiểm tra nhanh chữ viết tắt tiếng Anh
 
-| 缩写 | 英文全称 | 简要说明 |
+| viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| TSID | Task-Space Inverse Dynamics | 任务空间逆动力学求解关节力矩的 WBC 实现 |
-| RL | Reinforcement Learning | 通过与环境交互最大化长期回报来学习策略的范式 |
-| LLM | Large Language Model | 大语言模型，常作高层任务/语言接口 |
-| WBC | Whole-Body Control | 协调全身关节满足多任务/约束的控制基础设施 |
-| Manipulation | Robot Manipulation | 抓取、移动、操作物体的任务总称 |
-| IL | Imitation Learning | 从专家演示学习策略，奖励难定义时的主路线 |
-| VLA | Vision-Language-Action | 视觉-语言-动作多模态基础策略方向 |
-| Sim2Real | Simulation to Real | 把仿真中学到的策略迁移落地真机的工程主线 |
-| IK | Inverse Kinematics | 满足末端/姿态约束求解关节角的运动学逆解 |
-| URDF | Unified Robot Description Format | 统一机器人描述格式 |
-| MuJoCo | Multi-Joint dynamics with Contact | 接触丰富的刚体物理仿真引擎 |
+| TSID | Động lực nghịch đảo không gian nhiệm vụ | Động lực nghịch đảo không gian nhiệm vụ để giải quyết các khoảnh khắc chung WBC hoàn thành |
+| RL | Học tăng cường | Một mô hình cho các chiến lược học tập bằng cách tương tác với môi trường để tối đa hóa lợi ích lâu dài |
+| LLM | Mô hình ngôn ngữ lớn | Mô hình ngôn ngữ lớn, thường được sử dụng làm giao diện ngôn ngữ/tác vụ cấp cao |
+| WBC | Kiểm soát toàn thân | Kiểm soát cơ sở hạ tầng để phối hợp các khớp cơ thể nhằm đáp ứng nhiều nhiệm vụ/ràng buộc |
+| Thao tác | Thao tác robot | Thuật ngữ chung cho các nhiệm vụ nắm bắt, di chuyển và thao tác với đồ vật |
+| IL | Học bắt chước | Tìm hiểu các chiến lược từ các cuộc trình diễn của chuyên gia và khen thưởng lộ trình chính khi khó xác định |
+| VLA | Tầm nhìn-Ngôn ngữ-Hành động | Định hướng chiến lược cơ bản đa phương thức tầm nhìn-ngôn ngữ-hành động |
+| Sim2Real | Mô phỏng thành thật | Dòng kỹ thuật chính chuyển giao các chiến lược đã học từ mô phỏng sang máy thực |
+| IK | Động học nghịch đảo | Giải quyết nghịch đảo động học của các góc khớp thỏa mãn các ràng buộc cuối/thái độ |
+| URDF | Định dạng mô tả robot hợp nhất | Định dạng mô tả robot thống nhất |
+| MuJoCo | Động lực học đa khớp với Liên hệ | Truy cập vào một công cụ mô phỏng vật lý cơ thể cứng nhắc phong phú |
 
-## 为什么重要？
+## Tại sao nó quan trọng?
 
-1. **语言上的统一**：传统教材用 D-H 参数 + 旋转矩阵 + 欧拉角，每章独立；Lynch-Park 全程用 SE(3)、twist、PoE，链条干净。
-2. **本科可读但仍是研究语言**：用的就是 Pinocchio / Crocoddyl / TSID 等现代库的底层数学，学完直接接得上工业代码。
-3. **覆盖广度对齐"传统机器人栈"**：13 章覆盖了从最底层（C-space）到最上层（grasping、wheeled mobile）的完整传统机器人学，是 RL/LLM 时代之前「人形/四足/机械臂控制」的最大公约数。
+1. **thống nhất ngôn ngữ**: SGK truyền thống sử dụng tham số D-H + ​​ma trận quay + góc Euler, mỗi chương độc lập; Lynch-Park sử dụng nó trong suốt quá trình SE(3)、 xoắn 、PoE, dây chuyền sạch sẽ.
+2. **Có thể đọc được cho các nghiên cứu đại học nhưng vẫn là một nghiên cứu ngôn ngữ**: Chỉ cần sử dụng Pinocchio / Crocoddyl / TSID Sau khi tìm hiểu kiến ​​thức toán học cơ bản của các thư viện hiện đại, bạn có thể truy cập trực tiếp vào các mã công nghiệp.
+3. **Phạm vi phủ sóng phù hợp với "ngăn xếp robot truyền thống"**: Chương 13 bao gồm toàn bộ robot truyền thống từ dưới lên (C-space) đến trên cùng (di động cầm nắm, di động có bánh xe). RL/LLM Mẫu số chung lớn nhất của "điều khiển cánh tay hình người/bốn chân/robot" trước thời đại.
 
-## 章节地图（与本知识库的对应）
+## Sơ đồ chương (tương ứng với cơ sở kiến ​​thức này)
 
-| 章节 | 教材主题 | 对应已有页面 |
+| chương | chủ đề sách giáo khoa | Tương ứng với các trang hiện có |
 |------|---------|------------|
-| Ch 2 | Configuration Space | （未直接覆盖，可补） |
-| Ch 3 | Rigid-Body Motions | [李群与刚体运动](../formalizations/lie-group-rigid-body-motions.md)、[SE(3) Representation](../formalizations/se3-representation.md) |
-| Ch 4 | Forward Kinematics (PoE) | （部分隐含在 [pinocchio](./pinocchio.md)） |
-| Ch 5 | Velocity Kinematics & Statics | （隐含在 [whole-body-control](../concepts/whole-body-control.md) 的 Jacobian 部分） |
-| Ch 6 | Inverse Kinematics | [Newton–Raphson / 数值 IK](../methods/newtons-method.md)、[逆运动学形式化](../formalizations/inverse-kinematics.md) |
-| Ch 7 | Closed Chains | （未直接覆盖） |
-| Ch 8 | Dynamics of Open Chains | [Floating Base Dynamics](../concepts/floating-base-dynamics.md) |
-| Ch 9 | Trajectory Generation | [Trajectory Optimization](../methods/trajectory-optimization.md) |
-| Ch 10 | Motion Planning | （RRT/PRM 未直接覆盖） |
-| Ch 11 | Robot Control | [WBC](../concepts/whole-body-control.md), [TSID](../concepts/tsid.md), [Impedance Control](../concepts/impedance-control.md) |
-| Ch 12 | Grasping & Manipulation | [Friction Cone](../formalizations/friction-cone.md), [Contact Wrench Cone](../formalizations/contact-wrench-cone.md) |
-| Ch 13 | Wheeled Mobile Robots | （未直接覆盖） |
+| Ch 2 | Không gian cấu hình | (Không bảo hiểm trực tiếp, có thể bổ sung) |
+| Ch 3 | Chuyển động cơ thể cứng nhắc | [Nhóm nằm và chuyển động cơ thể cứng nhắc](../formalizations/lie-group-rigid-body-motions.md)、[SE(3) đại diện](../formalizations/se3-representation.md) |
+| Ch 4 | Chuyển tiếp động học (PoE) | (Một phần ẩn ý trong [pinocchio](./pinocchio.md)） |
+| Ch 5 | Vận tốc Động học & Tĩnh học | (ngụ ý trong [kiểm soát toàn thân](../concepts/whole-body-control.md) của Jacobian phần) |
+| Ch 6 | Động học nghịch đảo | [Newton–Raphson / số IK](../methods/newtons-method.md)、[Công thức hóa động học nghịch đảo](../formalizations/inverse-kinematics.md) |
+| Ch 7 | Chuỗi kín | (không được bảo hiểm trực tiếp) |
+| Ch 8 | Động lực của chuỗi mở | [Động lực cơ sở nổi](../concepts/floating-base-dynamics.md) |
+| Ch 9 | Tạo quỹ đạo | [Tối ưu hóa quỹ đạo](../methods/trajectory-optimization.md) |
+| Ch 10 | Lập kế hoạch chuyển động | （RRT/PRM không được đề cập trực tiếp) |
+| Ch 11 | Điều khiển rô-bốt | [WBC](../concepts/whole-body-control.md), [TSID](../concepts/tsid.md), [Kiểm soát trở kháng](../concepts/impedance-control.md) |
+| Ch 12 | Nắm bắt & Thao tác | [Nón ma sát](../formalizations/friction-cone.md), [Liên hệ Wrench hình nón](../formalizations/contact-wrench-cone.md) |
+| Ch 13 | Robot di động có bánh xe | (không được bảo hiểm trực tiếp) |
 
-## 核心数学语言：李群 / 螺旋理论
+## Ngôn ngữ toán học cốt lõi: Nhóm dối trá/lý thuyết xoắn ốc
 
-Lynch-Park 将下面这些贯穿全书：
+Lynch-Park đề cập đến những điều sau trong suốt cuốn sách:
 
-- **SO(3) / SE(3)**：刚体姿态与位姿的群结构
-- **so(3) / se(3)**：对应李代数（角速度、空间速度向量空间）
-- **Twist $\mathcal{V} \in \mathbb{R}^6$**：空间速度（角速度 + 线速度）
-- **Wrench $\mathcal{F} \in \mathbb{R}^6$**：空间力（力矩 + 力）
-- **PoE 公式**：正运动学写成 $T(\theta) = e^{[\mathcal{S}_1]\theta_1} e^{[\mathcal{S}_2]\theta_2} \cdots e^{[\mathcal{S}_n]\theta_n} M$
-- **空间 vs 物体雅可比**：两种坐标系下的 Jacobian 表示
+- **SO(3) / SE(3)**: Cấu trúc nhóm tư thế và tư thế cơ thể cứng nhắc
+- **Vì thế(3) / se(3)**: Tương ứng với đại số Lie (vận tốc góc, không gian vectơ vận tốc không gian)
+- **Twist $\mathcal{V} \in \mathbb{R}^6$**: Vận tốc không gian (vận tốc góc + vận tốc tuyến tính)
+- **Wrench $\mathcal{F} \in \mathbb{R}^6$**: Lực không gian (mô men + lực)
+- **PoE chính thức**: Viết dưới dạng động học thuận $T(\theta) = e^{[\mathcal{S}_1]\theta_1} e^{[\mathcal{S}_2]\theta_2} \cdots e^{[\mathcal{S}_n]\theta_n} M$
+- **Không gian vs Vật thể Jacobian**: Theo hai hệ tọa độ Jacobian thể hiện
 
-这套语言是 Pinocchio、Crocoddyl、TSID、Drake 这些现代机器人库的内部实现语言，不是新东西，但教材级清晰阐述较少。
+Ngôn ngữ này là Pinocchio、Crocoddyl、TSIDNgôn ngữ triển khai nội bộ của các thư viện robot hiện đại như Drake và Drake không phải là mới, nhưng có rất ít lời giải thích rõ ràng ở cấp độ sách giáo khoa.
 
-## 局限
+## hạn chế
 
-- **不覆盖 RL / IL**：本书是 2017 年传统机器人学视角，不涉及深度强化学习、模仿学习、VLA
-- **不覆盖 sim2real / 真机部署工程**：纯理论 + 仿真层
-- **接触动力学浅尝辄止**：Ch 12 抓取讲了静态接触，但完整的接触动力学（complementarity、impulse-based）需要 Featherstone 等更专的资料
+- **Không được bảo hiểm RL / IL**: Cuốn sách này nhìn từ góc nhìn của robot truyền thống năm 2017 và không liên quan đến học tăng cường sâu, học bắt chước,VLA
+- **Không bao gồm dự án triển khai máy sim2real/thực**: Lý thuyết thuần túy + ​​lớp mô phỏng
+- **Một hương vị ngắn gọn của động lực học tiếp xúc**: Ch 12 lấy nói về tiếp xúc tĩnh, nhưng động lực tiếp xúc hoàn chỉnh (bổ sung, dựa trên xung) yêu cầu thông tin chuyên biệt hơn như Featherstone
 
-## 推荐使用方式
+## Cách sử dụng được đề xuất
 
-| 你想做什么 | 建议读哪些章节 |
+| bạn định làm gì | Những chương nào được khuyến khích đọc? |
 |-----------|--------------|
-| 入门人形/四足控制的数学语言 | Ch 3 → Ch 5 → Ch 8 → Ch 11 |
-| 实现 IK 求解器 | Ch 6（数值法部分）+ 配套 Python 库 |
-| 理解 Pinocchio / TSID 的内部实现 | Ch 3, 4, 5, 8（PoE + Spatial Vectors） |
-| 写传统采样规划（RRT/PRM） | Ch 10 + [PythonRobotics](./python-robotics.md) 可运行示例 |
-| 移动机器人导航算法代码直觉 | [PythonRobotics](./python-robotics.md) 定位/规划/跟踪模块 |
-| 学抓取力学 | Ch 12 + [friction-cone.md](../formalizations/friction-cone.md) |
+| Ngôn ngữ toán học giới thiệu cho điều khiển hình người/bộ tứ | Ch 3 → Ch 5 → Ch 8 → Ch 11 |
+| hoàn thành IK người giải quyết | Ch 6 (phần phương pháp số) + thư viện Python hỗ trợ |
+| hiểu  Pinocchio / TSID triển khai nội bộ | Ch 3, 4, 5, 8（PoE + Vectơ không gian) |
+| Viết kế hoạch lấy mẫu truyền thống (RRT/PRM） | Ch 10 + [PythonRobotics](./python-robotics.md) Ví dụ có thể chạy được |
+| Trực quan mã thuật toán điều hướng robot di động | [PythonRobotics](./python-robotics.md) Mô-đun định vị/lập kế hoạch/theo dõi |
+| Tìm hiểu cơ chế nắm bắt | Chương 12 + [ma sát-cone.md](../formalizations/friction-cone.md) |
 
-## 关联页面
+## Các trang liên quan
 
-- [正向运动学](../formalizations/forward-kinematics.md) — Ch 4 DH/连乘对照；部署侧再接 PoE
-- [逆运动学](../formalizations/inverse-kinematics.md) — Ch 6 解析 / 数值 / 冗余
-- [雅可比矩阵](../formalizations/robot-jacobian.md) — Ch 5 空间/物体雅可比与力对偶
-- [李群、李代数与刚体旋转](../formalizations/lie-group-rigid-body-motions.md) — Ch 3 李群 / 指数映射的工程分工（含公众号策展导读）
-- [SE(3) Representation](../formalizations/se3-representation.md) — 教材 Ch 3 对应的 DL 表示对比
-- [Floating Base Dynamics](../concepts/floating-base-dynamics.md) — 教材 Ch 8 在浮基系统上的延伸
-- [Whole-Body Control](../concepts/whole-body-control.md) — 教材 Ch 11 控制章节的现代延伸
-- [Pinocchio](./pinocchio.md) — 直接使用本教材数学语言的现代机器人库
-- [线性代数学习策展](./linear-algebra-curriculum.md) — L0 通用矩阵语言，再接本教材 Ch 2–3
-- [Trajectory Optimization](../methods/trajectory-optimization.md) — 教材 Ch 9 的现代化版本
-- [PythonRobotics](./python-robotics.md) — Ch 10/13 移动机器人算法的 Python 实现与动画演示
-- [开源机器人学学习指南（qqfly）](./learn-robotics-qqfly-guide.md) — 中文自学路线：Craig 工业臂打底后再接本教材 PoE/李群章
+- [động học thuận](../formalizations/forward-kinematics.md) — Ch 4 DH/So sánh chuyến đi liên tục; triển khai bên và sau đó kết nối PoE
+- [động học nghịch đảo](../formalizations/inverse-kinematics.md) — Ch 6 Phân tích/Số/Dự phòng
+- [ma trận Jacobian](../formalizations/robot-jacobian.md) — Ch 5 Không gian/Vật thể Jacobian và Lưỡng tính lực
+- [Nhóm Lie, đại số Lie và phép quay vật rắn](../formalizations/lie-group-rigid-body-motions.md) — Ch 3 Li Qun/Phòng Kỹ thuật Lập bản đồ Chỉ mục (bao gồm phần giới thiệu về giám tuyển tài khoản công)
+- [SE(3) đại diện](../formalizations/se3-representation.md) — Tương ứng với SGK Ch 3 DL thể hiện sự tương phản
+- [Động lực cơ sở nổi](../concepts/floating-base-dynamics.md) — Sách giáo khoa Ch 8 Mở rộng hệ thống đế nổi
+- [Kiểm soát toàn thân](../concepts/whole-body-control.md) — Sách giáo khoa Ch 11 Phần mở rộng hiện đại của chương điều khiển
+- [Pinocchio](./pinocchio.md) — Thư viện robot hiện đại sử dụng trực tiếp ngôn ngữ toán học của sách giáo khoa này
+- [Giám tuyển học đại số tuyến tính](./linear-algebra-curriculum.md) — L0 Ngôn ngữ ma trận tổng quát, sau đó học theo giáo trình này Ch 2–3
+- [Tối ưu hóa quỹ đạo](../methods/trajectory-optimization.md) — Phiên bản hiện đại hóa của Sách giáo khoa Ch 9
+- [PythonRobotics](./python-robotics.md) — Ch 10/13 Triển khai Python và trình diễn hoạt ảnh của thuật toán robot di động
+- [Hướng dẫn nghiên cứu robot nguồn mở (qqfly)](./learn-robotics-qqfly-guide.md) — Lộ trình tự học tiếng Trung: Nền tảng công nghiệp của Craig trước khi chọn cuốn sách giáo khoa này PoE/Lý Quần Chương
 
-## 参考来源
+## Nguồn tham khảo
 
-- [sources/papers/modern_robotics_textbook.md](../../sources/papers/modern_robotics_textbook.md)
-- Lynch, K. M., & Park, F. C. (2017). *Modern Robotics: Mechanics, Planning, and Control*. Cambridge University Press.
-- [Northwestern Mechatronics Wiki — Modern Robotics](https://hades.mech.northwestern.edu/index.php/Modern_Robotics)
-- [PDF (官方免费)](https://hades.mech.northwestern.edu/images/7/7f/MR.pdf)
-- [sources/papers/robot_link_rotor_inertia_primary_refs.md](../../sources/papers/robot_link_rotor_inertia_primary_refs.md) — 连杆/转子惯量一手资料合集（Ch.8 开放链刚体动力学 + URDF + Gautier–Khalil 1990 + MuJoCo armature）
+- [nguồn/giấy tờ/hiện đại_người máy_sách giáo khoa.md](../../sources/papers/modern_robotics_textbook.md)
+- Lynch, K. M., & Park, F. C. (2017). *Modern Robotics: Cơ học, lập kế hoạch và kiểm soát*. Nhà xuất bản Đại học Cambridge.
+- [Wiki Cơ điện tử Tây Bắc - Modern Robotics](https://hades.mech.northwestern.edu/index.php/Modern_Robotics)
+- [PDF (Chính thức miễn phí)](https://hades.mech.northwestern.edu/images/7/7f/MR.pdf)
+- [nguồn/giấy tờ/robot_liên kết_cánh quạt_quán tính_sơ đẳng_ref.md](../../sources/papers/robot_link_rotor_inertia_primary_refs.md) — Thu thập dữ liệu trực tiếp về quán tính thanh kết nối/rotor (Ch.8 Động lực học vật rắn chuỗi hở + URDF + Gautier–Khalil 1990 + Phần ứng MuJoCo)

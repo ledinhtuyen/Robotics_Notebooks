@@ -11,279 +11,279 @@ tags: [inria]
 
 # Crocoddyl
 
-**Crocoddyl** 是一个面向机器人最优控制与轨迹优化的开源工具箱，长期由 **LAAS-CNRS / INRIA / Gepetto / Stack-of-Tasks** 这条学术与开源路线推动。
+**Crocoddyl** Nó là một hộp công cụ nguồn mở để điều khiển tối ưu và tối ưu hóa quỹ đạo của robot. Nó đã được phát triển bởi **LAAS-CNRS / INRIA / Gepetto / Chồng nhiệm vụ** Con đường học thuật và nguồn mở này thúc đẩy.
 
-## 一句话定义
+## định nghĩa một câu
 
-如果说 Pinocchio 提供的是机器人运动学、动力学和导数的高质量计算底座，那 **Crocoddyl** 提供的就是：
+Nếu chúng ta nói Pinocchio Những gì được cung cấp là cơ sở tính toán chất lượng cao cho động học, động lực học và đạo hàm của robot, **Crocoddyl** Những gì được cung cấp là:
 
-> 一套建立在 Pinocchio 之上的最优控制与 trajectory optimization 工具链，尤其适合做多自由度机器人和人形机器人的 shooting-based optimal control。
+> Một bộ được xây dựng trên Pinocchio Chuỗi công cụ điều khiển tối ưu và tối ưu hóa quỹ đạo ở trên đặc biệt phù hợp cho việc điều khiển tối ưu dựa trên hoạt động bắn súng của robot nhiều bậc tự do và robot hình người.
 
-一句话说白了：
+Nói rõ ràng trong một câu:
 
-> `Crocoddyl` 是把“动力学模型”真正变成“可求解最优控制问题”的那层工具箱。
+> `Crocoddyl` Chính lớp hộp công cụ thực sự biến "mô hình động" thành "bài toán điều khiển tối ưu có thể giải được".
 
-## 英文缩写速查
+## Kiểm tra nhanh chữ viết tắt tiếng Anh
 
-| 缩写 | 英文全称 | 简要说明 |
+| viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| MuJoCo | Multi-Joint dynamics with Contact | 接触丰富的刚体物理仿真引擎 |
-| Isaac Gym | NVIDIA Isaac Gym | GPU 并行刚体仿真训练环境 |
-| TSID | Task-Space Inverse Dynamics | 任务空间逆动力学求解关节力矩的 WBC 实现 |
-| WBC | Whole-Body Control | 协调全身关节满足多任务/约束的控制基础设施 |
-| OCP | Optimal Control Problem | MPC 每步求解的有限时域最优控制问题 |
-| MPC | Model Predictive Control | 滚动时域内优化控制序列的预测控制 |
-| RL | Reinforcement Learning | 通过与环境交互最大化长期回报来学习策略的范式 |
-| GPU | Graphics Processing Unit | 图形处理器，大规模并行仿真训练的算力基础 |
+| MuJoCo | Động lực học đa khớp với Liên hệ | Truy cập vào một công cụ mô phỏng vật lý cơ thể cứng nhắc phong phú |
+| Phòng tập Isaac | NVIDIA Phòng tập Isaac | GPU Môi trường đào tạo mô phỏng cơ thể cứng nhắc song song |
+| TSID | Động lực nghịch đảo không gian nhiệm vụ | Động lực nghịch đảo không gian nhiệm vụ để giải quyết các khoảnh khắc chung WBC hoàn thành |
+| WBC | Kiểm soát toàn thân | Kiểm soát cơ sở hạ tầng để phối hợp các khớp cơ thể nhằm đáp ứng nhiều nhiệm vụ/ràng buộc |
+| OCP | Bài toán điều khiển tối ưu | MPC Bài toán điều khiển tối ưu hữu hạn thời gian được giải quyết ở mỗi bước |
+| MPC | Kiểm soát dự đoán mô hình | Điều khiển dự đoán các chuỗi điều khiển được tối ưu hóa trong miền thời gian luân chuyển |
+| RL | Học tăng cường | Một mô hình cho các chiến lược học tập bằng cách tương tác với môi trường để tối đa hóa lợi ích lâu dài |
+| GPU | Bộ xử lý đồ họa | Bộ xử lý đồ họa, nền tảng sức mạnh tính toán cho đào tạo mô phỏng song song quy mô lớn |
 
-## 为什么重要
+## Tại sao nó quan trọng
 
-做 trajectory optimization / optimal control 的时候，论文里看起来通常很抽象：
-- 定义状态和控制
-- 写代价函数
-- 写动力学约束
-- 跑 DDP / FDDP / shooting method
+Khi thực hiện tối ưu hóa quỹ đạo/điều khiển tối ưu, bài báo thường trông rất trừu tượng:
+- Xác định trạng thái và điều khiển
+- Viết hàm chi phí
+- Viết các ràng buộc động
+- chạy DDP / FDDP /phương pháp chụp
 
-但真正落到工程里，你需要的是：
-- 能表达复杂机器人动力学
-- 能快速做 rollout
-- 能高效算导数
-- 能组织 state / action / cost / residual / actuation / contact model
-- 能稳定求解 shooting-based optimal control
+Nhưng khi nói đến các dự án thực tế, điều bạn cần là:
+- Có thể thể hiện động lực học phức tạp của robot
+- Có thể triển khai nhanh chóng
+- Có thể tính toán đạo hàm hiệu quả
+- Có thể tổ chức mô hình trạng thái/hành động/chi phí/dư lượng/kích hoạt/liên hệ
+- Có thể giải quyết ổn định điều khiển tối ưu dựa trên chụp ảnh
 
-Crocoddyl 重要的地方就在于：
+Crocoddyl Điều quan trọng là:
 
-- 它把这些最优控制工程细节组织成了库
-- 它特别适合 legged / humanoid / manipulation 场景
-- 它和 Pinocchio 配合得非常紧密
-- 它几乎是 model-based robot control 工具栈里最值得学的一套开源方案之一
+- Nó tổ chức các chi tiết kỹ thuật điều khiển tối ưu này vào các thư viện
+- Nó đặc biệt phù hợp với các tình huống có chân/hình người/thao tác
+- nó và Pinocchio Phối hợp rất chặt chẽ
+- Nó gần như là một trong những giải pháp nguồn mở đáng học hỏi nhất trong nhóm công cụ điều khiển robot dựa trên mô hình.
 
-## 它到底是什么
+## chính xác thì nó là gì
 
-### 1. 不是仿真器
-Crocoddyl 不负责像 MuJoCo / Isaac Gym 那样搭世界、推进物理仿真时间步。
+### 1. Không phải trình giả lập
+Crocoddyl Nó không chịu trách nhiệm xây dựng thế giới và nâng cao bước thời gian mô phỏng vật lý như MuJoCo/Isaac Gym.
 
-它不是环境平台，而是：
-- trajectory optimization toolbox
-- optimal control problem builder
-- shooting solver 工具库
+Nó không phải là một nền tảng môi trường, nhưng:
+- hộp công cụ tối ưu hóa quỹ đạo
+- Xây dựng bài toán điều khiển tối ưu
+- thư viện công cụ giải quyết bắn súng
 
-### 2. 不是现成控制器
-它也不是像 TSID / WBC 那样“拿来就输出关节力矩”的低层控制器。
+### 2. Không phải bộ điều khiển làm sẵn
+Nó không giống như TSID / WBC Nó là một bộ điều khiển cấp thấp "tạo ra mô-men xoắn khớp ngay khi được sử dụng".
 
-它更偏：
-- 离线规划
-- 中低频优化
-- 参考轨迹生成
-- optimal control research
+Nó thiên về:
+- Lập kế hoạch ngoại tuyến
+- Tối ưu hóa tần số trung và thấp
+- Tạo quỹ đạo tham chiếu
+- nghiên cứu điều khiển tối ưu
 
-所以它通常站在控制链更前面。
+Vì vậy, nó thường đứng xa hơn trong chuỗi kiểm soát.
 
-## 它在解决什么问题
+## nó đang giải quyết vấn đề gì
 
-### 1. 给定模型，求一条最优轨迹
-最典型问题：
-- 机器人从 A 动到 B
-- 同时满足动力学和约束
-- 代价尽量小（能量、误差、时间等）
+### 1. Cho trước mô hình, tìm quỹ đạo tối ưu
+Những câu hỏi điển hình nhất:
+- Robot di chuyển từ A đến B
+- Đáp ứng đồng thời động lực và ràng buộc
+- Chi phí phải càng nhỏ càng tốt (năng lượng, lỗi, thời gian, v.v.)
 
-这就是 trajectory optimization / optimal control 的经典问题。
+Đây là bài toán kinh điển về tối ưu hóa quỹ đạo/điều khiển tối ưu.
 
-### 2. 组织复杂机器人最优控制问题
-对于人形 / 足式机器人，问题会变得很复杂：
-- 浮动基
-- 多接触
-- 动力学非线性
-- 多目标代价
-- 接触切换
+### 2. Tổ chức các bài toán điều khiển tối ưu robot phức tạp
+Đối với robot hình người/có chân, vấn đề trở nên phức tạp:
+- đế nổi
+- Thêm liên hệ
+- Tính phi tuyến động
+- Nhiều chi phí mục tiêu
+- chuyển mạch liên lạc
 
-Crocoddyl 提供了一套较成熟的建模和求解结构，来组织这些问题。
+Crocoddyl Một cấu trúc mô hình và giải pháp tương đối hoàn thiện được cung cấp để tổ chức những vấn đề này.
 
-### 3. 用 shooting-based 方法高效求解
-Crocoddyl 最核心的气质就是：
-- shooting methods
-- DDP / FDDP / Gauss-Newton 风格
-- 适合机器人动力学优化
+### 3. Giải pháp hiệu quả sử dụng phương pháp chụp ảnh
+Crocoddyl Tính khí cốt lõi là:
+- phương pháp chụp
+- DDP / FDDP / phong cách Gauss-Newton
+- Thích hợp cho việc tối ưu hóa động lực học của robot
 
-这让它和很多一般性 NLP 求解框架有不同的使用味道。
+Điều này làm cho nó giống với nhiều chung NLP Các khung giải quyết có nhiều hương vị khác nhau.
 
-## 为什么它在机器人 optimal control 里很强
+## Vì sao lại mạnh về điều khiển tối ưu robot?
 
-### 1. 和 Pinocchio 深度绑定
-这点特别关键。
+### 1. và Pinocchio ràng buộc sâu sắc
+Điều này đặc biệt quan trọng.
 
-Crocoddyl 之所以强，不是因为它凭空实现了一切，而是因为：
-- Pinocchio 负责高质量动力学与导数计算
-- Crocoddyl 在这个基础上做 optimal control 建模与求解
+Crocoddyl Lý do tại sao nó mạnh mẽ không phải vì nó đạt được mọi thứ một cách dễ dàng, mà bởi vì:
+- Pinocchio Chịu trách nhiệm về động lực học chất lượng cao và tính toán đạo hàm
+- Crocoddyl Trên cơ sở đó thực hiện mô hình hóa và giải điều khiển tối ưu
 
-这让它非常适合高自由度机器人。
+Điều này khiến nó trở nên lý tưởng cho các robot có mức độ tự do cao.
 
-### 2. 对 legged / humanoid 场景友好
-人形 / 足式最怕的就是：
-- 浮动基
-- 接触
-- 非线性动力学
-- 大维度状态
+### 2. Thân thiện với các tình huống có chân / hình người
+Điều đáng sợ nhất về hình dạng/hình dạng bàn chân của con người là:
+- đế nổi
+- chạm
+- động lực phi tuyến
+- Trạng thái kích thước lớn
 
-Crocoddyl 在这些场景里长期有很强代表性，特别适合：
-- walking motion optimization
-- jumping / crouching / recovery motion
-- loco-manipulation planning
+Crocoddyl Nó có sự thể hiện mạnh mẽ lâu dài trong những cảnh này, đặc biệt phù hợp với:
+- tối ưu hóa chuyển động đi bộ
+- chuyển động nhảy / cúi xuống / phục hồi
+- lập kế hoạch thao túng đầu máy
 
-### 3. 很适合研究型工作流
-如果你在做：
-- research prototype
-- algorithm verification
-- model-based control baseline
-- trajectory optimization paper reproduction
+### 3. Lý tưởng cho quy trình làm việc dựa trên nghiên cứu
+Nếu bạn đang làm:
+- nguyên mẫu nghiên cứu
+- xác minh thuật toán
+- Đường cơ sở kiểm soát dựa trên mô hình
+- tái tạo giấy tối ưu hóa quỹ đạo
 
-Crocoddyl 非常顺手。
+Crocoddyl Rất thuận tiện.
 
-## 它的典型能力
+## khả năng điển hình của nó
 
-### 1. State / Actuation / Differential Action Model 组织
-它把最优控制问题拆成很多结构化模块：
-- 状态模型
-- 驱动模型
-- 动力学模型
-- 代价模型
-- residual
-- terminal model
+### 1. Mô hình trạng thái / hành động / hành động khác biệt 组织
+Nó chia bài toán điều khiển tối ưu thành nhiều module có cấu trúc:
+- mô hình trạng thái
+- mô hình trình điều khiển
+- Mô hình động
+- mô hình chi phí
+- dư
+- mô hình thiết bị đầu cuối
 
-这对组织复杂机器人问题特别有帮助。
+Điều này đặc biệt hữu ích cho việc tổ chức các bài toán phức tạp về robot.
 
-### 2. DDP / FDDP 求解器
-Crocoddyl 很重要的一条线是：
-- DDP（Differential Dynamic Programming）
-- FDDP（Feasibility-driven DDP）
+### 2. DDP / FDDP người giải quyết
+Crocoddyl Một dòng rất quan trọng là:
+- DDP（Lập trình động vi phân)
+- FDDP（Định hướng khả thi DDP）
 
-这类方法在机器人 optimal control 里非常常见。
+Loại phương pháp này rất phổ biến trong điều khiển tối ưu robot.
 
-### 3. 接触和冲击建模
-做人形 / 足式轨迹优化时：
-- 单脚支撑
-- 双脚支撑
-- 接触切换
-- 冲击建模
+### 3. Mô hình tiếp xúc và tác động
+Khi tối ưu hóa quỹ đạo giống hình người/bàn chân:
+- Hỗ trợ chân đơn
+- Hỗ trợ bàn chân
+- chuyển mạch liên lạc
+- Mô hình tác động
 
-都很关键。Crocoddyl 在这方面有很强的针对性。
+Tất cả đều quan trọng.Crocoddyl Có sự liên quan mạnh mẽ trong vấn đề này.
 
-### 4. 与 Pinocchio 配套的导数效率
-如果做 trajectory optimization，导数质量直接决定：
-- 收敛速度
-- 稳定性
-- 工程可维护性
+### 4. với Pinocchio Hiệu suất đạo hàm phù hợp
+Nếu bạn thực hiện tối ưu hóa quỹ đạo, chất lượng của đạo hàm được xác định trực tiếp:
+- Tốc độ hội tụ
+- sự ổn định
+- Khả năng bảo trì kỹ thuật
 
-Crocoddyl 在这点上吃到 Pinocchio 很多红利。
+Crocoddyl Ăn vào thời điểm này Pinocchio Rất nhiều tiền thưởng.
 
-## 它和当前项目主线的关系
+## Mối quan hệ của nó với tuyến chính của dự án hiện tại
 
-### 和 Trajectory Optimization 的关系
-这几乎是最直接的关系。
+### Mối quan hệ với tối ưu hóa quỹ đạo
+Đây gần như là mối quan hệ trực tiếp nhất.
 
-Crocoddyl 是 trajectory optimization 在机器人场景里的代表性工具箱之一。
+Crocoddyl Nó là một trong những hộp công cụ tiêu biểu để tối ưu hóa quỹ đạo trong các kịch bản robot.
 
-见：[Trajectory Optimization](../methods/trajectory-optimization.md)
+Nhìn thấy:[Tối ưu hóa quỹ đạo](../methods/trajectory-optimization.md)
 
-### 和 Optimal Control 的关系
-Crocoddyl 是把最优控制问题变成工程可解问题的实践工具。
+### Mối quan hệ với điều khiển tối ưu
+Crocoddyl Nó là một công cụ thiết thực để biến các bài toán điều khiển tối ưu thành các bài toán kỹ thuật có thể giải được.
 
-见：[Optimal Control (OCP)](../concepts/optimal-control.md)
+Nhìn thấy:[Kiểm soát tối ưu (OCP)](../concepts/optimal-control.md)
 
-### 和 Pinocchio 的关系
-Pinocchio 给它提供运动学、动力学和导数底座，Crocoddyl 在其之上做 shooting-based optimal control。
+### Và Pinocchio mối quan hệ
+Pinocchio Cung cấp cho nó một cơ sở động học, động học và đạo hàm,Crocoddyl Thực hiện điều khiển tối ưu dựa trên hoạt động bắn súng.
 
-见：[Pinocchio](./pinocchio.md)
+Nhìn thấy:[Pinocchio](./pinocchio.md)
 
-### 和 MPC 的关系
-Crocoddyl 通常不等于 MPC，但它的求解思路、模型组织方式和很多 nonlinear MPC 有很强亲缘关系。
+### Và MPC mối quan hệ
+Crocoddyl thường không bằng MPC, nhưng các ý tưởng giải pháp, tổ chức mô hình và nhiều tính chất phi tuyến của nó MPC Có một mối quan hệ họ hàng mạnh mẽ.
 
-见：[Model Predictive Control (MPC)](../methods/model-predictive-control.md)
+Nhìn thấy:[Kiểm soát dự đoán mô hình (MPC)](../methods/model-predictive-control.md)
 
-### 和 Centroidal Dynamics / WBC 的关系
-Crocoddyl 可以用于更高层的轨迹优化与运动规划，再由 WBC / TSID 执行；也可以直接在 full-body / contact 场景中做更复杂的动作优化。
+### và động lực học trung tâm / WBC mối quan hệ
+Crocoddyl Nó có thể được sử dụng để tối ưu hóa quỹ đạo và lập kế hoạch chuyển động ở cấp độ cao hơn, sau đó WBC / TSID Thi hành án; bạn cũng có thể trực tiếp thực hiện tối ưu hóa hành động phức tạp hơn trong cảnh toàn thân/tiếp xúc.
 
-见：[Centroidal Dynamics](../concepts/centroidal-dynamics.md)
+Nhìn thấy:[Động lực học trung tâm](../concepts/centroidal-dynamics.md)
 
-见：[Whole-Body Control](../concepts/whole-body-control.md)
+Nhìn thấy:[Kiểm soát toàn thân](../concepts/whole-body-control.md)
 
-## 它和 TSID / WBC 的区别
+## nó và TSID / WBC Sự khác biệt
 
-这三个很容易混。
+Thật dễ dàng để kết hợp ba thứ này.
 
 ### Crocoddyl
-更偏：
-- trajectory optimization
-- optimal control
-- 规划整段运动
-- 中低频 / 离线 / 参考轨迹生成
+thiên vị hơn:
+- tối ưu hóa quỹ đạo
+- kiểm soát tối ưu
+- Lên kế hoạch cho toàn bộ bài tập
+- Tạo quỹ đạo tần số trung bình thấp / ngoại tuyến / tham chiếu
 
 ### TSID / WBC
-更偏：
-- 低层任务执行
-- 约束一致控制
-- 高频闭环
-- 把参考落成关节加速度 / 力矩 / 接触力
+thiên vị hơn:
+- Thực thi nhiệm vụ cấp thấp
+- kiểm soát nhất quán hạn chế
+- Vòng kín tần số cao
+- Đặt tham chiếu là gia tốc/mô-men xoắn/lực tiếp xúc của khớp
 
-一句话：
+Trong một câu:
 
-> Crocoddyl 更像“先把整条动作想明白”，TSID / WBC 更像“现在这一拍怎么稳稳执行出来”。
+> Crocoddyl Nó giống như "Trước tiên hãy suy nghĩ kỹ lưỡng về toàn bộ hành động",TSID / WBC Nó giống như "Làm cách nào tôi có thể thực hiện cú đánh này một cách ổn định bây giờ?"
 
-## 常见误区
+## Những hiểu lầm phổ biến
 
-### 1. 以为 Crocoddyl 是控制器
-不是，它更像最优控制求解与建模工具箱。
+### 1. suy nghĩ Crocoddyl là bộ điều khiển
+Không, nó giống một hộp công cụ mô hình hóa và giải quyết điều khiển tối ưu hơn.
 
-### 2. 以为学会 Crocoddyl 就等于学会 trajectory optimization
-不够。它是非常好的工具，但方法论和问题建模仍然是核心。
+### 2. Nghĩ rằng bạn đã học được Crocoddyl Nó tương đương với việc học tối ưu hóa quỹ đạo
+không đủ. Đó là một công cụ rất tốt, nhưng cốt lõi vẫn là phương pháp luận và mô hình hóa vấn đề.
 
-### 3. 以为它只能做人形
-不对。机械臂、足式、操作任务也能用。
+### 3. Nghĩ rằng chỉ có thể tạo thành hình dạng con người
+sai. Cánh tay, chân robot và các nhiệm vụ vận hành cũng có thể được sử dụng.
 
-### 4. 以为它和 Pinocchio 是替代关系
-完全不是。更准确地说：
-- Pinocchio 是底座
-- Crocoddyl 是上层 optimal control 工具箱
+### 4. Nghĩ nó cũng giống như Pinocchio là mối quan hệ thay thế
+Không có gì. Chính xác hơn:
+- Pinocchio Đó là cơ sở
+- Crocoddyl Là hộp công cụ điều khiển tối ưu cấp trên
 
-## 推荐使用建议
+## Đề xuất sử dụng được đề xuất
 
-### 如果你做轨迹优化 / optimal control
-非常值得学。
+### Nếu bạn thực hiện tối ưu hóa quỹ đạo/kiểm soát tối ưu
+Rất đáng để học hỏi.
 
-尤其是：
-- humanoid motion planning
-- legged locomotion optimization
-- model-based baseline
-- floating-base nonlinear control
+Đặc biệt:
+- lập kế hoạch chuyển động hình người
+- tối ưu hóa vận động bằng chân
+- đường cơ sở dựa trên mô hình
+- điều khiển phi tuyến cơ sở nổi
 
-### 如果你做 WBC / TSID
-也值得理解 Crocoddyl，因为很多时候它负责给你更高层的参考轨迹。
+### nếu bạn làm WBC / TSID
+Cũng đáng để hiểu Crocoddyl, bởi vì nhiều khi nó có nhiệm vụ cung cấp cho bạn một quỹ đạo tham chiếu ở cấp độ cao hơn.
 
-### 如果你主要做 RL
-不一定非得把它用熟，但理解它能帮助你更清楚：
-- model-based 方法能做到什么
-- RL 和 optimal control 的边界在哪里
+### Nếu bạn chủ yếu làm RL
+Bạn không cần phải làm quen với nó, nhưng hiểu nó sẽ giúp bạn hiểu:
+- Những phương pháp dựa trên mô hình có thể làm gì
+- RL Đâu là ranh giới giữa và kiểm soát tối ưu?
 
-## 推荐继续阅读
+## Đề nghị đọc tiếp
 
-- 官方仓库：<https://github.com/loco-3d/crocoddyl>
-- 文档：<https://gepettoweb.laas.fr/doc/loco-3d/crocoddyl/master/doxygen-html/>
-- 论文：Mastalli et al., *Crocoddyl: An Efficient and Versatile Framework for Multi-Contact Optimal Control*
+- Kho lưu trữ chính thức:<https://github.com/loco-3d/crocoddyl>
+- tài liệu:<https://gepettoweb.laas.fr/doc/loco-3d/crocoddyl/master/doxygen-html/>
+- Giấy: Mastalli và cộng sự, *Crocoddyl: Một khung hiệu quả và linh hoạt để kiểm soát tối ưu đa liên hệ*
 - [Pinocchio](./pinocchio.md)
 
-## 参考来源
+## Nguồn tham khảo
 
-- Mastalli et al., *Crocoddyl: An Efficient and Versatile Framework for Multi-Contact Optimal Control* (2020) — Crocoddyl 论文
-- 官方仓库：<https://github.com/loco-3d/crocoddyl>
+- Mastalli và cộng sự, *Crocoddyl: Một khung hiệu quả và linh hoạt để kiểm soát tối ưu đa liên hệ* (2020) — Crocoddyl giấy
+- Kho lưu trữ chính thức:<https://github.com/loco-3d/crocoddyl>
 
-## 关联页面
+## Các trang liên quan
 
 - [Pinocchio](./pinocchio.md)
-- [cuRobo](./curobo.md) — GPU 并行碰撞与多样本 TO 的另一条实现谱系（与 shooting/DDP 工具链问题剖分不同）
-- [SE(3) 切空间浮动基 TO](./paper-se3-tangent-to.md) — 配点 + 欧式 Ipopt + \(\mathfrak{se}(3)\) 坐标，不必走 DDP 也能做空翻
-- [Optimal Control](../methods/model-predictive-control.md)
-- [PRIME](./prime-system-id.md) — 在 Crocoddyl/FDDP 上做接触隐式惯量 + 运动 MAP 估计（RSS 2026）
+- [cuRobo](./curobo.md) — GPU Va chạm song song và nhiều mẫu TO Một dòng triển khai khác (với tính năng chụp/DDP Các vấn đề về chuỗi công cụ được chia nhỏ khác nhau)
+- [SE(3) cơ sở nổi không gian tiếp tuyến TO](./paper-se3-tangent-to.md) — Phân phối điểm + Ipopt phong cách Châu Âu + \(\mathfrak{se}(3)\) tọa độ, không cần phải đi DDP Cũng có thể lộn nhào
+- [Kiểm soát tối ưu](../methods/model-predictive-control.md)
+- [PRIME](./prime-system-id.md) - hiện hữu Crocoddyl/FDDP Tiếp xúc có quán tính ngầm + chuyển động MAP ước lượng(RSS 2026）
 
-## 一句话记忆
+## trí nhớ một câu
 
-> Crocoddyl 是建立在 Pinocchio 之上的机器人最优控制与轨迹优化工具箱，特别适合 legged / humanoid 场景，是把动力学模型真正变成可求解 optimal control 问题的关键一层。
+> Crocoddyl được xây dựng trên Pinocchio Hộp công cụ tối ưu hóa quỹ đạo và điều khiển tối ưu rô-bốt ở trên đặc biệt phù hợp với các tình huống có chân/hình người và là lớp then chốt để biến mô hình động lực học thành một bài toán điều khiển tối ưu thực sự có thể giải được.

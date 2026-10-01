@@ -21,138 +21,138 @@ sources:
   - ../../sources/repos/mimickit_tan_norm.md
 ---
 
-# 旋转表示方法对比（SO(3)）
+# So sánh các phương pháp biểu diễn xoay (SO(3)）
 
-**一句话选型：** 同一旋转属于流形 $SO(3)$，工程上用 **多种坐标** 各干各的——**欧拉角**给人看，**单位四元数**做存储与 SLERP，**旋转矩阵**做链式复合，**so(3) / 轴角**做优化增量，**6D / tan_norm** 给网络无约束回归。把一种表示硬套全栈，会同时踩万向锁、双覆盖和不正交。
+**Lựa chọn trong một câu:** Phép quay giống nhau thuộc về đa tạp $SO(3)$, được sử dụng trong kỹ thuật **tọa độ khác nhau** Mọi người đều làm việc riêng của mình——**góc Euler**Cho người khác xem,**đơn vị quaternion**lưu trữ với SLERP，**ma trận xoay**Thực hiện ghép chuỗi,**Vì thế(3) / góc trục**Thực hiện các bước tăng tối ưu hóa,**6D/tân_chuẩn mực** Cung cấp cho mạng hồi quy không bị ràng buộc. Áp dụng một biểu diễn cho toàn bộ ngăn xếp sẽ đồng thời vi phạm khóa phổ quát, phạm vi bao phủ kép và tính không trực giao.
 
-## 一句话定义
+## định nghĩa một câu
 
-**三维旋转的合法对象是李群 $SO(3)$；欧拉角、四元数、旋转矩阵、轴角/指数映射、6D 连续表示都是它的参数化，差别在维度、奇异、唯一性与是否适合神经网络回归。**
+**Đối tượng pháp lý của phép quay ba chiều là nhóm Lie $SO(3)$; Góc Euler, bậc bốn, ma trận quay, ánh xạ góc/lũy trục và biểu diễn liên tục 6D đều là các tham số hóa của nó. Sự khác biệt là về chiều, điểm kỳ dị, tính duy nhất và liệu nó có phù hợp với hồi quy mạng thần kinh hay không.**
 
-## 英文缩写速查
+## Kiểm tra nhanh chữ viết tắt tiếng Anh
 
-| 缩写 | 英文全称 | 简要说明 |
+| viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| SO(3) | Special Orthogonal Group in 3D | 三维旋转群：$R^\top R=I$，$\det R=1$ |
-| RPY | Roll–Pitch–Yaw | 最常见的 Tait–Bryan 欧拉角顺序（约定因库而异） |
-| SLERP | Spherical Linear Interpolation | 单位四元数球面上的恒定角速度插值 |
-| 6D | 6D continuous rotation | Zhou CVPR 2019：取 $R$ 前两列再 Gram–Schmidt |
-| IMU | Inertial Measurement Unit | 姿态输出多为四元数或 RPY |
+| SO(3) | Nhóm trực giao đặc biệt trong 3D | Nhóm xoay ba chiều:$R^\top R=I$，$\det R=1$ |
+| RPY | Cuộn-Pitch-Yaw | Thứ tự góc Tait–Bryan Euler phổ biến nhất (các quy ước khác nhau tùy theo thư viện) |
+| SLERP | Nội suy tuyến tính hình cầu | Nội suy vận tốc góc không đổi trên một quả cầu bậc bốn đơn vị |
+| 6D | Xoay liên tục 6D | Chu CVPR 2019: Lấy $R$ Gram–Schmidt cho hai cột đầu tiên |
+| IMU | Đơn vị đo quán tính | Đầu ra thái độ chủ yếu là quaternion hoặc RPY |
 
-## 为什么重要
+## Tại sao nó quan trọng
 
-机器人栈里「同一个朝向」会在 **UI、磁盘、仿真状态、优化器、策略网络** 之间换格式。选错的典型后果：
+"Hướng giống nhau" trong ngăn xếp robot sẽ là **UI, đĩa, trạng thái mô phỏng, trình tối ưu hóa, mạng chính sách** Chuyển đổi giữa các định dạng. Hậu quả điển hình của việc lựa chọn sai:
 
-- 欧拉角插值 → 中间姿态拧、万向锁丢自由度；
-- 四元数直接 L2 → $q$ 与 $-q$ 被当成两种答案；
-- 旋转矩阵逐元素平均 → 跳出 $SO(3)$；
-- 网络回归欧拉/四元数 → 参数空间不连续，梯度在跳变点炸掉。
+- Nội suy góc Euler → vặn tư thế trung gian, khóa vạn năng và mất bậc tự do;
+- Đệ tứ trực tiếp L2 → $q$ Và $-q$ Được coi là hai câu trả lời;
+- Trung bình theo phần tử ma trận xoay → nhảy ra $SO(3)$；
+- Hồi quy mạng Euler/Quaternion → Không gian tham số không liên tục và độ dốc bùng nổ tại điểm nhảy.
 
-本页只对比 **旋转（SO(3)）**；位姿 $T=(R,t)$ 见 [SE(3) 位姿表示](../formalizations/se3-representation.md)。四元数公式与 scalar 顺序见 [单位四元数](../formalizations/unit-quaternion-so3.md)；exp/log 链路见 [李群专页](../formalizations/lie-group-rigid-body-motions.md)。
+Trang này chỉ so sánh **quay(SO(3)）**; tư thế $T=(R,t)$ Nhìn thấy [SE(3) đặt ra đại diện](../formalizations/se3-representation.md). Xem công thức bậc bốn và thứ tự vô hướng [đơn vị quaternion](../formalizations/unit-quaternion-so3.md); Xem liên kết exp/log [trang của Lý Quẩn](../formalizations/lie-group-rigid-body-motions.md)。
 
-## 核心原理
+## Nguyên tắc cốt lõi
 
-### 合法对象 vs 参数化
+### Đối tượng pháp lý so với tham số hóa
 
 $$
 SO(3)=\bigl\{R\in\mathbb{R}^{3\times 3}\ \big|\ R^\top R=I,\ \det R=1\bigr\}
 $$
 
-$SO(3)$ 是 **3 维流形**。任何 $\mathbb{R}^n$ 参数化要么 **冗余**（$n>3$ 加约束），要么 **有奇异/不连续**（$n=3$ 无法全局光滑覆盖）。这是选型的几何根因，不是实现偏好。
+$SO(3)$ Đúng **đa dạng 3D**. bất kì $\mathbb{R}^n$ Tham số hóa hoặc **sự dư thừa**（$n>3$ thêm các ràng buộc) hoặc **Có những điểm kỳ dị/điểm gián đoạn**（$n=3$ Không thể phủ sóng toàn cầu một cách trơn tru). Đây là lý do hình học để lựa chọn, không phải là ưu tiên triển khai.
 
-### 七种常用表示
+### Bảy biểu thức thường được sử dụng
 
-| 表示 | 维数 | 约束 / 歧义 | 奇异或不连续 | 复合 / 插值 | 优势 | 劣势 | 默认场景 |
+| thể hiện | Kích thước | Những hạn chế/sự mơ hồ | số ít hoặc không liên tục | Tổng hợp/Nội suy | Thuận lợi | Nhược điểm | Cảnh mặc định |
 |------|------|-------------|--------------|-------------|------|------|----------|
-| **旋转矩阵** $R$ | 9 | $R^\top R=I$，$\det=1$（6 约束） | 无拓扑奇异；数值会漂出正交 | 矩阵乘；逐元素 lerp **非法** | 作用向量 $Rv$ 直接；链式 FK 自然 | 冗余、需正交化、占带宽 | 运动学复合、图形管线、测地误差 $\arccos((\mathrm{tr}R^\top\hat R-1)/2)$ |
-| **欧拉 / RPY** | 3 | 12 种轴序；同一姿态可多组角 | **万向锁**（中间轴 $\pm 90^\circ$ 丢 1 DoF）；绕 $2\pi$ 不连续 | 分通道 lerp **不保持刚体旋转** | 人读、3 个数、UI / 日志 | 约定爆炸；大范围姿态与自动微分危险 | 仅人机接口；内部立刻转四元数或 $R$ |
-| **轴角 / 旋转向量** $\theta n$ | 3 | $\theta$ 与 $\theta+2\pi$ 同旋转；$\theta=0$ 轴任意 | $\theta=\pi$ 附近对数奇异；过 $2\pi$ 多值 | Rodrigues / exp；小角近似好 | 无单位约束；直觉「绕哪转多少」 | 大角不稳定；不宜当长期全局坐标积分 | 小扰动、IMU 增量、论文里的 rotation vector（Diebel） |
-| **so(3) 指数映射** $\omega$ | 3 | 与旋转向量同一 $\mathbb{R}^3$；经 $\exp([\omega]_\times)$ 回群 | 同轴角：$\|\omega\|=\pi$ 附近 log 奇异 | $R\leftarrow R\exp([\delta\omega]_\times)$ | **无约束优化变量**；与 twist / PoE 统一 | 表示的是 **增量**，不是长期存储格式 | 位姿图、TO、WBC/MPC 线性化 |
-| **单位四元数** $q$ | 4 | $\|q\|=1$；**$q\equiv -q$ 双覆盖** | 无万向锁；$\mathbb{R}^4\to SO(3)$ 映射不连续（Zhou） | Hamilton 积；**SLERP** | 紧凑、数值稳、动画/MoCap 标准 | scalar 顺序；模长漂移；勿无约束回归 | 仿真浮动基、IMU 状态、关键帧存储 |
-| **Zhou 6D** | 6 | 无单位球约束；decode 时 Gram–Schmidt | 连续满射（除测度零）；两列共线时 decode 不稳 | 先正交化成 $R$ 再复合 | 网络在 $\mathbb{R}^6$ 上回归 **连续** | 多 2 维；需正交化；语义是「任意前两列」 | 姿态估计、VLA 末端朝向头 |
-| **tan_norm** | 6 | 同 6D 连续族；$[R t_0\| R n_0]$ | 同 6D；参考轴固定 | 先还原 $R$ | 无 $q\equiv -q$；体 x/z 轴可读 | 术语非文献通用；与 Zhou 6D **不要混用** | [MimicKit](../entities/mimickit.md) / ProtoMotions 观测块 |
+| **ma trận xoay** $R$ | 9 | $R^\top R=I$，$\det=1$(6 hạn chế) | Không có điểm kỳ dị tôpô; các giá trị sẽ trôi ra khỏi tính trực giao | Phép nhân ma trận; lerp theo yếu tố **bất hợp pháp** | vectơ hành động $Rv$ trực tiếp; xích FK thiên nhiên | Dư thừa, yêu cầu trực giao và chiếm băng thông | Hỗn hợp động học, đường ống đồ họa, lỗi trắc địa $\arccos((\mathrm{tr}R^\top\hat R-1)/2)$ |
+| **Euler / RPY** | 3 | 12 loại trình tự trục; nhiều bộ góc có thể được sử dụng trong cùng một tư thế | **khóa đa năng**(Trục trung gian $\pm 90^\circ$ Mất 1 DoF); Bọc $2\pi$ không liên tục | lerp kênh phụ **Vòng quay của vật rắn không được duy trì** | Con người đọc, 3 số,UI / nhật ký | Vụ nổ hứa hẹn; Thái độ phạm vi rộng và mối nguy hiểm khác biệt tự động | Chỉ giao diện người-máy; chuyển đổi nội bộ thành quaternion hoặc $R$ |
+| **Góc trục/vectơ xoay** $\theta n$ | 3 | $\theta$ Và $\theta+2\pi$ Cùng một vòng quay;$\theta=0$ Trục tùy ý | $\theta=\pi$ điểm kỳ dị logarit gần đó; qua $2\pi$ Nhiều giá trị | Rodrigues / điểm kinh nghiệm; xấp xỉ góc nhỏ là tốt | Không có ràng buộc về đơn vị; trực quan "đi vòng quanh bao nhiêu" | mất ổn định góc lớn; không phù hợp để tích hợp tọa độ toàn cầu lâu dài | sự xáo trộn nhỏ,IMU Véc tơ gia tăng, xoay trong giấy (Diebel) |
+| **Vì thế(3) ánh xạ hàm mũ** $\omega$ | 3 | Tương tự như vectơ xoay $\mathbb{R}^3$;bởi vì $\exp([\omega]_\times)$ Quay lại nhóm | Góc đồng trục:$\|\omega\|=\pi$ gần log số ít | $R\leftarrow R\exp([\delta\omega]_\times)$ | **Các biến tối ưu hóa không bị ràng buộc**;với vòng xoắn / PoE thống nhất | có nghĩa **Tăng**, không phải là định dạng lưu trữ dài hạn | tạo dáng chụp ảnh,TO、WBC/MPC tuyến tính hóa |
+| **đơn vị quaternion** $q$ | 4 | $\|q\|=1$；**$q\equiv -q$ bảo hiểm gấp đôi** | Không có khóa vạn năng;$\mathbb{R}^4\to SO(3)$ Lập bản đồ gián đoạn (Chu) | sản phẩm Hamilton;**SLERP** | Nhỏ gọn, ổn định về số lượng, tiêu chuẩn hoạt hình/MoCap | thứ tự vô hướng; độ trôi chiều dài mô-đun; không có hồi quy không giới hạn | Mô phỏng đế nổi,IMU Trạng thái, lưu trữ khung hình chính |
+| **Chu 6D** | 6 | Không có ràng buộc bóng đơn vị; Gram–Schmidt khi giải mã | Phản xạ liên tục (trừ số đo 0); giải mã không ổn định khi hai cột thẳng hàng | Đầu tiên trực giao thành $R$ Quay lại với nhau một lần nữa | Mạng là $\mathbb{R}^6$ hồi quy trên **liên tục** | Nhiều hơn 2 chiều; cần phải trực giao; ngữ nghĩa là "hai cột đầu tiên bất kỳ" | đánh giá thái độ,VLA cuối về phía đầu |
+| **rám nắng_chuẩn mực** | 6 | Tương tự như dòng liên tục 6D;$[R t_0\| R n_0]$ | Tương tự như 6D; trục tham chiếu cố định | Khôi phục trước $R$ | không có $q\equiv -q$; trục x/z có thể đọc được | Thuật ngữ không được sử dụng trong văn học; giống như Chu 6D **Đừng trộn lẫn** | [Bắt chướcKit](../entities/mimickit.md) /Khối quan sát ProtoMotions |
 
-轴角、旋转向量与 so(3) 在坐标上常是 **同一个 3 维向量**；差别是 **语义**：当全局姿态用会撞 $2\pi$ 多值，当 **局部增量** 用则是优化默认。
+Góc trục, vectơ quay, v.v.(3) Trong tọa độ nó luôn luôn là **Vectơ 3D tương tự**;Sự khác biệt là **Ngữ nghĩa**: Khi sử dụng tư thế chung, nó sẽ va chạm. $2\pi$ đa giá trị khi **tăng cục bộ** Sử dụng là mặc định được tối ưu hóa.
 
-### 选型决策
+### quyết định lựa chọn
 
 ```mermaid
 flowchart TD
-  start["需要表示一个 3D 朝向"] --> who{"谁消费这个数?"}
-  who -->|"人读 / UI / YAML"| euler["欧拉 / RPY<br/>立刻注明轴序"]
-  who -->|"磁盘 / 仿真状态 / MoCap"| quat["单位四元数<br/>先确认 wxyz vs xyzw"]
-  who -->|"链式 FK / 作用向量"| mat["旋转矩阵 R"]
-  who -->|"优化器 / 滤波器增量"| so3["so(3) ω<br/>exp / log"]
-  who -->|"神经网络回归 / 策略观测"| nn{"栈是什么?"}
-  nn -->|"姿态估计 / VLA 末端"| sixd["Zhou 6D<br/>前两列 + GS"]
-  nn -->|"MimicKit / ProtoMotions"| tn["tan_norm<br/>体 x ‖ 体 z"]
-  nn -->|"小范围残差"| so3
+  start["Cần biểu diễn một hướng 3D"] --> who{"Ai sẽ dùng biểu diễn này?"}
+  who -->|"Con người / UI / YAML"| euler["Euler / RPY<br/>Ghi rõ thứ tự trục"]
+  who -->|"Lưu trữ / trạng thái mô phỏng / MoCap"| quat["Quaternion đơn vị<br/>Xác nhận thứ tự wxyz hay xyzw"]
+  who -->|"FK chuỗi / biến đổi vectơ"| mat["Ma trận quay R"]
+  who -->|"Bộ tối ưu / bước cập nhật bộ lọc"| so3["so(3) ω<br/>exp / log"]
+  who -->|"Hồi quy mạng nơ-ron / quan sát chính sách"| nn{"Dạng biểu diễn nào?"}
+  nn -->|"Ước lượng tư thế / đầu cuối VLA"| sixd["6D của Zhou<br/>Hai cột đầu + Gram–Schmidt"]
+  nn -->|"MimicKit / ProtoMotions"| tn["tan_norm<br/>trục thân x ‖ trục thân z"]
+  nn -->|"Sai số dư nhỏ"| so3
 ```
 
-### 连续性（为什么 DL 不爱欧拉和四元数）
+### tính liên tục (tại sao DL Không thích Euler và quaternions)
 
-Zhou et al. CVPR 2019：若 $f:\mathbb{R}^n\to SO(3)$ 在欧氏参数空间 **不连续**，网络输出的微小变化可对应姿态突变。
+Chu và cộng sự. CVPR 2019: Nếu $f:\mathbb{R}^n\to SO(3)$ Trong không gian tham số Euclide **không liên tục**, những thay đổi nhỏ trong đầu ra mạng có thể tương ứng với các đột biến tư thế.
 
-| 参数化 | $\mathbb{R}^n\to SO(3)$ 连续？ | 根因 |
+| tham số hóa | $\mathbb{R}^n\to SO(3)$ liên tục? | nguyên nhân gốc rễ |
 |--------|-------------------------------|------|
-| 欧拉角 | 否 | 万向锁 + 角度周期折返 |
-| 四元数 | 否 | 双覆盖：对径点映同一 $R$ |
-| 轴角（全局） | 否 | $2\pi$ 多值；$\pi$ 处 log 奇异 |
-| 旋转矩阵 / 6D / tan_norm | 是（decode 后） | 用多余维度换连续性，再正交化回群 |
+| góc Euler | KHÔNG | Khóa đa năng + quay lại chu kỳ góc |
+| Đệ tứ | KHÔNG | Độ che phủ kép: cùng một điểm căn chỉnh $R$ |
+| Góc trục (toàn cầu) | KHÔNG | $2\pi$ đa giá trị;$\pi$ tại nhật ký lạ |
+| ma trận xoay / 6D / tan_chuẩn mực | Có (sau khi giải mã) | Thay thế tính liên tục bằng các chiều bổ sung và sau đó trực giao trở lại nhóm |
 
-**损失仍建议在群上算**：测地距离 $\arccos((\mathrm{tr}(R\hat R^\top)-1)/2)$，而不是直接 L2 欧拉角或未对齐符号的四元数。
+**Vẫn khuyến nghị tính toán tổn thất trong nhóm**: khoảng cách trắc địa $\arccos((\mathrm{tr}(R\hat R^\top)-1)/2)$, thay vì trực tiếp L2 Góc Euler hoặc bậc bốn của các dấu không thẳng hàng.
 
-## 工程实践
+## thực hành kỹ thuật
 
-### 全栈默认分工
+### Phân công lao động mặc định đầy đủ
 
-| 层 | 推荐 | 原因 |
+| lớp | gợi ý | lý do |
 |----|------|------|
-| 配置文件 / RViz / 论文表格 | RPY，**写明轴序**（如 ZYX intrinsic） | 人读 |
-| MuJoCo / Pinocchio / Isaac 浮动基 | 四元数；注意 $n_q\neq n_v$ | 紧凑、无万向锁；角速度不是 $\dot q_{quat}$ |
-| FK / 点变换 | $R$ 或 $T\in SE(3)$ | 一次矩阵乘 |
-| Ceres / g2o / Ipopt / MPC | so(3) 或 se(3) 增量 | 无约束、雅可比在切空间 |
-| 关键帧动画 | 四元数 SLERP | 恒定角速度、保持 $\|q\|=1$ |
-| 学习型姿态头 | 6D 或 tan_norm | 连续回归；decode 后算测地损失 |
+| Hồ sơ / RViz / Mẫu giấy | RPY，**Nêu thứ tự trục**(giống ZYX nội tại) | Mọi người đọc |
+| MuJoCo / Pinocchio / Căn cứ nổi Isaac | Đệ tứ; thận trọng $n_q\neq n_v$ | Nhỏ gọn, không có khóa gimbal; vận tốc góc không $\dot q_{quat}$ |
+| FK / biến đổi điểm | $R$ hoặc $T\in SE(3)$ | phép nhân ma trận |
+| Ceres / g2o / Ipopt / MPC | Vì thế(3) hoặc se(3) Tăng | Không gian tiếp tuyến Jacobi, không bị ràng buộc |
+| Hoạt hình khung hình chính | Đệ tứ SLERP | vận tốc góc không đổi, duy trì $\|q\|=1$ |
+| cái đầu thái độ học tập | 6D hoặc rám nắng_chuẩn mực | Hồi quy liên tục; tính tổn thất trắc địa sau khi giải mã |
 
-### 实现检查清单
+### Danh sách kiểm tra thực hiện
 
-1. **轴序**：`xyz` / `zyx` / intrinsic vs extrinsic 必须写进接口；Diebel 列了 12 组，不要凭「RPY」猜。
-2. **四元数顺序**：Diebel / DeepMimic 常用 $(w,x,y,z)$；Pinocchio / scipy `Rotation` 常用 $(x,y,z,w)$。
-3. **双覆盖**：SLERP 前若 $q_1\cdot q_2<0$，翻转一侧；回归损失用 $\min(\|q-\hat q\|,\|q+\hat q\|)$ 或改 6D。
-4. **积分后投影**：四元数 `normalize`；矩阵 SVD / Gram–Schmidt 拉回 $SO(3)$。
-5. **观测维数**：球形关节若用 tan_norm，每关节是 **6** 不是 4。
+1. **trình tự trục**：`xyz` / `zyx` / Nội tại và bên ngoài phải được ghi vào giao diện; Diebel liệt kê 12 nhóm, đừng dựa vào "RPY"Đoán.
+2. **Thứ tự bậc bốn**:Diebel/DeepMimic thường được sử dụng $(w,x,y,z)$；Pinocchio / scipy `Rotation` Thường được sử dụng $(x,y,z,w)$。
+3. **bảo hiểm gấp đôi**：SLERP Nếu trước đây $q_1\cdot q_2<0$, lật một bên; sử dụng mất hồi quy $\min(\|q-\hat q\|,\|q+\hat q\|)$ Hoặc đổi sang 6D.
+4. **chiếu hậu hội nhập**: bậc bốn `normalize`;ma trận SVD /Gram–Schmidt rút lui $SO(3)$。
+5. **chiều quan sát**: Nếu khớp cầu dùng tan_định mức, mỗi khớp là **6** Không phải 4.
 
-## 局限与风险
+## Hạn chế và rủi ro
 
-- **没有「最好的一种」**：3 维全局坐标必有奇异；连续回归必冗余。选型是 **按层换表示**，不是宗教战争。
-- **6D 不取代李代数**：6D 解决 **回归连续性**；约束优化、twist、PoE 仍在 so(3)/se(3)。见 [李群专页常见误区](../formalizations/lie-group-rigid-body-motions.md)。
-- **tan_norm ≠ 论文 6D**：同属连续 6 维族，编码轴与正交化不同；混 decode 会得到错误 $R$。
-- **欧拉角「小范围够用」**：演示可以；一旦 pitch 近 $\pm 90^\circ$ 或网络反传，万向锁会突然出现。
-- **旋转矩阵相加 / 平均**：结果一般不正交。姿态平均用四元数（同半球）或在切空间 $\exp(\frac1N\sum\log)$。
+- **Không có “loại tốt nhất”**: Tọa độ toàn cục 3 chiều phải là số ít; hồi quy liên tục phải dư thừa. Việc lựa chọn là **Biểu diễn theo lớp**, không phải là một cuộc chiến tranh tôn giáo.
+- **6D không thay thế đại số Lie**:6D Đã giải quyết **trở lại liên tục**;Tối ưu hóa bị ràng buộc, xoắn,PoE vẫn vậy(3)/se(3). Nhìn thấy [Những hiểu lầm thường gặp về trang của Lý Qun](../formalizations/lie-group-rigid-body-motions.md)。
+- **rám nắng_định mức ≠ giấy 6D**: Cả hai đều thuộc họ 6 chiều liên tục, nhưng trục mã hóa và trực giao hóa khác nhau; trộn giải mã sẽ gây ra lỗi. $R$。
+- **Góc Euler "đủ cho một phạm vi nhỏ"**: Trình diễn là được; một khi sân đã gần $\pm 90^\circ$ Hoặc mạng đang truyền ngược và khóa vạn năng sẽ đột ngột xuất hiện.
+- **Cộng/trung bình ma trận xoay**: Các kết quả nhìn chung không trực giao. Thái độ được tính trung bình bằng cách sử dụng quaternions (cùng bán cầu) hoặc trong không gian tiếp tuyến $\exp(\frac1N\sum\log)$。
 
-## 关联页面
+## Các trang liên quan
 
-- [SE(3) 位姿表示](../formalizations/se3-representation.md) — 位置 + 姿态；本页只拆旋转
-- [单位四元数与 SO(3)](../formalizations/unit-quaternion-so3.md) — Hamilton 积、SLERP、scalar 顺序
-- [李群、李代数与刚体旋转](../formalizations/lie-group-rigid-body-motions.md) — exp/log 与存储/优化分工
-- [tan_norm 旋转观测](../formalizations/tan-norm-rotation.md) — MimicKit 默认 6D 观测
-- [齐次坐标变换](../formalizations/homogeneous-coordinates-transform.md) — $T$ 里的 $R$
-- [Floating Base Dynamics](../concepts/floating-base-dynamics.md) — $n_q=7$、$n_v=6$
-- [Modern Robotics 教材](../entities/modern-robotics-book.md) — Ch 3
+- [SE(3) đặt ra đại diện](../formalizations/se3-representation.md) — Vị trí + thái độ; trang này chỉ xóa vòng xoay
+- [đơn vị quaternion và SO(3)](../formalizations/unit-quaternion-so3.md) — Sản phẩm Hamilton,SLERP, bậc vô hướng
+- [Nhóm Lie, đại số Lie và phép quay vật rắn](../formalizations/lie-group-rigid-body-motions.md) — Phân công lao động giữa exp/log và lưu trữ/tối ưu hóa
+- [rám nắng_quan sát vòng quay định mức](../formalizations/tan-norm-rotation.md) — Quan sát 6D mặc định của MimicKit
+- [Chuyển đổi tọa độ đồng nhất](../formalizations/homogeneous-coordinates-transform.md) — $T$ bên trong $R$
+- [Động lực cơ sở nổi](../concepts/floating-base-dynamics.md) — $n_q=7$、$n_v=6$
+- [Modern Robotics Sách giáo khoa](../entities/modern-robotics-book.md) — Ch 3
 
-## 参考来源
+## Nguồn tham khảo
 
-- [Diebel 2006 姿态参数化](../../sources/papers/diebel_2006_representing_attitude_quaternions.md) — 欧拉 / 四元数 / 旋转向量转换表
-- [Shoemake 1985 SLERP](../../sources/papers/shoemake_1985_quaternion_curves_siggraph.md)
-- [Zhou et al. CVPR 2019](../../sources/papers/zhou_2019_cvpr_continuity_rotation_representations.md) — 连续 6D
-- [Modern Robotics Ch 3 四元数摘录](../../sources/papers/modern_robotics_ch3_unit_quaternion.md)
-- [深蓝具身智能：李群、李代数、四元数](../../sources/blogs/wechat_shenlan_lie_group_lie_algebra_quaternion.md)
-- [MimicKit tan_norm 摘录](../../sources/repos/mimickit_tan_norm.md)
+- [Diebel 2006 Tham số hóa thái độ](../../sources/papers/diebel_2006_representing_attitude_quaternions.md) — Bảng chuyển đổi vectơ Euler/quaternion/véc tơ quay
+- [Thợ đóng giày 1985 SLERP](../../sources/papers/shoemake_1985_quaternion_curves_siggraph.md)
+- [Chu và cộng sự. CVPR 2019](../../sources/papers/zhou_2019_cvpr_continuity_rotation_representations.md) - 6D liên tục
+- [Modern Robotics Trích từ Ch 3 Quaternions](../../sources/papers/modern_robotics_ch3_unit_quaternion.md)
+- [Trí thông minh thể hiện của Deep Blue: Nhóm Lie, đại số Lie, bậc bốn](../../sources/blogs/wechat_shenlan_lie_group_lie_algebra_quaternion.md)
+- [MimicKit tan_trích đoạn chuẩn mực](../../sources/repos/mimickit_tan_norm.md)
 
-## 推荐继续阅读
+## Đề nghị đọc tiếp
 
-- [Diebel attitude PDF](https://www.astro.rug.nl/software/kapteyn-beta/_downloads/attitude.pdf) — 12 组欧拉角与求导
-- [Zhou et al., CVPR 2019](https://arxiv.org/abs/1812.07035) — 网络旋转表示连续性证明
-- [Modern Robotics Ch 3 PDF](https://hades.mech.northwestern.edu/images/7/7f/MR.pdf) — 与 twist / PoE 统一的群论语言
-- [运动控制路线 L0](../../roadmap/motion-control.md) — 「矩阵指数 / 欧拉 / 四元数优劣」自测题的对照页
+- [Thái độ quỷ quái PDF](https://www.astro.rug.nl/software/kapteyn-beta/_downloads/attitude.pdf) — 12 bộ góc Euler và đạo hàm
+- [Chu và cộng sự. CVPR 2019](https://arxiv.org/abs/1812.07035) - Bằng chứng về tính liên tục của biểu diễn xoay vòng mạng
+- [Modern Robotics Ch 3 PDF](https://hades.mech.northwestern.edu/images/7/7f/MR.pdf) — với sự xoắn / PoE ngôn ngữ lý thuyết nhóm thống nhất
+- [tuyến điều khiển chuyển động L0](../../roadmap/motion-control.md) — Trang so sánh các câu hỏi tự kiểm tra về "Ưu điểm và nhược điểm của số mũ ma trận/Euler/Quaternion"

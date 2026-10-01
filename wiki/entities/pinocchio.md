@@ -27,70 +27,70 @@ sources:
 summary: "Pinocchio 是一个基于 C++ 的极致高性能刚体动力学库，是目前各类腿足机器人 WBC 和基于优化的控制器背后的核心计算引擎。"
 ---
 
-# Pinocchio (刚体动力学库)
+# Pinocchio (Thư viện động lực học cơ thể cứng nhắc)
 
-**Pinocchio** 是一个由法国国家信息与自动化研究所（INRIA）开源的，专注于**高计算效率**和**分析导数 (Analytical Derivatives)** 的刚体动力学（Rigid Body Dynamics）C++ 库。
+**Pinocchio** là viện nghiên cứu được phát triển bởi Viện Thông tin và Tự động hóa Quốc gia Pháp (Institut National de Informatique et Automation).INRIA) mã nguồn mở, tập trung vào**Hiệu quả tính toán cao**Và**Dẫn xuất phân tích (Phân tích phái sinh)** Thư viện C++ của cơ thể cứng nhắc.
 
-在当前的足式机器人和复杂机械臂控制（如 WBC、MPC、DDP）领域，Pinocchio 已经成为了事实上的行业底层标准。
+Trong các robot có chân hiện nay và điều khiển bằng tay máy phức tạp (chẳng hạn như WBC、MPC、DDP)cánh đồng,Pinocchio Nó đã trở thành tiêu chuẩn công nghiệp trên thực tế.
 
-## 英文缩写速查
+## Kiểm tra nhanh chữ viết tắt tiếng Anh
 
-| 缩写 | 英文全称 | 简要说明 |
+| viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| WBC | Whole-Body Control | 协调全身关节满足多任务/约束的控制基础设施 |
-| MPC | Model Predictive Control | 滚动时域内优化控制序列的预测控制 |
-| iLQR | iterative Linear Quadratic Regulator | 对非线性系统迭代线性化求解的轨迹优化方法 |
-| URDF | Unified Robot Description Format | 统一机器人描述格式 |
-| DoF | Degrees of Freedom | 自由度，人形通常 20–50+ 关节 |
+| WBC | Kiểm soát toàn thân | Kiểm soát cơ sở hạ tầng để phối hợp các khớp cơ thể nhằm đáp ứng nhiều nhiệm vụ/ràng buộc |
+| MPC | Kiểm soát dự đoán mô hình | Điều khiển dự đoán các chuỗi điều khiển được tối ưu hóa trong miền thời gian luân chuyển |
+| iLQR | Bộ điều chỉnh bậc hai tuyến tính lặp | Phương pháp tối ưu hóa quỹ đạo cho giải pháp tuyến tính hóa lặp của hệ phi tuyến |
+| URDF | Định dạng mô tả robot hợp nhất | Định dạng mô tả robot thống nhất |
+| DOF | Mức độ tự do | Bậc tự do, hình người thường có 20–50+ khớp |
 
-## 核心特性
+## Tính năng cốt lõi
 
-1. **极致的性能**：
-   Pinocchio 采用了基于模板元编程的架构（利用 Eigen 库），避免了运行时的动态内存分配。这使得它的正向/逆向动力学计算（如 Featherstone 算法）和雅可比求值的速度远远超过其他同类库（如 RBDL 或 KDL）。在 1000Hz 甚至更高频的控制环路中，性能至关重要。
-2. **解析导数支持**：
-   现代控制算法（如 iLQR 或 DDP）极度依赖动力学的偏导数（即 $\frac{\partial f}{\partial x}$ 和 $\frac{\partial f}{\partial u}$）。Pinocchio 原生提供了这些偏导数的极速解析计算接口，这也是它能垄断最优化控制底层框架的核心原因。
-3. **浮动基座与质心动力学**：
-   原生支持六自由度浮动基座（Floating Base）的运动学和动力学建模，并提供了专用的接口计算质心动量矩阵（Centroidal Momentum Matrix, CMM）和非线性偏置力，这对于双足/四足机器人控制极为友好。
+1. **Hiệu suất tối ưu**：
+   Pinocchio Kiến trúc dựa trên siêu lập trình mẫu (sử dụng thư viện Eigen) được áp dụng để tránh phân bổ bộ nhớ động khi chạy. Điều này làm cho các phép tính động học thuận/nghịch đảo (chẳng hạn như thuật toán Featherstone) và đánh giá Jacobian nhanh hơn nhiều so với các thư viện tương tự khác (chẳng hạn như RBDL hoặc KDL). Trong các vòng điều khiển ở tần số 1000Hz trở lên, hiệu suất là rất quan trọng.
+2. **Hỗ trợ phái sinh phân tích**：
+   Các thuật toán điều khiển hiện đại như iLQR hoặc DDP) phụ thuộc rất nhiều vào đạo hàm riêng của động lực học (tức là $\frac{\partial f}{\partial x}$ Và $\frac{\partial f}{\partial u}$）。Pinocchio Về cơ bản, nó cung cấp các giao diện tính toán phân tích cực nhanh cho các đạo hàm riêng này, đó là lý do cốt lõi khiến nó độc quyền khung kiểm soát tối ưu hóa cơ bản.
+3. **Đế nổi và tâm động lực khối**：
+   Hỗ trợ tự nhiên mô hình động học và động lực học của một đế nổi sáu bậc tự do và cung cấp một giao diện chuyên dụng để tính toán ma trận động lượng hướng tâm (Ma trận động lượng hướng tâm, CMM) và lực thiên vị phi tuyến, cực kỳ thân thiện với việc điều khiển robot hai chân/ bốn chân.
 
-## 典型技术栈组合
+## Kết hợp ngăn xếp công nghệ điển hình
 
-- **Pinocchio + OSQP/qpOASES**：构成经典的 Whole-Body Control (WBC) 控制器底座。
-- **Pinocchio + Crocoddyl**：构成目前最高效的差分动态规划（DDP）和全身 MPC 求解器框架。
+- **Pinocchio + OSQP/qpOASES**: Cấu thành việc Kiểm soát Toàn bộ Cơ thể cổ điển (WBC) Cơ sở điều khiển.
+- **Pinocchio + Crocoddyl**: Cấu thành quy trình động vi phân hiệu quả nhất hiện nay (DDP) và toàn bộ cơ thể MPC Khung giải quyết.
 
-## 与 URDD 的分工
+## Và URDD phân công lao động
 
-[URDD](./paper-urdd-universal-robot-description-directory.md)（arXiv:2512.23135）把各框架从 URDF **重复派生** 的 DOF 映射、链结构等 **模块化落盘**；Pinocchio 负责 **给定模型后的动力学计算**——二者正交，URDD 是 **进 Pinocchio 之前的共享预处理层**。
+[URDD](./paper-urdd-universal-robot-description-directory.md)(arXiv:2512.23135) Chuyển đổi từng khung hình từ URDF **Đạo hàm lặp đi lặp lại** của DOF Lập bản đồ, cấu trúc chuỗi, v.v. **Vị trí mô-đun**；Pinocchio Chịu trách nhiệm **Tính toán động cho một mô hình**--Hai cái này trực giao,URDD Đúng **Đi vào Pinocchio Lớp tiền xử lý được chia sẻ trước đó**。
 
-## 与 Dynibo 的对照
+## So sánh với Dynibo
 
-[Dynibo](./dynibo.md)（Rust，MIT，v0.1.0）聚焦 **树状 URDF + Workspace 零分配** 的常用子集（FK / Jacobian / DLS-IK / 重力 / RNEA），并以 Pinocchio 作 **oracle 与 Criterion 对照**。需要解析导数、浮动基质心动量、ABA/CRBA 或 Crocoddyl 生态时仍选 Pinocchio；只需轻量多语言内核时可评估 Dynibo。
+[bí ngô](./dynibo.md)（Rỉ sét,MIT, v0.1.0) Tập trung **hình cây URDF + Phân bổ không gian làm việc** Một tập con thường được sử dụng của (FK / Jacobian / DLS-IK /trọng lực/ RNEA) và với Pinocchio LÀM **oracle vs tiêu chí**. Yêu cầu các dẫn xuất phân tích, số lượng tim ma trận nổi,ABA/CRBA hoặc Crocoddyl Vẫn chọn khi sinh thái Pinocchio;Dynibo có thể được đánh giá khi chỉ cần hạt nhân đa ngôn ngữ nhẹ.
 
-## 动力学回归矩阵
+## Ma trận hồi quy động học
 
-`pin.computeJointTorqueRegressor(model, data, q, v, a)` 给出连杆 10 参数的 $Y_{\mathrm{rb}}$，使 $\tau = Y_{\mathrm{rb}}\pi_{\mathrm{rb}}$。它 **不含** armature / 粘滞 / 库仑列；关节执行器参数要在 $Y$ 上自拼 $\ddot q_i$、$\dot q_i$、$\mathrm{sign}(\dot q_i)$。完整估法见 [关节执行器参数辨识](../methods/joint-actuator-parameter-identification.md)；有力矩传感的流水线对照 [FloBaRoID](./flobaroid.md)（动力学核是 iDynTree）。
+`pin.computeJointTorqueRegressor(model, data, q, v, a)` Cho các thông số của thanh truyền 10 $Y_{\mathrm{rb}}$,làm $\tau = Y_{\mathrm{rb}}\pi_{\mathrm{rb}}$. Nó **Không chứa** phần ứng/độ nhớt/cột Coulomb; các thông số của bộ truyền động chung phải ở mức $Y$ Đi lên và chiến đấu $\ddot q_i$、$\dot q_i$、$\mathrm{sign}(\dot q_i)$. Để biết ước tính đầy đủ, hãy xem [Nhận dạng thông số bộ truyền động chung](../methods/joint-actuator-parameter-identification.md);So sánh đường ống với cảm biến mô-men xoắn [FloBaRoID](./flobaroid.md)(Hạt động là iDynTree).
 
-## 与现成 URDF 目录
+## với đồ làm sẵn URDF Mục lục
 
-实验里不要手写 git submodule 路径时，用 [robot_descriptions.py](./robot-descriptions-py.md) 的 `loaders.pinocchio.load_robot_description("go2_description")`。选型见 [机器人描述目录选型](../comparisons/robot-description-catalogs.md)。
+Không viết tay đường dẫn mô-đun con git trong thử nghiệm, hãy sử dụng [người máy_description.py](./robot-descriptions-py.md) của `loaders.pinocchio.load_robot_description("go2_description")`. Xem lựa chọn [Lựa chọn danh mục mô tả robot](../comparisons/robot-description-catalogs.md)。
 
-## 关联页面
-- [Query：Pinocchio 快速上手指南](../queries/pinocchio-quick-start.md)
-- [robot_descriptions.py](./robot-descriptions-py.md) — 190+ 开源 URDF/MJCF 的 Pinocchio loader
-- [Dynibo](./dynibo.md) — Rust 轻量 FK/RNEA/数值 IK，Pinocchio oracle 对照
-- [正向运动学](../formalizations/forward-kinematics.md) — URDF 树 FK 的教学对照
-- [雅可比矩阵](../formalizations/robot-jacobian.md) — `computeFrameJacobian` 几何雅可比
-- [重力补偿](../concepts/gravity-compensation.md) — `computeGeneralizedGravity` / `computeStaticTorque`
-- [零空间控制](../concepts/null-space-control.md) — 用 Pinocchio 的 $J$ 做 7 轴投影或交给 TSID/HQP
-- [Whole-Body Control (WBC)](../concepts/whole-body-control.md)
-- [Centroidal Dynamics](../concepts/centroidal-dynamics.md)
-- [Floating Base Dynamics](../concepts/floating-base-dynamics.md)
-- [SE(3) 切空间浮动基 TO](./paper-se3-tangent-to.md) — 用 Pinocchio SE(3) 雅可比做切空间配点 TO
-- [关节执行器参数辨识](../methods/joint-actuator-parameter-identification.md) — `computeJointTorqueRegressor` 只给 $Y_{\mathrm{rb}}$
-- [URDF 连杆惯量对照真机检查](../queries/urdf-link-inertia-real-robot-check.md) — `computeTotalMass` / `centerOfMass` / $g(q)$ 抽检
-- [FloBaRoID](./flobaroid.md) — 线性辨识流水线（iDynTree，非本库）
+## Các trang liên quan
+- [Truy vấn:Pinocchio Hướng dẫn bắt đầu nhanh](../queries/pinocchio-quick-start.md)
+- [người máy_description.py](./robot-descriptions-py.md) - Hơn 190 mã nguồn mở URDF/MJCF của Pinocchio người nạp đạn
+- [bí ngô](./dynibo.md) - Rỉ sét nhẹ FK/RNEA/giá trị số IK，Pinocchio so sánh tiên tri
+- [động học thuận](../formalizations/forward-kinematics.md) — URDF Cây FK so sánh giảng dạy
+- [ma trận Jacobian](../formalizations/robot-jacobian.md) — `computeFrameJacobian` Hình học Jacobi
+- [bù trọng lực](../concepts/gravity-compensation.md) — `computeGeneralizedGravity` / `computeStaticTorque`
+- [kiểm soát không gian bằng không](../concepts/null-space-control.md) - sử dụng Pinocchio của $J$ Thực hiện phép chiếu 7 trục hoặc cho TSID/HQP
+- [Kiểm soát toàn thân (WBC)](../concepts/whole-body-control.md)
+- [Động lực học trung tâm](../concepts/centroidal-dynamics.md)
+- [Động lực cơ sở nổi](../concepts/floating-base-dynamics.md)
+- [SE(3) cơ sở nổi không gian tiếp tuyến TO](./paper-se3-tangent-to.md) - sử dụng Pinocchio SE(3) Điểm khớp không gian cắt Jacobian TO
+- [Nhận dạng thông số bộ truyền động chung](../methods/joint-actuator-parameter-identification.md) — `computeJointTorqueRegressor` chỉ cho $Y_{\mathrm{rb}}$
+- [URDF Kiểm tra quán tính thanh kết nối so với máy thật](../queries/urdf-link-inertia-real-robot-check.md) — `computeTotalMass` / `centerOfMass` / $g(q)$ Kiểm tra ngẫu nhiên
+- [FloBaRoID](./flobaroid.md) — Đường dẫn nhận dạng tuyến tính (iDynTree, không phải thư viện này)
 
-## 参考来源
-- Carpentier, J., et al. (2019). *The Pinocchio C++ library: A fast and flexible implementation of rigid body dynamics algorithms and their analytical derivatives*.
-- [sources/papers/urdd_beyond_urdf_arxiv_2512_23135.md](../../sources/papers/urdd_beyond_urdf_arxiv_2512_23135.md) — URDD 与 Pinocchio 等「从模型描述推导动力学」栈的交叉引用
-- [sources/repos/dynibo.md](../../sources/repos/dynibo.md) — Dynibo 与 Pinocchio 性能/oracle 对照归档
-- [sources/repos/robot-descriptions-py.md](../../sources/repos/robot-descriptions-py.md) — `loaders.pinocchio` 统一下载 URDF
+## Nguồn tham khảo
+- Carpentier, J., và cộng sự. (2019). *các Pinocchio Thư viện C++: Triển khai nhanh chóng và linh hoạt các thuật toán động lực học cơ thể cứng nhắc và các dẫn xuất phân tích của chúng*.
+- [nguồn/giấy tờ/urdd_vượt ra_urdf_arxiv_2512_23135.md](../../sources/papers/urdd_beyond_urdf_arxiv_2512_23135.md) — URDD Và Pinocchio Tham chiếu chéo đến ngăn xếp "Dẫn xuất động lực học từ mô tả mô hình"
+- [nguồn/repos/dynibo.md](../../sources/repos/dynibo.md) — Dynibo vs. Pinocchio Lưu trữ so sánh hiệu suất/oracle
+- [nguồn/repos/robot-descriptions-py.md](../../sources/repos/robot-descriptions-py.md) — `loaders.pinocchio` Tải xuống hợp nhất URDF
