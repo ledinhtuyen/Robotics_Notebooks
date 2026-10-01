@@ -1,110 +1,110 @@
-# 主路线：运动控制 → 物理智能全栈成长路线
+# Lộ trình chính: điều khiển chuyển động → lộ trình phát triển toàn diện trí tuệ thể chất
 
-**首屏导读**：
+**Giới thiệu màn hình đầu tiên**:
 
-- **为谁**：想做人形 / 双足运动控制，并想一路看懂 Physical AI（VLA / World Model / 部署）的算法工程师。
-- **怎么走**：L−1 全景入门 → L0–L7 运动控制主干 → L8–L12 Physical AI 全栈扩展，每层都给「读什么 / 做什么 / 输出什么」。
-- **五段骨架**：打底（L0–L3）→ 传统控制（L4）→ RL/IL（L5）→ Sim2Real 与全栈出口（L6–L7）→ Transformer · 动作生成 · VLA · 世界模型 · 部署（L8–L12）。
+- **Ai**: Các kỹ sư thuật toán muốn thực hiện điều khiển chuyển động hình người/hai chân và hiểu AI vật lý (VLA/Mô hình thế giới/Triển khai) trong quá trình thực hiện.
+- **Cách thực hiện**: Giới thiệu toàn cảnh L-1 → Đường trục điều khiển chuyển động L0–L7 → L8–L12 Mở rộng toàn bộ ngăn xếp AI vật lý, mỗi lớp cung cấp “nội dung cần đọc/việc cần làm/xuất ra nội dung”.
+- **Bộ xương năm đoạn**: Cơ sở (L0–L3) → Điều khiển truyền thống (L4) → RL/IL (L5) → Sim2Real và xuất toàn bộ ngăn xếp (L6–L7) → Máy biến áp · Tạo hành động · VLA · Mô hình thế giới · Triển khai (L8–L12).
 
-**摘要**：
+**bản tóm tắt**:
 
-- **一条主线**：从 L−1 全景到 L7 出口，串通人形 / 双足运动控制；L8–L12 再向上接 Foundation Model、向下接真机部署。
-- **L−1 → L3**：机器人技术栈全景与术语，再用数学、运动学、动力学、控制基础打底。
-- **L4 → L5**：传统控制主干（LIP/ZMP → Centroidal → MPC → TSID/WBC），再把 RL / IL / 动作重定向接上去。
-- **L6 → L7**：sim2real 闭环，以及全栈视角与 2024–2026 前沿地图。
-- **L8 → L12**：Transformer / VLM → Action Chunk · Diffusion · Flow Matching · DiT → π0 / GR00T → Cosmos 世界模型 → ONNX / ROS2 / 实时总线上真机。
+- **Một đường chính**: Từ toàn cảnh L−1 đến lối ra L7, được kết nối với điều khiển chuyển động hình người/hai chân; Sau đó, L8–L12 kết nối hướng lên tới Mô hình nền tảng và hướng xuống triển khai máy thực.
+- **L−1 → L3**: Toàn cảnh và thuật ngữ của nhóm công nghệ robot, sau đó đặt nền tảng bằng toán học, động học, động lực học và điều khiển.
+- **L4 → L5**: Đường trục điều khiển truyền thống (LIP/ZMP → Centroidal → MPC → TSID/WBC), sau đó kết nối RL / IL / chuyển hướng hành động.
+- **L6 → L7**: vòng lặp khép kín sim2real và phối cảnh ngăn xếp đầy đủ với bản đồ biên giới 2024–2026.
+- **L8 → L12**: Máy biến áp / VLM → Khối hành động · Khuếch tán · Flow Matching · DiT → π0 / GR00T → Mô hình thế giới vũ trụ → ONNX / ROS2 / Máy thực trên bus thời gian thực.
 
 <a id="roadmap-video"></a>
 
 <figure class="roadmap-video">
 <video controls preload="none" playsinline poster="assets/video/roadmap-motion-control-explained-poster.jpg">
 <source src="assets/video/roadmap-motion-control-explained.mp4" type="video/mp4">
-当前浏览器无法内嵌播放，可<a href="https://imchong.github.io/Robotics_Notebooks/assets/video/roadmap-motion-control-explained.mp4">直接打开视频文件</a>。
+Trình duyệt hiện tại không thể nhúng phát lại. bạn có thể<a href="https://imchong.github.io/Robotics_Notebooks/assets/video/roadmap-motion-control-explained.mp4">Mở tập tin video trực tiếp</a>。
 </video>
-<figcaption><strong>视频讲解</strong>（1:35:35 · 24 章 · 中文配音 + 字幕）：按 L−1 → L0–L7 → L8–L12 逐级讲清每一层的核心要点与原理，自测题在讲解中直接给出答案。<a href="https://imchong.github.io/Robotics_Notebooks/assets/video/roadmap-motion-control-explained.mp4">新标签页打开 / 下载</a> · <a href="https://github.com/ImChong/Robotics_Notebooks/tree/main/media/roadmap-motion-control-video">讲解稿与生成脚本</a></figcaption>
+<figcaption><strong>Video giải thích</strong>(1:35:35 · 24 chương · Lồng tiếng Trung + phụ đề): Nhấn L−1 → L0–L7 → L8–L12 để giải thích từng bước các điểm cốt lõi và nguyên tắc của từng cấp độ. Câu trả lời cho các câu hỏi tự kiểm tra được đưa ra trực tiếp trong phần giải thích.<a href="https://imchong.github.io/Robotics_Notebooks/assets/video/roadmap-motion-control-explained.mp4">Mở tab mới/tải xuống</a> · <a href="https://github.com/ImChong/Robotics_Notebooks/tree/main/media/roadmap-motion-control-video">Bản ghi và tập lệnh được tạo</a></figcaption>
 <details class="roadmap-video-chapters">
-<summary>章节时间点</summary>
+Điểm thời gian của chương <summary> </summary>
 <ol>
-<li>00:00 开场：这条路线要回答什么</li>
-<li>01:44 全景地图：从 camera image 到 motor torque</li>
-<li>05:41 L−1 序言：机器人技术栈全景</li>
-<li>08:53 L0 数学与编程基础</li>
-<li>12:23 L1 机器人学骨架：FK / IK / Jacobian</li>
-<li>16:36 L2 动力学与刚体建模</li>
-<li>20:56 L3 控制基础与最优化</li>
-<li>27:35 L4 人形运动控制主干：方法链总览</li>
-<li>31:01 L4.1 LIP / ZMP：会走路的倒立摆</li>
-<li>36:04 L4.2 质心动力学 Centroidal Dynamics</li>
-<li>38:48 L4.3 轨迹优化与 MPC</li>
-<li>42:09 L4.4 TSID / 全身控制 WBC</li>
-<li>45:18 L5 强化学习基础：MDP → PPO</li>
-<li>51:56 L5.2 RL 在人形运动控制里的应用</li>
-<li>55:50 L5.3 模仿学习：BC · DAgger · DeepMimic · AMP</li>
-<li>59:36 L5.4 动作重定向</li>
-<li>1:03:42 L6 综合实战：Sim2Real</li>
-<li>1:08:15 L7 出口：从运动控制看整个技术栈</li>
-<li>1:12:18 L8 Transformer 与表征：从 token 到 VLM</li>
-<li>1:15:42 L9 动作生成：Action Chunk · Diffusion · Flow Matching · DiT</li>
-<li>1:20:03 L10 VLA / 基础策略：π 系列与 GR00T</li>
-<li>1:24:21 L11 世界模型与 Physical AI 平台</li>
-<li>1:27:56 L12 部署：从训练好的策略到真机电机</li>
-<li>1:31:44 收尾：过滤新工作 · 纵深方向 · 常见卡点 · 全路线回顾</li>
+<li>00:00 Mở đầu: Tuyến đường này trả lời gì </li>
+<li>01:44 Bản đồ toàn cảnh: từ hình ảnh camera đến mô-men xoắn động cơ</li>
+<li>05:41 L−1 Lời nói đầu: Toàn cảnh về ngăn xếp công nghệ robot </li>
+<li>08:53 L0 Khái niệm cơ bản về Toán học và Lập trình</li>
+Bộ xương robot <li>12:23 L1: FK / IK / Jacobian</li>
+<li>16:36 L2 Mô hình động lực học và thân máy cứng</li>
+<li>20:56 Cơ bản về điều khiển và tối ưu hóa L3 </li>
+<li>27:35 L4 xương sống điều khiển chuyển động hình người: tổng quan về chuỗi phương pháp </li>
+<li>31:01 L4.1 LIP / ZMP: Con lắc ngược đi bộ </li>
+<li>36:04 L4.2 Động lực học trung tâm</li>
+Tối ưu hóa quỹ đạo <li>38:48 L4.3 và MPC</li>
+<li>42:09 L4.4 TSID / Điều khiển toàn thân WBC</li>
+<li>45:18 L5 Cơ bản về học tăng cường: MDP → PPO</li>
+<li>51:56 L5.2 RL Ứng dụng trong điều khiển chuyển động hình người </li>
+<li>55:50 L5.3 Học giả: BC · DAgger · DeepMimic · AMP</li>
+<li>59:36 L5.4 Chuyển hướng hành động </li>
+<li>1:03:42 L6 chiến đấu thực tế toàn diện: Sim2Real</li>
+<li>1:08:15 L7 Thoát: Nhìn vào toàn bộ kho công nghệ từ điều khiển chuyển động </li>
+<li>1:12:18 L8 Máy biến áp và biểu diễn: từ mã thông báo đến VLM</li>
+<li>1:15:42 Tạo hành động L9: Khối hành động · Khuếch tán · Flow Matching · DiT</li>
+<li>1:20:03 L10 VLA / Chiến lược cơ bản: Dòng π và GR00T</li>
+<li>1:24:21 L11 Mô hình thế giới và Nền tảng AI vật lý </li>
+Triển khai <li>1:27:56 L12: từ chiến lược được đào tạo đến động cơ thực </li>
+<li>1:31:44 Kết thúc: Công việc lọc mới · Hướng sâu · Các điểm kẹt thường gặp · Xem lại toàn bộ tuyến đường </li>
 </ol>
 </details>
 </figure>
 
-## 三句话先懂这条路线
+## Ba câu để hiểu lộ trình này trước
 
-1. **先把传统控制主干打通**：LIP/ZMP → Centroidal → MPC → TSID/WBC。
-2. **再把学习方法接上去**：RL/IL 用来补能力，不是替代控制结构。
-3. **每一层都要有可运行输出**：代码、实验记录、失败复盘，缺一不可。
+1. **Trước tiên hãy mở xương sống điều khiển truyền thống**: LIP/ZMP → Centroidal → MPC → TSID/WBC.
+2. **Tiếp tục phương pháp học**: RL/IL dùng để bổ sung khả năng, không thay thế cấu trúc điều khiển.
+3. **Mỗi lớp phải có đầu ra có thể hoạt động**: mã, hồ sơ thử nghiệm và đánh giá lỗi, tất cả đều không thể thiếu.
 
-> **本路线要回答的终极问题**：一个 Physical AI 系统，从 camera image 到 robot motor torque，中间到底经过了哪些模块？答案见 [Physical AI 全栈视图](#physical-ai-full-stack-view)，逐层展开在 L0–L12。
+> **Câu hỏi cuối cùng cần được trả lời trong lộ trình này**: Hệ thống AI vật lý trải qua những mô-đun nào từ hình ảnh camera đến mô-men xoắn động cơ robot? Bạn có thể tìm thấy câu trả lời trong [Chế độ xem toàn bộ ngăn xếp AI vật lý](#physical-ai-full-stack-view), được mở rộng từng lớp tại L0–L12.
 
 <a id="roadmap-nav-start"></a>
 
-## 先看哪里（导航）
+## Nơi cần tìm đầu tiên (điều hướng)
 
-- 想 **先看一遍视频讲解**：播放页首的 [路线讲解视频](#roadmap-video)（1:35:35，24 章，逐级讲清每层要点与原理）。
-- 想 **30 秒先理解整个机器人技术栈**：跳到 [L−1 序言](#l1-序言机器人技术栈全景--怎么读这条路线)。
-- 想 **最短可执行路径**：跳到 [最小可执行学习路径（90 天版本）](#最小可执行学习路径90-天版本)。
-- 想 **完整路线**：按 L−1 → L0 → … → L7 依次阅读，再进入 L8–L12 的 Physical AI 扩展。
-- 想 **先看 Physical AI 全栈地图 / 时间有限只走核心路径**：跳到 [Physical AI 全栈视图](#physical-ai-full-stack-view) 与 [Physical AI Core Path](#physical-ai-core-path)。
-- 看到 **新模型 / 新论文不知道要不要学**：先用 [How to filter new Physical AI work](#physical-ai-signal-vs-noise) 过一遍。
-- 想 **直接走某个方向**：跳到 [可选纵深](#depth-optional-index)，二十七条独立路线页各自标了适合谁、从主线哪一层衔接。
+- Tôi muốn **Xem video giải thích trước**: Phát [Video giải thích lộ trình](#roadmap-video) ở đầu trang (1:35:35, 24 chương, giải thích từng bước các điểm chính và nguyên tắc của từng lớp).
+- Muốn hiểu toàn bộ hệ thống robot trong **30 giây**: hãy chuyển tới [L−1 Lời nói đầu](#l1-序言机器人技术栈全景--怎么读这条路线).
+- Muốn **Đường dẫn thực thi ngắn nhất**: Chuyển đến [Đường dẫn học tập có thể thực thi tối thiểu (phiên bản 90 ngày)](#最小可执行学习路径90-天版本).
+- Đối với **lộ trình hoàn chỉnh**: Nhấn L−1 → L0 → … → L7 để đọc theo thứ tự, sau đó nhập phần mở rộng Physical AI của L8–L12.
+- Muốn **xem bản đồ ngăn xếp đầy đủ AI vật lý trước / chỉ đi theo đường dẫn cốt lõi nếu thời gian có hạn**: chuyển đến [Chế độ xem toàn bộ ngăn xếp AI vật lý](#physical-ai-full-stack-view) và [Đường dẫn lõi AI vật lý](#physical-ai-core-path).
+- Tôi thấy một **mô hình mới/bài báo mới và tôi không biết liệu mình có nên học nó không**: Hãy sử dụng [Cách lọc công việc AI vật lý mới](#physical-ai-signal-vs-noise) để xem qua nó trước.
+- Nếu bạn muốn **trực tiếp đi theo một hướng nhất định**: chuyển đến [Độ sâu tùy chọn](#depth-optional-index). Hai mươi bảy trang lộ trình độc lập được đánh dấu phù hợp với ai và họ kết nối đến cấp độ nào từ tuyến chính.
 
 ---
 
-## Physical AI 全栈视图：从 camera image 到 motor torque
+## Chế độ xem toàn bộ ngăn xếp AI vật lý: từ hình ảnh camera đến mô-men xoắn động cơ
 
 <a id="physical-ai-full-stack-view"></a>
 
-**这一节是整条路线的"地图页"。** 本路线以 **Robot Control + Robot Learning + Sim2Real** 为纵向主干（L0–L6），再向上扩展到 **Transformer → 动作生成 → VLA → World Model**（L8–L11），向下落到 **真机部署**（L12）。原有 L0–L7 的编号、标题与内容保持不变，L8–L12 是在其上追加的 Physical AI 扩展层。
+**Phần này là "trang bản đồ" của toàn bộ tuyến đường. ** Lộ trình này sử dụng **Điều khiển rô bốt + Học tập rô bốt + Sim2Real** làm xương sống dọc (L0–L6), sau đó mở rộng lên tới **Transformer → Thế hệ hành động → VLA → Mô hình thế giới** (L8–L11), sau đó giảm xuống **Triển khai máy thực** (L12). Số lượng, tiêu đề và nội dung của L0–L7 ban đầu không thay đổi và L8–L12 là các lớp mở rộng AI Vật lý được thêm vào bên trên nó.
 
-### 8 层 + 部署：与本路线章节的对应
+### Lớp 8 + Triển khai: Tương ứng với chương tuyến đường này
 
-| 层 | 这一层要回答什么 | 本路线章节 | 关键节点 |
+| Lớp | Trả lời gì ở cấp độ này | Chương của tuyến đường này | Các nút chính |
 |----|----------------|-----------|---------|
-| **① Robot Fundamentals** | 机器人为什么会动？神经网络最终控制的对象是什么？ | [L0](#l0-数学与编程基础)–[L2](#l2-动力学与刚体建模) | 坐标系 · SO(3) / SE(3) · FK / IK · Jacobian · 刚体 / 接触动力学 · 摩擦 · 执行器 · 状态估计 |
-| **② Robot Control** | policy 输出之后，谁把它变成力矩？ | [L3](#l3-控制基础与最优化)–[L4](#l4-人形运动控制主干) | PID / PD · 位置 / 速度 / 力矩控制 · 阻抗 · MIT-style PD · WBC · QP · MPC |
-| **③ Robot Learning** | 策略怎么从数据 / 试错里学出来？ | [L5](#l5-强化学习与模仿学习) | MDP → Value → Policy Gradient → Actor-Critic → GAE → PPO；BC · DAgger · DeepMimic · AMP · BeyondMimic · MimicKit |
-| **④ Sim2Real** | 仿真里好的策略，为什么真机上会失败？ | [L6](#l6-综合实战) | DR · 观测噪声 · 延迟 · 执行器建模 · SysID · Teacher-Student · Sim2Sim |
-| **⑤ Transformer / Representation** | 图像、语言、机器人状态怎么变成同一种"token"？ | [L8](#physical-ai-l8-transformer) | token · embedding · QKV · self / cross-attention · ViT · VLM |
-| **⑥ Action Generation** | 为什么现代策略一次输出一段动作，而不是一个动作？ | [L9](#physical-ai-l9-action-generation) | Action Chunk · Diffusion Policy · Flow Matching · DiT · Action Expert |
-| **⑦ VLA / Foundation Policy** | 一个模型怎么同时"看懂、听懂、动起来"？ | [L10](#physical-ai-l10-vla) | π0 → π0.5 → 后续 π 模型 · GR00T N1（System 2 / System 1） |
-| **⑧ World Model + Physical AI Platform** | 数据不够、真机太贵时，拿什么训练和评测？ | [L11](#physical-ai-l11-world-model) | World Foundation Model · Cosmos · Isaac Sim / Isaac Lab · 合成数据 |
-| **Deployment → Real Robot** | 训练好的网络怎么在真机上按时跑起来？ | [L12](#physical-ai-l12-deployment)（系统背景见 [L7.4](#l7-4-system-stack)） | ONNX · TensorRT · ROS2 · ros2_control · Jetson · PREEMPT_RT · CAN / EtherCAT |
+| **① Kiến thức cơ bản về Robot** | Tại sao robot di chuyển? Đối tượng cuối cùng được điều khiển bởi mạng lưới thần kinh là gì? | [L0](#l0-数学与编程基础)–[L2](#l2-动力学与刚体建模) | Hệ tọa độ · SO(3) / SE(3) · FK / IK · Jacobian · Thân cứng / Liên hệ Động lực học · Ma sát · Thiết bị truyền động · Ước tính trạng thái |
+| **② Điều khiển Robot** | Sau khi chính sách được đưa ra, ai sẽ biến nó thành mô-men xoắn? | [L3](#l3-控制基础与最优化)–[L4](#l4-人形运动控制主干) | PID / PD · Kiểm soát vị trí / tốc độ / mô-men xoắn · Trở kháng · PD kiểu MIT · WBC · QP · MPC |
+| **③ Học robot** | Làm cách nào để học các chiến lược từ dữ liệu/thử và sai? | [L5](#l5-强化学习与模仿学习) | MDP → Value → Policy Gradient → Actor-Critic → GAE → PPO；BC · DAgger · DeepMimic · AMP · BeyondMimic · MimicKit |
+| **④ Sim2Real** | Chiến lược mô phỏng tốt nhưng tại sao lại thất bại trên máy thật? | [L6](#l6-综合实战) | DR · Tiếng ồn quan sát · Độ trễ · Mô hình thiết bị truyền động · SysID · Giáo viên-Học sinh · Sim2Sim |
+| **⑤ Máy biến áp/Đại diện** | Làm thế nào để hình ảnh, ngôn ngữ và trạng thái robot trở thành cùng một "mã thông báo"? | [L8](#physical-ai-l8-transformer) | mã thông báo · nhúng · QKV · tự / chú ý chéo · ViT · VLM |
+| **⑥ Tạo hành động** | Tại sao các chiến lược hiện đại đưa ra từng hành động một thay vì một hành động? | [L9](#physical-ai-l9-action-generation) | Khối hành động · Chính sách phổ biến · Flow Matching · DiT · Chuyên gia hành động |
+| **⑦ VLA / Chính sách của Tổ chức** | Làm thế nào một mô hình có thể “hiểu, hiểu và di chuyển” cùng một lúc? | [L10](#physical-ai-l10-vla) | π0 → π0.5 → Mô hình π tiếp theo · GR00T N1 (Hệ thống 2 / Hệ thống 1) |
+| **⑧ Mô hình thế giới + Nền tảng AI vật lý** | Khi không có đủ dữ liệu và máy thật quá đắt, bạn có thể sử dụng gì để đào tạo và đánh giá? | [L11](#physical-ai-l11-world-model) | Mô hình Tổ chức Thế giới · Vũ trụ · Isaac Sim / Isaac Lab · Dữ liệu tổng hợp |
+| **Triển khai → Robot thật** | Làm thế nào mạng được đào tạo có thể chạy đúng giờ trên máy thật? | [L12](#physical-ai-l12-deployment) (Để biết nền hệ thống, hãy xem [L7.4](#l7-4-system-stack)) | ONNX · TensorRT · ROS2 · ros2_control · Jetson · PREEMPT_RT · CAN / EtherCAT |
 
-### 主干与分支（不是单链）
+### Thân và nhánh (không phải chuỗi đơn)
 
 ```mermaid
 flowchart TB
   P["① Vật lý robot<br/>FK / IK · Jacobian · Động lực học<br/>L0–L2"]
-  C["② Điều khiển robot<br/>PD · Impedance · WBC · MPC<br/>L3–L4"]
+  C["② Điều khiển robot<br/>PD · Trở kháng · WBC · MPC<br/>L3–L4"]
   RL["③ Học tăng cường (RL)<br/>MDP → Actor-Critic → PPO<br/>L5.1–L5.2"]
   IL["③ Học bắt chước / Mô phỏng chuyển động<br/>BC · DAgger · DeepMimic · AMP<br/>L5.3–L5.4"]
   S2R["④ Mô phỏng sang thực tế (Sim2Real)<br/>DR · SysID · Teacher-Student<br/>L6"]
-  TF["⑤ Transformer / VLM<br/>token · QKV · ViT<br/>L8"]
+  TF["⑤ Máy biến áp / VLM<br/>token · QKV · ViT<br/>L8"]
   GEN["⑥ Sinh hành động<br/>Diffusion · Flow Matching · DiT<br/>→ Action Chunk · L9"]
   VLA["⑦ VLA / Chính sách nền tảng<br/>π0 · GR00T<br/>L10"]
   WM["⑧ Mô hình thế giới<br/>Cosmos<br/>L11"]
@@ -126,14 +126,14 @@ flowchart TB
   class DEP,HW hw
 ```
 
-图中只画主干与最关键的一条分支；其余交叉依赖：
+Chỉ có thân chính và nhánh quan trọng nhất được thể hiện trên hình; phần còn lại của sự phụ thuộc chéo là:
 
-- **Simulation → RL**：L11 的仿真平台同样是 L5 RL 训练的场地。
-- **Sim2Real → Deployment**：经典 RL 运动策略不经过 VLA，训练后直接走 L12 部署。
-- **Control → Real Robot**：无论上层是 PPO 还是 VLA，低层 PD / WBC 始终在环（见 [L3](#policy-vs-low-level-controller)）。
-- **Real Robot → Sim2Real**：真机失败回到 [L6 失败来源表](#l6-sim2real-chain) 复盘。
+- **Mô phỏng → RL**: Nền tảng mô phỏng của L11 cũng là nơi đào tạo cho L5 RL.
+- **Sim2Real → Triển khai**: Chiến lược chuyển động RL cổ điển không trải qua VLA mà đi thẳng đến triển khai L12 sau khi đào tạo.
+- **Điều khiển → Robot thật**: Bất kể lớp trên là PPO hay VLA, lớp dưới PD / WBC luôn nằm trong vòng lặp (xem [L3](#policy-vs-low-level-controller)).
+- **Robot thật → Sim2Real**: Nếu robot thật bị lỗi, hãy quay lại [Bảng nguồn lỗi L6](#l6-sim2real-chain) để xem xét.
 
-### 一个 Physical AI 系统：从 camera image 到 motor torque
+### Một hệ thống AI vật lý: từ hình ảnh camera đến mô-men xoắn động cơ
 
 ```mermaid
 flowchart TB
@@ -152,25 +152,25 @@ flowchart TB
   BUS --> M["Vòng điều khiển dòng động cơ → mô-men"]
 ```
 
-电机编码器与 IMU 的读数再作为下一拍的 Robot state 反馈回来，形成闭环。
+Số đọc của bộ mã hóa động cơ và IMU được phản hồi trở lại dưới dạng trạng thái Robot của nhịp tiếp theo, tạo thành một vòng khép kín.
 
-| 环节 | 典型频率量级（因平台而异） | 在本路线哪一层 |
+| Liên kết | Độ lớn tần số điển hình (thay đổi tùy theo nền tảng) | Lớp nào của tuyến đường này |
 |------|--------------------------|--------------|
-| VLM 语义理解（System 2） | 较慢；与动作头解耦运行 | L8 / L10 |
-| 动作头出 action chunk（System 1） | 端到端网络常 10–50 Hz；GR00T N1 报告约 120 Hz 出 chunk、π0 约 50 Hz 控制 | L9 / L10 |
-| 低层 tracking policy / WBC | 平衡与力控需 200–1000 Hz | L4.4 / L5.2 |
-| 关节 PD / 电流环 | 驱动器内更高频闭环 | L3 / L12 |
+| VLM Hiểu ngữ nghĩa (Hệ thống 2) | Chậm hơn; chạy tách rời khỏi tiêu đề hành động | L8/L10 |
+| Đoạn tiêu đề hành động không hoạt động (Hệ thống 1) | Mạng đầu cuối thường có tần số 10–50 Hz; GR00T N1 báo cáo ngoài đoạn 120 Hz, π0 điều khiển khoảng 50 Hz | L9/L10 |
+| Chính sách theo dõi cấp thấp / WBC | Kiểm soát cân bằng và lực yêu cầu 200–1000 Hz | L4.4 / L5.2 |
+| Khớp PD / Vòng lặp hiện tại | Vòng kín tần số cao hơn trong trình điều khiển | L3/L12 |
 
-> 频率数字来自站内已有页面：[控制与推理频率解耦](../wiki/concepts/control-inference-frequency-decoupling.md)、[GR00T N1](../wiki/entities/paper-hrl-stack-34-gr00t_n1.md)、[π0](../wiki/entities/paper-pi0.md)。**要点不是具体数字，而是"慢的大模型 + 快的低层控制器"必须分层**——这也是为什么 L3–L4 的控制基础在 VLA 时代仍然不可跳过。
+> Số tần số đến từ các trang hiện có trên trang web: [Tách tần số điều khiển và suy luận](../wiki/concepts/control-inference-frequency-decoupling.md), [GR00T N1](../wiki/entities/paper-hrl-stack-34-gr00t_n1.md), [π0](../wiki/entities/paper-pi0.md). **Vấn đề không phải là con số cụ thể mà là "mô hình lớn chậm + bộ điều khiển cấp thấp nhanh" phải được xếp lớp** - đây là lý do tại sao cơ sở điều khiển của L3–L4 vẫn không thể bỏ qua trong kỷ nguyên VLA.
 
 <a id="physical-ai-core-path"></a>
 
-### Physical AI Core Path（时间有限时的最短路径）
+### Đường dẫn lõi AI vật lý (con đường ngắn nhất với thời gian có hạn)
 
-如果学习者时间有限，优先按以下顺序，**不要一次学完全部**：
+Nếu thời gian học có hạn thì ưu tiên theo thứ tự sau, **không học hết một lúc**:
 
 1. Robot Kinematics / Dynamics — [L1](#l1-机器人学骨架) · [L2](#l2-动力学与刚体建模)
-2. PD / Torque Control — [L3：Policy ≠ 底层控制器](#policy-vs-low-level-controller)
+2. PD / Kiểm soát mô-men xoắn — [L3: Chính sách ≠ Bộ điều khiển phía dưới](#policy-vs-low-level-controller)
 3. MDP / Actor-Critic — [L5.1](#l5-1-rl-basics)
 4. PPO — [PPO](../wiki/methods/ppo.md)
 5. DeepMimic / AMP — [L5.3](#l5-3-imitation-learning)
@@ -182,43 +182,45 @@ flowchart TB
 11. World Model / Cosmos — [L11](#physical-ai-l11-world-model)
 12. Deployment — [L12](#physical-ai-l12-deployment)
 
-建议节奏：**Control → Robot Learning → Sim2Real → Transformer → Action Generation → VLA → World Model**，部署（L12）可在任何一段做完仿真后穿插进行。
+Nhịp điệu đề xuất: **Điều khiển → Học robot → Sim2Real → Máy biến áp → Tạo hành động → VLA → Mô hình thế giới**. Việc triển khai (L12) có thể được xen kẽ sau khi hoàn thành mô phỏng ở bất kỳ phần nào.
 
 <a id="physical-ai-signal-vs-noise"></a>
 
 ### How to filter new Physical AI work（Signal vs Noise）
 
-看到一个新模型 / 新论文，先问：
+Khi bạn nhìn thấy một mẫu/giấy mới, trước tiên hãy hỏi:
 
-1. 它改变了 Physical AI pipeline 的**哪个模块**（上面 8 层 + 部署中的哪一格）？
-2. 是**新的机制**，还是只是新的 model name？
-3. 是否**跨机器人 / 跨任务**有效？
-4. 是否有 **paper / code / benchmark**？
-5. **6–12 个月之后**这个概念是否仍然值得知道？
+1. **Mô-đun nào** của quy trình AI vật lý (8 lớp trên + hộp nào đang triển khai) có thay đổi không?
+2. Đây là **cơ chế mới** hay chỉ là tên mẫu máy mới?
+3. Nó có hợp lệ trên các robot/tác vụ không?
+4. Có **giấy/mã/điểm chuẩn** không?
+5. Khái niệm này có còn đáng biết **6–12 tháng sau** không?
 
 > **If you cannot place a new work into the roadmap, do not learn it deeply yet.**
 
-**资料选择原则**：每个关键概念最多推荐 **1 个 canonical paper + 1 个官方 project page + 1 个 GitHub + 可选 Hugging Face**，没有对应链接就跳过；优先官方来源，不收二手博客 / 聚合站。L8–L12 的"推荐读什么"都按这个规则写。
+**Nguyên tắc lựa chọn tài liệu**: Khuyến nghị tối đa mỗi ý tưởng chính **1 bài viết chuẩn + 1 trang dự án chính thức + 1 GitHub + Ôm mặt tùy chọn**, bỏ qua nếu không có liên kết tương ứng; ưu tiên các nguồn chính thức và không chấp nhận các blog/trang tổng hợp cũ. "Các bài đọc được khuyến nghị" cho L8-L12 đều được viết theo quy tắc này.
 
 ---
 
-## L−1 序言：机器人技术栈全景 & 怎么读这条路线
+<a id="l1-序言机器人技术栈全景--怎么读这条路线"></a>
+## L−1 Lời nói đầu: Toàn cảnh về hệ thống công nghệ robot và cách đọc lộ trình này
 
-**这一节是给完全没看过机器人的读者准备的"软着陆台阶"。** 资深读者可以直接跳到 [L0 数学与编程基础](#l0-数学与编程基础) 或 [最小可执行学习路径](#最小可执行学习路径90-天版本)。
+**Phần này là “bước hạ cánh nhẹ nhàng” dành cho những độc giả chưa từng nhìn thấy robot trước đây. ** Người đọc nâng cao có thể chuyển thẳng đến [L0 Nguyên tắc cơ bản về Toán học và Lập trình](#l0-数学与编程基础) hoặc [Lộ trình học tập có thể thực thi tối thiểu](#最小可执行学习路径90-天版本).
 
-### 30 秒看懂"一台机器人在干嘛"
+<a id="30-秒看懂一台机器人在干嘛"></a>
+### Hiểu rõ "Robot đang làm gì" trong 30 giây
 
-把任何机器人——扫地机、机械臂、自动驾驶、人形——拆开看，都在循环跑同一个 4 步：
+Nếu bạn tách rời bất kỳ robot nào—máy quét, cánh tay robot, lái xe tự động, hình người—bạn sẽ thấy rằng tất cả chúng đều đang chạy 4 bước giống nhau trong một chu kỳ:
 
 ```mermaid
 flowchart LR
-  Sensor["感知 (Sensor)<br/>摄像头 · IMU · 编码器<br/>力觉 · 雷达"]
-  Plan["决策 / 规划 (Plan)<br/>任务规划 · 运动规划<br/>SLAM"]
-  Control["控制 (Control)<br/>把规划翻译成关节指令<br/>★ 本路线主战场 ★"]
-  Body["执行 (Actuator · Body)<br/>电机 · 减速器 · 关节<br/>本体结构"]
+  Sensor["Cảm biến<br/>Camera · IMU · Bộ mã hóa<br/>Cảm biến lực · Radar"]
+  Plan["Lập kế hoạch<br/>Nhiệm vụ · Chuyển động · SLAM"]
+  Control["Điều khiển<br/>Chuyển kế hoạch thành lệnh khớp<br/>★ Trọng tâm chính của lộ trình ★"]
+  Body["Chấp hành<br/>Động cơ · Hộp giảm tốc · Khớp<br/>Cấu trúc thân robot"]
 
   Sensor --> Plan --> Control --> Body
-  Body -. 反馈 .-> Sensor
+  Body -. phản hồi .-> Sensor
 
   classDef mainFocus fill:#0d4f5c,stroke:#00d4ff,stroke-width:3px,color:#fff
   classDef other fill:#1a1a1a,stroke:#444,color:#ddd
@@ -226,117 +228,120 @@ flowchart LR
   class Sensor,Plan,Body other
 ```
 
-- **感知**：摄像头 / IMU / 编码器 / 力觉 / 雷达 → 让机器人知道"自己在哪、世界长什么样"。
-- **决策 / 规划**：高层任务规划、运动规划、SLAM → 决定"要去哪、走哪条路"。
-- **控制**：把规划目标变成关节级指令 → 决定"每个关节这一毫秒该出多少力 / 转多少角度"。
-- **执行**：电机、减速器、关节、本体结构 → 把指令变成机械运动。
+- **Nhận thức**: Camera / IMU / Bộ mã hóa / Force Sense / Radar → Cho robot biết "nó ở đâu và thế giới trông như thế nào".
+- **Quyết định/Lập kế hoạch**: lập kế hoạch nhiệm vụ cấp cao, lập kế hoạch chuyển động, SLAM → quyết định "đi đâu và đi theo hướng nào".
+- **Điều khiển**: Biến mục tiêu lập kế hoạch thành hướng dẫn ở cấp độ khớp → xác định "mỗi khớp sẽ tác dụng bao nhiêu lực/góc trong mili giây này".
+- **Thực hiện**: động cơ, hộp giảm tốc, khớp, cấu trúc thân → biến hướng dẫn thành chuyển động cơ học.
 
-> **本路线只钻第三个盒子：控制。** 其它三盒在 [L7 出口层](#l7-出口从运动控制看整个机器人技术栈) 集中扫盲，给你进入对应子方向的入口。
+> **Lộ trình này chỉ khoan hộp thứ ba: Kiểm soát. ** Ba hộp còn lại tập trung vào khả năng đọc viết ở [Cấp thoát L7](#l7-出口从运动控制看整个机器人技术栈), cung cấp cho bạn lối vào hướng dẫn phụ tương ứng.
 
-### 为什么以"人形 / 双足"为主载体
+### Tại sao lại dùng "hình người/hai chân" làm vật mang chính?
 
-人形 = **高自由度**（20+ 关节）+ **浮动基**（没固定在地面）+ **接触切换**（脚要轮流着地）+ **强不稳定**（重心永远想往外跑）。
-学会人形控制，迁移到机械臂、四足、轮式底盘几乎都是降难度，反之不成立。所以人形是当下的"最佳教学载体"。
+Hình người = **Mức độ tự do cao** (20+ khớp) + **Đế nổi** (không cố định với mặt đất) + **Chuyển tiếp điểm** (chân phải lần lượt tiếp đất) + **Không ổn định mạnh** (trọng tâm luôn muốn chạy ra ngoài).
+Học cách điều khiển hình người và chuyển sang cánh tay robot, khung gầm bốn chân và bánh xe hầu như luôn giảm bớt khó khăn, nhưng điều ngược lại là không đúng. Vì vậy, hình hài con người chính là “người vận chuyển giáo lý tốt nhất” ở thời điểm hiện tại.
 
-### 三种读者的不同读法
+### Phương pháp đọc khác nhau dành cho ba người đọc
 
-| 你是谁 | 推荐读法 | 不需要做什么 |
+| Bạn là ai | Đề nghị đọc | Không có gì để làm |
 |--------|---------|------------|
-| **完全外行**（想搞懂术语，能和工程师对话）| 只读每一 L 的"场景隐喻 / 学完能做什么 / 推荐读什么"和各层「英文缩写速查」 | 不需要写一行代码、不需要做练习 |
-| **想入行**（程序员 / 在校生）| 跟 [最小可执行 90 天路径](#最小可执行学习路径90-天版本) → 再按 L0 → L7 全程走，每一层都做"推荐做什么" | 不需要先读完所有论文 |
-| **资深从业者**（有相关经验、查漏补缺）| 直接跳 L4 / L5，重点看每层的"常见误区 / 自测题"；用 [可选纵深](#depth-optional-index) 切入研究方向 | 不需要重读 L0–L2 基础 |
+| **Cung cấp đầy đủ** (Nếu bạn muốn hiểu thuật ngữ, bạn có thể nói chuyện với các kỹ sư) | Chỉ cần đọc phần "ẩn dụ kịch bản/bạn có thể làm gì sau khi học/nên đọc những gì" của mỗi lớp L và "kiểm tra nhanh chữ viết tắt tiếng Anh" của từng lớp | Không cần viết dòng code, không cần làm bài tập |
+| **Muốn tham gia vào ngành** (Lập trình viên / Sinh viên hiện tại) | Thực hiện theo [Đường dẫn thực thi tối thiểu 90 ngày](#最小可执行学习路径90-天版本) → Nhấn L0 → L7 để thực hiện theo toàn bộ quy trình, thực hiện "những việc nên làm" ở mỗi cấp độ | Không cần phải đọc tất cả các giấy tờ trước |
+| **Học viên cao cấp** (Có kinh nghiệm liên quan, kiểm tra rò rỉ và lấp đầy các khoảng trống) | Chuyển thẳng đến L4/L5, tập trung vào “Những hiểu lầm thường gặp/Câu hỏi tự đánh giá” ở mỗi cấp độ; sử dụng [Độ sâu tùy chọn](#depth-optional-index) để chuyển sang hướng nghiên cứu | Không cần phải đọc lại Khái niệm cơ bản về L0–L2 |
 
-### 怎么用每一层
+### Cách sử dụng từng lớp
 
-每一个 L（除 L−1 / L7 外）都遵循同一套格式：
+Mọi L (ngoại trừ L−1 / L7) đều có cùng định dạng:
 
-1. **场景隐喻** — 一句话比喻，给完全外行用
-2. **为什么存在 / 上一层的局限** — 解释这一层为何不可跳过
-3. **前置知识 → 核心问题 → 推荐做什么 → 推荐读什么 → 学完输出什么** — 工程化执行清单
-4. **常见误区 + 自测题** — 给资深读者快速校准
+1. **Phép ẩn dụ kịch bản** — một phép ẩn dụ một câu dành cho những người không chuyên
+2. **Tại sao nó tồn tại/Hạn chế của lớp trước** — Giải thích tại sao không thể bỏ qua lớp này
+3. **Kiến thức tiên quyết → Vấn đề cốt lõi → Nội dung nên đọc → Nội dung nên đọc → Kết quả đầu ra sau khi học** — Danh sách kiểm tra thực hiện kỹ thuật
+4. **Những hiểu lầm thường gặp + Câu hỏi tự đánh giá** — Hiệu chỉnh nhanh cho người đọc có kinh nghiệm
 
-### 资深读者 skip-to 矩阵
+### Ma trận chuyển sang phần dành cho độc giả cấp cao
 
-如果你已经在工作中接触过机器人控制，根据你能回答出的问题，可以直接跳到对应 L。**点击下面的按钮直达对应章节：**
+Nếu bạn đã tiếp xúc với việc điều khiển robot tại nơi làm việc, bạn có thể chuyển thẳng sang chữ L tương ứng theo các câu hỏi bạn có thể trả lời. **Nhấp vào nút bên dưới để chuyển thẳng đến chương tương ứng:**
 
 <div class="skip-to-buttons" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin:18px 0;">
-<a class="btn-secondary" href="#l1-机器人学骨架" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong>我会 NumPy，不懂 SE(3)</strong><span style="opacity:0.7; font-size:0.85em;">→ L1 机器人学骨架</span></a>
-<a class="btn-secondary" href="#l2-动力学与刚体建模" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong>会 Pinocchio FK / Jacobian，不熟 RNEA / CRBA / ABA</strong><span style="opacity:0.7; font-size:0.85em;">→ L2 动力学与刚体建模</span></a>
-<a class="btn-secondary" href="#l4-人形运动控制主干" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong>会固定基逆动力学，浮动基没碰过</strong><span style="opacity:0.7; font-size:0.85em;">→ L4 人形运动控制主干</span></a>
-<a class="btn-secondary" href="#l41-lip--zmp" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong>熟 LQR / MPC，没系统学 LIP / Centroidal / WBC</strong><span style="opacity:0.7; font-size:0.85em;">→ L4.1 LIP / ZMP</span></a>
-<a class="btn-secondary" href="#l52-rl-在人形运动控制里的应用" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong>会 IsaacLab PPO，不知如何和传统控制结合</strong><span style="opacity:0.7; font-size:0.85em;">→ L5.2 RL 在人形运动控制里的应用</span></a>
-<a class="btn-secondary" href="#l6-综合实战" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong>跑通仿真 RL，没做过 sim2real 部署</strong><span style="opacity:0.7; font-size:0.85em;">→ L6 综合实战</span></a>
-<a class="btn-secondary" href="#l7-出口从运动控制看整个机器人技术栈" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong>做过运动控制，想看当下机器人 AI 全景</strong><span style="opacity:0.7; font-size:0.85em;">→ L7 出口与前沿地图</span></a>
+<a class="btn-secondary" href="#l1-机器人学骨架" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong> Tôi biết NumPy, nhưng tôi không hiểu SE(3)</strong><span style="opacity:0.7; font-size:0.85em;">→ L1 Bộ xương người máy </span></a>
+<a class="btn-secondary" href="#l2-动力学与刚体建模" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong> biết Pinocchio FK / Jacobian, không quen với RNEA / CRBA / ABA</strong><span style="opacity:0.7; font-size:0.85em;">→ L2 Mô hình động lực học và cơ thể cứng nhắc </span></a>
+<a class="btn-secondary" href="#l4-人形运动控制主干" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong> sẽ có động lực nghịch đảo cơ sở cố định và cơ sở nổi không chạm vào </strong><span style="opacity:0.7; font-size:0.85em;">→ L4 xương sống điều khiển chuyển động hình người </span></a>
+<a class="btn-secondary" href="#l41-lip--zmp" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong> quen thuộc với LQR / MPC, nhưng chưa học một cách có hệ thống LIP / Centroidal / WBC</strong><span style="opacity:0.7; font-size:0.85em;">→ L4.1 LIP / ZMP</span></a>
+<a class="btn-secondary" href="#l52-rl-在人形运动控制里的应用" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong> biết IsaacLab PPO, nhưng tôi không biết cách kết hợp nó với điều khiển truyền thống </strong><span style="opacity:0.7; font-size:0.85em;">→ L5.2 RL Ứng dụng trong điều khiển chuyển động hình người </span></a>
+<a class="btn-secondary" href="#l6-综合实战" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong> chạy qua mô phỏng RL, chưa bao giờ triển khai sim2real </strong><span style="opacity:0.7; font-size:0.85em;">→ L6 chiến đấu thực tế toàn diện </span></a>
+<a class="btn-secondary" href="#l7-出口从运动控制看整个机器人技术栈" style="flex-direction:column; padding:14px 18px; text-align:center; border-radius:14px; line-height:1.5;"><strong> đã thực hiện điều khiển chuyển động và muốn xem toàn cảnh AI của robot hiện tại </strong><span style="opacity:0.7; font-size:0.85em;">→ Bản đồ biên giới và lối ra L7 </span></a>
 </div>
 
-**两条主线不要混着学：**
-- **传统控制主线（L0–L4 + L6）：** OCP → LIP/ZMP → Centroidal → MPC → TSID/WBC → State Estimation → Sim2Real
-- **Learning-based 主线（L5）：** RL 基础 → locomotion RL → imitation learning / motion prior → motion retargeting → teacher-student
-- 优先把传统主线学通，再把 RL / IL 当作扩展层接上去；否则容易只会调超参数、不理解控制结构为什么这样设计。
+**Không học hai dòng chính cùng lúc:**
+- **Dòng chính điều khiển truyền thống (L0–L4 + L6):** OCP → LIP/ZMP → Centroidal → MPC → TSID/WBC → Ước tính trạng thái → Sim2Real
+- **Dòng chính dựa trên học tập (L5): ** RL cơ bản → vận động RL → bắt chước học / chuyển động trước → nhắm mục tiêu lại chuyển động → giáo viên-học sinh
+- Ưu tiên học đường chính truyền thống, sau đó kết nối RL/IL làm lớp mở rộng; mặt khác, rất dễ chỉ điều chỉnh các siêu tham số và không hiểu tại sao cấu trúc điều khiển lại được thiết kế theo cách này.
 
-### 英文缩写速查（L−1 全路线鸟瞰）
+### Tìm kiếm nhanh các từ viết tắt tiếng Anh (L−1 cái nhìn toàn cảnh về toàn bộ tuyến đường)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| DOF | Degrees of Freedom | 机器人能独立运动的方向数；人形常见约 25 DOF。 |
-| FK | Forward Kinematics | 关节角 → 末端位姿。 |
-| IK | Inverse Kinematics | 末端目标 → 反推关节角。 |
-| CoM | Center of Mass | 整机质心；平衡控制的核心状态之一。 |
-| ZMP | Zero Moment Point | 接触面内合力矩为零的点；留在支撑多边形内则不易翻倒。 |
-| DCM | Divergent Component of Motion | 发散运动分量；用于落点与平衡前瞻。 |
-| CP | Capture Point | 踩下即可渐近停稳的落点；常由 DCM 导出。 |
-| MPC | Model Predictive Control | 滚动时域内在线求解最优控制。 |
-| WBC | Whole-Body Control | 全身多任务力矩分配与约束处理。 |
-| TSID | Task-Space Inverse Dynamics | 任务空间逆动力学；WBC 常用实现框架。 |
-| PID | Proportional–Integral–Derivative | 经典反馈控制；单关节保底常用。 |
-| LQR | Linear Quadratic Regulator | 线性二次最优调节器；平衡 baseline。 |
-| RL | Reinforcement Learning | 试错学习策略。 |
-| PPO | Proximal Policy Optimization | 常用 on-policy RL 算法。 |
-| IL | Imitation Learning | 从示范数据学策略。 |
-| BC | Behavior Cloning | 监督模仿；IL 的最简形式。 |
-| Sim2Real | Simulation to Reality | 仿真策略迁移真机。 |
-| DR | Domain Randomization | 仿真随机化参数以提升真机鲁棒性。 |
-| URDF | Unified Robot Description Format | 机器人连杆与关节的 XML 描述格式。 |
-| MJCF | MuJoCo XML Format | MuJoCo 仿真用的模型描述格式。 |
-| IMU | Inertial Measurement Unit | 惯性测量单元（加速度计 + 陀螺仪等）。 |
-| SLAM | Simultaneous Localization and Mapping | 同时定位与建图。 |
-| VLA | Vision–Language–Action | 视觉–语言–动作一体大模型路线。 |
-| ROS | Robot Operating System | 机器人中间件与通信生态（ROS2 为新一代）。 |
+| DOF | Mức độ Tự do | Số hướng mà robot có thể di chuyển độc lập; phiên bản hình người là khoảng 25 DOF. |
+| FK | Chuyển tiếp động học | Góc khớp → tư thế kết thúc. |
+| IK | Động học nghịch đảo | Mục tiêu cuối → Góc khớp nghịch đảo. |
+| CoM | Trung Tâm Thánh Lễ | Khối tâm của toàn bộ máy; một trong những trạng thái cốt lõi của việc kiểm soát sự cân bằng. |
+| ZMP | Điểm không khoảnh khắc | Điểm trên bề mặt tiếp xúc tại đó tổng mômen bằng 0; nếu nó vẫn nằm trong đa giác hỗ trợ, nó sẽ không dễ bị đổ. |
+| DCM | Thành phần chuyển động khác nhau | Thành phần chuyển động khác nhau; được sử dụng để hạ cánh và cân bằng nhìn về phía trước. |
+| CP | Điểm chiếm giữ | Điểm hạ cánh dần dần dừng lại khi nhấn; thường bắt nguồn từ DCM. |
+| MPC | Kiểm soát dự đoán mô hình | Giải bài toán điều khiển tối ưu trực tuyến trong miền thời gian lăn. |
+| WBC | Kiểm soát toàn thân | Phân phối mô-men xoắn đa nhiệm trên toàn bộ cơ thể và xử lý hạn chế. |
+| TSID | Động lực nghịch đảo không gian nhiệm vụ | Động lực nghịch đảo không gian nhiệm vụ; Khung triển khai chung WBC. |
+| PID | Tỷ lệ–Tích phân–Đạo hàm | Kiểm soát phản hồi cổ điển; bảo lãnh chung duy nhất thường được sử dụng. |
+| LQR | Bộ điều chỉnh bậc hai tuyến tính | Bộ điều chỉnh tối ưu bậc hai tuyến tính; đường cơ sở cân bằng. |
+| RL | Học tăng cường | Chiến lược học tập thử và sai. |
+| PPO | Tối ưu hóa chính sách gần nhất | Thuật toán RL theo chính sách thường được sử dụng. |
+| IL | Học Bắt Chước | Chiến lược học tập từ dữ liệu trình diễn. |
+| BC | Nhân bản hành vi | bắt chước có giám sát; dạng đơn giản nhất của IL. |
+| Sim2Real | Mô phỏng thành hiện thực | Di chuyển chiến lược mô phỏng sang máy thật. |
+| DR | Ngẫu nhiên tên miền | Mô phỏng các tham số ngẫu nhiên để cải thiện độ bền của máy thật. |
+| URDF | Định dạng mô tả Robot hợp nhất | Định dạng mô tả XML cho các liên kết và khớp robot. |
+| MJCF | Định dạng XML MuJoCo | Định dạng mô tả mô hình MuJoCo để mô phỏng. |
+| IMU | Đơn Vị Đo Quán Tính | Đơn vị đo quán tính (gia tốc kế + con quay hồi chuyển, v.v.). |
+| ĐẬP | Bản đồ hóa và Bản đồ hóa đồng thời | Bản địa hóa và lập bản đồ đồng thời. |
+| VLA | Tầm nhìn–Ngôn ngữ–Hành động | Tầm nhìn–Ngôn ngữ–Hành động tích hợp lộ trình mô hình lớn. |
+| ROS | Hệ điều hành Robot | Hệ sinh thái truyền thông và phần mềm trung gian robot (ROS2 là thế hệ mới). |
 
-> 各 L 层正文前还有**该层专用**缩写表；外行先扫本表建立「听到能对上号」的肌肉记忆即可。
+>Trước phần văn bản của mỗi lớp L cũng có một bảng viết tắt dành riêng cho lớp đó; giáo dân chỉ có thể quét bảng này trước để xây dựng trí nhớ cơ bắp về việc "nhận đúng số khi bạn nghe thấy".
 
-### 一本贯穿全程的教材：Modern Robotics
+<a id="一本贯穿全程的教材modern-robotics"></a>
+### Sách giáo khoa xuyên suốt toàn bộ quá trình: Robot hiện đại
 
-[Modern Robotics（Lynch & Park）](../wiki/entities/modern-robotics-book.md) 是本路线 L0–L4 的"语法书"。**它不教人形 locomotion，但它把'位姿 / 速度 / 力 / 动力学'用统一的 twist / screw / wrench 语言讲清楚了。** 后面每一层下面的"推荐读什么"里会指给你具体章节，这里先说一遍它在全程的位置，避免每一层重复引用：
+[Modern Robotics (Lynch & Park)](../wiki/entities/modern-robotics-book.md) là "sách ngữ pháp" cho L0–L4 của lộ trình này. **Nó không dạy cách vận động giống người, nhưng nó giải thích rõ ràng 'vị trí/tốc độ/lực/động lực' bằng ngôn ngữ xoắn/vít/cờ lê thống nhất. ** "Bài đọc được đề xuất" bên dưới mỗi cấp độ sẽ chỉ cho bạn các chương cụ thể. Ở đây, hãy nói về vị trí của nó trong toàn bộ quá trình để tránh việc tham chiếu lặp lại ở mỗi cấp độ:
 
-| Modern Robotics 章节 | 接到本路线哪一层 |
+| Chương Robot hiện đại | Bạn kết nối cấp độ nào với tuyến đường này |
 |--------------------|----------------|
-| Ch 2–3：Configuration Space / Rigid-Body Motions | L0–L1（SE(3) 字母表） |
+| Ch 2–3: Không gian cấu hình / Chuyển động của cơ thể cứng nhắc | L0–L1 (bảng chữ cái SE(3)) |
 | Ch 4–6：Forward / Velocity / Inverse Kinematics | L1 |
 | Ch 5、Ch 8：Statics / Dynamics of Open Chains | L2 |
 | Ch 9：Trajectory Generation | L3 / L4.3 |
 | Ch 11：Robot Control | L3 / L4.4 |
 
-> Ch 7（Force Control）、Ch 10（Motion Planning）也很有价值，但相对偏离本路线主干，作为可选。
+> Ch 7 (Kiểm soát lực lượng) và Ch 10 (Lập kế hoạch chuyển động) cũng có giá trị, nhưng tương đối lệch so với tuyến chính của tuyến này và là tùy chọn.
 
-**官方资源**：[项目页](https://modernrobotics.northwestern.edu/) · [书 PDF 与视频（Northwestern wiki）](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) · [配套代码 NxRLab/ModernRobotics](https://github.com/NxRLab/ModernRobotics)。**不要求读完整本书**——对 Physical AI 路线，重点吃透 **SE(3)、FK / IK、Jacobian、Dynamics** 四块（上表 Ch 2–6、Ch 8）即可。
-
----
-
-## 最小可执行学习路径（90 天版本）
-
-如果你希望“少而精、尽快跑起来”，可以先只做这 5 件事：
-
-1. 跑通一个 [Locomotion](../wiki/tasks/locomotion.md) 仿真环境（站立 + 前进）。  
-2. 实现一个倒立摆 [LQR](../wiki/formalizations/lqr.md) 或简单 [MPC](../wiki/methods/model-predictive-control.md)。  
-3. 跑通一个最小 [Whole-Body Control](../wiki/concepts/whole-body-control.md) / [TSID](../wiki/concepts/tsid.md) 示例。  
-4. 用 PPO 训练一个基础策略，并阅读 [WBC vs RL](../wiki/comparisons/wbc-vs-rl.md) 做方法取舍。  
-5. 完成一次最小 [Sim2Real](../wiki/concepts/sim2real.md) checklist（哪怕只在仿真内做 domain randomization 对比）。  
-
-> 完成这 5 件事后，再回到 L0-L6 补理论，会更快理解“为什么要学这些”。
+**Tài nguyên chính thức**: [Trang dự án](https://modernrobotics.northwestern.edu/) · [Sách PDF & Video (wiki Tây Bắc)](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) · [Mã đồng hành NxRLab/ModernRobotics](https://github.com/NxRLab/ModernRobotics). **Không bắt buộc phải đọc toàn bộ cuốn sách** - Đối với lộ trình AI Vật lý, hãy tập trung vào việc hiểu biết thấu đáo về **SE(3), FK / IK, Jacobian và Dynamics** Bốn phần (Ch 2–6, Ch 8 trong bảng trên) là đủ.
 
 ---
 
+<a id="最小可执行学习路径90-天版本"></a>
+## Lộ trình học thực thi tối thiểu (phiên bản 90 ngày)
+
+Nếu muốn “làm ít hơn nhưng giỏi hơn và chạy nhanh nhất có thể”, trước tiên bạn chỉ có thể làm 5 điều sau:
+
+1. Chạy qua môi trường mô phỏng [Đầu máy](../wiki/tasks/locomotion.md) (đứng + di chuyển về phía trước).
+2. Thực hiện một con lắc ngược [LQR](../wiki/formalizations/lqr.md) hoặc đơn giản là [MPC](../wiki/methods/model-predictive-control.md).
+3. Chạy qua ví dụ tối thiểu [Điều khiển toàn thân](../wiki/concepts/whole-body-control.md) / [TSID](../wiki/concepts/tsid.md).
+4. Sử dụng PPO để huấn luyện chiến lược cơ bản và đọc [WBC vs RL](../wiki/comparisons/wbc-vs-rl.md) để lựa chọn phương pháp.
+5. Hoàn thành danh sách kiểm tra tối thiểu [Sim2Real](../wiki/concepts/sim2real.md) (ngay cả khi bạn chỉ thực hiện so sánh ngẫu nhiên tên miền trong mô phỏng).
+
+> Làm xong 5 điều này quay lại lý thuyết bổ trợ L0-L6 bạn sẽ hiểu “tại sao cần học những điều này” nhanh hơn.
+
+---
+
+<a id="l0-数学与编程基础"></a>
 ## L0 Khái niệm cơ bản về toán học và lập trình
 
 **Bạn không cần phải đi sâu vào phần này, nhưng bạn không thể bỏ qua nó.**
@@ -410,340 +415,344 @@ flowchart TD
 
 ---
 
-## L1 机器人学骨架
+<a id="l1-机器人学骨架"></a>
+## Bộ xương robot L1
 
-**这条是所有后续内容的基座，跳过后面一定会补。**
+**Bài viết này là nền tảng cho tất cả các nội dung tiếp theo. Nếu bỏ qua chắc chắn tôi sẽ bù lại sau. **
 
-> **场景隐喻：** 你盯着机器人胳膊关节角度的变化，能不能马上脑补出末端走出的轨迹？L1 教你这个翻译器：关节空间 ↔ 任务空间。
+> **Ẩn dụ cảnh:** Nếu bạn nhìn chằm chằm vào những thay đổi trong góc khớp của cánh tay robot, bạn có thể đoán ra ngay quỹ đạo của phần cuối không? L1 dạy cho bạn trình dịch này: không gian chung ↔ không gian nhiệm vụ.
 
-> **上一层的局限：** L0 让你能写矩阵运算，但还不知道"机器人的关节角"和"末端位姿"是什么映射；L1 把这个翻译器搭起来。
+> **Hạn chế của lớp trước:** L0 cho phép bạn viết các phép toán ma trận, nhưng bạn vẫn chưa biết ánh xạ giữa "góc khớp của robot" và "tư thế cuối"; L1 thiết lập trình dịch này.
 
-### 英文缩写速查（L1）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L1)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| FK | Forward Kinematics | 关节角 → 末端位姿。 |
-| IK | Inverse Kinematics | 末端目标 → 关节角；6R 臂常有多组解。 |
-| DH | Denavit–Hartenberg | 经典连杆参数化；本路线更推荐 PoE / twist。 |
-| PoE | Product of Exponentials | 螺旋轴 + 矩阵指数描述开链 FK。 |
-| \(J\) / Jacobian | Manipulator Jacobian | 关节速度 → 末端 twist 的线性映射。 |
-| Twist | Spatial Velocity (6D) | 刚体瞬时速度（角速度 + 线速度）。 |
-| Screw | Twist + Pitch | 螺旋运动；PoE 中关节轴即 screw axis。 |
-| Wrench | Spatial Force (6D) | 力 + 力矩的六维广义力。 |
-| Ad | Adjoint Transformation | 在不同坐标系间变换 twist / wrench 的 \(6\times6\) 矩阵。 |
+| FK | Chuyển tiếp động học | Góc khớp → tư thế kết thúc. |
+| IK | Động học nghịch đảo | Mục tiêu cuối → góc khớp; Cánh tay 6R thường có nhiều bộ giải pháp. |
+| DH | Denavit–Hartenberg | Tham số hóa thanh kết nối cổ điển; tuyến đường này khuyến nghị PoE/xoắn. |
+| PoE | Sản phẩm của hàm mũ | Trục xoắn ốc + chỉ số ma trận mô tả chuỗi mở FK. |
+| \(J\) / Jacobian | Bộ điều khiển Jacobian | Tốc độ khớp → ánh xạ tuyến tính của độ xoắn cuối. |
+| Xoắn | Vận tốc không gian (6D) | Vận tốc tức thời của vật rắn (vận tốc góc + vận tốc tuyến tính). |
+| Vít | Xoay + Cao độ | Chuyển động xoắn ốc; trục khớp trong PoE là trục vít. |
+| Cờ lê | Lực lượng không gian (6D) | Lực tổng quát sáu chiều của lực + mô men. |
+| Quảng cáo | Chuyển đổi phụ trợ | Ma trận \(6\times6\) biến đổi xoắn/cờ lê giữa các hệ tọa độ khác nhau. |
 
-**这一层建议分三步走，不要一口气啃完：**
+**Nên đi bộ cấp độ này theo ba bước, không hoàn thành nó trong một lần:**
 
-1. **L1.1 SE(3)、旋转与刚体变换** — 把"位姿"用数学描述清楚（旋转矩阵、齐次变换、Twist / Screw Axis、矩阵指数 / PoE）。这是后面所有内容的字母表。
-2. **L1.2 正逆运动学（FK / IK）** — 关节角 ↔ 末端位姿。先用 PoE 公式手写 FK 验证 Pinocchio 的输出再说。
-3. **L1.3 雅可比与速度运动学** — 关节速度 ↔ 末端速度，space Jacobian 与 body Jacobian 的区别；这是 L4 任务空间控制的入门钥匙。
+1. **L1.1 SE(3), chuyển đổi chuyển động xoay và vật cứng** - mô tả rõ ràng "tư thế" bằng toán học (ma trận xoay, chuyển đổi đồng nhất, Trục xoắn/trục vít, chỉ số ma trận/PoE). Đây là bảng chữ cái cho mọi thứ tiếp theo.
+2. **L1.2 Động học thuận và nghịch (FK / IK)** — góc khớp ↔ tư thế cuối. Trước tiên, hãy sử dụng công thức PoE để viết tay FK nhằm xác minh đầu ra của Pinocchio.
+3. **L1.3 Jacobi và động học vận tốc** — tốc độ khớp ↔ tốc độ đầu cuối, hiệu giữa không gian Jacobian và vật thể Jacobian; đây là chìa khóa để kiểm soát không gian nhiệm vụ L4.
 
-> 这三步共用下方同一份"推荐做什么 / 推荐读什么 / 学完输出什么"清单，按上面的顺序推进即可。
+> Ba bước này có chung danh sách "những việc nên làm/nên đọc/nên ghi gì sau khi học" bên dưới. Chỉ cần tiến hành theo thứ tự trên.
 
-### 前置知识
-- L0 内容
-- 刚体在三维空间里怎么旋转、怎么描述朝向
+### Kiến thức cần thiết
+- Nội dung L0
+- Một vật rắn quay như thế nào trong không gian ba chiều và mô tả hướng của nó như thế nào?
 
-### 核心问题
-- 机器人每个关节的角度和末端执行器位置是什么关系
-- 怎么用数学描述这件事
-- 正逆运动学是什么
-- 为什么 twist、screw axis、PoE 比只记 D-H 参数更适合接后面的 Pinocchio / TSID / WBC
+### Vấn đề cốt lõi
+- Mối quan hệ giữa góc của từng khớp của robot và vị trí của cơ cấu tác động cuối là gì?
+- Làm thế nào để mô tả điều này một cách toán học
+- Động học thuận và động học nghịch đảo là gì?
+- Tại sao phải xoắn, trục vít, PoE phù hợp để kết nối với Pinocchio/TSID/WBC sau hơn là chỉ ghi nhớ thông số D-H
 
-### 推荐做什么
-- 用 Pinocchio 或 Robotics Toolbox 建模一个简单机械臂
-- 写出正运动学和逆运动学代码
-- 理解雅可比矩阵是什么
-- 用 Modern Robotics 的 PoE 公式手写一个 2-3 自由度机械臂的 `FKinSpace` / `JacobianSpace`，再和 Pinocchio 输出对齐
+### Nên làm gì?
+- Sử dụng Pinocchio hoặc Robotics Toolbox để mô hình hóa một cánh tay robot đơn giản
+-Viết mã động học thuận và động học nghịch
+- Hiểu ma trận Jacobian là gì
+- Sử dụng công thức PoE của Modern Robotics để viết tay `FKinSpace` / `JacobianSpace` cho cánh tay robot 2-3 bậc tự do, sau đó căn chỉnh nó với đầu ra Pinocchio
 
-### 推荐读什么
+### Khuyến khích đọc
 - [Modern Robotics](../wiki/entities/modern-robotics-book.md) Ch 4-6：Forward Kinematics、Velocity Kinematics、Inverse Kinematics
-- [正向运动学](../wiki/formalizations/forward-kinematics.md) / [逆运动学](../wiki/formalizations/inverse-kinematics.md) / [雅可比矩阵](../wiki/formalizations/robot-jacobian.md)（深蓝《具身智能基础》08–10）
-- [斯坦福《机器人学导论》(B站)](https://www.bilibili.com/video/BV17T421k78T/)
-- 跑通 Pinocchio 官方 Tutorial
+- [Động học chuyển tiếp](../wiki/formalizations/forward-kinematics.md) / [Động học nghịch đảo](../wiki/formalizations/inverse-kinematics.md) / [Ma trận Jacobian](../wiki/formalizations/robot-jacobian.md) ("Cơ bản về trí tuệ hiện thân" màu xanh đậm 08–10)
+- [Stanford "Giới thiệu về Robot" (Bilibili)](https://www.bilibili.com/video/BV17T421k78T/)
+- Hướng dẫn chính thức của Paotong Pinocchio
 - [Humanoid Robot](../wiki/entities/humanoid-robot.md)
 - [Floating Base Dynamics](../wiki/concepts/floating-base-dynamics.md)
 
-### 学完输出什么
-- 能自己建模一个简单机器人并计算正逆运动学
-- 能解释雅可比矩阵在机器人里是什么、有什么用
-- 能区分 space Jacobian 与 body Jacobian，并知道它们在任务空间控制里如何进入速度/力映射
+### Kết quả sau khi học là gì
+- Có thể tự mình mô hình hóa một robot đơn giản và tính toán động học thuận và động học nghịch đảo
+- Có thể giải thích ma trận Jacobian là gì và công dụng của nó trong robot
+- Có khả năng phân biệt không gian Jacobian với thân Jacobian và biết cách chúng nhập ánh xạ vận tốc/lực trong điều khiển không gian nhiệm vụ
 
-### 自测题（学完应能答出）
-- 给定 space Jacobian \(J_s\)，怎么算 body Jacobian \(J_b\)？两者在任务空间速度控制里的应用差别在哪？
-- 6 自由度机械臂的 IK 一般有几组解？"肘部上 / 肘部下"是怎么来的？
-- PoE 公式相比 D-H 参数最大的工程优势是什么？为什么 Pinocchio / TSID 都建立在 twist / screw 上？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Cho không gian Jacobian \(J_s\), cách tính thân Jacobian \(J_b\)? Sự khác biệt giữa hai ứng dụng trong việc kiểm soát tốc độ không gian tác vụ là gì?
+- Nhìn chung có bao nhiêu bộ giải pháp dành cho IK dành cho tay máy 6 bậc tự do? "Khuỷu tay lên/xuống khuỷu tay" đến từ đâu?
+- Ưu điểm kỹ thuật lớn nhất của công thức PoE so với thông số D-H là gì? Tại sao Pinocchio/TSID đều được chế tạo theo dạng xoắn/vít?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart LR
   Js["$$\mathbf{J}_s$$"] --> Ad["$$\mathrm{Ad}(T_{bs})$$"]
   Ad --> Jb["$$\mathbf{J}_b$$"]
-  Tgt[任务目标定义在哪个坐标系?] -->|世界 / 固定基| UseS[用 space Jacobian]
-  Tgt -->|末端体坐标系| UseB[用 body Jacobian]
+  Tgt[Mục tiêu nhiệm vụ được xác định trong hệ tọa độ nào?] -->|thế giới/căn cứ cố định| UseS[Sử dụng không gian Jacobian]
+  Tgt -->|hệ tọa độ cơ thể cuối| UseB[Sử dụng thân máy Jacobian]
 ```
 
 ```mermaid
 flowchart TD
-  IK[6R + 球腕 IK] --> S{肩前 / 后}
-  S --> E{肘上 / 下}
-  E --> W{腕翻转}
-  W --> Eight["$$\text{最多 }2^3=8\text{ 组解}$$"]
+  IK[6R + cổ tay bi IK] --> S{Vai trước/sau}
+  S --> E{trên/dưới khuỷu tay}
+  E --> W{lật cổ tay}
+  W --> Eight["$$\text{Tối đa }2^3=8\text{ nghiệm}$$"]
 ```
 
 <ol>
-<li><strong>space ↔ body Jacobian：</strong> \(J_b = [\mathrm{Ad}_{T_{bs}}]\,J_s\)，其中 \(T_{bs}=T_{sb}^{-1}\)、\([\mathrm{Ad}]\) 为 6×6 伴随矩阵。\(J_s\) 把关节速度映射到"在固定基坐标系下表达的"末端 twist，\(J_b\) 映射到"在末端体坐标系下表达的"twist。目标定义在哪个坐标系就用对应 Jacobian：视觉伺服 / 末端力控常用 \(J_b\)，世界系目标用 \(J_s\)。</li>
-<li><strong>IK 解的个数：</strong> 带球型手腕的 6R 机械臂最多 8 组解，来自肩前 / 后、肘上 / 下、腕翻转三个二元选择（\(2^3=8\)）；一般非球腕 6R 最多可达 16 组。"肘上 / 肘下"来自求肘关节角时的 \(\pm\) 二次解——同一末端位姿，肘可朝上拱或朝下拱。</li>
-<li><strong>PoE 相比 D-H：</strong> PoE 只需各关节螺旋轴 + 零位姿，几何清晰、无需在每个连杆摆 D-H 坐标系（D-H 对零位 / 坐标选取敏感、对树形与浮动基不友好）；且 PoE 天然用 twist / screw 表达，与速度运动学（Jacobian 的列即变换后的螺旋轴）、wrench、李群 / 李代数、动力学是同一套语言。Pinocchio / TSID 全程基于 twist / wrench / SE(3)，所以 PoE 衔接无缝。</li>
+<li><strong>space ↔ body Jacobian: </strong> \(J_b = [\mathrm{Ad}_{T_{bs}}]\,J_s\), trong đó \(T_{bs}=T_{sb}^{-1}\) và \([\mathrm{Ad}]\) là các ma trận liền kề 6×6. \(J_s\) ánh xạ vận tốc khớp tới độ xoắn cuối "được biểu thị trong hệ tọa độ cơ sở cố định" và \(J_b\) ánh xạ tới độ xoắn "được biểu thị trong hệ tọa độ thân đầu cuối". Hệ tọa độ nào mà mục tiêu được xác định tương ứng với Jacobian: \(J_b\) thường được sử dụng để điều khiển lực cuối/điều khiển trợ lực trực quan và \(J_s\) được sử dụng cho các mục tiêu hệ thống thế giới. </li>
+<li><strong>IK Số lượng giải pháp: </strong> Cánh tay robot 6R với cổ tay bóng có tới 8 bộ giải pháp, từ ba lựa chọn nhị phân là vai trước/sau, khuỷu tay lên/xuống và lật cổ tay (\(2^3=8\)); Cổ tay không bóng nói chung 6R có thể có tới 16 nhóm. "Trên khuỷu tay/dưới khuỷu tay" xuất phát từ nghiệm bậc hai của \(\pm\) khi tìm góc khớp khuỷu tay - ở cùng một vị trí cuối, khuỷu tay có thể cong lên hoặc cong xuống. </li>
+<li><strong>PoE So với D-H: </strong> PoE chỉ cần trục xoắn ốc + vị trí 0 của mỗi khớp, hình học rõ ràng và không cần đặt hệ tọa độ D-H trong mỗi liên kết (D-H nhạy cảm với lựa chọn vị trí/tọa độ 0 và không thân thiện đến hình dáng cây và gốc nổi); và PoE được thể hiện một cách tự nhiên bằng xoắn/vít, ngôn ngữ tương tự như động học vận tốc (các cột của Jacobian là các trục xoắn ốc biến đổi), cờ lê, nhóm Lie/đại số Lie và động lực học. Pinocchio / TSID dựa trên dây xoắn / cờ lê / SE(3) nên PoE có kết nối liền mạch. </li>
 </ol>
 </details>
 
 ---
 
-## L2 动力学与刚体建模
+<a id="l2-动力学与刚体建模"></a>
+## L2 Động lực học và Mô hình hóa cơ thể cứng nhắc
 
-**从运动学到动力学，是控制机器人最重要的跳跃。**
+**Từ động học đến động lực học, đây là bước nhảy quan trọng nhất để điều khiển robot. **
 
-> **场景隐喻：** 你给机器人一个力矩，它会怎么动？L2 把"几何空间"升级成"力学空间"——从描述位姿过渡到描述运动和力的因果关系。
+> **Ẩn dụ cảnh:** Nếu bạn cho robot một mô-men xoắn, nó sẽ chuyển động như thế nào? L2 nâng cấp “không gian hình học” thành “không gian cơ học” - chuyển từ mô tả tư thế sang mô tả mối quan hệ nhân quả của chuyển động và lực.
 
-> **上一层的局限：** L1 运动学只回答"关节角速度 ↔ 末端速度"是怎么映射的，但不能回答"加多大力矩才能让它产生这个加速度"。没有动力学，你只能做位置控制，碰到接触、高速运动、力交互就崩。
+> **Hạn chế của lớp trước:** Động học L1 chỉ trả lời cách ánh xạ "vận tốc góc khớp ↔ vận tốc cuối" nhưng không thể trả lời "cần bao nhiêu mô-men xoắn để tạo ra gia tốc này". Nếu không có động lực, bạn chỉ có thể thực hiện điều khiển vị trí và nó sẽ sụp đổ khi gặp tiếp xúc, chuyển động tốc độ cao hoặc tương tác lực.
 
-### 英文缩写速查（L2）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L2)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| RNEA | Recursive Newton–Euler Algorithm | 逆动力学：\((q,\dot q,\ddot q)\to\tau\)，\(O(n)\)。 |
-| CRBA | Composite Rigid Body Algorithm | 组装质量矩阵 \(M(q)\)，\(O(n^2)\)。 |
-| ABA | Articulated Body Algorithm | 正动力学：\(\tau\to\ddot q\)，\(O(n)\)，仿真常用。 |
-| FB | Floating Base | 底座不固定；人形躯干为 6 自由度浮动基。 |
-| CoM | Center of Mass | 质心位置；与 centroidal 动量紧密相关。 |
-| CMM | Centroidal Momentum Matrix | 广义速度 → 6D 质心动量的映射 \(h_g=A_g\dot q\)。 |
-| ID | Inverse Dynamics | 给定运动求所需广义力。 |
-| FD | Forward Dynamics | 给定广义力求加速度。 |
+| RNEA | Thuật toán Newton–Euler đệ quy | Động lực đảo ngược: \((q,\dot q,\ddot q)\to\tau\), \(O(n)\). |
+| CRBA | Thuật toán thân cứng tổng hợp | Ma trận chất lượng lắp ráp \(M(q)\), \(O(n^2)\). |
+| ABA | Thuật toán cơ thể khớp nối | Động lực dương: \(\tau\to\ddot q\), \(O(n)\), thường được sử dụng trong mô phỏng. |
+| FB | Đế Nổi | Đế không cố định; phần thân hình người là một đế nổi 6 bậc tự do. |
+| CoM | Trung Tâm Thánh Lễ | Vị trí trung tâm của quần chúng; liên quan chặt chẽ với động lượng hướng tâm. |
+| CMM | Ma trận động lượng hướng tâm | Vận tốc tổng quát → Ánh xạ 6D của động lượng tâm \(h_g=A_g\dot q\). |
+| ID | Động lực học nghịch đảo | Tìm lực tổng quát cần thiết cho một chuyển động nhất định. |
+| FD | Động lực chuyển tiếp | Tìm gia tốc cho một lực tổng quát. |
 
-**这一层建议分两步走：**
+**Nên thực hiện cấp độ này theo hai bước:**
 
-1. **L2.1 单刚体 / 固定基开链动力学** — 质量矩阵 \(M(q)\)、科里奥利 / 重力项、正逆动力学（RNEA / CRBA / ABA）。先把 Pinocchio 的 API 跑通，对照 Modern Robotics Ch 8 验证。
-2. **L2.2 浮动基与接触动力学** — 把固定基的方法推广到没有固定底座 + 间歇接触的人形机器人。重点：浮动基状态表示、接触约束如何写成 Jacobian、Centroidal Momentum Matrix 的物理意义。
+1. **L2.1 Động lực chuỗi mở cơ sở cứng đơn/cơ sở cố định** — Ma trận khối \(M(q)\), Thuật ngữ Coriolis/Trọng lực, Động lực thuận và nghịch đảo (RNEA / CRBA / ABA). Đầu tiên hãy chạy qua API của Pinocchio và xác minh nó với Modern Robotics Ch 8.
+2. **L2.2 Động lực học tiếp xúc và đế nổi** — Mở rộng phương pháp cơ sở cố định cho robot hình người không có đế cố định + tiếp xúc không liên tục. Các điểm chính: biểu diễn trạng thái cơ sở động, cách viết các ràng buộc tiếp xúc dưới dạng Jacobian và ý nghĩa vật lý của Ma trận động lượng hướng tâm.
 
-> 重要：进 L4 前 L2.2 必须懂，否则 LIP / Centroidal MPC / WBC 全是"魔法"。
+> Quan trọng: Phải hiểu rõ L2.2 trước khi vào L4, nếu không thì LIP/Cenroidal MPC/WBC đều là "ma thuật".
 
-### 前置知识
-- L1 内容（运动学）
-- 一点微积分和常微分方程直觉
+### Kiến thức cần thiết
+- Nội dung L1 (Động học)
+- Một chút trực giác về phép tính và các phương trình vi phân thông thường
 
-### 核心问题
-- 关节力矩怎么驱动机器人运动
-- 质量矩阵、重力项、科里奥利项是什么
-- 浮动基系统（人形机器人的躯干）为什么不能用固定基方法
-- wrench、Jacobian transpose、虚功原理如何把任务空间力映射到关节力矩
+### Vấn đề cốt lõi
+- Mô-men xoắn khớp điều khiển chuyển động của robot như thế nào?
+- Ma trận khối lượng, số hạng trọng lực và số hạng Coriolis là gì?
+- Tại sao hệ thống đế nổi (thân của robot hình người) không thể sử dụng phương pháp đế cố định
+- Cách cờ lê, chuyển vị Jacobian và nguyên lý làm việc ảo ánh xạ không gian tác vụ đến các khoảnh khắc chung
 
-### 推荐做什么
-- 用 Pinocchio 写一个单刚体动力学正逆动力学 Demo
-- 理解 centroidal dynamics 的基本形式
-- 理解浮动基系统的状态表示问题
-- 用 Modern Robotics Ch 8 的开链动力学接口跑一遍 `InverseDynamics` / `MassMatrix` / `ForwardDynamics`，再对照 Pinocchio 的 RNEA / CRBA / ABA
+### Nên làm gì?
+- Sử dụng Pinocchio để viết một bản demo động lực học thuận và nghịch đảo của vật rắn
+- Hiểu được dạng cơ bản của động lực học hướng tâm
+- Hiểu được các vấn đề biểu diễn trạng thái của hệ cơ sở nổi
+- Sử dụng giao diện động lực chuỗi mở của Modern Robotics Ch 8 để chạy `InverseDynamics` / `MassMatrix` / `ForwardDynamics`, sau đó so sánh RNEA / CRBA / ABA với Pinocchio
 
-### 推荐读什么
+### Khuyến khích đọc
 - [Modern Robotics](../wiki/entities/modern-robotics-book.md) Ch 5、Ch 8：Statics、Dynamics of Open Chains
-- Featherstone 《Robot Dynamics》相关章节
-- Pinocchio 文档的 Centroidal 部分
+- Các chương liên quan đến Featherstone "Robot Dynamics"
+- Phần trung tâm của tài liệu Pinocchio
 - [Floating Base Dynamics](../wiki/concepts/floating-base-dynamics.md)
-- [Gravity Compensation](../wiki/concepts/gravity-compensation.md) — $g(q)=\mathrm{RNEA}(q,0,0)$ 的控制用法
+- [Bù trọng lực](../wiki/concepts/gravity-compensation.md) — Kiểm soát việc sử dụng $g(q)=\mathrm{RNEA}(q,0,0)$
 - [Centroidal Dynamics](../wiki/concepts/centroidal-dynamics.md)
 - [Contact Dynamics](../wiki/concepts/contact-dynamics.md) / [Contact Wrench Cone](../wiki/formalizations/contact-wrench-cone.md)
 
-### Physical AI 视角补充：摩擦 · 执行器 · 状态估计
+### Bổ sung phối cảnh AI vật lý: Ma sát · Thiết bị truyền động · Ước tính trạng thái
 
-神经网络最终控制的不是"理想刚体"，而是 **带摩擦、带延迟、带饱和的电机 + 传动**，并且它看到的状态是 **估计值** 而不是真值。这三件事是 L6 sim2real gap 的主要来源，在 L2 先建立概念：
+Mạng lưới thần kinh cuối cùng không điều khiển một "vật thể cứng lý tưởng", mà là một động cơ + truyền động có ma sát, độ trễ và bão hòa, và trạng thái mà nó nhìn thấy là giá trị ước tính chứ không phải giá trị thực. Ba điều này là nguồn chính của L6 sim2real khoảng cách. Thiết lập khái niệm đầu tiên ở L2:
 
-- **摩擦**：库仑 + 粘滞 + Stribeck，减速器越大越明显 → [关节摩擦模型](../wiki/concepts/joint-friction-models.md) / [摩擦补偿](../wiki/concepts/friction-compensation.md)
-- **执行器 / 电机**：力矩常数、饱和、带宽、电流环；仿真里常被理想化 → [显式 / 隐式执行器建模](../wiki/concepts/implicit-explicit-actuator-modeling.md) / [Actuator Network](../wiki/methods/actuator-network.md)
-- **状态估计**：浮动基位姿 / 速度靠 IMU + 编码器融合，policy 的观测质量取决于它 → [State Estimation](../wiki/concepts/state-estimation.md)
+- **Ma sát**: Coulomb + độ nhớt + Stribeck, bộ giảm tốc càng lớn thì càng rõ ràng → [Mô ​​hình ma sát chung](../wiki/concepts/joint-friction-models.md) / [Bù ma sát](../wiki/concepts/friction-compensation.md)
+- **Bộ truyền động/Động cơ**: hằng số mô-men xoắn, độ bão hòa, băng thông, vòng lặp dòng điện; thường được lý tưởng hóa trong mô phỏng → [Mô ​​hình bộ truyền động rõ ràng/ngầm](../wiki/concepts/implicit-explicit-actuator-modeling.md) / [Mạng bộ truyền động](../wiki/methods/actuator-network.md)
+- **Ước tính trạng thái**: Tư thế/vận tốc cơ sở nổi phụ thuộc vào sự kết hợp bộ mã hóa IMU +, chất lượng quan sát của chính sách phụ thuộc vào nó → [Ước tính trạng thái](../wiki/concepts/state-estimation.md)
 
-### 学完输出什么
-- 能解释正逆动力学在机器人控制里的作用
-- 能理解 centroidal dynamics 为什么重要
-- 对"这个力矩能让机器人产生什么运动"有直觉
-- 能把"任务空间力 / 接触 wrench → 关节力矩"的关系写成 Jacobian transpose 形式
+### Kết quả sau khi học là gì
+- Có thể giải thích được vai trò của động lực học thuận và nghịch trong điều khiển robot
+- Có thể hiểu tại sao động lực học hướng tâm lại quan trọng
+- Có trực giác về "mô-men xoắn này có thể tạo ra chuyển động gì cho robot"
+- Mối quan hệ “lực không gian tác dụng/lực tiếp xúc → mô men khớp” có thể viết dưới dạng chuyển vị Jacobian
 
-### 自测题（学完应能答出）
-- 写出固定基开链机器人动力学方程标准形式，分别解释 \(M(q)\)、\(C(q,\dot q)\dot q\)、\(g(q)\) 的物理意义。
-- 为什么浮动基系统的状态需要 \((q, \dot q, \text{base pose}, \text{base vel})\) 而不能只用 \((q, \dot q)\)？
-- 给定接触点 Jacobian \(J_c\) 和接触力 \(f_c\)，从接触力到关节力矩的映射是什么？为什么这是 WBC 的核心一步？
-- RNEA / CRBA / ABA 分别求什么、计算复杂度差异在哪？Pinocchio 里典型一个 1 kHz 控制循环你会用哪个？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Viết dạng chuẩn của phương trình động lực học robot chuỗi mở đế cố định và giải thích ý nghĩa vật lý lần lượt của \(M(q)\), \(C(q,\dot q)\dot q\) và \(g(q)\).
+- Tại sao trạng thái của hệ thống cơ sở nổi lại yêu cầu \((q, \dot q, \text{base pose}, \text{base vel})\) mà không chỉ \((q, \dot q)\)?
+- Cho điểm tiếp xúc Jacobian \(J_c\) và lực tiếp xúc \(f_c\), đồ thị từ lực tiếp xúc đến mô men khớp là gì? Tại sao đây là bước cốt lõi của WBC?
+- RNEA / CRBA / ABA Họ đang tìm kiếm điều gì và sự khác biệt về độ phức tạp tính toán là gì? Bạn sẽ sử dụng cái nào cho vòng điều khiển 1 kHz điển hình trong Pinocchio?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart LR
-  fc["接触力<br/>$$f_c$$"] --> Jt["$$\mathbf{J}_c^{\mathsf{T}}$$"]
+  fc["Lực tiếp xúc<br/>$$f_c$$"] --> Jt["$$\mathbf{J}_c^{\mathsf{T}}$$"]
   Jt --> tau["$$\boldsymbol{\tau}$$"]
-  tau --> WBC[WBC：在动力学与接触约束下分配力矩]
+  tau --> WBC[WBC: Phân bổ mô-men theo các ràng buộc động lực học và tiếp xúc]
 ```
 
 ```mermaid
 flowchart TD
-  Need{控制循环要什么?}
-  Need -->|逆动力学前馈| RNEA["RNEA<br/>$$O(n)$$"]
-  Need -->|质量矩阵| CRBA["CRBA<br/>$$O(n^2)$$"]
-  Need -->|正向积分| ABA["ABA<br/>$$O(n)$$"]
+  Need{Điều gì cần thiết để kiểm soát vòng lặp?}
+  Need -->|Bù trước bằng động lực học ngược| RNEA["RNEA<br/>$$O(n)$$"]
+  Need -->|Ma trận khối lượng| CRBA["CRBA<br/>$$O(n^2)$$"]
+  Need -->|Tích phân thuận| ABA["ABA<br/>$$O(n)$$"]
 ```
 
 <ol>
-<li><strong>固定基动力学标准形式：</strong> \(M(q)\ddot q + C(q,\dot q)\dot q + g(q) = \tau\)。\(M(q)\)：对称正定质量 / 惯量矩阵，刻画产生加速度所需的广义力（惯性）；\(C(q,\dot q)\dot q\)：科里奥利与离心项，源于惯量随构型变化及速度耦合；\(g(q)\)：重力广义力。</li>
-<li><strong>浮动基为何需 base 状态：</strong> 浮动基躯干没有固定底座，其 6 维位姿本身是自由变量。只用关节量 \((q,\dot q)\) 无法表达整机在世界中的平移 / 旋转与动量，也写不出 CoM / ZMP / 接触等平衡约束，故状态须含 base pose 与 base vel，总维度约为 \((n+6)\) 位姿 + \((n+6)\) 速度。</li>
-<li><strong>接触力到关节力矩：</strong> \(\tau = J_c^\top f_c\)（虚功原理 / Jacobian 转置）。这是 WBC 核心一步：机器人能直接控制的只有关节力矩 \(\tau\)，而平衡靠接触力 \(f_c\)；WBC 在动力学与接触约束下求 \((\ddot q, f_c, \tau)\)，\(J_c^\top\) 正是把"想要的接触力"翻译成"每个关节该出多少力矩"的桥梁。</li>
-<li><strong>RNEA / CRBA / ABA：</strong> RNEA 求逆动力学（由 \(q,\dot q,\ddot q\) 得 \(\tau\)），\(O(n)\)；CRBA 求质量矩阵 \(M(q)\)，\(O(n^2)\)；ABA 求正动力学（由 \(\tau\) 得 \(\ddot q\)），\(O(n)\)。1 kHz WBC 循环要的是逆动力学 / 力矩前馈，用 RNEA（需要 \(M\) 喂给 QP 时再配 CRBA）；ABA 主要用于仿真器正向积分。</li>
+<li><strong>Dạng chuẩn của động học bazơ cố định:</strong> \(M(q)\ddot q + C(q,\dot q)\dot q + g(q) = \tau\)。\(M(q)\): Ma trận khối lượng/quán tính xác định dương đối xứng, mô tả lực tổng quát (quán tính) cần thiết để tạo ra gia tốc;\(C(q,\dot q)\dot q\): Thuật ngữ Coriolis và ly tâm, bắt nguồn từ sự thay đổi quán tính theo cấu hình và khớp nối vận tốc;\(g(q)\): Lực hấp dẫn tổng quát.</li>
+<li><strong>Tại sao cơ sở nổi cần trạng thái cơ sở:</strong>Thân đế nổi không có đế cố định và bản thân tư thế 6 chiều của nó là một biến tự do. Chỉ sử dụng khớp\((q,\dot q)\)Không thể biểu diễn quá trình tịnh tiến/vòng quay và động lượng của toàn bộ cỗ máy trên thế giới, cũng như không thể viết đượcCoM / ZMP/ Các ràng buộc liên hệ và các ràng buộc cân bằng khác, do đó trạng thái phải chứa tư thế cơ sở và vel cơ sở, và tổng kích thước xấp xỉ\((n+6)\)tư thế +\((n+6)\)tốc độ.</li>
+<li><strong>Lực tiếp xúc với mômen khớp:</strong> \(\tau = J_c^\top f_c\)(Nguyên tắc làm việc ảo/Jacobianđược chuyển đổi). Đây làWBCBước cốt lõi: Điều duy nhất robot có thể điều khiển trực tiếp là mô-men xoắn khớp.\(\tau\), và sự cân bằng phụ thuộc vào lực tiếp xúc\(f_c\)；WBCTìm theo các ràng buộc động lực và liên hệ\((\ddot q, f_c, \tau)\)，\(J_c^\top\)Chính cây cầu này sẽ chuyển “lực tiếp xúc mong muốn” thành “mỗi khớp phải tác dụng bao nhiêu mô-men xoắn”.</li>
+<li><strong>RNEA / CRBA / ABA：</strong> RNEATìm động năng nghịch đảo (cho bởi\(q,\dot q,\ddot q\)phải\(\tau\)），\(O(n)\)；CRBATìm ma trận khối lượng\(M(q)\)，\(O(n^2)\)；ABATìm động lực dương (cho bởi\(\tau\)phải\(\ddot q\)），\(O(n)\)。1 kHz WBCNhững gì vòng lặp yêu cầu là động lực nghịch đảo/truyền mô-men xoắn tiến, sử dụngRNEA(nhu cầu\(M\)cho ănQPKết hợp lại khi cần thiếtCRBA）；ABAChủ yếu được sử dụng để tích hợp về phía trước của trình mô phỏng.</li>
 </ol>
 </details>
 
 ---
 
-## L3 控制基础与最优化
+<a id="l3-控制基础与最优化"></a>
+## Điều khiển cơ bản và tối ưu hóa L3
 
-**没有控制理论，后面的 MPC / WBC / RL 全都接不上。**
+**Không có lý thuyết điều khiển và không thể kết nối MPC / WBC / RL sau đây. **
 
-> **场景隐喻：** 你已经能算"力矩 ↔ 加速度"了，但现在的问题是：具体每一时刻该输出多少力矩，机器人才能**按你想的**轨迹运动？L3 把"算力矩"升级成"在线决策力矩"。
+> **Ẩn dụ cảnh:** Bạn đã có thể tính toán "mô-men xoắn ↔ gia tốc", nhưng câu hỏi bây giờ là: Cần tạo ra bao nhiêu mô-men xoắn tại mỗi thời điểm để robot có thể di chuyển theo quỹ đạo bạn muốn? L3 nâng cấp “thời điểm tính toán” thành “thời điểm ra quyết định trực tuyến”.
 
-> **上一层的局限：** L2 动力学告诉你"输入力矩 → 输出加速度"的物理关系，但不告诉你"现在该输入多少力矩"——这是控制器的工作。L3 是 L4 所有方法（LIP / MPC / WBC）的底层语法。
+> **Các hạn chế của lớp trước:** Động lực L2 cho bạn biết mối quan hệ vật lý của "mô-men đầu vào → gia tốc đầu ra", nhưng không cho bạn biết "bây giờ nên nhập bao nhiêu mô-men xoắn" - đây là công việc của bộ điều khiển. L3 là cú pháp cơ bản cho tất cả các phương thức của L4 (LIP / MPC / WBC).
 
-### 英文缩写速查（L3）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L3)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| OCP | Optimal Control Problem | 最优控制问题；MPC / TrajOpt 的数学外壳。 |
-| PID | Proportional–Integral–Derivative | 经典反馈；关节级跟踪保底。 |
-| LQR | Linear Quadratic Regulator | 无限时域线性二次最优反馈 \(u=-Kx\)。 |
-| MPC | Model Predictive Control | 有限时域滚动优化；可含约束。 |
-| QP | Quadratic Programming | 二次规划；WBC / 凸 MPC 的核心求解形式。 |
-| HQP | Hierarchical Quadratic Programming | 分层 QP；用零空间实现任务优先级。 |
-| PD | Proportional–Derivative | 比例–微分控制；常与 computed torque 联用。 |
-| CT | Computed Torque Control | 用逆动力学前馈 + 反馈跟踪期望轨迹。 |
+| OCP | Bài toán điều khiển tối ưu | Bài toán điều khiển tối ưu; vỏ toán học cho MPC / TrajOpt. |
+| PID | Tỷ lệ–Tích phân–Đạo hàm | Phản hồi cổ điển; đảm bảo theo dõi cấp độ chung. |
+| LQR | Bộ điều chỉnh bậc hai tuyến tính | Phản hồi tối ưu tuyến tính bậc hai trong miền thời gian vô hạn \(u=-Kx\). |
+| MPC | Kiểm soát dự đoán mô hình | Tối ưu hóa cuộn miền thời gian hữu hạn; có thể chứa các ràng buộc. |
+| QP | Lập trình bậc hai | Lập trình bậc hai; dạng giải pháp cốt lõi của WBC / lồi MPC. |
+| HQP | Lập trình bậc hai phân cấp | QP phân cấp; Thực hiện ưu tiên nhiệm vụ với không gian bằng không. |
+| PD | Tỷ lệ–Đạo hàm | Kiểm soát tỷ lệ-đạo hàm; thường được sử dụng kết hợp với mô-men xoắn tính toán. |
+| CT | Kiểm soát mô-men xoắn tính toán | Theo dõi quỹ đạo mong muốn với động lực nghịch đảo tiến + phản hồi. |
 
-### 前置知识
-- L2 内容（动力学）
-- 一点数值优化直觉（见 [Numerical Optimization Curriculum](../wiki/entities/numerical-optimization-curriculum.md)）
+### Kiến thức cần thiết
+- Nội dung L2 (động lực)
+- Một chút trực giác về tối ưu hóa số (xem [Chương trình giảng dạy tối ưu hóa số](../wiki/entities/numerical-optimization-curriculum.md))
 
-### 核心问题
-- PID / LQR / MPC 分别在解决什么问题
-- QP（二次规划）是什么，为什么在机器人控制里到处都是
-- 最优控制的核心思想是什么
-- 轨迹生成、反馈控制和约束优化分别处在控制栈的哪一层
+### Vấn đề cốt lõi
+- PID/LQR/MPC tương ứng giải quyết được những vấn đề gì?
+- QP (lập trình bậc hai) là gì và tại sao nó lại có mặt ở mọi nơi trong điều khiển robot?
+- Ý tưởng cốt lõi của điều khiển tối ưu là gì?
+- Lớp nào của ngăn điều khiển được đặt ở vị trí tạo quỹ đạo, điều khiển phản hồi và tối ưu hóa ràng buộc?
 
-### 推荐做什么
-- 用 Python 写一个倒立摆的 LQR 控制器
-- 用 qpOASES 或 OSQP 跑一个简单 QP
-- 理解 MPC 的滚动时域思想
-- 复现 Modern Robotics Ch 9 的三次/五次时间缩放轨迹，并给一个机械臂末端轨迹加 PD / computed torque tracking
+### Nên làm gì?
+- Dùng Python viết bộ điều khiển LQR cho con lắc ngược
+- Chạy QP đơn giản với qpOASES hoặc OSQP
+- Tìm hiểu ý tưởng miền thời gian lăn của MPC
+- Tái tạo quỹ đạo chia tỷ lệ thời gian khối/năm của Robotics hiện đại Ch 9 và thêm PD/theo dõi mô-men xoắn được tính toán vào quỹ đạo cuối cánh tay robot
 
-### 推荐读什么
+### Khuyến khích đọc
 - [Modern Robotics](../wiki/entities/modern-robotics-book.md) Ch 9、Ch 11：Trajectory Generation、Robot Control
 - [Underactuated Robotics](https://arxiv.org/abs/1709.10219)（TEDRAKE）
-- 《Robotics: Modelling, Planning and Control》- Siciliano 相关章节
+- "Robotics: Mô hình hóa, lập kế hoạch và điều khiển" - Các chương liên quan đến Siciliano
 - [LQR](../wiki/formalizations/lqr.md)
 - [Optimal Control](../wiki/concepts/optimal-control.md)
 - [Model Predictive Control (MPC)](../wiki/methods/model-predictive-control.md) / [Trajectory Optimization](../wiki/methods/trajectory-optimization.md)
-- [Whole-Body Control](../wiki/concepts/whole-body-control.md) / [HQP](../wiki/concepts/hqp.md) / [零空间控制](../wiki/concepts/null-space-control.md)
-- [Numerical Optimization Curriculum](../wiki/entities/numerical-optimization-curriculum.md)（数值优化 L0+ 课程地图）、[CMU Optimal Control 2025](../wiki/entities/cmu-optimal-control-curriculum.md)（16-745 公开录像策展）
+- [Điều khiển toàn thân](../wiki/concepts/whole-body-control.md) / [HQP](../wiki/concepts/hqp.md) / [Điều khiển không gian bằng không](../wiki/concepts/null-space-control.md)
+- [Chương trình giảng dạy Tối ưu hóa Số](../wiki/entities/numerical-optimization-curriculum.md) (Bản đồ khóa học Tối ưu hóa Số L0+), [CMU Optimal Control 2025](../wiki/entities/cmu-optimal-control-curriculum.md) (16-745 giám tuyển video công khai)
 
 <a id="policy-vs-low-level-controller"></a>
 
-### Policy ≠ 底层控制器：从 q_target 到电机力矩
+### Chính sách ≠ Bộ điều khiển phía dưới: từ q_target đến mômen động cơ
 
-**learning policy 和 low-level controller 不是同一个东西。** 绝大多数人形 RL / VLA 策略并不直接输出电流，而是输出关节目标，再由底层控制器闭环：
+**Chính sách học tập và bộ điều khiển cấp thấp không giống nhau. ** Hầu hết các chiến lược RL / VLA hình người không trực tiếp xuất ra dòng điện mà xuất ra các mục tiêu chung và sau đó bộ điều khiển cơ bản sẽ đóng vòng lặp:
 
 ```mermaid
 flowchart TB
-  Pol["Policy（RL / IL / VLA）<br/>10–50 Hz 量级"] --> Tgt["q_target / τ_ff<br/>（或末端 / 质心任务）"]
-  Tgt --> LL["PD / 阻抗 / WBC<br/>更高频闭环"]
-  LL --> Tau["τ（关节力矩指令）"]
-  Tau --> Mot["电机驱动器 · 电流环"]
-  Mot -. 编码器 q, q̇ .-> LL
+  Pol["Chính sách (RL / IL / VLA)<br/>Tần số 10–50 Hz"] --> Tgt["q_target/τ_ff<br/> (hoặc nhiệm vụ đầu cuối / trọng tâm)"]
+  Tgt --> LL["PD / Trở kháng / WBC<br/> Vòng kín tần số cao hơn"]
+  LL --> Tau["τ (lệnh mô men xoắn khớp)"]
+  Tau --> Mot["Trình điều khiển động cơ · Vòng lặp hiện tại"]
+  Mot -. bộ mã hóa q, q̇ .-> LL
 ```
 
-最常见的一层就是关节 PD（"MIT-style PD"，常称 MIT 模式：驱动器同时接收 \(q_{des}, \dot q_{des}, K_p, K_d, \tau_{ff}\) 五个量并在驱动器内闭环；这种接口形式随 [MIT Mini Cheetah](../wiki/entities/mit-mini-cheetah.md) 开源驱动器普及）：
+Lớp phổ biến nhất là PD chung ("PD kiểu MIT", thường được gọi là chế độ MIT: trình điều khiển nhận \(q_{des}, \dot q_{des}, K_p, K_d, \tau_{ff}\) năm số lượng cùng lúc và đóng vòng lặp trong trình điều khiển; dạng giao diện này được phổ biến với trình điều khiển nguồn mở [MIT Mini Cheetah](../wiki/entities/mit-mini-cheetah.md):
 
 $$\tau = K_p\,(q_{des} - q) + K_d\,(\dot q_{des} - \dot q) + \tau_{ff}$$
 
-| 控制模式 | 上层给什么 | 适合 | 与 policy 的关系 |
+| Chế độ điều khiển | Cấp trên mang lại điều gì | Sự phù hợp | Mối quan hệ với chính sách |
 |---------|-----------|------|-----------------|
-| **Position Control** | \(q_{des}\)（高增益） | 工业臂、慢速精确定位 | 刚性大，接触冲击差 |
-| **Velocity Control** | \(\dot q_{des}\) | 轮式、底盘 | 人形关节少用 |
-| **Torque Control** | \(\tau\) | WBC / 力控 / 高动态 | 需要准确动力学与电机模型 |
-| **Impedance / PD（MIT-style）** | \(q_{des}, K_p, K_d, \tau_{ff}\) | 人形 RL 的主流动作空间 | policy 出 \(q_{des}\)，\(K_p, K_d\) 决定"软硬" |
-| **Whole-Body Control / QP / MPC** | 任务空间目标 | 多接触、多任务 | 见 [L4](#l4-人形运动控制主干)，也可作为 policy 的下层 |
+| **Kiểm soát vị trí** | \(q_{des}\) (mức tăng cao) | Cánh tay công nghiệp, định vị chính xác tốc độ chậm | Độ cứng cao, va đập tiếp xúc kém |
+| **Kiểm soát vận tốc** | \(\dot q_{des}\) | Loại bánh xe, khung gầm | Khớp hình người hiếm khi được sử dụng |
+| **Kiểm soát mô-men xoắn** | \(\tau\) | WBC / Kiểm soát lực / Động lực cao | Yêu cầu mô hình động lực và động cơ chính xác |
+| **Trở kháng / PD (kiểu MIT)** | \(q_{des}, K_p, K_d, \tau_{ff}\) | Không gian hành động chủ đạo của hình người RL | Chính sách ra \(q_{des}\), \(K_p, K_d\) quyết “mềm và cứng” |
+| **Kiểm soát toàn thân / QP / MPC** | Mục tiêu không gian nhiệm vụ | Đa liên lạc, đa tác vụ | Xem [L4](#l4-人形运动控制主干), cũng có thể được sử dụng làm lớp chính sách thấp hơn |
 
-- 重点不是公式推导，而是：**同一个 policy 换一套 \(K_p, K_d\) 或控制频率，真机行为就会变**——这是 L6 sim2real 的第一类坑。
-- 延伸：[PID Control](../wiki/methods/pid-control.md) · [阻抗控制](../wiki/concepts/impedance-control.md) · [Computed Torque Control](../wiki/methods/computed-torque-control.md) · [人形 RL 的 PD 增益怎么设](../wiki/queries/legged-humanoid-rl-pd-gain-setting.md)
+- Vấn đề không phải là đạo hàm công thức mà là: **Nếu bạn thay đổi chính sách tương tự thành \(K_p, K_d\) hoặc tần số điều khiển, hoạt động của máy thật sẽ thay đổi** - Đây là cạm bẫy đầu tiên của L6 sim2real.
+- Tiện ích mở rộng: [Điều khiển PID](../wiki/methods/pid-control.md) · [Kiểm soát trở kháng](../wiki/concepts/impedance-control.md) · [Điều khiển mô-men xoắn được tính toán](../wiki/methods/computed-torque-control.md) · [Cách thiết lập mức tăng PD của hình người RL](../wiki/queries/legged-humanoid-rl-pd-gain-setting.md)
 
-### 学完输出什么
-- 能解释 LQR 和 MPC 的区别
-- 能理解 QP 在 WBC 里是解决什么问题的
-- 能自己搭一个简单模型的 MPC
-- 能说明 computed torque、PD、阻抗控制与后续 WBC 任务控制之间的关系
+### Kết quả sau khi học là gì
+- Có thể giải thích sự khác biệt giữa LQR và MPC
+- Có thể hiểu QP giải quyết vấn đề gì trong WBC
+- MPC người có thể tự mình xây dựng một mô hình đơn giản
+- Có thể giải thích mối quan hệ giữa mô-men xoắn được tính toán, PD, điều khiển trở kháng và điều khiển tác vụ WBC tiếp theo
 
-### 自测题（学完应能答出）
-- LQR 和 MPC 在什么情况下解出来的控制律完全等价？哪些条件破坏后必须用 MPC？
-- 给一个 QP 问题，怎么判断它是不是凸的？为什么 WBC 强烈倾向于凸 QP？
-- HQP（Hierarchical QP）的"优先级"是怎么从数学上实现的（提示：null-space projection）？
-- 阻抗控制和导纳控制的本质区别是什么？什么时候用前者、什么时候用后者？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Trong trường hợp nào các luật điều khiển được LQR và MPC giải quyết hoàn toàn tương đương nhau? Sau khi điều kiện nào bị phá vỡ, phải sử dụng MPC?
+- Cho câu hỏi QP, làm thế nào để nhận biết nó có lồi hay không? Tại sao WBC lại ưu tiên QP lồi?
+- Mức độ ưu tiên của HQP (QP phân cấp) được triển khai bằng toán học như thế nào (gợi ý: phép chiếu không gian rỗng)?
+- Sự khác biệt cơ bản giữa kiểm soát trở kháng và kiểm soát tiếp nhận là gì? Khi nào dùng cái trước, khi nào dùng cái sau?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  Start[线性二次最优控制] --> C1{LTI + 无约束 + 无穷时域?}
-  C1 -->|是| LQR["$$u = -Kx$$"]
-  C1 -->|否| MPC[必须用 MPC]
-  MPC --> R1[状态 / 输入约束]
-  MPC --> R2[非线性 / 有限时域 / 轨迹跟踪]
-  Imp[力控交互选型] --> I1[可测力 + 力矩驱动?]
-  I1 -->|是| Imped[阻抗：运动进、力出]
-  I1 -->|否 位置驱动 + 刚性环境| Adm[导纳：力进、运动出]
+  Start[điều khiển tối ưu bậc hai tuyến tính] --> C1{LTI + Không bị giới hạn + Miền thời gian vô hạn?}
+  C1 -->|Đúng| LQR["$$u = -Kx$$"]
+  C1 -->|KHÔNG| MPC[Phải sử dụng MPC]
+  MPC --> R1[Ràng buộc trạng thái/đầu vào]
+  MPC --> R2[Theo dõi quỹ đạo/miền thời gian hữu hạn/phi tuyến tính]
+  Imp[Lựa chọn tương tác kiểm soát lực lượng] --> I1[Lực đo được + mômen truyền động?]
+  I1 -->|Đúng| Imped[Trở kháng: chuyển động vào, buộc ra]
+  I1 -->|Không có vị trí điều khiển + môi trường cứng nhắc| Adm[Chấp nhận: ép vào, đẩy ra]
 ```
 
 <ol>
-<li><strong>LQR 与 MPC 何时等价：</strong> 当系统线性时不变、代价二次、无约束、且 MPC 预测时域趋于无穷时，MPC 的解就是无限时域 LQR 的反馈律 \(u=-Kx\)。一旦出现状态 / 输入约束（最常见）、非线性、有限 / 时变时域或需跟踪参考轨迹，就必须用 MPC。</li>
-<li><strong>QP 凸性判定：</strong> 目标函数 Hessian 半正定（\(\tfrac12 x^\top P x\) 中 \(P\succeq 0\)）、约束为线性等式加凸（仿射）不等式，即为凸。WBC 偏好凸 QP，因其有唯一全局最优、求解快且确定性收敛，OSQP / qpOASES 能在 1 kHz 实时求解；非凸会有局部极小、求解时间不可控，对实时安全控制不可接受。</li>
-<li><strong>HQP 优先级的数学实现：</strong> 用零空间投影（null-space projection）：先在最高优先级任务里求解，低优先级只能在不破坏高优先级的零空间内优化——\(\dot q = J_1^{+}\dot x_1 + N_1 z\)，其中 \(N_1 = I - J_1^{+}J_1\) 是任务 1 的零空间投影，逐层投影。等价地，多层 QP 把上层最优值作为下层的等式约束（lexicographic 求解）。</li>
-<li><strong>阻抗 vs 导纳：</strong> 本质是因果方向相反。阻抗控制"输入运动、输出力"：按位置 / 速度偏差经 \(F=K\Delta x + D\Delta\dot x\) 生成力（力矩驱动器，环境刚则自身柔顺）；导纳控制"输入力、输出运动"：按测得外力生成位置参考（位置驱动器）。环境软 / 未知、需高带宽柔顺与碰撞安全（人形腿）用阻抗；驱动器只能精确位置控制、面对刚性环境且要高位置精度（工业装配）用导纳。</li>
+<li><strong>LQRVàMPCKhi nào tương đương:</strong>Khi hệ thống tuyến tính và bất biến, chi phí là bậc hai, không có ràng buộc vàMPCKhi miền thời gian dự đoán có xu hướng tiến tới vô cùng,MPCGiải pháp là miền thời gian vô hạnLQRluật phản hồi\(u=-Kx\). Nó phải được sử dụng bất cứ khi nào có các ràng buộc trạng thái/đầu vào (phổ biến nhất), phi tuyến tính, miền thời gian hữu hạn/thay đổi theo thời gian hoặc khi cần theo dõi quỹ đạo tham chiếu.MPC。</li>
+<li><strong>QPPhán đoán độ lồi:</strong>Hàm mục tiêu Hessian là nửa xác định dương (\(\tfrac12 x^\top P x\)ở giữa\(P\succeq 0\)), ràng buộc là một phương trình tuyến tính cộng với bất đẳng thức lồi (affine), là lồi.WBCƯu tiên lồiQP, bởi vì nó có giải pháp nhanh chóng, tối ưu toàn cầu và hội tụ xác định duy nhất, OSQP / qpOASES có thể được giải quyết trong thời gian thực ở tần số 1 kHz; không lồi sẽ có cực tiểu cục bộ, thời gian giải không thể kiểm soát được và không được chấp nhận để kiểm soát an toàn thời gian thực.</li>
+<li><strong>Việc thực hiện toán học các ưu tiên HQP:</strong>Sử dụng phép chiếu khoảng trống: Giải quyết nhiệm vụ có mức độ ưu tiên cao nhất trước, mức độ ưu tiên thấp chỉ có thể được tối ưu hóa trong không gian trống mà không phá hủy mức độ ưu tiên cao——\(\dot q = J_1^{+}\dot x_1 + N_1 z\),TRONG\(N_1 = I - J_1^{+}J_1\)là phép chiếu không gian của Nhiệm vụ 1, từng lớp. Tương tự, nhiều lớpQPGiá trị tối ưu cấp cao hơn được sử dụng làm ràng buộc đẳng thức của cấp độ thấp hơn (giải pháp từ điển).</li>
+<li><strong>Trở kháng và tiếp nhận:</strong>Bản chất là hướng nhân quả trái ngược nhau. Điều khiển trở kháng “chuyển động vào, lực ra”: Theo độ lệch vị trí/tốc độ\(F=K\Delta x + D\Delta\dot x\)Tạo lực (bộ điều khiển mô-men xoắn, nếu môi trường cứng thì sẽ linh hoạt); điều khiển tiếp nạp “lực vào, chuyển động ra”: tạo tham chiếu vị trí (bộ điều khiển vị trí) theo ngoại lực đo được. Trở kháng được sử dụng trong môi trường mềm/không xác định yêu cầu tuân thủ băng thông cao và an toàn va chạm (chân hình người); bộ truyền động chỉ có thể được sử dụng để điều khiển vị trí chính xác và khả năng tiếp nhận được sử dụng trong môi trường cứng nhắc đòi hỏi độ chính xác vị trí cao (lắp ráp công nghiệp).</li>
 </ol>
 </details>
 
 ---
 
-## L4 人形运动控制主干
+<a id="l4-人形运动控制主干"></a>
+## L4 xương sống điều khiển chuyển động hình người
 
-**这是本路线的核心。**
+**Đây là cốt lõi của tuyến đường này. **
 
-> **场景隐喻：** 你已经能给机械臂做位置控制，但人形机器人没有固定底座、还要随时切换支撑脚——L4 教你把"通用控制理论"重新组织成"专门给人形用"的分层方法链。
+> **Ẩn dụ cảnh:** Bạn đã có thể điều khiển vị trí của cánh tay robot, nhưng robot hình người không có chân đế cố định và phải đổi chân hỗ trợ bất cứ lúc nào - L4 dạy bạn tổ chức lại "lý thuyết điều khiển phổ quát" thành chuỗi phương pháp phân cấp "dành riêng cho hình người".
 
-> **上一层的局限：** L3 的方法（PID / LQR / MPC / QP）在固定基机器人上很直接，但人形是浮动基 + 间歇接触 + 高维欠驱动，不能直接套；需要专门的简化模型（LIP / Centroidal）和分层结构（MPC + WBC）。
+> **Hạn chế của lớp trước:** Phương pháp L3 (PID / LQR / MPC / QP) rất đơn giản trên robot có đế cố định, nhưng robot hình người là đế nổi + tiếp xúc ngắt quãng + thiếu dẫn động chiều cao nên không thể áp dụng trực tiếp; cần có một mô hình đơn giản hóa đặc biệt (LIP / Centroidal) và cấu trúc phân cấp (MPC + WBC).
 
-### L4.0 桥段：怎么把 L1–L3 串成 L4 的方法链
+### Cầu L4.0: Cách xâu chuỗi L1–L3 thành chuỗi phương thức L4
 
-L4 是本路线最陡的台阶。**进入 L4.1 前先建立一个"为什么是这个顺序"的心智模型，比直接看每个子方法重要得多。**
+L4 là bậc dốc nhất trên tuyến đường. ** Trước khi vào L4.1, điều quan trọng hơn nhiều là thiết lập một mô hình tinh thần về "tại sao lại có thứ tự này" hơn là xem xét trực tiếp từng phương pháp phụ. **
 
-人形控制的核心矛盾是：**全身动力学维度太高、非线性强、接触切换密集**——直接拿 L3 学到的通用 LQR / MPC 套不上去。解决方式不是发明新数学，而是按"模型从粗到细、控制从慢到快"两条轴拆分：
+Mâu thuẫn cốt lõi của điều khiển hình người là: **Kích thước động lực học toàn cơ thể quá cao, tính phi tuyến tính mạnh và chuyển đổi tiếp điểm cường độ cao** - không thể áp dụng trực tiếp vào LQR / MPC chung đã học trong L3. Giải pháp không phải là phát minh ra toán học mới mà là chia nó theo hai trục “mô hình từ thô đến tinh, điều khiển từ chậm đến nhanh”:
 
-| 轴 | 含义 | 实例 |
+| Trục | Ý nghĩa | Ví dụ |
 |---|---|---|
-| **模型粒度** | 用多少状态变量描述机器人 | LIP（3 维）→ Centroidal（6 维 momentum + 接触力）→ 全身动力学（n+6 维） |
-| **控制频率** | 在哪个时间尺度上做决策 | Footstep / 高层规划（1–10 Hz）→ MPC（50–200 Hz）→ WBC（1 kHz）|
+| **Mức độ chi tiết của mô hình** | Có bao nhiêu biến trạng thái được sử dụng để mô tả robot | LIP (3 chiều) → Hướng tâm (động lượng 6 chiều + lực tiếp xúc) → Động lực học toàn cơ thể (n+6 chiều) |
+| **Tần số điều khiển** | Đưa ra quyết định ở quy mô thời gian nào | Bước chân / Lập kế hoạch cấp cao (1–10 Hz) → MPC (50–200 Hz) → WBC (1 kHz) |
 
-L4 的方法链就是把这两条轴**串联**起来：
+Chuỗi phương thức của L4 là nối hai trục này thành chuỗi:
 
 ```mermaid
 flowchart LR
-  L41["<b>L4.1 LIP / ZMP</b><br/>粗模型 · 直觉 / 解析<br/>~ 离线步态生成<br/><em>建立直觉</em>"]
-  L42["<b>L4.2 Centroidal</b><br/>中粒度 · 角动量+接触力<br/>~ 离线 / 中层规划<br/><em>引入真实力学</em>"]
-  L43["<b>L4.3 TrajOpt / MPC</b><br/>在线滚动求解最优轨迹<br/>~ 50–200 Hz<br/><em>规划未来怎么走</em>"]
-  L44["<b>L4.4 TSID / WBC</b><br/>实时分配每关节力矩<br/>~ 1 kHz<br/><em>落到每关节多少力</em>"]
+  L41["<b>L4.1 LIP / ZMP</b><br/> Mô hình thô · trực quan / phân tích<br/>~ Tạo dáng đi ngoại tuyến <br/><em> Xây dựng trực giác </em>"]
+  L42["<b>L4.2 Centroidal</b><br/> Độ chi tiết trung bình · Động lượng góc + lực tiếp xúc <br/>~ Ngoại tuyến / Lập kế hoạch cấp trung <br/><em> giới thiệu cơ học thực </em>"]
+  L43["<b>L4.3 TrajOpt / MPC</b><br/> Giải pháp lăn trực tuyến cho quỹ đạo tối ưu <br/>~ 50–200 Hz<br/><em> Lập kế hoạch cho tương lai </em>"]
+  L44["<b>L4.4 TSID / WBC</b><br/> phân bổ mô-men xoắn theo thời gian thực trên mỗi khớp <br/>~ 1 kHz<br/><em> Lực tác dụng lên mỗi khớp là bao nhiêu </em>"]
 
   L41 --> L42 --> L43 --> L44
 
@@ -751,230 +760,233 @@ flowchart LR
   class L41,L42,L43,L44 stage
 ```
 
-学每个子方法时，始终用三件事检查自己是否真的学懂：
+Khi học từng phương pháp phụ, hãy luôn sử dụng ba điều để kiểm tra xem bạn có thực sự hiểu nó hay không:
 
-1. **原理**：这个方法的状态、约束、目标函数分别是什么
-2. **最小代码**：能不能用一个小例子把核心 loop 跑通
-3. **局限性**：什么情况下会失效，为什么还需要下一层方法接上来
+1. **Nguyên tắc**: Trạng thái, ràng buộc và hàm mục tiêu của phương pháp này là gì?
+2. **Mã tối thiểu**: Bạn có thể sử dụng một ví dụ nhỏ để chạy qua vòng lặp cốt lõi không?
+3. **Hạn chế**: Nó sẽ thất bại trong trường hợp nào? Tại sao chúng ta cần lớp phương pháp tiếp theo để kết nối nó?
 
-**Modern Robotics 在 L4 的位置：**
+**Địa điểm của Modern Robotics tại L4:**
 
-- Ch 3–5 提供任务空间位姿、twist、Jacobian、wrench 的统一语言
-- Ch 8 解释开链动力学，帮助理解 Pinocchio / TSID 中的逆动力学项
-- Ch 9 解释轨迹生成，是 MPC / trajectory optimization 的低维入口
-- Ch 11 解释 computed torque、motion control、force control，是理解 WBC 任务层的前置材料
+- Ch 3–5 cung cấp một ngôn ngữ thống nhất cho tư thế không gian nhiệm vụ, xoắn, Jacobian và cờ lê
+- Ch 8 giải thích động học chuỗi mở giúp hiểu thuật ngữ động học nghịch đảo trong Pinocchio/TSID
+- Ch 9 giải thích việc tạo quỹ đạo, điểm vào chiều thấp để tối ưu hóa MPC / quỹ đạo
+- Ch 11 giải thích mô-men xoắn tính toán, điều khiển chuyển động, điều khiển lực, là tài liệu tiên quyết để hiểu lớp tác vụ WBC
 
-> Modern Robotics 本身不是人形 locomotion 教材，不会直接教 LIP/ZMP、centroidal MPC 或浮动基接触切换；它更像是这条主路线的"语法书"。学 L4 时遇到坐标变换、Jacobian、wrench、逆动力学不清楚，就回到对应章节补。
+> Bản thân Robotics hiện đại không phải là sách giáo khoa về vận động hình người và không trực tiếp dạy LIP/ZMP, MPC trung tâm hoặc chuyển mạch tiếp xúc đế nổi; nó giống như một "cuốn sách ngữ pháp" cho lộ trình chính này hơn. Khi học L4, nếu gặp phải phép biến đổi tọa độ, Jacobian, cờ lê, động lực học nghịch đảo chưa rõ ràng, hãy quay lại các chương tương ứng để bổ sung.
 
-#### 方法谱系对比表（L4 + L5 一览）
+#### Bảng so sánh phương pháp phả hệ (tổng quan L4 + L5)
 
-这张表回答"这些名词到底是什么关系、各自适用于哪个场景"。**外行能从这里建立第一手心智地图，资深读者能用来核对自己的分类。**
+Bảng này trả lời "Mối quan hệ giữa các danh từ này là gì và chúng có thể áp dụng cho trường hợp nào?" **Các lớp có thể xây dựng bản đồ tư duy trực tiếp từ đây và những độc giả có kinh nghiệm có thể sử dụng nó để kiểm tra phân loại của riêng họ. **
 
-| 方法 | 状态 / 模型粒度 | 主要约束 | 求解器 | 典型频率 | 典型用途 | 典型局限 |
+| Phương pháp | Mức độ chi tiết của Trạng thái/Mô hình | Những hạn chế chính | Người giải quyết | Tần số điển hình | Công dụng điển hình | Hạn chế điển hình |
 |------|---------------|---------|--------|---------|---------|---------|
-| **PID** | 关节角误差 | — | 解析 | 1 kHz+ | 单关节闭环、基础保底 | 不能处理耦合 / 多约束 |
-| **LQR** | 线性化状态空间 | — | Riccati 方程 | 100 Hz+ | 平衡控制 baseline、教学 | 模型必须线性化 |
-| **LIP / ZMP** | CoM 3 维 + ZMP | 支撑多边形 | Preview Control / 解析 | 离线 / 100 Hz | 平地步态、平衡判据 | 忽略角动量、忽略高度变化 |
-| **Capture Point / DCM** | CoM + 散度型动量 | 支撑多边形 | 解析 | 100 Hz | 实时平衡判据、足端落点决策 | 同 LIP 假设 |
-| **Centroidal Dynamics** | CoM 动量 6D + 接触力 | 接触力 cone | QP / NLP | 50–200 Hz | 中层 MPC 模型 | 仍非全身，需配 WBC |
-| **Trajectory Optimization** | 全身状态轨迹 | 全动力学 + 接触 | DDP / iLQR / IPOPT | 离线 / 慢 | 离线生成参考轨迹 / 跑酷 | 不实时、初值敏感 |
-| **MPC** | 简化模型 / Centroidal | 全约束 | OSQP / qpOASES / Crocoddyl | 50–500 Hz | 在线步态 + 接触力规划 | 模型简化误差、实时性挑战 |
-| **TSID / WBC** | 全身关节加速度 | 接触 + 关节限位 + 任务优先级 | HQP / 多层 QP | 1 kHz | 把 MPC 参考落到每个关节力矩 | 依赖准确动力学 |
-| **PPO**（RL）| 神经网络策略 | reward + curriculum + DR | 梯度 + 仿真数据 | 训练慢 / 部署快 | 端到端步态、跑酷、复杂地形 | sim2real gap、不可解释 |
-| **BC / IL** | 神经网络策略 | 监督数据 | SGD | 训练慢 / 部署快 | 操作、复杂动作迁移 | compounding error |
-| **DAgger** | BC + 交互式查询 | 同 BC + 在线纠错 | SGD + 仿真查询 | 训练慢 | 缓解 BC compounding | 需要可查询的 expert |
-| **AMP / Motion Prior** | RL + 对抗判别器 | reward + style 判别 | 梯度 + 对抗 | 训练慢 / 部署快 | 风格化动作、模仿 MoCap | 数据采集成本高 |
-| **Diffusion Policy** | 神经网络生成 action 序列 | 监督数据 | 去噪 | 训练慢 / 部署中等 | 多模态操作、抓取 | 推理延迟、训练数据要求高 |
+| **PID** | Lỗi góc khớp | — | Phân tích | 1 kHz+ | Vòng khép kín khớp đơn, bảo đảm cơ bản | Không thể xử lý khớp nối/nhiều ràng buộc |
+| **LQR** | Không gian trạng thái tuyến tính hóa | — | Phương trình Riccati | 100Hz+ | Đường cơ sở kiểm soát cân bằng, hướng dẫn | Mô hình phải được tuyến tính hóa |
+| **LIP / ZMP** | CoM 3D + ZMP | Hỗ trợ đa giác | Kiểm soát/Phân tích Xem trước | Ngoại tuyến / 100 Hz | dáng đi phẳng phiu, tiêu chí thăng bằng | Bỏ qua xung lượng góc, bỏ qua sự thay đổi độ cao |
+| **Điểm nắm bắt / DCM** | CoM + động lượng loại phân kỳ | Hỗ trợ đa giác | Phân tích | 100Hz | Tiêu chí cân bằng thời gian thực, ra quyết định điểm cuối | Tương tự như giả thuyết LIP |
+| **Động lực học trung tâm** | CoM Động lượng 6D + Lực tiếp xúc | Liên hệ Lực nón | QP / NLP | 50–200 Hz | Model MPC cấp trung | Vẫn chưa toàn thân, cần WBC |
+| **Tối ưu hóa quỹ đạo** | Quỹ đạo trạng thái toàn thân | Động lực đầy đủ + liên hệ | DDP / iLQR / IPOPT | Ngoại tuyến / Chậm | Tạo quỹ đạo tham chiếu ngoại tuyến / Parkour | Không theo thời gian thực, giá trị ban đầu nhạy cảm |
+| **MPC** | Mô hình đơn giản / Centroidal | Bị hạn chế hoàn toàn | OSQP / qpOASES / Crocoddyl | 50–500 Hz | dáng đi trực tuyến + lập kế hoạch lực lượng tiếp xúc | Lỗi đơn giản hóa mô hình, thách thức thời gian thực |
+| **TSID / WBC** | Tăng tốc khớp toàn thân | Liên hệ + giới hạn chung + ưu tiên nhiệm vụ | HQP / nhiều lớp QP | 1 kHz | Thả tham chiếu MPC vào từng khoảnh khắc khớp | Dựa vào động lực học chính xác |
+| **PPO** (RL) | Chiến lược mạng lưới thần kinh | phần thưởng + giáo trình + DR | dữ liệu mô phỏng + gradient | đào tạo chậm / triển khai nhanh | dáng đi từ đầu đến cuối, parkour, địa hình phức tạp | khoảng cách sim2real, không thể giải thích được |
+| **BC / IL** | Chiến lược mạng lưới thần kinh | Dữ liệu được giám sát | SGD | Đào tạo chậm / triển khai nhanh | Vận hành, di chuyển hành động phức tạp | lỗi gộp |
+| **DAgger** | BC + truy vấn tương tác | Tương tự như BC + sửa lỗi trực tuyến | SGD + truy vấn mô phỏng | luyện tập chậm | giảm bớt sự kết hợp BC | cần chuyên gia có thể truy vấn |
+| **AMP / Chuyển động trước** | RL + bộ phân biệt đối xử | phần thưởng + phân biệt đối xử phong cách | độ dốc + đối nghịch | đào tạo chậm / triển khai nhanh | hành động cách điệu, bắt chước MoCap | chi phí thu thập dữ liệu cao |
+| **Chính sách phổ biến** | Mạng lưới thần kinh tạo ra chuỗi hành động | Dữ liệu được giám sát | Khử nhiễu | Đào tạo chậm / triển khai trung bình | Hoạt động đa phương thức, thu thập dữ liệu | Độ trễ suy luận, yêu cầu dữ liệu huấn luyện cao |
 
-**怎么读这张表**：
-- 上半（PID → WBC）= model-based，从粗到细、从慢到快依次叠
-- 下半（PPO 起）= learning-based，通常补 model-based 难处理的部分（高维、难显式建模、风格化）
-- 实际系统通常 **混合使用**：MPC + WBC + RL 策略 prior + IL 数据初始化
+**Cách đọc bảng này**:
+- Nửa trên (PID → WBC) = theo mô hình, xếp theo thứ tự từ dày đến mỏng, từ chậm đến nhanh
+- Nửa dưới (từ PPO) = dựa trên học tập, thường bổ sung cho các phần khó của dựa trên mô hình (tính chiều cao, khó mô hình hóa rõ ràng, cách điệu)
+- Các hệ thống thực tế thường sử dụng **sử dụng hỗn hợp**: MPC + WBC + RL chính sách trước + Khởi tạo dữ liệu IL
 
+<a id="l41-lip--zmp"></a>
 ### L4.1 LIP / ZMP
 
-> **场景隐喻：** 想象你在走钢丝——身体重心必须始终在脚下不大的支撑面内才不会摔倒。LIP/ZMP 就是把这件事数学化。
+> **Ẩn dụ cảnh:** Hãy tưởng tượng bạn đang đi trên một sợi dây - trọng tâm của cơ thể bạn phải luôn nằm trong tấm đỡ nhỏ dưới chân để tránh bị ngã. LIP/ZMP chỉ giải quyết vấn đề này bằng toán học.
 
-> **上一层的局限：** L3 给了你 LQR / MPC 这些通用工具，但人形动力学几十个状态变量、非线性强，直接套太重。LIP / ZMP 是一个**极度简化的模型**（把整机当成"会走的倒立摆"），让你用最少假设理解步行和平衡。
+> **Hạn chế của lớp trước:** L3 cung cấp cho bạn các công cụ chung LQR / MPC, nhưng động lực hình người có hàng tá biến trạng thái và tính phi tuyến mạnh nên quá nặng để áp dụng trực tiếp. LIP / ZMP là một **mô hình cực kỳ đơn giản** (coi toàn bộ máy như một "con lắc ngược di chuyển"), cho phép bạn hiểu được bước đi và giữ thăng bằng với ít giả định nhất.
 
-#### 英文缩写速查（L4.1）
+#### Kiểm tra nhanh từ viết tắt tiếng Anh (L4.1)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| LIP | Linear Inverted Pendulum | 固定质心高度的线性倒立摆模型。 |
-| ZMP | Zero Moment Point | 支撑多边形内的平衡判据点。 |
-| DCM | Divergent Component of Motion | \(\xi=x+\dot x/\omega\)；不稳定模态。 |
-| CP | Capture Point | 踩下可渐近停稳的落点。 |
-| CoM | Center of Mass | 质心；LIP 水平动力学围绕其展开。 |
-| CoP | Center of Pressure | 足底压力中心。 |
-| SP | Support Polygon | 支撑多边形；ZMP 须留于其内。 |
+| LIP | Con lắc ngược tuyến tính | Mô hình con lắc ngược tuyến tính có khối tâm cố định có chiều cao. |
+| ZMP | Điểm không khoảnh khắc | Điểm tiêu chí cân bằng trong đa giác hỗ trợ. |
+| DCM | Thành phần chuyển động khác nhau | \(\xi=x+\dot x/\omega\); Chế độ không ổn định |
+| CP | Điểm chiếm giữ | Một điểm hạ cánh có thể dần dần dừng lại khi bước lên. |
+| CoM | Trung Tâm Thánh Lễ | Khối tâm; LIP xung quanh nơi diễn ra động lực ngang. |
+| CoP | Trung tâm áp lực | Tâm áp lực ở lòng bàn chân. |
+| SP | Hỗ trợ đa giác | Hỗ trợ đa giác; ZMP phải ở trong đó. |
 
-**前置知识：** [L2 动力学与刚体建模](#l2-动力学与刚体建模) + [L3 控制基础与最优化](#l3-控制基础与最优化)
+**Kiến thức tiên quyết:** [Mô hình động lực học và cơ thể cứng L2](#l2-动力学与刚体建模) + [Cơ bản về điều khiển và tối ưu hóa L3](#l3-控制基础与最优化)
 
-**核心问题：** 双足机器人怎么在地上走而不倒
+**Câu hỏi cốt lõi:** Làm thế nào để robot hai chân đi trên mặt đất mà không bị ngã?
 
-**推荐做什么：**
-- 实现一个最简单的 ZMP 步态生成
-- 用 LIP 模型生成质心轨迹
+**Việc nên làm được đề xuất:**
+- Triển khai thế hệ dáng đi ZMP đơn giản nhất
+- Sử dụng mô hình LIP để tạo quỹ đạo tâm
 
-**推荐读什么：**
+**Đề nghị đọc:**
 - Kajita et al., "Biped walking pattern generation by using preview control of zero-moment point"
 - [LIP / ZMP](../wiki/concepts/lip-zmp.md)
 - [Capture Point / DCM](../wiki/concepts/capture-point-dcm.md)
-- [ZMP / LIP 形式化](../wiki/formalizations/zmp-lip.md)
+- [Chính thức hóa ZMP / LIP](../wiki/formalizations/zmp-lip.md)
 
-**学完输出什么：**
-- 能解释 ZMP 和支撑多边形的关系
-- 能用 LIP 模型生成简单步行轨迹
+** Kết quả đầu ra sau khi học:**
+- Có thể giải thích mối quan hệ giữa ZMP và đa giác hỗ trợ
+- Có thể sử dụng mô hình LIP để tạo quỹ đạo đi bộ đơn giản
 
-**自测题：**
-- LIP 模型为什么需要假设 CoM 高度固定？这个假设在跳跃 / 上下楼梯时失效成什么样？
-- 走路过程中 ZMP 何时会离开支撑多边形？工程上你怎么从数据里发现这件事？
-- DCM / Capture Point 相比 ZMP 多解决了什么问题？
+**Câu hỏi tự kiểm tra:**
+- Tại sao model LIP cần giả định chiều cao của CoM là cố định? Giả định này bị phá vỡ như thế nào khi nhảy/lên xuống cầu thang?
+- Khi nào ZMP rời khỏi đa giác hỗ trợ trong khi đi bộ? Làm thế nào để bạn khám phá điều này từ dữ liệu trong kỹ thuật?
+- DCM/Capture Point giải quyết được vấn đề gì so với ZMP?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  LIP["LIP 恒定高度<br/>$$z_c$$"] --> Lin["$$\ddot{x}=\tfrac{g}{z_c}(x-x_{\mathrm{zmp}})$$"]
-  Break[跳跃 / 楼梯 / 深蹲] --> Vary["$$z_c$$<br/>时变或腾空"]
-  Vary --> Need[需变高度 / centroidal / 全身模型]
-  Mon[在线监测平衡] --> CoP[算 CoP / ZMP]
-  CoP --> Poly{在支撑多边形内?}
-  Poly -->|否 / 触界| Fall[翻倒风险：法向力趋零 + IMU 异常]
-  DCM[DCM / Capture Point] --> Prev["$$\xi = x + \dot{x}/\omega$$"]
+  LIP["LIP Chiều cao không đổi <br/>$$z_c$$"] --> Lin["$$\ddot{x}=\tfrac{g}{z_c}(x-x_{\mathrm{zmp}})$$"]
+  Break[Nhảy / Cầu thang / Ngồi xổm] --> Vary["$$z_c$$<br/> thay đổi hoặc bỏ trống"]
+  Vary --> Need[Cần thay đổi chiều cao/mô hình trung tâm/toàn thân]
+  Mon[Theo dõi số dư trực tuyến] --> CoP[Tính CoP / ZMP]
+  CoP --> Poly{Trong đa giác hỗ trợ?}
+  Poly -->|Không/ngoài giới hạn| Fall[Nguy cơ bị lật: Lực bình thường gần bằng 0 + ngoại lệ IMU]
+  DCM[DCM / Điểm bắt giữ] --> Prev["$$\xi = x + \dot{x}/\omega$$"]
 ```
 
 <ol>
-<li><strong>LIP 为何假设 CoM 高度固定：</strong> 高度 \(z_c\) 恒定时水平动力学线性化为 \(\ddot x = \tfrac{g}{z_c}\,(x - x_{\mathrm{zmp}})\)，解析可解且 CoM 与 ZMP 成线性关系。跳跃时 CoM 高度剧变甚至腾空（接触力为零）、上下楼梯 / 深蹲时 \(z_c\) 持续变化，该线性关系失效，需要变高度模型或 centroidal / 全身动力学。</li>
-<li><strong>ZMP 离开支撑多边形：</strong> ZMP 触及 / 越出支撑多边形即将翻倒（脚绕边缘转动、单边接触），此时该侧足底法向力趋零。工程上用足底力 / 力矩或压力阵列实时算 CoP（接触时 ZMP=CoP），看其是否触界；或检测足底一侧法向力趋零并叠加 IMU 出现非预期角加速度。</li>
-<li><strong>DCM / Capture Point 多解决了什么：</strong> 它把 LIP 中不稳定的发散模态单独解出：\(\xi = x + \dot x/\omega\)。它前瞻地回答"想一步刹停脚该踩哪"（Capture Point 即踩下去能让 CoM 渐近停住的落点），把控制聚焦在唯一不稳定的一阶模态上，比仅判断"当前是否稳"的 ZMP 更适合实时落点规划与扰动恢复。</li>
+<li><strong>LIP Tại sao giả sử rằng chiều cao CoM là cố định: Chiều cao </strong> \(z_c\) Động lực ngang ở độ cao không đổi được tuyến tính hóa thành \(\ddot x = \tfrac{g}{z_c}\,(x - x_{\mathrm{zmp}})\), có thể giải được về mặt phân tích và CoM có mối quan hệ tuyến tính với ZMP. Khi nhảy, độ cao của CoM thay đổi mạnh mẽ hoặc thậm chí ở trên không (lực tiếp xúc bằng 0). Khi lên xuống cầu thang/ngồi xổm, \(z_c\) tiếp tục thay đổi. Mối quan hệ tuyến tính này không hợp lệ và cần có một mô hình chiều cao thay đổi hoặc động lực học trung tâm/toàn bộ cơ thể. </li>
+<li><strong>ZMP Rời khỏi đa giác hỗ trợ: </strong> ZMP Chạm/vượt quá đa giác hỗ trợ và sắp lật (chân xoay quanh mép, tiếp xúc một bên), lúc này lực bình thường của lòng bàn chân ở phía bên đó sẽ bằng 0. Trong kỹ thuật, mảng lực/mô men hoặc áp suất duy nhất được sử dụng để tính toán CoP trong thời gian thực (ZMP=CoP trong khi tiếp xúc) để xem liệu nó có chạm vào ranh giới hay không; hoặc nó có thể phát hiện lực pháp tuyến ở một bên của đế tiến tới 0 và chồng lên IMU để gây ra gia tốc góc bất ngờ. </li>
+<li><strong>DCM / Điểm chụp Những gì được giải quyết thêm: </strong> Nó giải quyết chế độ phân kỳ không ổn định trong LIP riêng biệt: \(\xi = x + \dot x/\omega\). Nó chủ động trả lời "bước ở đâu nếu bạn muốn dừng lại trong một bước" (Capture Point là điểm hạ cánh mà CoM sẽ dừng tiệm cận khi bước lên) và tập trung điều khiển vào chế độ thứ nhất không ổn định duy nhất. Nó phù hợp hơn cho việc lập kế hoạch điểm hạ cánh theo thời gian thực và phục hồi nhiễu loạn so với ZMP vốn chỉ xác định "liệu nó hiện có ổn định hay không". </li>
 </ol>
 </details>
 
 ---
 
+<a id="l42-centroidal-dynamics"></a>
 ### L4.2 Centroidal Dynamics
 
-> **场景隐喻：** LIP 把人形当成一根"会走路的杆子"。但实际上挥手、扭腰、抬腿都会产生角动量，杆子模型解释不了——L4.2 给你一个"既不太重又不太轻"的中间模型。
+> **Ẩn dụ cảnh:** LIP Hãy coi hình dạng con người như một "cây cột đi bộ". Nhưng trên thực tế, việc vẫy tay, vặn eo và giơ chân lên đều sẽ tạo ra xung lượng góc, điều mà mô hình cột không thể giải thích được - L4.2 cung cấp cho bạn một mô hình trung gian “không quá nặng cũng không quá nhẹ”.
 
-> **上一层的局限：** L4.1 的 LIP 简化了角动量、忽略了腿摆动质量、把支撑多边形当静态约束；真机走起来这些都不能忽略。Centroidal Dynamics 把整机投影到 6D 的 CoM 动量空间——比 LIP 更精确，又比全身动力学简单。
+> **Các hạn chế của lớp trước:** LIP của L4.1 đơn giản hóa xung lượng góc, bỏ qua khối lượng xoay của chân và coi đa giác hỗ trợ là một ràng buộc tĩnh; những điều này không thể bị bỏ qua khi máy thật hoạt động. Centroidal Dynamics chiếu toàn bộ máy vào không gian động lượng 6D của CoM - chính xác hơn LIP, nhưng đơn giản hơn động lực học toàn thân.
 
-#### 英文缩写速查（L4.2）
+#### Kiểm tra nhanh từ viết tắt tiếng Anh (L4.2)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| CMM | Centroidal Momentum Matrix | \(h_g=A_g(q)\dot q\)；6D 质心动量映射。 |
-| CoM | Center of Mass | 质心位置与动量状态的核心量。 |
-| AM | Angular Momentum | 角动量；LIP 忽略、centroidal 显式保留。 |
-| LM | Linear Momentum | 线动量。 |
-| MOR | Model Order Reduction | 模型降阶；centroidal 相对全身动力学的定位。 |
-| Wrench | Spatial Contact Wrench | 接触点 6D 力 / 力矩；驱动动量变化。 |
+| CMM | Ma trận động lượng hướng tâm | \(h_g=A_g(q)\dot q\); Bản đồ động lượng hướng tâm 6D. |
+| CoM | Trung Tâm Thánh Lễ | Đại lượng cốt lõi của khối tâm và trạng thái động lượng. |
+| LÀ | Động lượng góc | Xung lượng góc; LIP bị bỏ qua, trọng tâm được giữ lại một cách rõ ràng. |
+| LM | Động lượng tuyến tính | Động lượng tuyến tính. |
+| MOR | Giảm đơn hàng mẫu | Giảm thứ tự mô hình; định vị trung tâm so với động lực học toàn cơ thể. |
+| Cờ lê | Cờ lê tiếp xúc không gian | Điểm tiếp xúc Lực/mô-men xoắn 6D; thúc đẩy sự thay đổi động lượng. |
 
-**前置知识：** [L4.1 LIP / ZMP](#l41-lip--zmp)
+**Kiến thức tiên quyết:** [L4.1 LIP / ZMP](#l41-lip--zmp)
 
-**核心问题：** LIP 简化太狠了，真实人形平衡和接触力怎么描述
+**Câu hỏi cốt lõi:** LIP Sự đơn giản hóa quá khắc nghiệt. Làm thế nào để mô tả sự cân bằng và lực tiếp xúc của một hình người thực sự?
 
-**推荐做什么：**
-- 用 centroidal dynamics 建模人形机器人
-- 理解 centroidal momentum matrix 是什么
+**Việc nên làm được đề xuất:**
+- Mô hình robot hình người sử dụng động lực học hướng tâm
+- Hiểu được ma trận động lượng hướng tâm là gì
 
-**推荐读什么：**
+**Đề nghị đọc:**
 - Orin et al., "Centroidal dynamics of a humanoid robot"
 - [Centroidal Dynamics](../wiki/concepts/centroidal-dynamics.md)
 - [Contact Dynamics](../wiki/concepts/contact-dynamics.md)
 
-**学完输出什么：**
-- 能解释 centroidal dynamics 和 LIP 的区别
-- 理解线动量、角动量在平衡控制里的作用
+** Kết quả đầu ra sau khi học:**
+- Có thể giải thích sự khác biệt giữa động lực học hướng tâm và LIP
+- Hiểu được vai trò của động lượng tuyến tính và động lượng góc trong điều khiển cân bằng
 
-**自测题：**
-- Centroidal Momentum Matrix \(A_g(q)\) 的维度是多少？它的零空间在物理上意味着什么？
-- 为什么 Centroidal Dynamics 是 "model order reduction" 的一种？它损失了原始全身动力学的什么信息？
-- 在 MPC 里使用 Centroidal Dynamics vs 全身动力学，求解延迟会差多少量级？
+**Câu hỏi tự kiểm tra:**
+- Ma trận xung lượng trung tâm \(A_g(q)\) có kích thước như thế nào? Không gian trống của nó có ý nghĩa gì về mặt vật lý?
+- Tại sao Centroidal Dynamics là kiểu “giảm bậc mô hình”? Nó bị mất thông tin gì về động lực học toàn cơ thể ban đầu?
+- Khi sử dụng Động lực học trung tâm và Động lực học toàn cơ thể trong MPC, độ trễ của giải pháp sẽ có độ chênh lệch như thế nào?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart LR
-  Full["全身<br/>$$(n+6)$$ 维动力学"] --> Proj[投影到 6D 质心动量]
+  Full["Động lực học chiều toàn bộ <br/>$$(n+6)$$"] --> Proj[Chiếu tới tâm khối lượng 6D]
   Proj --> Cent["$$h_g = A_g\dot{q}$$"]
-  Cent --> Lost[损失：具体构型 / 关节分布]
-  Lost --> WBC2[由下层 WBC 补回]
+  Cent --> Lost[Mất: Cấu hình cụ thể/phân phối chung]
+  Lost --> WBC2[Được bù bởi lớp dưới WBC]
 ```
 
 <ol>
-<li><strong>CMM 维度与零空间：</strong> \(A_g(q)\) 为 6×(n+6)（浮动基，n 个关节 + 6 维 base），把广义速度映射到 6 维质心动量（3 线动量 + 3 角动量）：\(h_g = A_g(q)\dot q\)。其零空间是"不改变整机线 / 角动量"的内部自运动（如对称挥臂相互抵消、绕 CoM 的内部重构），即动量守恒下的自由度。</li>
-<li><strong>为何是 model order reduction：</strong> 它把 \((n+6)\) 维全身动力学投影到 6 维质心动量空间，只保留"合外力 / 力矩 = 动量变化率"\(\big(\dot h_g = \textstyle\sum \text{wrench} + mg\big)\)，用少量状态抓住平衡最关键的量。损失的是各肢体具体构型 / 关节级分布（同一动量可由无穷多构型实现）、关节限位与碰撞——这些由下层 WBC 补回。</li>
-<li><strong>求解延迟差多少：</strong> centroidal（6 维 + 接触力，中等规模凸 QP / NLP）单步求解约亚毫秒到几毫秒，可 50–200 Hz 在线；全身动力学 MPC（\((n+6)\) 维含全约束的非线性 OCP）常几十到上百毫秒，二者约差 1–2 个数量级。故在线层多用 centroidal / 简化模型，全身动力学多用于离线 trajopt 或低频。</li>
+<li><strong>CMM Kích thước và không gian rỗng: </strong> \(A_g(q)\) là 6×(n+6) (đế nổi, n khớp + đế 6 chiều) và vận tốc tổng quát được ánh xạ tới động lượng tâm 6 chiều (3 động lượng tuyến tính + 3 động lượng góc): \(h_g = A_g(q)\dot q\). Không gian bằng không của nó là chuyển động tự chuyển động bên trong "không làm thay đổi động lượng tuyến tính/góc của toàn bộ máy" (chẳng hạn như các chuyển động cánh tay đối xứng triệt tiêu lẫn nhau, tái thiết bên trong xung quanh CoM), tức là mức độ tự do dưới sự bảo toàn động lượng. </li>
+Tại sao giảm thứ tự mô hình <li><strong>: </strong> Nó chiếu động lực học toàn bộ chiều \((n+6)\) vào không gian động lượng khối tâm 6 chiều, chỉ giữ lại "kết quả lực/mô-men xoắn bên ngoài = tốc độ thay đổi động lượng" \(\big(\dot h_g = \textstyle\sum \text{wrench} + mg\big)\) và sử dụng một số ít trạng thái để ghi lại đại lượng quan trọng nhất để cân bằng. Những gì bị mất là cấu hình cụ thể/phân bổ cấp độ khớp của từng chi (có thể nhận ra cùng một động lượng bằng cấu hình vô hạn), giới hạn khớp và va chạm - những điều này được bù đắp bởi lớp WBC bên dưới. </li>
+<li><strong> Sự khác biệt về độ trễ của giải pháp là gì: </strong> trung tâm (6 chiều + lực tiếp xúc, lồi quy mô trung bình QP / NLP) giải pháp một bước dưới một phần nghìn giây đến vài mili giây, 50–200 Hz trực tuyến; động lực học toàn cơ thể MPC (OCP phi tuyến bị ràng buộc hoàn toàn theo chiều \((n+6)\)) thường mất hàng chục đến hàng trăm mili giây và sự khác biệt giữa hai loại này là khoảng 1–2 bậc độ lớn. Do đó, các mô hình trung tâm/đơn giản hóa chủ yếu được sử dụng trong lớp trực tuyến và động lực học toàn cơ thể chủ yếu được sử dụng trong chuyển động ngoại tuyến hoặc tần số thấp. </li>
 </ol>
 </details>
 
 ---
 
+<a id="l43-trajectory-optimization--mpc"></a>
 ### L4.3 Trajectory Optimization / MPC
 
-> **场景隐喻：** 上一秒看见脚滑——能不能预判未来 2 秒该往哪儿踩、并实时改步态？MPC 就是这件事的数学化：把"未来一小段时间窗"做成一个滚动求解的优化问题。
+> **Ẩn dụ cảnh:** Tôi thấy chân mình trượt ở giây cuối cùng - tôi có thể dự đoán vị trí sẽ bước trong 2 giây tiếp theo và thay đổi dáng đi của mình trong thời gian thực không? MPC là toán học của vấn đề này: biến "khoảng thời gian ngắn trong tương lai" thành một vấn đề tối ưu hóa luân phiên.
 
-> **上一层的局限：** L4.2 的 Centroidal Dynamics 给了你一组方程，但**用这些方程在线规划 CoM 轨迹和接触力**还需要再加一层优化（Trajectory Optimization 或 MPC）。这就是从"模型"到"控制器"的过渡。
+> **Hạn chế của lớp trước:** Động lực học trung tâm của L4.2 cung cấp cho bạn một bộ phương trình, nhưng **việc sử dụng các phương trình này để lập kế hoạch quỹ đạo CoM và lực tiếp xúc trực tuyến yêu cầu một lớp tối ưu hóa bổ sung (Tối ưu hóa quỹ đạo hoặc MPC). Đây là quá trình chuyển đổi từ "mô hình" sang "bộ điều khiển".
 
-#### 英文缩写速查（L4.3）
+#### Kiểm tra nhanh từ viết tắt tiếng Anh (L4.3)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| MPC | Model Predictive Control | 滚动时域最优控制；每步只执行首段控制。 |
-| TrajOpt | Trajectory Optimization | 对整段或长时域状态–控制轨迹求最优。 |
-| OCP | Optimal Control Problem | 动力学 + 代价 + 约束的优化问题表述。 |
-| NLP | Nonlinear Programming | 非线性规划；非凸全身 TrajOpt 常用。 |
-| DDP | Differential Dynamic Programming | 微分动态规划；局部 TrajOpt 方法。 |
-| iLQR | Iterative Linear Quadratic Regulator | 迭代 LQR；局部线性化 TrajOpt。 |
-| RH | Receding Horizon | 滚动时域；MPC 与 TrajOpt 在线化的关键思想。 |
+| MPC | Kiểm soát dự đoán mô hình | Kiểm soát tối ưu miền thời gian lăn; chỉ phân đoạn điều khiển đầu tiên được thực thi ở mỗi bước. |
+| TrajOpt | Tối ưu hóa quỹ đạo | Tối ưu hóa toàn bộ hoặc quỹ đạo kiểm soát trạng thái dài hạn. |
+| OCP | Bài toán điều khiển tối ưu | Xây dựng bài toán tối ưu của động lực + chi phí + ràng buộc. |
+| NLP | Lập trình phi tuyến | Lập trình phi tuyến; toàn thân không lồi TrajOpt thường được sử dụng. |
+| DDP | ​Lập trình động vi phân | Lập trình động vi sai; phương pháp TrajOpt cục bộ. |
+| iLQR | Bộ điều chỉnh bậc hai tuyến tính lặp | Lặp lại LQR; tuyến tính hóa cục bộ TrajOpt. |
+| RH | Chân trời rút lui | Miền thời gian lăn; những ý tưởng chính của MPC và TrajOpt trực tuyến. |
 
-**前置知识：** [L4.2 Centroidal Dynamics](#l42-centroidal-dynamics) + [L3 控制基础与最优化](#l3-控制基础与最优化)
+**Kiến thức tiên quyết:** [L4.2 Động lực học hướng tâm](#l42-centroidal-dynamics) + [Cơ bản về điều khiển và tối ưu hóa L3](#l3-控制基础与最优化)
 
-**核心问题：** 整段质心轨迹和接触力怎么规划，MPC 在线怎么做
+**Câu hỏi cốt lõi:** Cách lập kế hoạch cho toàn bộ tâm quỹ đạo khối lượng và lực tiếp xúc, cách thực hiện trực tuyến tại MPC
 
-**推荐做什么：**
-- 用 CasADi 或 Crocoddyl 实现一个 centroidal MPC
-- 在仿真里跑通一个双足行走 MPC
+**Việc nên làm được đề xuất:**
+- Triển khai MPC trung tâm bằng CasADi hoặc Crocoddyl
+- Chạy mô hình đi bộ hai chân MPC trong mô phỏng
 
-**推荐读什么：**
+**Đề nghị đọc:**
 - "Convex MPC for Bipedal Locomotion" (Bellicoso et al.)
 - [Trajectory Optimization](../wiki/methods/trajectory-optimization.md)
 - [Model Predictive Control (MPC)](../wiki/methods/model-predictive-control.md)
-- [MPC 调参指南](../wiki/queries/mpc-tuning-guide.md)
-- [MPC 求解器选型](../wiki/queries/mpc-solver-selection.md)
+- [Hướng dẫn điều chỉnh tham số MPC](../wiki/queries/mpc-tuning-guide.md)
+- [Lựa chọn bộ giải MPC](../wiki/queries/mpc-solver-selection.md)
 
-**学完输出什么：**
-- 能实现一个简化版的 centroidal MPC
-- 能解释预测时域、代价函数设计、约束处理的思路
+** Kết quả đầu ra sau khi học:**
+- Có thể triển khai phiên bản đơn giản của MPC hướng tâm
+- Có thể giải thích các ý tưởng về miền thời gian dự đoán, thiết kế hàm chi phí và xử lý ràng buộc
 
-**自测题：**
-- 给一个 MPC 跑不稳的现象（例如步态发抖），你的第一手排查顺序是什么？
-- Trajectory Optimization 和 MPC 的关键区别是什么？为什么人形里这两个名词经常混用？
-- Convex MPC 和 Nonlinear MPC 各适合什么任务？接触切换怎么处理？
+**Câu hỏi tự kiểm tra:**
+- Với MPC khi chạy không ổn định (chẳng hạn như dáng đi run rẩy), trình tự khắc phục sự cố đầu tiên của bạn là gì?
+- Sự khác biệt chính giữa Tối ưu hóa quỹ đạo và MPC là gì? Tại sao hai thuật ngữ này thường được sử dụng thay thế cho nhau ở dạng người?
+- MPC lồi và MPC phi tuyến phù hợp với những nhiệm vụ nào? Làm thế nào để đối phó với việc chuyển đổi liên lạc?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  Bug[MPC 步态发抖] --> R1[1 参考轨迹是否抖]
-  R1 --> R2[2 求解器是否收敛 / warm-start]
-  R2 --> R3[3 频率 vs 求解延迟 / one-step delay]
-  R3 --> R4["权重<br/>$$\Delta u$$ 过小"]
-  R4 --> R5[5 接触切换约束突变 / 摩擦锥过紧]
-  R5 --> R6[6 状态估计噪声与延迟]
-  Mode{选型} --> Convex[Convex MPC：快、定 schedule 平地走]
-  Mode --> NL[Nonlinear MPC：跑跳 / 复杂地形 / 接触优化]
+  Bug[MPC dáng đi lắc lư] --> R1[1. Quỹ đạo tham chiếu có bị rung lắc không?]
+  R1 --> R2[2 Bộ giải đã hội tụ/khởi động ấm chưa]
+  R2 --> R3[3 tần số so với độ trễ giải pháp / độ trễ một bước]
+  R3 --> R4["Trọng lượng <br/>$$\Delta u$$ quá nhỏ"]
+  R4 --> R5[5 Liên hệ hạn chế chuyển đổi đột biến/nón ma sát quá chặt]
+  R5 --> R6[6 Ước lượng trạng thái nhiễu và độ trễ]
+  Mode{Lựa chọn} --> Convex[Convex MPC: đi bộ nhanh, cố định trên mặt đất bằng phẳng]
+  Mode --> NL[MPC phi tuyến tính: chạy và nhảy/địa hình phức tạp/tối ưu hóa tiếp xúc]
 ```
 
 <ol>
-<li><strong>MPC 发抖排查顺序：</strong> 由外到内——① 参考是否本身抖（上游 footstep / CoM 轨迹不连续）；② 求解器是否真收敛 / 触迭代上限、有无 warm-start；③ 时序：控制频率、求解延迟、是否补偿 one-step delay；④ 权重：跟踪过硬而平滑 / 正则过软导致控制量高频震荡，加 \(\Delta u\) 惩罚；⑤ 模型 / 约束：接触切换处约束突变、摩擦锥 / ZMP 约束过紧；⑥ 状态估计噪声 / 延迟引入反馈抖动。</li>
-<li><strong>TrajOpt 与 MPC 区别：</strong> Trajectory Optimization 多为离线、对整段时域一次求一条最优轨迹（可全身动力学、长时域、初值敏感）；MPC 在线滚动——每周期解短时域 OCP、只执行第一步再重规划（receding horizon），靠反馈抗扰。人形里常混用，是因为 MPC 内核每步解的正是一个小型 trajectory optimization，数学形式（OCP）相同，区别仅在"离线一次 vs 在线滚动 + 是否实时"。</li>
-<li><strong>Convex vs Nonlinear MPC：</strong> Convex MPC（线性 / 凸化模型 + 凸约束）求解快、确定性，适合周期性平地行走与高频实时，接触切换靠预先给定的 contact schedule、接触力受摩擦锥线性约束；Nonlinear MPC（全 / 非线性动力学）适合跑跳、复杂地形、需同时优化接触力与姿态，接触切换可用预定时序或互补约束 / 相位优化，代价是非凸、慢、初值敏感。</li>
+<li><strong>MPC Trình tự khắc phục sự cố jitter: </strong> từ ngoài vào trong - ① Liệu bản thân tham chiếu có bị rung hay không (bước chân ngược dòng / quỹ đạo CoM không liên tục); ② Bộ giải có thực sự hội tụ/ chạm giới hạn trên của phép lặp hay không, có khởi động khởi động hay không; ③ Thời gian: tần số điều khiển, độ trễ giải pháp, có bù cho độ trễ một bước hay không; ④ Trọng lượng: theo dõi quá cứng và trơn tru/sự đều đặn quá mềm, gây ra dao động tần số cao của đại lượng điều khiển, cộng thêm hình phạt \(\Delta u\); ⑤ Mô hình/ràng buộc: đột biến ràng buộc khi chuyển đổi tiếp điểm, hình nón ma sát/ràng buộc ZMP quá chặt; ⑥ ước tính trạng thái nhiễu/độ trễ tạo ra hiện tượng jitter phản hồi. </li>
+Sự khác biệt giữa <li><strong>TrajOpt và MPC: </strong> Tối ưu hóa quỹ đạo chủ yếu là ngoại tuyến, tìm quỹ đạo tối ưu cho toàn bộ miền thời gian cùng một lúc (có thể được sử dụng cho động lực học toàn cơ thể, miền thời gian dài và độ nhạy giá trị ban đầu); MPC đang cuộn trực tuyến - giải quyết miền thời gian ngắn trong mỗi chu kỳ OCP, chỉ thực hiện bước đầu tiên rồi lập kế hoạch lại (đường chân trời rút dần), dựa vào phản hồi để chống nhiễu. Chúng thường được sử dụng thay thế cho nhau trong hình người vì hạt nhân MPC giải quyết tối ưu hóa quỹ đạo nhỏ ở mỗi bước. Dạng toán học (OCP) giống nhau và điểm khác biệt duy nhất là "cuộn ngoại tuyến một lần so với cuộn trực tuyến + liệu đó có phải là thời gian thực hay không". </li>
+<li><strong>Convex vs Phi tuyến MPC: </strong> Convex MPC (mô hình tuyến tính/lồi + ràng buộc lồi) giải quyết nhanh chóng và dứt khoát, thích hợp cho việc đi bộ trên mặt phẳng định kỳ và thời gian thực tần số cao, chuyển đổi liên hệ dựa trên lịch trình liên hệ và liên hệ cho trước lực bị ràng buộc tuyến tính bởi hình nón ma sát; MPC phi tuyến tính (động lực hoàn toàn/phi tuyến tính) phù hợp để chạy và nhảy, địa hình phức tạp và yêu cầu tối ưu hóa đồng thời lực tiếp xúc và tư thế. Chuyển mạch tiếp điểm có thể được thực hiện với thời gian xác định trước hoặc các ràng buộc bổ sung/tối ưu hóa pha, với cái giá phải trả là không lồi, chậm và độ nhạy giá trị ban đầu. </li>
 </ol>
 </details>
 
@@ -982,231 +994,233 @@ flowchart TD
 
 ### L4.4 TSID / Whole-Body Control
 
-> **场景隐喻：** MPC 已经告诉你"CoM 要在哪里、足端要到哪里、躯干姿态怎么变"——但人形 25 个关节里，谁先动谁后动？谁让位给安全约束？WBC 是这个仲裁器，每个控制周期都解一个 QP / HQP 来分配每个关节的力矩。
+> **Ẩn dụ cảnh:** MPC đã cho bạn biết "CoM nên ở đâu, bàn chân nên ở đâu và tư thế thân mình nên thay đổi như thế nào" - nhưng trong số 25 khớp của hình người, ai di chuyển trước và ai di chuyển sau cùng? Ai nhường đường cho sự kiềm chế an toàn? WBC là trọng tài này và mỗi chu kỳ điều khiển sẽ giải quyết QP / HQP để phân phối mô-men xoắn của từng khớp.
 
-> **上一层的局限：** L4.3 的 MPC 输出的是 CoM / 接触力 / 末端任务参考，**不直接告诉你每个关节出多少力矩**。WBC 就是把上层规划"落到下层执行"的最后一步。
+> **Các hạn chế của lớp trước:** MPC của L4.3 xuất ra CoM/tham chiếu lực tiếp xúc/tác vụ kết thúc, **không trực tiếp cho bạn biết mỗi khớp tạo ra bao nhiêu mô-men xoắn**. WBC là bước cuối cùng để "bỏ kế hoạch cấp trên xuống thực hiện cấp thấp hơn".
 
-#### 英文缩写速查（L4.4）
+#### Tra cứu nhanh từ viết tắt tiếng Anh (L4.4)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| TSID | Task-Space Inverse Dynamics | 在动力学与接触约束下求 \(\tau,f\) 的任务空间框架。 |
-| WBC | Whole-Body Control | 全身多任务、多约束的实时力矩分配。 |
-| HQP | Hierarchical Quadratic Programming | 严格任务优先级的分层 QP。 |
-| QP | Quadratic Programming | 加权 WBC 的凸优化内核。 |
-| ID | Inverse Dynamics | 给定 \(\ddot q\) 求 \(\tau\)；WBC 等式约束的一部分。 |
-| IC | Impedance Control | 力–运动关系整形；接触安全常高优先级。 |
+| TSID | Động lực nghịch đảo không gian nhiệm vụ | Tìm khung không gian nhiệm vụ của \(\tau,f\) dưới các ràng buộc động và tiếp xúc. |
+| WBC | Kiểm soát toàn thân | Phân phối mô-men xoắn theo thời gian thực để thực hiện đa tác vụ và đa ràng buộc trên toàn bộ cơ thể. |
+| HQP | Lập trình bậc hai phân cấp | Hệ thống phân cấp dành cho mức độ ưu tiên nhiệm vụ nghiêm ngặt QP. |
+| QP | Lập trình bậc hai | Hạt nhân được tối ưu hóa lồi có trọng số cho WBC. |
+| ID | Động lực học nghịch đảo | Cho \(\ddot q\), tìm \(\tau\); WBC như một phần của ràng buộc đẳng thức. |
+| IC | Kiểm soát trở kháng | Định hình mối quan hệ lực-chuyển động; an toàn khi tiếp xúc luôn được ưu tiên hàng đầu. |
 
-**前置知识：** [L4.3 Trajectory Optimization / MPC](#l43-trajectory-optimization--mpc)
+**Kiến thức tiên quyết:** [L4.3 Tối ưu hóa quỹ đạo / MPC](#l43-trajectory-optimization--mpc)
 
-**核心问题：** 上层规划出来的参考轨迹，怎么变成每个关节该出的力
+**Câu hỏi cốt lõi:** Làm thế nào mà quỹ đạo tham chiếu do lớp trên lên kế hoạch trở thành lực mà mỗi khớp phải tác dụng?
 
-**推荐做什么：**
-- 用 TSID 库实现一个全身任务控制器
-- 同时处理躯干稳住、足端跟踪、接触约束
+**Việc nên làm được đề xuất:**
+- Triển khai bộ điều khiển tác vụ toàn thân bằng thư viện TSID
+- Xử lý đồng thời tính năng ổn định cốp xe, theo dõi chân và hạn chế tiếp xúc
 
-**推荐读什么：**
+**Đề nghị đọc:**
 - Del Prete et al., "Prioritized motion-force control of constrained fully-actuated robots"
 - [TSID](../wiki/concepts/tsid.md)
 - [TSID Formulation](../wiki/formalizations/tsid-formulation.md)
 - [Whole-Body Control](../wiki/concepts/whole-body-control.md)
-- [WBC 实现指南](../wiki/queries/wbc-implementation-guide.md)
-- [WBC 调参指南](../wiki/queries/wbc-tuning-guide.md)
+- [Hướng dẫn triển khai WBC](../wiki/queries/wbc-implementation-guide.md)
+- [Hướng dẫn điều chỉnh tham số WBC](../wiki/queries/wbc-tuning-guide.md)
 
-**学完输出什么：**
-- 能用 TSID 框架实现一个多层优先级 WBC
-- 能解释任务空间目标怎么映射到关节力矩
+** Kết quả đầu ra sau khi học:**
+- Khả năng triển khai WBC ưu tiên nhiều lớp bằng khung TSID
+- Có thể giải thích cách ánh xạ các mục tiêu trong không gian nhiệm vụ tới các khoảnh khắc chung
 
-**自测题：**
-- TSID 的 QP 里典型有哪些约束（等式 / 不等式各写 2 条）？目标函数通常长什么样？
-- 当上层 MPC 输出的 CoM 参考与 WBC 的接触约束冲突时，会发生什么？怎么用任务优先级处理？
-- 阻抗控制为什么常常放在 WBC 任务里的较高优先级层？
+**Câu hỏi tự kiểm tra:**
+- Các ràng buộc điển hình trong TSID QP (viết 2 phương trình/bất đẳng thức mỗi phương trình) là gì? Hàm mục tiêu thường trông như thế nào?
+- Điều gì xảy ra khi đầu ra tham chiếu CoM của lớp trên MPC xung đột với các ràng buộc tiếp xúc của WBC? Làm thế nào để sử dụng mức độ ưu tiên của nhiệm vụ?
+- Tại sao điều khiển trở kháng thường được đặt ở mức ưu tiên cao hơn trong tác vụ WBC?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  MPCout[MPC：CoM / 接触力 / 末端参考] --> WBC[TSID / WBC QP]
-  WBC --> Hard[硬约束：动力学 + 接触零加速度 + 摩擦锥]
-  WBC --> Soft[软任务：CoM / 足端 / 姿态跟踪]
-  Conflict[CoM 参考 vs 接触冲突?] --> Prio[接触 / 动力学最高优先级]
-  Prio --> Null[在零空间内尽量跟踪 CoM]
-  ImpZ[阻抗任务常置高优先级] --> Safe[保证接触力整形与安全]
+  MPCout[MPC:CoM / Lực tiếp xúc / Tham chiếu cuối] --> WBC[TSID / WBC QP]
+  WBC --> Hard[Ràng buộc cứng: động lực học + gia tốc bằng 0 khi tiếp xúc + côn ma sát]
+  WBC --> Soft[Tác vụ mềm: CoM/theo dõi bàn chân/tư thế]
+  Conflict[Tham chiếu CoM so với xung đột liên hệ?] --> Prio[Ưu tiên cao nhất của Liên hệ/Động học]
+  Prio --> Null[Cố gắng theo dõi CoM trong không gian bằng không]
+  ImpZ[Nhiệm vụ trở kháng luôn được ưu tiên cao] --> Safe[Đảm bảo việc định hình lực tiếp xúc và an toàn]
 ```
 
 <ol>
-<li><strong>TSID 的 QP 约束与目标：</strong> 等式如：① 浮动基动力学一致性 \(M\ddot q + h = S^\top \tau + J_c^\top f\)；② 刚性接触零加速度 \(J_c\ddot q + \dot J_c\dot q = 0\)。不等式如：① 接触力落在摩擦锥内；② 关节力矩 / 位置 / 速度限位（或 ZMP 在支撑多边形内）。目标函数通常是各任务加权二次跟踪误差之和 \(\sum_i w_i\lVert J_i\ddot q + \dot J_i\dot q - \ddot x_i^{\mathrm{des}}\rVert^2\)（CoM、足端、躯干姿态、姿势正则）加上对 \(\tau,f\) 的正则。</li>
-<li><strong>CoM 参考与接触约束冲突：</strong> 若接触 / 动力学一致性设为硬约束，WBC 会优先保接触可行，CoM 参考只被"尽量"跟踪，出现稳态误差或被裁剪。处理：用任务优先级——接触 / 动力学放最高（硬约束），CoM 跟踪放较低优先级软任务、在不违反接触的零空间内最优逼近；HQP 严格分层，加权 QP 用大权重近似分层；必要时上层 MPC 据反馈调整参考。</li>
-<li><strong>阻抗为何常居高优先级：</strong> 阻抗 / 柔顺直接关系接触稳定与交互安全。若被低优先级位置任务覆盖，易导致接触力失稳、刚性碰撞或接触跳变；把接触 / 末端的阻抗行为放在较高层，可保证无论下层如何优化姿态，接触力始终被良好整形，从而安全、柔顺地与环境交互。</li>
+Các ràng buộc và mục tiêu QP của <li><strong>TSID: </strong> Phương trình như sau: ① Tính nhất quán động cơ sở nổi \(M\ddot q + h = S^\top \tau + J_c^\top f\); ② Gia tốc không tiếp xúc cứng nhắc \(J_c\ddot q + \dot J_c\dot q = 0\). Các bất đẳng thức như: ① Lực tiếp xúc nằm trong hình nón ma sát; ② Giới hạn mô men/vị trí/tốc độ khớp (hoặc ZMP nằm trong đa giác hỗ trợ). Hàm mục tiêu thường là tổng các lỗi theo dõi bậc hai có trọng số của từng nhiệm vụ \(\sum_i w_i\lVert J_i\ddot q + \dot J_i\dot q - \ddot x_i^{\mathrm{des}}\rVert^2\) (CoM, đầu chân, tư thế thân, điều chỉnh tư thế) cộng với việc chính quy hóa \(\tau,f\). </li>
+Tham chiếu <li><strong>CoM xung đột với các ràng buộc tiếp xúc: </strong> Nếu tính nhất quán của tiếp điểm/động được đặt thành các ràng buộc cứng, WBC sẽ ưu tiên đảm bảo rằng liên hệ đó khả thi và tham chiếu CoM chỉ được theo dõi "càng nhiều càng tốt", dẫn đến trạng thái ổn định lỗi hoặc cắt bớt. Xử lý: Sử dụng mức độ ưu tiên của nhiệm vụ - liên hệ/động lực để đặt mức cao nhất (ràng buộc cứng), theo dõi CoM và đặt các nhiệm vụ mềm có mức ưu tiên thấp hơn, xấp xỉ tối ưu trong không gian bằng 0 không vi phạm liên hệ; HQP được phân lớp, có trọng số nghiêm ngặt QP sử dụng các trọng số lớn để phân lớp gần đúng; khi cần thiết, lớp trên MPC sẽ điều chỉnh tham chiếu dựa trên phản hồi. </li>
+Tại sao trở kháng <li><strong> luôn có mức độ ưu tiên cao: Trở kháng/tuân thủ </strong> liên quan trực tiếp đến độ ổn định của tiếp điểm và an toàn tương tác. Nếu bị bao phủ bởi các nhiệm vụ vị trí có mức độ ưu tiên thấp sẽ dễ dẫn đến mất ổn định lực tiếp xúc, va chạm cứng hoặc nhảy tiếp xúc; việc đặt hành vi trở kháng tiếp xúc/đầu cuối lên lớp cao hơn có thể đảm bảo rằng cho dù lớp dưới có tối ưu hóa tư thế như thế nào thì lực tiếp xúc luôn được định hình tốt, do đó tương tác với môi trường một cách an toàn và tuân thủ. </li>
 </ol>
 </details>
 
 ---
 
-## L5 强化学习与模仿学习
+<a id="l5-强化学习与模仿学习"></a>
+## Học tăng cường L5 và học bắt chước
 
-**学完 L4 后，你应该已经对 model-based control 有了完整理解。L5 是另一条路：learning-based。**
+**Sau khi học L4, bạn phải hiểu đầy đủ về điều khiển dựa trên mô hình. L5 là một cách khác: dựa trên học tập. **
 
-> **场景隐喻：** L4 是"我已经知道物理 + 知道目标"去算控制律；L5 反过来——让机器人**自己试出来**（RL）或**模仿人学出来**（IL）一个策略。
+> **Ẩn dụ kịch bản:** L4 là “Tôi đã biết vật lý + biết mục tiêu” để tính luật điều khiển; L5 thì ngược lại - hãy để robot **thử ** (RL) hoặc **bắt chước con người và học hỏi** (IL) một chiến lược.
 
-> **上一层的局限：** L4 的传统控制需要准确建模 + 显式目标函数；对接触切换密集、目标难写成代价函数的任务（跑、跳、复杂地形、操作），开发周期长。RL / IL 用数据补这一段——但不能替代 L4 的结构理解，否则你只会调超参数。
+> **Hạn chế của lớp trước:** Điều khiển truyền thống của L4 yêu cầu mô hình hóa chính xác + hàm mục tiêu rõ ràng; đối với các nhiệm vụ có chuyển đổi tiếp xúc chuyên sâu và khó ghi mục tiêu vào các hàm chi phí (chạy, nhảy, địa hình phức tạp, vận hành), chu kỳ phát triển kéo dài. RL / IL Sử dụng dữ liệu để điền vào phần này - nhưng nó không thể thay thế sự hiểu biết về cấu trúc của L4, nếu không bạn sẽ chỉ điều chỉnh các siêu tham số.
 
-这一阶段最容易踩的坑，是把 RL / IL 当成“跳过建模”的捷径。更稳的学习方式是：
-- 把 RL / IL 看成**能力扩展层**，不是替代所有控制结构的万能钥匙
-- 始终追问：这个策略学到的是高层决策、低层 tracking，还是把两者混在一起了
-- 遇到 sim2real、接触切换、可解释性问题时，回到 L4 的模型与约束视角重新审题
+Cạm bẫy dễ gặp nhất ở giai đoạn này là coi RL / IL là lối tắt để "bỏ qua mô hình hóa". Một cách học ổn định hơn là:
+- Hãy coi RL / IL như một **lớp mở rộng khả năng**, không phải là khóa chính thay thế tất cả các cấu trúc điều khiển
+- Luôn đặt câu hỏi: Chiến lược học tập này là đưa ra quyết định ở cấp độ cao, theo dõi ở cấp độ thấp hay cả hai được kết hợp với nhau?
+- Khi gặp vấn đề về sim2real, chuyển đổi liên hệ và khả năng diễn giải, hãy quay lại quan điểm mô hình và ràng buộc của L4 và xem xét lại câu hỏi
 
-### L5.0 桥梁：从「路牌」到可跑代码的最小闭环
+### Cầu L5.0: Vòng khép kín nhỏ nhất từ ​​"biển báo" đến mã chạy được
 
-进入 PPO 调参之前，建议先用 **50 行量级脚本** 把 [MDP 五元组](../wiki/formalizations/mdp.md) 与仿真步进对齐——详见 [具身 RL 最小闭环](../wiki/concepts/embodied-rl-minimal-closed-loop.md)。
+Trước khi vào điều chỉnh tham số PPO, bạn nên sử dụng **50 dòng tập lệnh** để căn chỉnh [MDP quintuple](../wiki/formalizations/mdp.md) với bước mô phỏng - xem [Vòng kín tối thiểu RL được thể hiện](../wiki/concepts/embodied-rl-minimal-closed-loop.md) để biết chi tiết.
 
-**策略直觉（岔路口比喻）**：智能体没有标准答案标注，只靠环境反馈迭代；「往右走胜率 501/1000」那块牌子就是 **策略** $\pi(a|s)$。围棋落子是**离散动作**；人形关节力矩/目标是**连续动作**——载体相同，动作空间不同。工程上策略多为神经网络，用 PPO/SAC 等梯度更新。
+**Trực giác chiến lược (ẩn dụ ngã ba đường)**: Tác nhân không có nhãn câu trả lời tiêu chuẩn và chỉ dựa vào sự lặp lại phản hồi của môi trường; biển báo "Đi bên phải, tỷ lệ thắng 501/1000" là **Chiến lược** $\pi(a|s)$. Nước đi là **hành động rời rạc**; mô-men xoắn/mục tiêu khớp hình người là **hành động liên tục** - cùng một vật mang nhưng không gian hành động khác nhau. Hầu hết các chiến lược kỹ thuật là mạng lưới thần kinh, được cập nhật với các gradient như PPO/SAC.
 
-**MDP 与 POMDP**：
+**MDP và POMDP**:
 
-| 要素 | 具身含义 | 真机注意 |
+| Yếu tố | Ý nghĩa thể hiện | Chú ý máy thật |
 |------|----------|----------|
-| $S$ | IMU、关节角、深度/点云等 | 常有噪声与延迟 |
-| $A$ | 力矩、关节目标、步态参数 | 多为连续向量 |
-| $R$ | 前进、平衡、抓取成功、摔倒惩罚 | 塑造行为的关键杠杆 |
-| $P$ | 仿真器或真机动力学 | PyBullet / MuJoCo / Isaac 各不同 |
-| $\gamma$ | 远期奖励折扣 | 影响「短视」vs「长远」 |
+| $S$ | IMU, góc khớp, đám mây độ sâu/điểm, v.v. | Thường ồn ào và trì hoãn |
+| $A$ | Thông số mô men, mục tiêu chung, dáng đi | Chủ yếu là các vectơ liên tục |
+| $R$ | Tiến lên, giữ thăng bằng, tóm thành công, ngã phạt | Đòn bẩy chính định hình hành vi |
+| $P$ | Mô phỏng hoặc động lực học máy thật | PyBullet / MuJoCo / Isaac khác nhau |
+| $\gamma$ | Chuyển tiếp phần thưởng giảm giá | Tác động của “cận thị” so với “lâu dài” |
 
-标准 MDP 假设全状态可观测；真机部署几乎都是 [POMDP](../wiki/formalizations/pomdp.md)——用多帧视觉 + RNN/Transformer 编码隐状态再出动作。
+MDP tiêu chuẩn giả định rằng toàn bộ trạng thái có thể quan sát được; Hầu hết các triển khai máy thực đều là [POMDP](../wiki/formalizations/pomdp.md) - sử dụng tầm nhìn đa khung + RNN/Transformer để mã hóa các trạng thái ẩn rồi thực hiện hành động.
 
-**PPO vs SAC 具身分工（入门速查）**：
+**PPO vs SAC Identity Worker (Kiểm tra ban đầu nhanh)**:
 
-| 算法 | 优先场景 | 核心机制 |
+| Thuật toán | Kịch bản ưu tiên | Cơ chế cốt lõi |
 |------|----------|----------|
-| [PPO](../wiki/methods/policy-optimization.md) | 四足/人形行走、大规模并行仿真 | Clip 限制策略更新幅度，训练稳 |
-| [SAC](../wiki/comparisons/ppo-vs-sac.md) | 灵巧手、精细抓取、扰动敏感任务 | 最大熵正则，探索更充分 |
+| [PPO](../wiki/methods/policy-optimization.md) | Đi bộ bằng bốn chân/hình người, mô phỏng song song quy mô lớn | Clip giới hạn phạm vi cập nhật chính sách, đào tạo ổn định |
+| [SAC](../wiki/comparisons/ppo-vs-sac.md) | Bàn tay khéo léo, khả năng nắm bắt tinh tế, những công việc nhạy cảm | Quy tắc entropy tối đa, khám phá đầy đủ hơn |
 
-共同准则：**策略单次迭代不能跳变太大**，否则已学行为崩溃。稀疏奖励操作可叠 [HER](../wiki/methods/her.md)。
+Tiêu chí chung: **Chiến lược không thể nhảy quá nhiều trong một lần lặp**, nếu không hành vi đã học sẽ sụp đổ. Các hoạt động thưởng thưa thớt có thể xếp chồng lên nhau [HER](../wiki/methods/her.md).
 
-**最小闭环实验（推荐顺序）**：
+**Thử nghiệm vòng kín tối thiểu (thứ tự được đề xuất)**:
 
-1. [PyBullet](../wiki/entities/pybullet.md) KUKA 臂定点：手写 $S,A,R$ + `stepSimulation` 实现 $P$（先不接 RL）。
-2. Gymnasium 玩具环境 + PPO，熟悉 on-policy API。
-3. Isaac Lab 人形并行训练（见 L5.2）。
+1. [PyBullet](../wiki/entities/pybullet.md) Điểm cố định cánh tay KUKA: viết tay $S,A,R$ + `stepSimulation` để triển khai $P$ (chưa kết nối RL).
+2. Môi trường đồ chơi tập thể dục + PPO, chính sách quen thuộc API.
+3. Huấn luyện song song hình người Isaac Lab (xem L5.2).
 
-深蓝具身智能《具身智能基础》专栏第 4 篇对以上脉络有面向初学者的展开，与 L0–L4 的几何 / 控制主线互补，见 [专栏地图](../wiki/overview/shenlan-embodied-ai-fundamentals-series.md)。
+Cột "Cơ bản về trí thông minh thể hiện" của Deep Blue, Phần 4, mở rộng bối cảnh trên dành cho người mới bắt đầu, bổ sung cho dòng hình học/điều khiển chính của L0-L4, xem [bản đồ cột](../wiki/overview/shenlan-embodied-ai-fundamentals-series.md).
 
 <a id="l5-1-rl-basics"></a>
 
-### L5.1 强化学习基础
+### L5.1 Cơ bản về Học tăng cường
 
-> **场景隐喻：** 把机器人扔进仿真器，给它定一个奖励规则（"前进 +1，摔倒 -10"），让它反复试错——它能学出一个策略。L5.1 教你这套"试错训练"框架。
+> **Phép ẩn dụ kịch bản:** Ném rô-bốt vào trình mô phỏng, đưa ra quy tắc khen thưởng ("Tiến +1, giảm -10"), để rô-bốt thử và sai nhiều lần - rô-bốt có thể học được chiến lược. L5.1 dạy cho bạn khuôn khổ "đào tạo thử và sai" này.
 
-> **上一层的局限：** L4 方法都依赖精确动力学 + 显式目标；当模型不准、或目标难写成代价函数时，RL 用数据驱动绕开建模。
+> **Hạn chế của lớp trước:** Các phương pháp L4 đều dựa vào động lực chính xác + mục tiêu rõ ràng; khi mô hình không chính xác hoặc khó ghi mục tiêu dưới dạng hàm chi phí, RL sử dụng các phương pháp dựa trên dữ liệu để bỏ qua mô hình hóa.
 
-#### 英文缩写速查（L5.1）
+#### Tra cứu nhanh các từ viết tắt tiếng Anh (L5.1)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| RL | Reinforcement Learning | 智能体与环境交互最大化累积奖励。 |
-| MDP | Markov Decision Process | RL 的标准序贯决策形式化。 |
-| PPO | Proximal Policy Optimization | clip 重要性比，稳定 on-policy 更新。 |
-| SAC | Soft Actor–Critic | 最大熵 off-policy；样本效率通常更高。 |
-| PG | Policy Gradient | 直接优化策略参数的方法族。 |
-| VF | Value Function | 估计状态或状态–动作的长期回报。 |
-| TRPO | Trust Region Policy Optimization | 信赖域策略优化；PPO 的前身思想。 |
+| RL | Học tăng cường | Sự tương tác giữa tác nhân và môi trường tối đa hóa phần thưởng tích lũy. |
+| MDP | Quy trình Quyết định Markov | Chính thức hóa quyết định tuần tự tiêu chuẩn cho RL. |
+| PPO | Tối ưu hóa chính sách gần nhất | tỷ lệ quan trọng của clip, cập nhật chính sách ổn định. |
+| SẮC | Diễn viên mềm-Nhà phê bình | Chính sách tắt entropy tối đa; hiệu suất lấy mẫu thường cao hơn. |
+| PG | Độ dốc chính sách | Một nhóm các phương pháp tối ưu hóa trực tiếp các tham số chính sách. |
+| VF | Hàm giá trị | Ước tính lợi nhuận dài hạn của một trạng thái hoặc hành động trạng thái. |
+| TRPO | Tối ưu hóa chính sách khu vực tin cậy | Tối ưu hóa chính sách khu vực tin cậy; ý tưởng tiền thân của PPO. |
 
-**前置知识：** L2 + L3 内容（优化直觉）
+**Kiến thức tiên quyết:** Nội dung L2 + L3 (trực giác tối ưu hóa)
 
-**核心问题：** RL 怎么让人形机器人自己学会走路
+**Câu hỏi cốt lõi:** RL Cách làm cho robot hình người học cách tự đi lại
 
-**推荐做什么：**
-- 先跑通 [具身 RL 最小闭环](../wiki/concepts/embodied-rl-minimal-closed-loop.md)：[PyBullet](../wiki/entities/pybullet.md) KUKA 定点任务，把 $S,A,R,P$ 与 `stepSimulation` 对齐（可用手写速度控制，不必先上 PPO）
-- 用 PPO 在简单环境（gymnasium）里训一个策略；[Cartpole 问题](../wiki/concepts/cartpole.md) 对照 `CartPole-v1` 与 `Isaac-Cartpole-v0` 的动作/奖励/终止差异
-- 理解 reward shaping、policy gradient、value function 的意义
-- 对照 [MDP](../wiki/formalizations/mdp.md) 五元组，能说清自己环境里的 $S,A,R,P,\gamma$ 各是什么
+**Việc nên làm được đề xuất:**
+- Lần đầu tiên chạy qua [vòng kín tối thiểu RL được thể hiện](../wiki/concepts/embodied-rl-minimal-closed-loop.md): [PyBullet](../wiki/entities/pybullet.md) Nhiệm vụ điểm cố định KUKA, căn chỉnh $S,A,R,P$ với `stepSimulation` (có thể được kiểm soát bằng tốc độ viết tay, không cần phải tăng lên trước) PPO)
+- Sử dụng PPO để rèn luyện chiến lược trong môi trường đơn giản (phòng tập thể dục); [Vấn đề về Cartpole](../wiki/concepts/cartpole.md) So sánh sự khác biệt về hành động/phần thưởng/chấm dứt giữa `CartPole-v1` và `Isaac-Cartpole-v0`
+- Hiểu ý nghĩa của việc định hình phần thưởng, độ dốc chính sách và hàm giá trị
+- So sánh năm bộ [MDP](../wiki/formalizations/mdp.md) và có thể nói rõ ràng từng bộ $S,A,R,P,\gamma$ trong môi trường của riêng bạn
 
-**推荐读什么：**
-- [动手学强化学习（蘑菇书）](../wiki/entities/hands-on-rl-book.md) — 中文 RL 基础与 PPO/SAC 实践（[在线书](https://hrl.boyuai.com/) / [视频课](https://www.boyuai.com/elites/course/xVqhU42F5IDky94x)）
+**Đề nghị đọc:**
+- [Học tăng cường thực hành (Sách về nấm)](../wiki/entities/hands-on-rl-book.md) — Kiến thức cơ bản về RL tiếng Trung và Thực hành PPO/SAC ([Sách trực tuyến](https://hrl.boyuai.com/) / [Bài học video](https://www.boyuai.com/elites/course/xVqhU42F5IDky94x))
 - Spinning Up (OpenAI)
 - [Reinforcement Learning](../wiki/methods/reinforcement-learning.md)
 - [Policy Optimization](../wiki/methods/policy-optimization.md)
 - [PPO vs SAC](../wiki/comparisons/ppo-vs-sac.md)
-- [POMDP](../wiki/formalizations/pomdp.md) — 真机部署前必读
+- [POMDP](../wiki/formalizations/pomdp.md) — phải đọc trước khi triển khai trên thiết bị thực
 
-**RL 主干概念链（Physical AI 视角只需吃透这一条）：**
+**Chuỗi khái niệm xương sống RL (từ góc độ AI vật lý, bạn chỉ cần hiểu kỹ về chuỗi này):**
 
 ```mermaid
 flowchart LR
-  MDP["MDP<br/>S · A · R · P · γ"] --> V["Value Function<br/>V(s) / Q(s,a)"]
-  V --> PG["Policy Gradient<br/>∇ log π · Advantage"]
-  PG --> AC["Actor-Critic<br/>actor 出动作 · critic 估值"]
-  AC --> GAE["GAE<br/>λ 加权的 TD error"]
-  GAE --> PPO["PPO<br/>ratio + clipping"]
+  MDP["MDP<br/>S · A · R · P · γ"] --> V["Giá trị Hàm<br/>V(s) / Q(s,a)"]
+  V --> PG["Gradient chính sách<br/>∇ log π · Lợi thế"]
+  PG --> AC["Actor-Critic<br/>actor sinh hành động · critic ước lượng giá trị"]
+  AC --> GAE["Lỗi TD có trọng số GAE<br/>λ"]
+  GAE --> PPO["Tỷ lệ PPO<br/> + cắt"]
 ```
 
-PPO 一次迭代里要真正看懂的 8 个概念：**trajectory**（并行环境 rollout）→ **reward** → **TD error** \(\delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)\) → **GAE** → **Advantage** \(\hat A_t\) → **ratio** \(r_t = \pi_\theta / \pi_{old}\) → **clipping** \(\mathrm{clip}(r_t, 1-\epsilon, 1+\epsilon)\) → **policy update**（多 epoch minibatch）。
+PPO 8 khái niệm cần thực sự hiểu trong một lần lặp: **quỹ đạo** (triển khai môi trường song song) → **phần thưởng** → **lỗi TD** \(\delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)\) → **GAE** → **Ưu điểm** \(\hat A_t\) → **tỷ lệ** \(r_t = \pi_\theta / \pi_{old}\) → **cắt** \(\mathrm{clip}(r_t, 1-\epsilon, 1+\epsilon)\) → **cập nhật chính sách** (minibatch nhiều kỷ nguyên).
 
-| 概念 | Canonical paper | 站内卡片 |
+| Khái niệm | Giấy Canonical | Thẻ trang web |
 |------|----------------|---------|
 | PPO | [Proximal Policy Optimization Algorithms（arXiv:1707.06347）](https://arxiv.org/abs/1707.06347) | [PPO](../wiki/methods/ppo.md) |
 | GAE | [High-Dimensional Continuous Control Using Generalized Advantage Estimation（arXiv:1506.02438）](https://arxiv.org/abs/1506.02438) | [GAE](../wiki/methods/gae.md) |
 
-工程实现参考：[rsl_rl](https://github.com/leggedrobotics/rsl_rl)（legged_gym / Isaac Lab 人形与足式训练常用的 PPO 实现）。
+Tài liệu tham khảo triển khai kỹ thuật: [rsl_rl](https://github.com/leggedrobotics/rsl_rl) (legged_gym / Isaac Lab PPO triển khai thường được sử dụng trong huấn luyện hình người và chân).
 
-**学完输出什么：**
-- 能解释 PPO 的核心思路
-- 能设计一个简单的 RL reward 并训练
+** Kết quả đầu ra sau khi học:**
+- Có thể giải thích ý tưởng cốt lõi của PPO
+- Có thể thiết kế phần thưởng RL đơn giản và huấn luyện nó
 
-**自测题：**
-- 解释 PPO 的 clipping 机制为什么能避免 policy 更新过大；clip 阈值太大 / 太小分别会出什么问题？
-- 同样数据量下 on-policy（PPO）和 off-policy（SAC）哪个样本效率高？为什么人形 RL 主流仍用 PPO？
-- 给一个 reward 函数（前进项 + 平衡项 + 平滑项），如果机器人学到"小跳着前进"而不是"走路"，你会怎么改 reward？
+**Câu hỏi tự kiểm tra:**
+- Giải thích tại sao cơ chế cắt của PPO có thể tránh được việc cập nhật chính sách quá mức; vấn đề gì sẽ xảy ra nếu ngưỡng clip quá lớn/quá nhỏ?
+- Trong cùng một khối lượng dữ liệu, mẫu nào hiệu quả hơn, theo chính sách (PPO) hay ngoài chính sách (SAC)? Tại sao RL hình người chính thống vẫn sử dụng PPO?
+- Cho chức năng thưởng (tiến kỳ + cân bằng + trơn), nếu robot học cách "nhảy về phía trước" thay vì "đi bộ" thì bạn sẽ thay đổi phần thưởng như thế nào?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  Jump[策略学到小跳前进?] --> C1[惩罚双脚同时离地 / 限制 air-time]
-  C1 --> C2[惩罚 base 垂直速度 / CoM 起伏]
-  C2 --> C3[奖励规整步态与接触时序]
-  C3 --> C4[降低纯前进项 + 力矩平滑]
-  C4 --> C5[AMP / motion prior 约束风格]
+  Jump[Tìm hiểu chiến lược bằng cách thực hiện những bước nhảy vọt nhỏ?] --> C1[Trừng phạt cả hai chân khỏi mặt đất cùng lúc/giới hạn thời gian bay]
+  C1 --> C2[Tốc độ dọc cơ sở phạt / CoM thăng trầm]
+  C2 --> C3[Thưởng cho dáng đi đều đặn và thời gian tiếp xúc]
+  C3 --> C4[Giảm các thuật ngữ chuyển tiếp thuần túy + ​​làm mịn mô men]
+  C4 --> C5[AMP/kiểu ràng buộc trước chuyển động]
 ```
 
 <ol>
-<li><strong>PPO 的 clipping：</strong> 用重要性比 \(r=\pi_\theta/\pi_{\mathrm{old}}\)，目标取 \(\min\!\big(r\hat A,\ \mathrm{clip}(r,1-\epsilon,1+\epsilon)\hat A\big)\)。当一步更新让 \(r\) 偏离 1 过多时，clip 截断 advantage 增益，使越出信赖域的更新拿不到额外回报，从而抑制过大的策略跳变（近似信赖域）。\(\epsilon\) 太大：约束太松、更新过激、易崩；太小：更新太保守、收敛慢、样本利用率低。</li>
-<li><strong>样本效率与为何仍用 PPO：</strong> 同数据量下 off-policy 的 SAC 更省样本（有 replay buffer 反复利用历史），on-policy 的 PPO 数据用完即弃。但人形 RL 主流仍用 PPO，因为大规模并行仿真（IsaacGym 上万环境）让样本"便宜"、瓶颈在 wall-clock 而非样本数，且 PPO 实现简单、超参鲁棒、与并行 on-policy 采样契合、训练稳定、易加 curriculum / DR。</li>
-<li><strong>"小跳前进"如何改 reward：</strong> 多为 reward hack（前进得分未约束接触 / 腾空）。可：① 加同时双脚离地惩罚或限制 feet air-time、要求周期性单脚支撑；② 惩罚 base 垂直速度 / CoM 上下波动；③ 奖励规整步态（步频、足端轨迹、接触时序）；④ 调小纯前进项权重、加力矩 / 能量平滑惩罚抑制爆发弹跳；⑤ 用 AMP / motion prior 约束到"走"的风格。</li>
+Việc cắt <li><strong>PPO: </strong> sử dụng tỷ lệ quan trọng \(r=\pi_\theta/\pi_{\mathrm{old}}\) và mục tiêu là \(\min\!\big(r\hat A,\ \mathrm{clip}(r,1-\epsilon,1+\epsilon)\hat A\big)\). Khi bản cập nhật một bước khiến \(r\) lệch quá nhiều so với 1, clip sẽ cắt bớt lợi thế để các bản cập nhật ngoài vùng tin cậy không nhận được phần thưởng bổ sung, từ đó ngăn chặn việc nhảy chính sách quá mức (vùng tin cậy gần đúng). \(\epsilon\) quá lớn: các ràng buộc quá lỏng lẻo, cập nhật quá mức và dễ bị sập; quá nhỏ: quá trình cập nhật quá thận trọng, độ hội tụ chậm và mức sử dụng mẫu thấp. </li>
+Hiệu suất mẫu <li><strong> và lý do PPO vẫn được sử dụng: SAC ngoài chính sách </strong> lưu nhiều mẫu hơn (có lịch sử sử dụng lặp lại bộ đệm phát lại) với cùng một lượng dữ liệu, trong khi dữ liệu PPO theo chính sách sẽ bị loại bỏ sau khi sử dụng. Tuy nhiên, xu hướng chủ đạo của RL hình người vẫn sử dụng PPO, vì mô phỏng song song quy mô lớn (IsaacGym hàng chục nghìn môi trường) làm cho các mẫu trở nên "rẻ", điểm nghẽn là đồng hồ treo tường chứ không phải số lượng mẫu và PPO dễ triển khai, có siêu tham số mạnh mẽ, phù hợp với lấy mẫu chính sách song song, ổn định trong đào tạo và dễ sử dụng thêm chương trình giảng dạy/DR. </li>
+<li><strong> Cách thay đổi phần thưởng "nhảy nhỏ về phía trước": </strong> chủ yếu là hack phần thưởng (điểm chuyển tiếp không bị hạn chế khi tiếp xúc/bay). Bạn có thể: ① đồng thời bổ sung các hình phạt đối với các chân không chạm đất hoặc hạn chế thời gian bay của chân và yêu cầu hỗ trợ định kỳ bằng một chân; ② trừng phạt tốc độ dọc cơ sở / dao động lên xuống CoM; ③ khen thưởng dáng đi đều đặn (tần số bước, quỹ đạo bàn chân, thời gian tiếp xúc); ④ giảm trọng lượng của thuật ngữ chuyển tiếp thuần túy, thêm hình phạt làm mịn mô-men xoắn / năng lượng để ngăn chặn sự nảy nổ; ⑤ sử dụng AMP / chuyển động trước Bị hạn chế theo kiểu "đi". </li>
 </ol>
 </details>
 
 ---
 
-### L5.2 RL 在人形运动控制里的应用
+<a id="l52-rl-在人形运动控制里的应用"></a>
+### Ứng dụng L5.2 RL trong điều khiển chuyển động hình người
 
-> **场景隐喻：** 通用 RL 算法直接套到人形上往往学不会——需要给它"合适的奖励 / 观测 / 动作空间 + 一堆训练 trick"。L5.2 是把 L5.1 的玩具环境落到真人形 locomotion 的工程细节。
+> **Ẩn dụ cảnh:** Thuật toán RL chung thường không thể học được khi áp dụng trực tiếp cho hình người - nó cần được trao "phần thưởng/quan sát/không gian hành động thích hợp + một loạt thủ thuật huấn luyện". L5.2 là một chi tiết kỹ thuật giúp môi trường đồ chơi của L5.1 trở nên vận động như đời thực.
 
-> **上一层的局限：** L5.1 让你在 [CartPole](../wiki/concepts/cartpole.md) 上跑通 PPO；人形 25 DOF + 浮动基的状态空间维度高几个量级，需要 reward shaping、curriculum、early termination、特权信息、teacher-student 等专门技巧。
+> **Hạn chế của lớp trước:** L5.1 cho phép bạn chạy qua PPO trên [CartPole](../wiki/concepts/cartpole.md); chiều không gian trạng thái của cơ sở nổi 25 DOF + hình người cao hơn nhiều bậc, đòi hỏi các kỹ năng chuyên biệt như định hình phần thưởng, chương trình giảng dạy, chấm dứt sớm, thông tin đặc quyền, giáo viên-học sinh, v.v.
 
-#### 英文缩写速查（L5.2）
+#### Kiểm tra nhanh từ viết tắt tiếng Anh (L5.2)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| DR | Domain Randomization | 仿真随机化物理 / 传感参数以缩小 sim2real gap。 |
-| PD | Proportional–Derivative | 底层关节位置跟踪；RL 常输出 PD 目标。 |
-| AMP | Adversarial Motion Priors | 判别器约束策略接近 MoCap 风格。 |
-| ET | Early Termination | 摔倒等提前结束 episode，节省训练。 |
-| Priv. | Privileged Information | 仅仿真 teacher 可见的额外状态。 |
-| T–S | Teacher–Student | 全观测 teacher 蒸馏受限观测 student。 |
-| Loco | Locomotion | 移动 / 步行类运动技能。 |
+| DR | Ngẫu nhiên tên miền | Mô phỏng ngẫu nhiên hóa các tham số vật lý/cảm biến để giảm khoảng cách sim2real. |
+| PD | Tỷ lệ–Đạo hàm | Theo dõi vị trí chung ở cấp độ thấp nhất; RL thường xuất ra mục tiêu PD. |
+| AMP | Ưu tiên chuyển động đối nghịch | Chiến lược hạn chế phân biệt đối xử gần với phong cách MoCap. |
+| ET | Chấm dứt sớm | Kết thúc tập phim sớm để tiết kiệm thời gian luyện tập nếu bạn bị ngã. |
+| Riêng tư. | Thông tin đặc quyền | Trạng thái bổ sung chỉ hiển thị với giáo viên mô phỏng. |
+| T–S | Giáo Viên-Học Sinh | Giáo viên quan sát đầy đủ Chưng cất học sinh quan sát hạn chế. |
+| Loco | Đầu máy | Kỹ năng vận động/đi bộ. |
 
-**前置知识：** L5.1 + L4.3/4.4
+**Kiến thức tiên quyết:** L5.1 + L4.3/4.4
 
-**核心问题：** RL 怎么和 MPC / WBC 结合，sim2real 怎么做到
+**Câu hỏi cốt lõi:** Cách kết hợp RL với MPC / WBC, cách thực hiện với sim2real
 
-**推荐做什么：**
-- 用 IsaacGym / IsaacLab 训练一个人形行走策略
-- 尝试 RL + WBC 的组合框架
+**Việc nên làm được đề xuất:**
+- Luyện tập chiến lược đi bộ giống người với IsaacGym/IsaacLab
+- Thử framework kết hợp RL + WBC
 
-**推荐读什么：**
+**Đề nghị đọc:**
 - "DeepMimic" (Peng et al.)
 - "AMP: Adversarial Motion Priors"
 - legged_gym / IsaacGymEnvs
@@ -1214,45 +1228,45 @@ flowchart TD
 - [Isaac Gym / Isaac Lab](../wiki/entities/isaac-gym-isaac-lab.md)
 - [WBC vs RL](../wiki/comparisons/wbc-vs-rl.md)
 - [MPC vs RL](../wiki/comparisons/mpc-vs-rl.md)
-- [Query：开源运动控制项目导航](../wiki/queries/open-source-motion-control-projects.md)
+- [Truy vấn: Điều hướng dự án điều khiển chuyển động nguồn mở](../wiki/queries/open-source-motion-control-projects.md)
 
-**PPO 在人形上的四个分支：**
+**Bốn nhánh của PPO trên hình dạng con người:**
 
 ```mermaid
 flowchart TB
-  PPO["PPO"] --> Loco["Locomotion RL<br/>速度跟踪 · 地形 curriculum"]
-  PPO --> Mimic["Motion Imitation<br/>DeepMimic 式跟踪奖励（L5.3）"]
-  PPO --> AMP["AMP<br/>task reward + style reward"]
-  PPO --> S2R["Sim2Real<br/>DR · Teacher-Student（L6）"]
+  PPO --> Loco["RL cho vận động<br/>Bám tốc độ · Lộ trình địa hình"]
+  PPO --> Mimic["Phần thưởng theo dõi kiểu Motion Imitation<br/>DeepMimic (L5.3)"]
+  PPO --> AMP["Phần thưởng nhiệm vụ AMP<br/> + phần thưởng phong cách"]
+  PPO --> S2R["Sim2Real<br/>DR · Giáo viên-Học sinh（L6)"]
 ```
 
-- 训练平台：[Isaac Lab](../wiki/entities/isaac-lab.md)（GPU 并行仿真 + RL 任务框架）；AMP 的奖励结构见 [AMP Reward](../wiki/methods/amp-reward.md)。
+- Nền tảng đào tạo: [Isaac Lab](../wiki/entities/isaac-lab.md) (mô phỏng song song GPU + khung tác vụ RL); để biết cấu trúc phần thưởng của AMP, hãy xem [Phần thưởng AMP](../wiki/methods/amp-reward.md).
 
-**学完输出什么：**
-- 能在仿真里训练一个人形行走 RL 策略
-- 能解释 RL 和 WBC 各自的优势和局限
+** Kết quả đầu ra sau khi học:**
+- Có thể huấn luyện chiến lược RL đi bộ hình người trong mô phỏng
+- Có thể giải thích được ưu điểm, hạn chế tương ứng của RL và WBC
 
-**自测题：**
-- 人形 RL 通常用 position / velocity / torque 中哪种 action space？为什么 IsaacLab 默认选这种？
-- "Privileged information"（特权信息）在 teacher-student 中具体是什么？为什么 student 拿不到？
-- AMP / DeepMimic 这类 motion prior 方法和纯 PPO 比，最大的工程优势是什么？
+**Câu hỏi tự kiểm tra:**
+- Không gian hành động nào giữa vị trí/vận tốc/mômen xoắn thường được sử dụng cho RL dạng người? Tại sao IsaacLab chọn tùy chọn này theo mặc định?
+- Chính xác thì “Thông tin đặc quyền” trong giáo viên-học sinh là gì? Tại sao học sinh không thể có được nó?
+- AMP / DeepMimic Ưu điểm kỹ thuật lớn nhất của loại phương pháp chuyển động trước này so với PPO thuần túy là gì?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  Act[人形 RL action] --> Pos[关节目标位置 + 底层 PD]
-  Pos --> Why[易训、平滑、对噪声鲁棒、sim2real 对齐增益]
-  Teach[Teacher-Student] --> Priv[Teacher 用特权：摩擦 / 地形 / 真实参数]
-  Priv --> Stud[Student 仅 IMU / 编码器 / 可选视觉]
-  Stud --> Distill[蒸馏到可部署策略]
+  Act[Hành động búp bê RL] --> Pos[Vị trí mục tiêu chung + lớp dưới cùng PD]
+  Pos --> Why[Dễ huấn luyện, mượt mà, chống ồn tốt, tăng cường căn chỉnh sim2real]
+  Teach[Giáo Viên-Học Sinh] --> Priv[Giáo viên sử dụng các đặc quyền: Ma sát / Địa hình / Thông số thực]
+  Priv --> Stud[Chỉ dành cho sinh viên IMU / Bộ mã hóa / Tầm nhìn tùy chọn]
+  Stud --> Distill[Chắt lọc thành các chiến lược có thể triển khai]
 ```
 
 <ol>
-<li><strong>action space 选择：</strong> 人形 RL 主流用 position（输出关节目标位置 / 相对默认姿态的偏移，交底层 PD 跟踪）。IsaacLab 默认这种，因为 PD 在高频跟踪、给策略一个低频平滑易学的接口，自带阻尼与稳定性、对网络输出噪声鲁棒，sim2real 时只要对齐 PD 增益即可；直接 torque 高频易抖、对延迟敏感，既难训也难迁移。</li>
-<li><strong>特权信息：</strong> 指仿真可得、真机部署拿不到的精确量：真实地面摩擦 / 接触力、地形高度图、机器人质量 / 惯量、外力扰动、精确 base 速度等。teacher 用它训得又快又好；student 只能用真机可得的本体感（IMU、编码器、历史）加可选视觉，通过蒸馏 / 模仿 teacher 学到受限观测下的策略——因为部署时没有这些特权传感。</li>
-<li><strong>motion prior 的工程优势：</strong> AMP / DeepMimic 用参考动作（MoCap）作先验，最大优势是免去手工设计复杂 reward——风格 / 自然度由对抗判别器或模仿误差自动提供，省掉大量 reward shaping 与调参，得到自然可迁移的步态；同时缩小探索空间、加速收敛、避免纯 PPO 学出的怪异 gait。</li>
+Lựa chọn không gian hành động <li><strong>: </strong> hình người RL vị trí chính (vị trí mục tiêu chung đầu ra/độ lệch so với tư thế mặc định, được chuyển sang theo dõi PD bên dưới). IsaacLab mặc định điều này vì PD theo dõi ở tần số cao, mang lại cho chiến lược một giao diện mượt mà và dễ học ở tần số thấp, với tính năng giảm chấn và ổn định tích hợp, đồng thời có khả năng chống nhiễu đầu ra mạng mạnh mẽ. Khi sử dụng sim2real, chỉ cần căn chỉnh mức tăng PD; mô-men xoắn trực tiếp dễ bị dao động ở tần số cao và nhạy cảm với độ trễ, gây khó khăn cho việc huấn luyện và di chuyển. </li>
+<li><strong> Thông tin đặc quyền: </strong> đề cập đến các đại lượng chính xác có thể thu được bằng mô phỏng nhưng không thể thu được bằng cách triển khai máy thực: ma sát mặt đất/lực tiếp xúc thực, bản đồ độ cao địa hình, khối lượng/quán tính của robot, nhiễu bên ngoài, tốc độ cơ sở chính xác, v.v. Giáo viên sử dụng nó để đào tạo nhanh chóng và tốt; học sinh chỉ có thể sử dụng khả năng nhận biết có sẵn trên máy thật (IMU, bộ mã hóa, lịch sử) cùng với tầm nhìn tùy chọn và học chiến lược trong điều kiện quan sát hạn chế thông qua việc chắt lọc/bắt chước của giáo viên - vì không có cảm biến đặc quyền này khi được triển khai. </li>
+Ưu điểm kỹ thuật của <li><strong> trước chuyển động: </strong> AMP / DeepMimic sử dụng chuyển động tham chiếu (MoCap) làm chuyển động trước. Ưu điểm lớn nhất là nó loại bỏ nhu cầu thiết kế các phần thưởng phức tạp theo cách thủ công - phong cách/sự tự nhiên được cung cấp tự động bởi người phân biệt đối xử hoặc lỗi bắt chước, tiết kiệm rất nhiều phần thưởng định hình và điều chỉnh các thông số để có được dáng đi tự nhiên và có thể chuyển đổi; đồng thời, không gian khám phá bị giảm đi, sự hội tụ được tăng tốc và tránh được dáng đi kỳ lạ mà PPO thuần túy học được. </li>
 </ol>
 </details>
 
@@ -1260,33 +1274,33 @@ flowchart TD
 
 <a id="l5-3-imitation-learning"></a>
 
-### L5.3 模仿学习
+### L5.3 Học bắt chước
 
-> **场景隐喻：** 与其让机器人反复试错，不如让它"看人怎么做"——MoCap、遥操作数据进来，机器人直接输出相似动作。
+> **Ẩn dụ tình huống:** Thay vì để robot liên tục thử và mắc lỗi, tốt hơn nên để nó "xem mọi người làm gì" - dữ liệu MoCap và hoạt động từ xa được đưa vào và robot trực tiếp đưa ra các hành động tương tự.
 
-> **上一层的局限：** 纯 RL 在复杂动作（跳舞、操作、跑酷）上探索成本极高、reward 极难写。IL 用人类示范数据给一个**好起点**；但 IL 本身有 compounding error，通常要叠 RL 或 DAgger 才稳。
+> **Hạn chế của lớp trước:** RL thuần túy cực kỳ tốn kém để khám phá các hành động phức tạp (nhảy múa, vận hành, parkour) và phần thưởng cực kỳ khó viết. IL sử dụng dữ liệu trình diễn của con người để đưa ra **điểm khởi đầu tốt**; nhưng bản thân IL có lỗi gộp và thường cần phải xếp chồng lên nhau với RL hoặc DAgger để ổn định.
 
-#### 英文缩写速查（L5.3）
+#### Kiểm tra nhanh từ viết tắt tiếng Anh (L5.3)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| IL | Imitation Learning | 从专家轨迹学习策略。 |
-| BC | Behavior Cloning | 监督学习 \(\pi(s)\approx a_{\mathrm{expert}}\)。 |
-| DAgger | Dataset Aggregation | 在策略访问状态上请 expert 重新标注。 |
-| MoCap | Motion Capture | 人体 / 物体运动捕捉数据。 |
-| Retarget | Motion Retargeting | 将示范骨架映射到目标机器人。 |
-| ASE | Adversarial Skill Embeddings | 可组合技能嵌入的 IL / RL 框架之一。 |
-| Cov. Shift | Covariate Shift | 训练与部署状态分布不一致；BC 核心难点。 |
+| IL | Học Bắt Chước | Chiến lược học tập từ quỹ đạo chuyên gia. |
+| BC | Nhân bản hành vi | Học tập có giám sát \(\pi(s)\approx a_{\mathrm{expert}}\). |
+| DAgger | Tổng hợp tập dữ liệu | Xin chuyên gia đánh dấu lại trạng thái truy cập chính sách. |
+| MoCap | Chụp chuyển động | Dữ liệu ghi lại chuyển động của con người/đối tượng. |
+| Nhắm mục tiêu lại | Nhắm mục tiêu lại theo chuyển động | Ánh xạ bộ xương demo tới robot mục tiêu. |
+| ASE | Nhúng kỹ năng đối nghịch | Một trong các khung IL / RL để nhúng kỹ năng tổng hợp. |
+| Cov. Thay đổi | Dịch chuyển đồng biến | Phân phối trạng thái đào tạo và triển khai không nhất quán; Độ khó cốt lõi của BC. |
 
-**前置知识：** L5.1
+**Kiến thức tiên quyết:** L5.1
 
-**核心问题：** 用人类动作数据教机器人做动作
+**Câu hỏi cốt lõi:** Sử dụng dữ liệu hành động của con người để dạy robot thực hiện hành động
 
-**推荐做什么：**
-- 用 MoCap 数据做 motion retargeting（展开见 [L5.4 动作重定向](#l54-动作重定向)）
-- 尝试 Behavior Cloning + DAgger
+**Việc nên làm được đề xuất:**
+- Sử dụng dữ liệu MoCap để nhắm mục tiêu lại theo chuyển động (để biết chi tiết, xem [L5.4 Nhắm mục tiêu lại theo chuyển động](#l54-动作重定向))
+- Thử nhân bản hành vi + DAgger
 
-**推荐读什么：**
+**Đề nghị đọc:**
 - "ASE: Adversarial Skill Embeddings"
 - "DeepMimic"
 - [Imitation Learning](../wiki/methods/imitation-learning.md)
@@ -1294,804 +1308,807 @@ flowchart TD
 - [DAgger](../wiki/methods/dagger.md)
 - [Motion Retargeting](../wiki/concepts/motion-retargeting.md)
 
-**模仿学习谱系（从监督到"参考动作 + 物理仿真 + RL"）：**
+**Phả hệ học tập bắt chước (từ giám sát đến "hành động tham khảo + mô phỏng vật lý + RL"): **
 
 ```mermaid
 flowchart TB
-  IL["Imitation Learning"] --> BC["Behavior Cloning<br/>监督回归专家动作"]
-  BC --> DAg["DAgger<br/>在策略访问状态上补标注"]
-  IL --> DM["DeepMimic<br/>reference motion + 物理仿真 + RL"]
-  DM --> AMP["AMP<br/>判别器学 motion prior<br/>task reward + style reward"]
-  DM --> BM["BeyondMimic<br/>规模化动作跟踪 → 引导扩散"]
-  DM --> MK["MimicKit<br/>DeepMimic / AMP / ASE 统一代码底座"]
+  IL["Học bắt chước"] --> BC["Nhân bản hành vi<br/> Hành động của chuyên gia trả về được giám sát"]
+  BC --> DAg["DAgger<br/> thêm chú thích về trạng thái truy cập chính sách"]
+  IL --> DM["DeepMimic<br/>chuyển động tham chiếu + mô phỏng vật lý + RL"]
+  DM --> AMP["AMP: học prior chuyển động bằng bộ phân biệt<br/>Phần thưởng nhiệm vụ + phần thưởng phong cách"]
+  DM --> BM["BeyondMimic<br/> theo dõi hành động quy mô lớn → khuếch tán có hướng dẫn"]
+  DM --> MK["Cơ sở mã hợp nhất MimicKit<br/>DeepMimic/AMP/ASE"]
   AMP --> MK
-  BC -. 生成式动作头 .-> Gen["L9 动作生成"]
+  BC -. đầu ra hành động sinh L9 .-> Gen["Tạo hành động L9"]
 ```
 
-| 方法 | 一句话抓重点 | Canonical paper | Project | Code | 站内卡片 |
+| Phương pháp | Tập trung vào những điểm chính trong một câu | Giấy Canonical | Dự án | Mã | Thẻ trang web |
 |------|-------------|-----------------|---------|------|---------|
-| **DeepMimic** | reference motion + physics simulation + RL：跟踪奖励让物理角色复现动捕 | [arXiv:1804.02717](https://arxiv.org/abs/1804.02717) | [项目页](https://xbpeng.github.io/projects/DeepMimic/) | [xbpeng/DeepMimic](https://github.com/xbpeng/DeepMimic) | [DeepMimic](../wiki/methods/deepmimic.md) |
-| **AMP** | discriminator 学 motion prior，总奖励 = task reward + style reward，不再逐帧跟踪 | [arXiv:2104.02180](https://arxiv.org/abs/2104.02180) | [项目页](https://xbpeng.github.io/projects/AMP/) | [MimicKit · AMP](https://github.com/xbpeng/MimicKit/blob/main/docs/README_AMP.md) | [AMP Reward](../wiki/methods/amp-reward.md) · [AMP 谱系综述](../wiki/overview/humanoid-amp-motion-prior-survey.md) |
-| **BeyondMimic** | 真机人形的规模化动作跟踪 + 用引导扩散组合技能 | [arXiv:2508.08241](https://arxiv.org/abs/2508.08241) | [项目页](https://beyondmimic.github.io/) | [whole_body_tracking](https://github.com/HybridRobotics/whole_body_tracking) | [BeyondMimic](../wiki/methods/beyondmimic.md) |
-| **MimicKit** | Peng 团队的模块化运动模仿框架，一套代码跑多种算法 | [arXiv:2510.13794](https://arxiv.org/abs/2510.13794) | — | [xbpeng/MimicKit](https://github.com/xbpeng/MimicKit) | [MimicKit](../wiki/entities/mimickit.md) |
-| **DAgger** | 交互式补标注，缓解 BC 的 compounding error | [arXiv:1011.0686](https://arxiv.org/abs/1011.0686) | — | — | [DAgger](../wiki/methods/dagger.md) |
+| **DeepMimic** | chuyển động tham chiếu + mô phỏng vật lý + RL: Phần thưởng theo dõi cho phép tái tạo các nhân vật vật lý trong chụp chuyển động | [arXiv:1804.02717](https://arxiv.org/abs/1804.02717) | [Trang dự án](https://xbpeng.github.io/projects/DeepMimic/) | [xbpeng/DeepMimic](https://github.com/xbpeng/DeepMimic) | [DeepMimic](../wiki/methods/deepmimic.md) |
+| **AMP** | người phân biệt đối xử học chuyển động trước, tổng phần thưởng = phần thưởng nhiệm vụ + phần thưởng phong cách, không còn theo dõi từng khung hình | [arXiv:2104.02180](https://arxiv.org/abs/2104.02180) | [Trang dự án](https://xbpeng.github.io/projects/AMP/) | [MimicKit · AMP](https://github.com/xbpeng/MimicKit/blob/main/docs/README_AMP.md) | [Phần thưởng AMP](../wiki/methods/amp-reward.md) · [Đánh giá phả hệ AMP](../wiki/overview/humanoid-amp-motion-prior-survey.md) |
+| **BeyondMimic** | Theo dõi chuyển động quy mô lớn của hình người thật + kỹ năng kết hợp với khuếch tán có hướng dẫn | [arXiv:2508.08241](https://arxiv.org/abs/2508.08241) | [Trang dự án](https://beyondmimic.github.io/) | [whole_body_tracking](https://github.com/HybridRobotics/whole_body_tracking) | [BeyondMimic](../wiki/methods/beyondmimic.md) |
+| **MimicKit** | Khung mô phỏng chuyển động mô-đun của nhóm Peng, một bộ mã có thể chạy nhiều thuật toán | [arXiv:2510.13794](https://arxiv.org/abs/2510.13794) | — | [xbpeng/MimicKit](https://github.com/xbpeng/MimicKit) | [MimicKit](../wiki/entities/mimickit.md) |
+| **DAgger** | Chú thích tương tác để giảm bớt lỗi gộp của BC | [arXiv:1011.0686](https://arxiv.org/abs/1011.0686) | — | — | [DAgger](../wiki/methods/dagger.md) |
 
-> AMP 官方项目页给出的代码入口是 DeepMimic / MimicKit 仓库，本路线以 MimicKit 中的 AMP 文档为代码链接。
+> Mục nhập mã được cung cấp trên trang dự án chính thức của AMP là kho DeepMimic/MimicKit. Tuyến đường này sử dụng tài liệu AMP trong MimicKit làm liên kết mã.
 
-**学完输出什么：**
-- 能把一段 MoCap 数据迁移到人形机器人上
-- 能解释 DAgger 为什么比纯 BC 更好
+** Kết quả đầu ra sau khi học:**
+- Khả năng di chuyển một phần dữ liệu MoCap sang robot hình người
+- Có thể giải thích tại sao DAgger tốt hơn BC thuần túy
 
-**自测题：**
-- BC 的 compounding error 在数学上意味着什么（提示：状态分布漂移）？
-- DAgger 为什么能缓解 compounding error？需要付出什么额外代价？
-- Motion Retargeting 时，骨骼比例不同 + 关节限位不同分别会造成什么问题？工程上如何缓解？
+**Câu hỏi tự kiểm tra:**
+- Lỗi gộp của BC có ý nghĩa gì về mặt toán học (gợi ý: độ lệch phân bố trạng thái)?
+- DAgger Tại sao có thể giảm bớt lỗi gộp? Cần thêm chi phí gì?
+- Trong quá trình Nhắm mục tiêu lại chuyển động, tỷ lệ xương + giới hạn khớp khác nhau sẽ gây ra vấn đề gì? Làm thế nào để giảm bớt nó trong kỹ thuật?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  BC[BC 只在专家状态分布上训练] --> Drift[策略误差导致状态漂移]
+  BC[BC chỉ đào tạo về phân phối trạng thái chuyên gia] --> Drift[Lỗi chiến lược dẫn đến trạng thái trôi dạt]
   Drift --> O1["$$O(\epsilon T^2)$$"]
-  DAg[DAgger] --> Roll[在策略访问状态上 roll-out]
-  Roll --> Label[Expert 重新标注并聚合数据]
+  DAg[DAgger] --> Roll[triển khai trạng thái truy cập chính sách]
+  Roll --> Label[Chuyên gia dán nhãn lại và tổng hợp dữ liệu]
   Label --> O2["$$O(\epsilon T)$$"]
-  Ret[Motion Retargeting] --> R1[比例不同：IK 匹配末端 / 接触]
-  Ret --> R2[限位不同：裁剪 + 约束优化]
+  Ret[Nhắm mục tiêu lại theo chuyển động] --> R1[Các tỷ lệ khác nhau: đầu/tiếp điểm khớp IK]
+  Ret --> R2[Các giới hạn khác nhau: cắt xén + tối ưu hóa ràng buộc]
 ```
 
 <ol>
-<li><strong>BC 的 compounding error：</strong> 训练只见专家访问过的状态分布，部署时策略自身的小误差把它带到没见过的状态，误差沿时间累积（covariate shift / 状态分布漂移）。数学上若每步误差为 \(\epsilon\)，总误差随时域 \(T\) 呈 \(O(\epsilon T^2)\) 二次放大——一旦偏离，后续状态分布与训练分布失配，错误自我强化。</li>
-<li><strong>DAgger 为何缓解、代价：</strong> DAgger 让策略在自己访问的状态上 roll-out，再请 expert 对这些状态标注正确动作并聚合进数据集迭代，使训练分布逐渐覆盖策略实际遭遇的状态，消除 covariate shift，把误差从 \(O(\epsilon T^2)\) 降到 \(O(\epsilon T)\)。代价：需要一个可随时查询的在线 expert 持续标注（成本高），且在真机上 roll-out 不成熟策略可能不安全。</li>
-<li><strong>Motion Retargeting 的两类问题：</strong> 骨骼比例不同——照搬关节角会使末端（手 / 脚）错位、脚穿地 / 打滑，应按比例缩放并用 IK 匹配末端 / 接触关键点而非照抄关节角；关节限位不同——源动作可能超出物理限位致不可行 / 饱和，应裁剪 / 重映射到可行范围或在优化中加限位约束并重分配。工程上多用 IK + 优化的 retargeting（匹配 CoM / 脚接触 / 末端轨迹）并叠加接触与限位约束。</li>
+Lỗi tổng hợp của <li><strong>BC: Đào tạo </strong> chỉ xem phân phối trạng thái được các chuyên gia truy cập. Lỗi nhỏ của chính chiến lược trong quá trình triển khai sẽ đưa nó đến trạng thái không thể nhìn thấy và lỗi tích lũy theo thời gian (sự thay đổi đồng biến/sự trôi dạt phân phối trạng thái). Về mặt toán học, nếu lỗi ở mỗi bước là \(\epsilon\) thì tổng lỗi sẽ là \(O(\epsilon T^2)\) trong miền thời gian \(T\). Một khi nó đi chệch hướng, phân bố trạng thái tiếp theo sẽ không khớp với phân bố huấn luyện và lỗi sẽ tự tăng cường. </li>
+<li><strong>DAgger Tại sao giảm thiểu và tốn kém: </strong> DAgger Hãy để chiến lược triển khai trên các trạng thái mà nó truy cập, sau đó yêu cầu chuyên gia đánh dấu các hành động chính xác cho các trạng thái này và tổng hợp chúng vào vòng lặp tập dữ liệu, để phân phối đào tạo dần dần bao phủ các trạng thái mà chính sách thực sự gặp phải, loại bỏ dịch chuyển đồng biến và giảm lỗi từ \(O(\epsilon T^2)\) bị hạ cấp xuống \(O(\epsilon T)\). Chi phí: Nó yêu cầu một chuyên gia trực tuyến, người có thể được truy vấn bất cứ lúc nào để chú thích liên tục (chi phí cao) và chiến lược triển khai chưa hoàn thiện trên máy thực có thể không an toàn. </li>
+Hai loại vấn đề với <li><strong>Motion Retargeting: </strong> Tỷ lệ xương khác nhau - sao chép các góc khớp sẽ khiến các đầu (tay/bàn chân) bị lệch và bàn chân xuyên xuống đất/trượt. Bạn nên chia tỷ lệ chúng theo tỷ lệ và sử dụng IK để khớp các đầu/điểm chính tiếp xúc thay vì sao chép các góc khớp; giới hạn chung là khác nhau - tác động của nguồn có thể vượt quá giới hạn vật lý và trở nên không khả thi/bão hòa. Nó nên được cắt bớt/ánh xạ lại thành phạm vi khả thi hoặc nên thêm các ràng buộc giới hạn trong quá trình tối ưu hóa và phân phối lại. IK + nhắm mục tiêu lại được tối ưu hóa (khớp với CoM / tiếp xúc chân / quỹ đạo cuối) thường được sử dụng trong kỹ thuật và các ràng buộc giới hạn và tiếp xúc chồng chất. </li>
 </ol>
 </details>
 
 ---
 
-### L5.4 动作重定向
+<a id="l54-动作重定向"></a>
+### L5.4 Chuyển hướng hành động
 
-> **场景隐喻：** 动捕里那具"人"和你的机器人不是同一副骨架——腿长比例不同、关节更少、限位更严。把人的关节角直接抄过去，机器人会脚滑、穿地、姿态扭曲。L5.4 就是这道"翻译闸"：把人的动作译成机器人**能执行**的参考轨迹。
+> **Ẩn dụ cảnh:** "Người" trong ghi hình chuyển động và robot của bạn không phải là một bộ xương giống nhau - tỷ lệ chiều dài chân khác nhau, có ít khớp hơn và các hạn chế chặt chẽ hơn. Nếu sao chép trực tiếp góc khớp của con người, bàn chân của robot sẽ bị trượt, xuyên xuống đất và tư thế của nó sẽ bị biến dạng. L5.4 chính là “cổng dịch” này: dịch các hành động của con người thành các quỹ đạo tham chiếu mà robot có thể thực hiện.
 
-> **上一层的局限：** L5.3 默认"示范数据已经是机器人能执行的动作"。现实里绝大部分示范来自人（动捕 / 单目视频 / 生成模型），必须先跨骨架映射成机器人参考轨迹，tracking 奖励与 BC 标签才有东西可对齐。这一步的误差会原样传给下游策略，并在 L6 的 sim2real 阶段被继续放大。
+> **Hạn chế của lớp trước:** L5.3 mặc định là "dữ liệu trình diễn đã là hành động mà robot có thể thực hiện". Trên thực tế, hầu hết các cuộc trình diễn đều đến từ con người (mô hình ghi chuyển động/video một mắt/mô hình được tạo), trước tiên phải được ánh xạ qua bộ xương vào quỹ đạo tham chiếu của robot, sau đó có thể căn chỉnh phần thưởng theo dõi và nhãn BC. Lỗi ở bước này sẽ được chuyển không thay đổi sang chiến lược xuôi dòng và tiếp tục được khuếch đại trong giai đoạn sim2real của L6.
 
-#### 英文缩写速查（L5.4）
+#### Kiểm tra nhanh từ viết tắt tiếng Anh (L5.4)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| Retarget | Motion Retargeting | 把人体 / 动物动作映射到目标机器人骨架。 |
-| MoCap | Motion Capture | 最常见的参考动作来源。 |
-| SMPL | Skinned Multi-Person Linear Model | 常用人体参数化模型；重定向的典型输入。 |
-| IK | Inverse Kinematics | 用末端 / 关键点目标反解关节角。 |
-| QP | Quadratic Programming | 把重定向写成带约束二次规划的常用求解形式。 |
-| GMR | General Motion Retargeting | 关键点 IK + QP 的运动学重定向基线。 |
-| NMR | Neural Motion Retargeting | 学习式整段映射，用仿真锚定的配对数据训练。 |
-| WBT | Whole-Body Tracking | 重定向产物的下游消费者：全身跟踪训练。 |
-| AMP | Adversarial Motion Prior | 用参考动作约束 RL 策略风格的判别式奖励。 |
+| Nhắm mục tiêu lại | Nhắm mục tiêu lại theo chuyển động | Ánh xạ chuyển động của con người/động vật tới bộ xương robot mục tiêu. |
+| MoCap | Chụp chuyển động | Nguồn chuyển động tham chiếu phổ biến nhất. |
+| SMPL | Mô hình tuyến tính nhiều người bị lột da | Mô hình tham số cơ thể con người thường được sử dụng; đầu vào điển hình cho chuyển hướng. |
+| IK | Động học nghịch đảo | Góc khớp nghịch đảo sử dụng mục tiêu cuối/điểm khóa. |
+| QP | Lập trình bậc hai | Viết chuyển hướng như một dạng giải pháp phổ biến của lập trình bậc hai bị ràng buộc. |
+| GMR | Nhắm mục tiêu lại chuyển động chung | Đường cơ sở nhắm lại mục tiêu động học của các điểm chính IK + QP. |
+| NMR | Nhắm mục tiêu lại chuyển động thần kinh | Ánh xạ toàn bộ phân đoạn dựa trên học tập, được đào tạo bằng dữ liệu ghép nối được mô phỏng cố định. |
+| WBT | Theo dõi toàn thân | Chuyển hướng người tiêu dùng sản phẩm ở hạ nguồn: đào tạo theo dõi toàn cơ thể. |
+| AMP | Chuyển động đối nghịch trước | Ràng buộc phần thưởng phân biệt đối xử theo kiểu chính sách RL bằng các chuyển động tham chiếu. |
 
-**前置知识：** L1（FK / IK、SE(3)）+ L2（浮动基与接触）+ L5.3
+**Kiến thức tiên quyết:** L1 (FK / IK, SE(3)) + L2 (đế nổi và tiếp điểm) + L5.3
 
-**核心问题：** 怎么把"人怎么动"翻译成"机器人跟得住"的参考轨迹
+**Câu hỏi cốt lõi:** Cách dịch "cách con người di chuyển" sang quỹ đạo tham chiếu của "robot có thể đi theo"
 
-**推荐做什么：**
-- 先做反例实验：取一段 [AMASS](../wiki/entities/amass.md) / [LAFAN1](../wiki/entities/lafan1-dataset.md) 动作，把人体关节角直接拷到人形 URDF 上播放，量一下脚滑、足底穿透与限位越界——建立"为什么不能不做重定向"的第一手直觉
-- 跑通一条运动学基线：关键点 IK + QP（[GMR](../wiki/methods/motion-retargeting-gmr.md) 一类工具），把末端 / 脚接触当代价项、关节限位当硬约束
-- 给产物加质量门禁：脚滑速度、穿透深度、关节速度 / 加速度尖峰、根轨迹漂移，先过滤再进训练集
-- 把重定向产物接到一个跟踪策略上（[DeepMimic](../wiki/methods/deepmimic.md) / [AMP 奖励](../wiki/methods/amp-reward.md) 风格），用"策略跟不跟得住"反过来验证重定向质量
+**Việc nên làm được đề xuất:**
+- Trước tiên, hãy thực hiện một thí nghiệm phản ví dụ: lấy một phần hành động [AMASS](../wiki/entities/amass.md) / [LAFAN1](../wiki/entities/lafan1-dataset.md), sao chép trực tiếp các góc khớp của cơ thể con người sang URDF hình người để phát lại và đo độ trượt của bàn chân, độ xuyên qua của đế và hạn chế tiếp cận quá mức - thiết lập trực giác trực tiếp về "tại sao không thể thực hiện chuyển hướng"
+- Chạy qua đường cơ sở động học: các điểm chính IK + QP ([GMR](../wiki/methods/motion-retargeting-gmr.md) một loại công cụ), coi tiếp xúc đầu/chân là chi phí và giới hạn khớp là ràng buộc cứng
+- Thêm kiểm soát truy cập chất lượng vào sản phẩm: tốc độ trượt chân, độ sâu xuyên thấu, tốc độ khớp/đỉnh gia tốc, độ lệch quỹ đạo gốc, lọc trước rồi vào tập huấn luyện
+- Kết nối sản phẩm chuyển hướng với chiến lược theo dõi ([DeepMimic](../wiki/methods/deepmimic.md) / [Phần thưởng AMP](../wiki/methods/amp-reward.md)) và sử dụng "liệu chiến lược có thể tuân theo hay không" để xác minh chất lượng chuyển hướng.
 
-**推荐读什么：**
-- [Motion Retargeting](../wiki/concepts/motion-retargeting.md) — 概念主入口
-- [Motion Retargeting Pipeline](../wiki/concepts/motion-retargeting-pipeline.md) — 采集 → 对齐 → 求解 → 筛选的端到端链路
-- [Motion Retargeting Objective](../wiki/formalizations/motion-retargeting-objective.md) — 目标函数与约束的形式化
-- [GMR vs NMR vs ReActor](../wiki/comparisons/gmr-vs-nmr-vs-reactor.md) — 三条路线选型
-- [运动学可行与动力学可行](../wiki/concepts/kinematic-vs-dynamic-feasibility.md) — 本节最容易踩的认知坑
-- [Motion Data Quality](../wiki/concepts/motion-data-quality.md)、[人形参考动作数据集对比](../wiki/comparisons/humanoid-reference-motion-datasets.md)
-- 想继续深入：[纵深路线：动作重定向](depth-motion-retargeting.md)（Stage 0–6 完整谱系，含四足支线与轨迹编辑器工具链）
+**Đề nghị đọc:**
+- [Nhắm mục tiêu lại theo chuyển động](../wiki/concepts/motion-retargeting.md) — Lối vào chính của khái niệm
+- [Đường dẫn nhắm mục tiêu lại chuyển động](../wiki/concepts/motion-retargeting-pipeline.md) — Chuyển đổi → Căn chỉnh → Giải quyết → Liên kết đầu cuối được lọc
+- [Mục tiêu nhắm mục tiêu lại chuyển động](../wiki/formalizations/motion-retargeting-objective.md) — Chính thức hóa các chức năng mục tiêu và các ràng buộc
+- [GMR vs NMR vs ReActor](../wiki/comparisons/gmr-vs-nmr-vs-reactor.md) — Lựa chọn ba tuyến đường
+- [Khả thi về mặt động học và khả thi về mặt động](../wiki/concepts/kinematic-vs-dynamic-feasibility.md) — Cạm bẫy nhận thức dễ dàng nhất trong phần này
+- [Chất lượng dữ liệu chuyển động](../wiki/concepts/motion-data-quality.md), [So sánh tập dữ liệu chuyển động tham chiếu hình người](../wiki/comparisons/humanoid-reference-motion-datasets.md)
+- Muốn đi sâu hơn: [Tuyến đường sâu: Chuyển hướng hành động](depth-motion-retargeting.md) (Dòng dõi hoàn chỉnh Giai đoạn 0–6, bao gồm đường nhánh bốn nhánh và chuỗi công cụ chỉnh sửa quỹ đạo)
 
-**学完输出什么：**
-- 能把一段公开 MoCap 重定向到指定人形模型，并给出脚滑 / 穿透 / 限位的量化质量报告
-- 能说清运动学优化、学习式映射、物理感知三条路线的取舍，并为"实时遥操作"与"离线批量造训练数据"分别选型
-- 能把重定向产物喂进跟踪训练，并判断失败是数据问题还是策略问题
+** Kết quả đầu ra sau khi học:**
+- Có thể chuyển hướng MoCap công khai sang một mô hình hình người cụ thể và cung cấp báo cáo chất lượng định lượng về khả năng trượt/xâm nhập/hạn chế của chân
+- Có thể giải thích rõ ràng sự cân bằng giữa ba lộ trình tối ưu hóa động học, lập bản đồ học tập và nhận thức vật lý, đồng thời đưa ra các lựa chọn riêng biệt cho "điều hành từ xa theo thời gian thực" và "tạo dữ liệu đào tạo hàng loạt ngoại tuyến"
+- Có thể đưa các sản phẩm chuyển hướng vào chương trình đào tạo theo dõi và xác định xem lỗi là do vấn đề dữ liệu hay vấn đề chiến lược
 
-**自测题：**
-- 重定向的目标函数通常由哪几项组成？其中哪些必须写成硬约束而不是罚项，为什么？
-- 一段重定向结果"看起来很像人"，但跟踪策略怎么训都跟不住，可能的原因是什么？
-- 实时全身遥操作 vs 离线批量生产 BFM 训练数据，两个场景分别该选哪类重定向路线？
+**Câu hỏi tự kiểm tra:**
+- Chức năng đích của redirect thường bao gồm những mục nào? Điều nào trong số này phải được viết dưới dạng những ràng buộc cứng rắn hơn là hình phạt, và tại sao?
+- Một kết quả chuyển hướng "trông rất giống con người", nhưng chiến lược theo dõi dù có được huấn luyện chăm chỉ đến đâu cũng không thể tuân theo. Những lý do có thể là gì?
+- Vận hành từ xa toàn cơ thể theo thời gian thực so với sản xuất hàng loạt dữ liệu huấn luyện BFM ngoại tuyến. Nên chọn loại tuyến chuyển hướng nào trong hai trường hợp?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  Src[人体参考: MoCap / 视频 / 生成] --> Align[骨架与坐标对齐]
-  Align --> Opt[IK/QP: 姿态相似 + 末端接触 + 平滑]
-  Opt --> Hard[硬约束: 关节限位 / 自碰 / 足底不穿地]
-  Hard --> QC[质量门禁: 脚滑 / 穿透 / 速度尖峰 / 根漂移]
-  QC --> Track[跟踪训练: DeepMimic / AMP / WBT]
-  Track -->|跟不住则回修参考| Opt
+  Src[Tham chiếu cơ thể con người: MoCap / Video / Tạo] --> Align[Bộ xương căn chỉnh theo tọa độ]
+  Align --> Opt[IK/QP: tư thế tương tự + tiếp xúc đầu cuối + trơn tru]
+  Opt --> Hard[Hạn chế cứng: giới hạn khớp/tự va chạm/đế không xuyên đất]
+  Hard --> QC[Cổng chất: Trượt chân/Thâm nhập/Tăng tốc/Trôi gốc]
+  QC --> Track[Theo dõi đào tạo: DeepMimic / AMP / WBT]
+  Track -->|Nếu không theo kịp thì quay lại sửa lại để tham khảo.| Opt
 ```
 
 <ol>
-<li><strong>目标函数与硬约束：</strong> 典型形态是加权和——姿态相似项（关节角 / 关键点位置对齐）、末端与接触项（手脚位置、支撑足零滑移）、平衡项（CoM / ZMP 落在支撑域内）、平滑项（关节速度 / 加速度正则），再加关节限位与自碰。其中**关节限位、自碰、足底不穿地属于可行性约束，必须写成硬约束**：写成罚项时求解器会为了降低姿态误差而"买断"惩罚，产出一条物理上根本执行不了的参考，错误直接进训练集；而相似度、平滑度是偏好，适合当代价项加权取舍。</li>
-<li><strong>"很像"却跟不住：</strong> 典型的<strong>运动学可行 ≠ 动力学可行</strong>。重定向只对齐了几何（关键点误差小），但没约束质量分布与接触力：机器人质量分布、执行器力矩 / 速度上限与人不同，参考里的加速度可能超出关节能力；支撑足接触时序被拉伸或存在毫米级穿透 / 脚滑，跟踪时接触力求解发散；根轨迹（基座高度 / 朝向）由源数据漂移带来，导致参考本身"站不住"。排查顺序：先量参考自身的物理指标（所需力矩、CoM/ZMP 是否出支撑域、足端滑移速度），再看跟踪策略的奖励与增益；用物理感知重定向（仿真内闭环）或在参考上做动力学后处理，比继续调 tracking 超参更对症。</li>
-<li><strong>两个场景的选型：</strong> <strong>实时遥操作</strong>要毫秒级、单帧 / 滑窗输入、可随时换机型 → 选运动学优化路线（GMR 式 IK + QP，CPU 实时、无需训练），物理可行性交给下游 WBC / 跟踪策略兜底。<strong>离线批量造 BFM / WBT 训练数据</strong>没有实时预算但要求物理一致、规模大 → 选学习式整段映射（NMR 式，用仿真锚定的配对数据训练前向网络，吞吐高）或物理感知重定向（ReActor / SPIDER 式，在仿真里联合优化参考与跟踪策略），换来的是接触与自碰在数据阶段就被内生化，下游训练不用反复清洗。</li>
+<li><strong>Hàm mục tiêu và các ràng buộc cứng:</strong>Hình thức điển hình là tổng có trọng số - thuật ngữ tương tự về tư thế (căn chỉnh vị trí góc khớp/điểm then chốt), thuật ngữ kết thúc và tiếp xúc (vị trí tay và chân, độ trượt bằng 0 của chân đỡ), thuật ngữ cân bằng (CoM / ZMPnằm trong miền hỗ trợ), các thuật ngữ làm trơn (vận tốc/độ đều đặn của khớp), cộng với các giới hạn khớp và tự va chạm. Trong số đó, **giới hạn khớp, tự va chạm và đế không xuyên thủng là những hạn chế về tính khả thi và phải được viết dưới dạng ràng buộc cứng**: Khi được viết dưới dạng điều khoản phạt, người giải sẽ "mua" hình phạt để giảm lỗi tư thế, tạo ra một tham chiếu không thể thực hiện được về mặt vật lý và các lỗi sẽ trực tiếp đi vào tập huấn luyện; trong khi sự tương đồng và mượt mà là những ưu tiên, phù hợp để cân nhắc các điều khoản chi phí.</li>
+<li><strong>"Nó rất giống" nhưng tôi không thể theo dõi được:</strong>đặc trưng<strong>khả thi về mặt động học ≠ khả thi về mặt động học</strong>. Việc định hướng lại chỉ căn chỉnh hình học (sai số điểm chính là nhỏ), nhưng không hạn chế sự phân bổ khối lượng và lực tiếp xúc: sự phân bổ khối lượng của robot và giới hạn trên của mô-men xoắn/tốc độ của bộ truyền động khác với con người và gia tốc trong tham chiếu có thể vượt quá khả năng chung; thời gian tiếp xúc của chân đỡ bị kéo dài hoặc có độ xuyên thấu/trượt chân ở mức milimet và giải pháp lực tiếp xúc phân kỳ trong quá trình theo dõi; quỹ đạo gốc (chiều cao/hướng cơ sở) được tạo ra do sự trôi dạt của dữ liệu nguồn, khiến bản thân tham chiếu trở nên "không thể bảo vệ được". Trình tự kiểm tra: Trước tiên, hãy tham khảo các chỉ số vật lý của riêng bạn (mô-men xoắn yêu cầu,CoM/ZMP(Có phải là ngoài miền hỗ trợ, tốc độ trượt chân), sau đó xem phần thưởng và lợi ích của chiến lược theo dõi; sử dụng chuyển hướng nhận thức vật lý (vòng kín trong mô phỏng) hoặc thực hiện xử lý hậu kỳ động trên tham chiếu có nhiều triệu chứng hơn là tiếp tục điều chỉnh các siêu tham số theo dõi.</li>
+<li><strong>Lựa chọn hai kịch bản:</strong> <strong>điều hành từ xa theo thời gian thực</strong>Đối với mức mili giây, đầu vào khung đơn/cửa sổ trượt và khả năng thay đổi mô hình bất kỳ lúc nào → chọn lộ trình tối ưu hóa động học (kiểu GMRIK + QP, CPU thời gian thực, không cần đào tạo), tính khả thi về mặt vật lý được để lại cho hạ lưuWBC/ Theo dõi các chiến lược.<strong>Tạo hàng loạt dữ liệu đào tạo BFM/WBT ngoại tuyến</strong>Không có ngân sách thời gian thực nhưng cần có sự nhất quán về mặt vật lý và quy mô lớn → Chọn ánh xạ toàn bộ phân đoạn dựa trên học tập (loại NMR, sử dụng dữ liệu ghép nối neo mô phỏng để huấn luyện mạng chuyển tiếp, thông lượng cao) hoặc chuyển hướng nhận thức vật lý (loại ReActor/SPIDER, cùng tối ưu hóa các chiến lược tham chiếu và theo dõi trong mô phỏng). Đổi lại, sự tiếp xúc và tự va chạm được nội sinh hóa trong giai đoạn dữ liệu và quá trình đào tạo ở hạ nguồn không cần phải làm sạch nhiều lần.</li>
 </ol>
 </details>
 
 ---
 
-## L6 综合实战
+<a id="l6-综合实战"></a>
+## L6 chiến đấu thực tế toàn diện
 
-**到这里，你应该已经对运动控制和学习两条路都有理解了。最后一步是让它们真正串起来。**
+**Tại thời điểm này, bạn đã có hiểu biết về cả điều khiển vận động và học tập. Bước cuối cùng là thực sự xâu chuỗi chúng lại với nhau. **
 
-> **场景隐喻：** 仿真里走得再好看，真机上摔得最惨——L6 教你怎么填这个"仿真到现实"的鸿沟。
+> **Ẩn dụ cảnh:** Dù bạn trông đẹp đến đâu trong mô phỏng, bạn sẽ rơi vào tình trạng tồi tệ nhất trên máy thật - L6 dạy bạn cách lấp đầy khoảng cách giữa "mô phỏng và thực tế".
 
-> **上一层的局限：** L4 / L5 都在仿真里假设理想：传感器无噪声、执行器无延迟、动力学完全已知。真机里这三条全都不成立，需要 system identification + domain randomization + teacher-student 等专门桥接技术。
+> **Hạn chế của lớp trước:** L4 / L5 đều giả định tính lý tưởng trong mô phỏng: cảm biến không có tiếng ồn, bộ truyền động không có độ trễ và động lực học hoàn toàn được biết đến. Cả ba điều này đều không đúng trong một máy thực, đòi hỏi các công nghệ bắc cầu chuyên dụng như nhận dạng hệ thống + ngẫu nhiên miền + giáo viên-học sinh.
 
-### 英文缩写速查（L6）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L6)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| Sim2Real | Simulation to Reality | 仿真训练策略部署到真机。 |
-| SysID | System Identification | 辨识质量、摩擦、延迟等真实参数。 |
-| DR | Domain Randomization | 训练期随机化以覆盖真机不确定性。 |
-| T–S | Teacher–Student | 特权 teacher 蒸馏部署 student。 |
-| Gap | Sim-to-Real Gap | 仿真与真机动力学 / 传感差异。 |
-| Lat. | Actuator Latency | 执行器与通信延迟；RL 策略尤其敏感。 |
+| Sim2Real | Mô phỏng thành hiện thực | Triển khai chiến lược đào tạo mô phỏng trên máy thật. |
+| SysID | Nhận dạng hệ thống | Xác định các thông số thực như chất lượng, ma sát, độ trễ, v.v. |
+| DR | Ngẫu nhiên tên miền | Thời gian huấn luyện được chọn ngẫu nhiên để che đậy sự không chắc chắn của máy thật. |
+| T–S | Giáo Viên-Học Sinh | Đặc quyền giáo viên Triển khai chưng cất học sinh. |
+| Khoảng cách | Khoảng cách giữa Sim và Real | Sự khác biệt về động lực/cảm biến giữa mô phỏng và máy thật. |
+| Lạt. | Độ trễ của bộ truyền động | Thiết bị truyền động và độ trễ truyền thông; Chính sách RL đặc biệt nhạy cảm. |
 
-### 前置知识
-- L4 全流程
-- L5 RL 和 IL 的基本操作
+### Kiến thức cần thiết
+- L4 đầy đủ quy trình
+- Hoạt động cơ bản của L5 RL và IL
 
-### 核心问题
-- 怎么从训练到部署形成闭环
-- 怎么把仿真训练结果迁移到真实机器人
-- 怎么设计一个完整的 RL + WBC pipeline
+### Vấn đề cốt lõi
+- Cách hình thành một vòng khép kín từ đào tạo đến triển khai
+- Cách chuyển kết quả huấn luyện mô phỏng sang robot thật
+- Cách thiết kế một đường ống RL + WBC hoàn chỉnh
 
-### 推荐做什么
-- 设计并训练一个完整的人形 RL + WBC pipeline
-- 做一次 sim2real 迁移
-- 调 domain randomization 参数观察效果
+### Nên làm gì?
+- Thiết kế và huấn luyện đường ống RL + WBC hình người hoàn chỉnh
+- Thực hiện di chuyển sim2real
+- Điều chỉnh các tham số ngẫu nhiên miền để quan sát hiệu quả
 
-### 推荐读什么
+### Khuyến khích đọc
 - [Sim2Real](../wiki/concepts/sim2real.md)
 - [System Identification](../wiki/concepts/system-identification.md)
 - [Domain Randomization](../wiki/concepts/domain-randomization.md)
-- [Sim2Real Checklist](../wiki/queries/sim2real-checklist.md)（含[快速部署检查](../wiki/queries/sim2real-checklist.md#快速部署检查)）
-- [机器人策略调试手册](../wiki/queries/robot-policy-debug-playbook.md)
+- [Danh sách kiểm tra Sim2Real](../wiki/queries/sim2real-checklist.md) (bao gồm [Kiểm tra triển khai nhanh](../wiki/queries/sim2real-checklist.md#快速部署检查))
+- [Hướng dẫn gỡ lỗi chiến lược robot](../wiki/queries/robot-policy-debug-playbook.md)
 
 <a id="l6-sim2real-chain"></a>
 
-### Sim2Real 主链：从仿真到真机的 10 个关卡
+### Chuỗi chính Sim2Real: 10 cấp độ từ mô phỏng đến máy thật
 
-Sim2Real 不是 RL 的一个小节点，而是一条独立的工程链路：
+Sim2Real không phải là một nút nhỏ của RL, mà là một liên kết kỹ thuật độc lập:
 
 ```mermaid
 flowchart TB
-  Sim["Simulation"] --> DR["Domain Randomization"]
-  DR --> ON["Observation Noise"]
-  ON --> Lat["Latency"]
-  Lat --> Act["Actuator Modeling"]
-  Act --> SID["System Identification"]
-  SID --> TS["Teacher-Student"]
-  TS --> Val["Policy Validation"]
-  Val --> S2S["Sim2Sim<br/>换一个物理引擎再验"]
-  S2S --> Real["Real Robot"]
-  Real -. 失败复盘 .-> SID
+  Sim["Mô phỏng"] --> DR["Ngẫu nhiên hóa tên miền"]
+  DR --> ON["Tiếng ồn quan sát"]
+  ON --> Lat["Độ trễ"]
+  Lat --> Act["Mô hình thiết bị truyền động"]
+  Act --> SID["Nhận dạng hệ thống"]
+  SID --> TS["Giáo Viên-Học Sinh"]
+  TS --> Val["Xác thực chính sách"]
+  Val --> S2S["Sim2Sim<br/> Thay đổi công cụ vật lý và thử lại"]
+  S2S --> Real["Robot thật"]
+  Real -. phân tích nguyên nhân thất bại .-> SID
 ```
 
-**真机 policy 失败的常见来源**（按排查顺序，越靠前越"低级"、越常见）：
+**Các nguồn phổ biến gây ra lỗi chính sách thiết bị thực** (theo thứ tự điều tra, mức độ ưu tiên càng cao thì càng "cấp thấp" và phổ biến hơn):
 
-| 来源 | 典型症状 | 排查入口 |
+| Nguồn | Triệu chứng điển hình | Lối vào khắc phục sự cố |
 |------|---------|---------|
-| **joint ordering** | 上电即抽搐 / 左右腿互换 | [Robot Joint Order Check Tool Online](https://imchong.github.io/Robot_Joint_Order_Check_Tool_Online/)：并排比较 URDF / MJCF 在 Isaac Gym、Isaac Lab、MuJoCo、ros2_control 等中的关节顺序 |
-| **observation mismatch** | 观测维度 / 坐标系 / 单位 / 归一化与训练不一致 | [Robot Learning IO Board Online](https://imchong.github.io/Robot_Learning_IO_Board_Online/)：对照 SONIC / BeyondMimic 等项目训练态与部署态的观测输入、动作输出 · [人形策略观测输入](../wiki/concepts/humanoid-policy-observation-inputs.md) |
-| **action scaling** | 动作幅度过大 / 过小，default pose 偏移 | 同上：对照参考项目的动作输出定义，核对 action scale、default joint pos |
-| **control frequency** | 仿真 decimation 与真机控制周期不一致 | [控制与推理频率解耦](../wiki/concepts/control-inference-frequency-decoupling.md) |
-| **latency** | 高频振荡、相位滞后 | [控制环延迟建模](../wiki/formalizations/control-loop-latency-modeling.md) |
-| **motor model** | 力矩饱和、带宽不足、PD 行为与仿真不同 | [Actuator Network](../wiki/methods/actuator-network.md) · [System Identification](../wiki/concepts/system-identification.md) |
-| **sensor noise** | IMU 漂移、编码器噪声导致抖动 | [Domain Randomization](../wiki/concepts/domain-randomization.md) · [State Estimation](../wiki/concepts/state-estimation.md) |
-| **contact mismatch** | 打滑、落脚冲击与仿真不同 | [Contact Dynamics](../wiki/concepts/contact-dynamics.md) · Sim2Sim 交叉验证 |
+| **đặt hàng chung** | Co giật khi tăng sức mạnh / hoán đổi chân trái và chân phải | [Công cụ kiểm tra đơn hàng chung của Robot trực tuyến](https://imchong.github.io/Robot_Joint_Order_Check_Tool_Online/): So sánh song song thứ tự chung của URDF/MJCF trong Isaac Gym, Isaac Lab, MuJoCo, ros2_control, v.v. |
+| **quan sát không khớp** | Thứ nguyên quan sát/hệ tọa độ/đơn vị/chuẩn hóa không phù hợp với đào tạo | [Robot Learning IO Board Online](https://imchong.github.io/Robot_Learning_IO_Board_Online/): So sánh đầu vào quan sát và đầu ra hành động của trạng thái đào tạo và trạng thái triển khai của SONIC / BeyondMimic và các dự án khác · [Đầu vào quan sát chiến lược hình người](../wiki/concepts/humanoid-policy-observation-inputs.md) |
+| **chia tỷ lệ hành động** | Phạm vi hành động quá lớn/quá nhỏ và tư thế mặc định bị lệch | Tương tự như trên: Kiểm tra thang đo hành động và vị trí chung mặc định so với định nghĩa đầu ra hành động của dự án tham chiếu |
+| **tần số điều khiển** | Số thập phân mô phỏng không phù hợp với chu trình điều khiển máy thực | [Tách tần số điều khiển và suy luận](../wiki/concepts/control-inference-frequency-decoupling.md) |
+| **độ trễ** | Dao động tần số cao, độ trễ pha | [Mô hình độ trễ vòng điều khiển](../wiki/formalizations/control-loop-latency-modeling.md) |
+| **mẫu động cơ** | Bão hòa mô-men xoắn, băng thông không đủ, hành vi của PD khác với mô phỏng | [Mạng thiết bị truyền động](../wiki/methods/actuator-network.md) · [Nhận dạng hệ thống](../wiki/concepts/system-identification.md) |
+| **tiếng ồn cảm biến** | IMU Jitter do trôi và nhiễu bộ mã hóa | [Ngẫu nhiên hóa miền](../wiki/concepts/domain-randomization.md) · [Ước tính trạng thái](../wiki/concepts/state-estimation.md) |
+| **liên hệ không khớp** | Tác động trượt và tiếp đất khác với mô phỏng | [Liên hệ Dynamics](../wiki/concepts/contact-dynamics.md) · Xác thực chéo Sim2Sim |
 
-- **Sim2Sim 先于 Sim2Real**：在 Isaac 训练、在 MuJoCo 回放验证，能在上真机前筛掉大部分顺序 / 缩放 / 频率类错误。在线演示：[Robot Learning Sim2Sim Online](https://imchong.github.io/Robot_Learning_Sim2Sim_Online/)（MuJoCo + ONNX 浏览器内推理）。
-- **Teacher-Student**：特权信息 teacher → 部署观测 student，见 [Teacher-Student / DAgger 训练](../wiki/methods/teacher-student-dagger-training.md)。
-- 系统化展开见 [Sim2Real 纵深路线](depth-sim2real.md)；部署侧的推理 / 通信 / 实时性见 [L12](#physical-ai-l12-deployment)。
+- **Sim2Sim có trước Sim2Real**: được đào tạo trong Isaac và phát lại và xác minh trong MuJoCo, nó có thể lọc hầu hết các lỗi trình tự/tỷ lệ/tần số trước khi chuyển sang máy thật. Bản demo trực tuyến: [Robot Learning Sim2Sim Online](https://imchong.github.io/Robot_Learning_Sim2Sim_Online/) (MuJoCo + ONNX suy luận trên trình duyệt).
+- **Giáo viên-Học sinh**: Thông tin đặc quyền của giáo viên → triển khai học sinh quan sát, xem [Giáo viên-Học sinh / DAgger Training](../wiki/methods/teacher-student-dagger-training.md).
+- Để triển khai có hệ thống, hãy xem [Lộ trình chuyên sâu Sim2Real](depth-sim2real.md); để biết lý luận/giao tiếp/thời gian thực phía triển khai, hãy xem [L12](#physical-ai-l12-deployment).
 
-### 学完输出什么
-- 一个能跑的人形 RL 策略（仿真内）
-- 一次 sim2real 迁移实验记录
-- 对整个 pipeline 的理解文档
+### Kết quả sau khi học là gì
+- Một hình người có thể chạy chiến lược RL (trong mô phỏng)
+- Bản ghi thử nghiệm di chuyển sim2real
+- Hiểu tài liệu cho toàn bộ đường ống
 
-### 自测题（学完应能答出）
-- 给定一个仿真训好的 PPO 策略，列出真机部署前必须做的 5 件事。
-- Domain Randomization 范围选过大 / 过小分别会出什么问题？你怎么定 DR 边界？
-- 执行器延迟在 sim2real 里为什么对 RL 策略的破坏性比对传统 MPC 更大？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Đưa ra chính sách PPO được đào tạo bằng mô phỏng, liệt kê 5 việc phải làm trước khi triển khai trên máy thật.
+- Vấn đề gì sẽ xảy ra nếu phạm vi Domain Randomization quá lớn hoặc quá nhỏ? Làm thế nào để bạn thiết lập ranh giới DR?
+- Tại sao độ trễ của người thực thi lại gây tổn hại nhiều hơn đến chiến lược RL trong sim2real so với MPC truyền thống?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 ```mermaid
 flowchart TD
-  PPO[仿真训好的 PPO] --> S1[1 System ID]
-  S1 --> S2[2 执行器：限幅 / 延迟 / 带宽]
-  S2 --> S3[3 观测对齐：噪声 / 坐标系 / 滤波]
-  S3 --> S4[4 训练注入延迟 + DR]
-  S4 --> S5[5 安全上机：限速 / 急停 / fallback]
-  DR[Domain Randomization] --> Big[过大：过保守或学不会]
-  DR --> Small[过小：gap 仍在、上机即败]
-  Big --> Tune[以 SysID 为中心逐步加宽 + 真机反馈]
+  PPO[Đã đào tạo mô phỏng PPO] --> S1[1 ID hệ thống]
+  S1 --> S2[2 Bộ truyền động: Bộ giới hạn/Độ trễ/Băng thông]
+  S2 --> S3[3 Căn chỉnh quan sát: nhiễu/hệ tọa độ/lọc]
+  S3 --> S4[4 Độ trễ tiêm luyện tập + DR]
+  S4 --> S5[5 Lên máy bay an toàn: giới hạn tốc độ/dừng khẩn cấp/dự phòng]
+  DR[Ngẫu nhiên hóa tên miền] --> Big[Quá lớn: quá bảo thủ hoặc không thể học hỏi]
+  DR --> Small[Quá nhỏ: khe hở vẫn còn và máy sẽ bị lỗi khi bạn thử.]
+  Big --> Tune[Dần dần mở rộng với SysID làm trung tâm + phản hồi máy thật]
   Small --> Tune
 ```
 
 <ol>
-<li><strong>真机部署前必做 5 件事：</strong>
+<li><strong> 5 điều bạn phải làm trước khi triển khai máy thực: </strong>
 <ol>
-<li><strong>System Identification：</strong>辨识真实质量 / 惯量、关节摩擦、PD 增益、力矩-电流曲线。</li>
-<li><strong>执行器建模：</strong>加入力矩限幅、传动延迟 / 带宽、电机一阶滞后。</li>
-<li><strong>观测对齐：</strong>传感器噪声 / 偏置 / 延迟、坐标系与单位、滤波与训练时一致。</li>
-<li><strong>训练侧鲁棒化：</strong>在训练中注入延迟 / 噪声 / 外扰并做 Domain Randomization 提升鲁棒。</li>
-<li><strong>安全与渐进上机：</strong>限位限速、力矩饱和、急停、吊装 / 逐步放权并备好 fallback 控制器。</li>
+<li><strong>Nhận dạng hệ thống: </strong> xác định khối lượng/quán tính thực, ma sát khớp, độ lợi PD, đường cong dòng mô-men xoắn. </li>
+Mô hình bộ truyền động <li><strong>: </strong> bổ sung bộ giới hạn mô-men xoắn, độ trễ truyền/băng thông và độ trễ bậc nhất của động cơ. </li>
+Căn chỉnh quan sát <li><strong>: Độ nhiễu/độ lệch/độ trễ của cảm biến </strong>, hệ tọa độ và đơn vị, quá trình lọc phù hợp với những gì trong quá trình huấn luyện. </li>
+Độ mạnh mẽ của bên đào tạo <li><strong>: </strong> đưa độ trễ/tiếng ồn/nhiễu từ bên ngoài vào trong quá trình đào tạo và thực hiện Chọn ngẫu nhiên miền để cải thiện độ mạnh mẽ. </li>
+<li><strong> Học máy an toàn và tiến bộ: Giới hạn tốc độ </strong>, độ bão hòa mô-men xoắn, dừng khẩn cấp, nâng/phân cấp dần dần và bộ điều khiển dự phòng sẵn sàng. </li>
 </ol>
 </li>
-<li><strong>DR 范围过大 / 过小：</strong> 太大——任务过难，策略学得过度保守（蹲低、慢动作）牺牲性能甚至学不会（信号被噪声淹没）；太小——覆盖不到真机参数，sim2real gap 仍大、上机即败（过拟合仿真）。定边界：以辨识值为中心、按硬件不确定度（传感 / 装配 / 磨损）设范围并逐步加宽（curriculum），用真机 / 留出验证反馈调，在仍能收敛的前提下尽量覆盖真实分布。</li>
-<li><strong>执行器延迟为何对 RL 更致命：</strong> RL 策略是高带宽、对观测-动作时序拟合极紧的反应式映射，且常隐式假设零延迟；延迟引入相位滞后，把训练时学到的紧反馈变成震荡 / 正反馈，又不可解释、无显式相位裕度可调。传统 MPC / WBC 有显式模型，可把延迟纳入预测（time-delay model、Smith predictor）并有稳定裕度概念，相对更可控。</li>
+<li><strong>DR Phạm vi quá lớn/quá nhỏ: </strong> quá lớn - nhiệm vụ quá khó và chiến lược được học quá thận trọng (cúi người thấp, chuyển động chậm) gây tổn hại đến hiệu suất hoặc thậm chí không thể học được (tín hiệu bị át bởi tiếng ồn); quá nhỏ - các thông số của máy thật không được bao phủ, khoảng cách sim2real vẫn còn lớn và chiến lược sẽ thất bại trên máy (mô phỏng quá mức). Xác định ranh giới: Căn giữa giá trị nhận dạng, đặt phạm vi theo độ không chắc chắn của phần cứng (cảm biến/lắp ráp/hao mòn) và dần dần mở rộng nó (chương trình giảng dạy), sử dụng điều chỉnh phản hồi xác minh máy thực/dự trữ và cố gắng bao quát phân phối thực trong khi vẫn có thể hội tụ. </li>
+Tại sao độ trễ của người thực thi <li><strong> lại nghiêm trọng hơn đối với RL: </strong> Chiến lược RL là một ánh xạ phản ứng với băng thông cao, cực kỳ phù hợp với thời gian hành động quan sát và thường ngầm giả định độ trễ bằng 0; độ trễ gây ra độ trễ pha, biến phản hồi chặt chẽ đã học được trong quá trình đào tạo thành dao động/Phản hồi tích cực không thể giải thích được và không có điều chỉnh biên pha rõ ràng. MPC / WBC truyền thống có một mô hình rõ ràng có thể kết hợp độ trễ vào các dự đoán (mô hình độ trễ thời gian, bộ dự đoán Smith) và có khái niệm lề ổn định, tương đối dễ kiểm soát hơn. </li>
 </ol>
 </details>
 
 ---
 
-## L7 出口：从运动控制看整个机器人技术栈
+<a id="l7-出口从运动控制看整个机器人技术栈"></a>
+## L7 Lối ra: nhìn toàn bộ hệ sinh thái robot từ điều khiển chuyển động
 
-**这一层不教你写代码，它的目的是：在你已经看完 L0–L6 后，给你"机器人全栈"的最后一块拼图，让你能和这个领域任何方向的工程师对话。**
+**Lớp này không dạy bạn viết mã. Mục đích của nó là: sau khi bạn đọc xong L0-L6, nó sẽ cung cấp cho bạn mảnh ghép cuối cùng của câu đố "robot full stack", để bạn có thể nói chuyện với các kỹ sư ở bất kỳ hướng nào trong lĩnh vực này. **
 
-读到这里，你已经知道"控制盒子"在做什么。本节给出 [L−1 30 秒全景图](#30-秒看懂一台机器人在干嘛) 里其它三盒，以及当下 2024–2026 真正最活跃的几个方向。每块都不深入，只给：**它是什么 → 和运动控制怎么接 → 推荐 1 个入口页**。
+Sau khi đọc xong, bạn đã biết "hộp điều khiển" làm nhiệm vụ gì. Phần này cung cấp ba hộp còn lại trong [L−1 ảnh toàn cảnh 30 giây](#30-秒看懂一台机器人在干嘛), cũng như các hướng thực sự tích cực nhất trong năm 2024–2026. Mỗi phần không chuyên sâu, chỉ có: **Nó là gì → và cách kết nối với điều khiển chuyển động → Đề xuất 1 trang nhập**.
 
-### L7.1 感知层（Perception / SLAM / 状态估计）
+### L7.1 Lớp nhận thức (Nhận thức/SLAM/Ước tính trạng thái)
 
-#### 英文缩写速查（L7.1）
+#### Tra cứu nhanh các từ viết tắt tiếng Anh (L7.1)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| SE | State Estimation | 融合 IMU、编码器、视觉等估计位姿与速度。 |
-| SLAM | Simultaneous Localization and Mapping | 未知环境中同时建图与定位。 |
-| IMU | Inertial Measurement Unit | 惯性测量；高频本体运动感知。 |
-| RGB-D | RGB + Depth | 彩色加深度相机；3D 感知常用输入。 |
-| VO | Visual Odometry | 纯视觉估计相机 / 机体运动。 |
-| SEM | Semantic Segmentation | 像素级语义；场景理解入口。 |
+| SE | Ước tính Tiểu bang | Tích hợp IMU, bộ mã hóa, tầm nhìn, v.v. để ước tính tư thế và tốc độ. |
+| ĐẬP | Bản đồ hóa và Bản đồ hóa đồng thời | Lập bản đồ và định vị đồng thời trong môi trường không xác định. |
+| IMU | Đơn Vị Đo Quán Tính | Đo quán tính; cảm biến chuyển động cơ thể tần số cao. |
+| RGB-D | RGB + Độ sâu | Camera màu cộng độ sâu; đầu vào chung cho nhận thức 3D. |
+| VÕ | Đo thị giác | Ước tính trực quan thuần túy về chuyển động của máy ảnh/cơ thể. |
+| SEM | Phân đoạn ngữ nghĩa | Ngữ nghĩa cấp pixel; lối vào sự hiểu biết cảnh. |
 
-**它是什么**：让机器人从摄像头 / IMU / 雷达 / 编码器 / 力觉等传感器中估出"自身位姿 + 世界几何 + 物体属性"。核心子领域：
-- **State Estimation**：融合 IMU + 编码器 + 视觉，估出机器人本体在世界里的 6D 位姿与速度。
-- **SLAM**：同时建图 + 定位，让机器人在未知环境里也知道自己在哪。
-- **3D 感知 / 物体识别 / 语义分割**：把 RGB-D / 点云变成"地上有个箱子、距我 0.5 m"。
+**Nó là gì**: Để rô-bốt ước tính "tư thế của chính nó + hình học thế giới + thuộc tính vật thể" từ các cảm biến như máy ảnh/IMU/ra-đa/bộ mã hóa/cảm biến lực. Các tiểu lĩnh vực cốt lõi:
+- **Ước tính trạng thái**: Tích hợp IMU + bộ mã hóa + tầm nhìn để ước tính tư thế 6D và tốc độ của cơ thể robot trên thế giới.
+- **SLAM**: Lập bản đồ + định vị đồng thời, cho phép robot biết nó đang ở đâu trong môi trường không xác định.
+- **Nhận thức 3D/Nhận dạng đối tượng/Phân đoạn ngữ nghĩa**: Biến RGB-D/đám mây điểm thành "Có một cái hộp trên mặt đất, cách tôi 0,5 m".
 
-**和运动控制怎么接**：
-- 运动控制需要 **准确的本体状态**（关节角、躯干位姿、足端是否着地）。状态估计差一点，下游 WBC / MPC 全乱套。L4 的 TSID / WBC 实际上严重依赖一个低延迟的状态估计器。
-- 真机 sim2real（L6）gap 一大半来自 **执行器模型不准** + **状态估计噪声**。
+**Cách kết nối với điều khiển chuyển động**:
+- Điều khiển chuyển động yêu cầu **trạng thái cơ thể chính xác** (góc khớp, tư thế thân và liệu bàn chân có ở trên mặt đất hay không). Tình trạng được ước tính là tệ hơn một chút và WBC / MPC ở hạ lưu hoàn toàn rối tung. TSID/WBC của L4 thực sự phụ thuộc rất nhiều vào công cụ ước tính trạng thái có độ trễ thấp.
+- Phần lớn lỗ hổng trong máy thật sim2real (L6) xuất phát từ **mô hình truyền động không chính xác** + **nhiễu ước tính trạng thái**.
 
-**入口页**：[State Estimation](../wiki/concepts/state-estimation.md) · [导航与 SLAM 自主栈](../wiki/overview/navigation-slam-autonomy-stack.md)
+**Trang nhập**: [Ước tính trạng thái](../wiki/concepts/state-estimation.md) · [Ngăn xếp tự động điều hướng và SLAM](../wiki/overview/navigation-slam-autonomy-stack.md)
 
-### L7.2 决策与规划层（Motion Planning / Task Planning）
+### L7.2 Lớp lập kế hoạch và ra quyết định (Kế hoạch chuyển động/Lập kế hoạch nhiệm vụ)
 
-#### 英文缩写速查（L7.2）
+#### Tra cứu nhanh từ viết tắt tiếng Anh (L7.2)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| MP | Motion Planning | 几何或动力学约束下的路径 / 轨迹规划。 |
-| RRT | Rapidly-exploring Random Tree | 采样规划；高维空间常用。 |
-| CHOMP | Covariant Hamiltonian Optimization for Motion Planning | 轨迹优化类运动规划。 |
-| HTN | Hierarchical Task Network | 分层任务分解规划。 |
-| PDDL | Planning Domain Definition Language | 符号任务规划标准语言。 |
-| FP | Footstep Planning | 人形落点与步态时序规划。 |
+| nghị sĩ | Lập kế hoạch chuyển động | Lập kế hoạch đường đi/quỹ đạo dưới các ràng buộc hình học hoặc động. |
+| RRT | Cây ngẫu nhiên khám phá nhanh chóng | Lập kế hoạch lấy mẫu; thường được sử dụng trong không gian nhiều chiều. |
+| CHOMP | Tối ưu hóa Hamilton hiệp biến cho quy hoạch chuyển động | Lập kế hoạch chuyển động tối ưu hóa quỹ đạo. |
+| HTN | Mạng nhiệm vụ phân cấp | Lập kế hoạch phân rã nhiệm vụ theo cấp bậc. |
+| PDDL | Ngôn ngữ định nghĩa miền quy hoạch | Ngôn ngữ tiêu chuẩn lập kế hoạch nhiệm vụ mang tính biểu tượng. |
+| FP | Kế hoạch bước chân | Lập kế hoạch thời gian và điểm hạ cánh hình người. |
 
-**它是什么**：在感知建好的地图上，回答"先去哪、再去哪、用什么动作过去"。核心子领域：
-- **Motion Planning**：A* / RRT / RRT* / CHOMP / TrajOpt → 给出无碰撞轨迹。
-- **Task Planning / HTN / PDDL**：把"把杯子放到桌上"分解成"接近 → 抓 → 移动 → 放"。
-- **Footstep Planning**（人形特有）：决定下一步落点、步态时序。
+**Nó là gì**: Trên bản đồ do nhận thức tạo ra, hãy trả lời "Đi đâu trước, đi đâu tiếp theo và sử dụng hành động nào để đến đó." Các tiểu lĩnh vực cốt lõi:
+- **Lập kế hoạch chuyển động**: A*/RRT/RRT*/CHOMP/TrajOpt → cung cấp quỹ đạo không va chạm.
+- ** Lập kế hoạch nhiệm vụ / HTN / PDDL**: Phân tách “đặt cốc lên bàn” thành “tiếp cận → lấy → di chuyển → đặt”.
+- **Lập kế hoạch bước chân** (dành riêng cho hình người): Xác định điểm hạ cánh của bước tiếp theo và thời gian đi bộ.
 
-**和运动控制怎么接**：
-- 规划层给 **参考轨迹**（足端位置、CoM 轨迹、关节目标），下游 L4 的 MPC / WBC 负责跟踪。
-- L4.3 的 trajectory optimization 跟传统 motion planning 有大量交叠，区别在 **是否带动力学约束** 和 **是否在线求解**。
+**Cách kết nối với điều khiển chuyển động**:
+- Lớp quy hoạch đưa ra **quỹ đạo tham chiếu** (vị trí chân, quỹ đạo CoM, mục tiêu chung) và MPC / WBC của L4 hạ lưu chịu trách nhiệm theo dõi.
+- Việc tối ưu hóa quỹ đạo của L4.3 có nhiều điểm trùng lặp với quy hoạch chuyển động truyền thống. Sự khác biệt nằm ở chỗ **liệu vấn đề có bị ràng buộc động không** và **liệu vấn đề đó có được giải quyết trực tuyến** hay không.
 
-**入口页**：[Trajectory Optimization](../wiki/methods/trajectory-optimization.md) · [Locomotion 任务地图](../wiki/tasks/locomotion.md)
+**Trang nhập**: [Tối ưu hóa quỹ đạo](../wiki/methods/trajectory-optimization.md) · [Bản đồ nhiệm vụ vận động](../wiki/tasks/locomotion.md)
 
-### L7.3 操作层（Manipulation / Grasping）
+### L7.3 Lớp vận hành (Thao tác / Nắm bắt)
 
-#### 英文缩写速查（L7.3）
+#### Kiểm tra nhanh từ viết tắt tiếng Anh (L7.3)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| EE | End Effector | 末端执行器（手爪、工具等）。 |
-| Grasp | Grasping | 抓取与稳定持握。 |
-| CRM | Contact-Rich Manipulation | 接触丰富、力交互主导的操作。 |
-| DP | Diffusion Policy | 扩散模型生成动作序列；多模态操作常用。 |
-| ACT | Action Chunking with Transformers | 分块动作预测的模仿学习架构之一。 |
-| WBC | Whole-Body Control | 操作任务底层仍常依赖全身力控。 |
-| LoCo-Manip | Loco-Manipulation | 移动中同时操作（走 + 搬）。 |
+| EE | Tác dụng cuối cùng | Bộ phận tác động cuối (kẹp, dụng cụ, v.v.). |
+| Nắm bắt | Nắm bắt | Nắm bắt và giữ ổn định. |
+| CRM | Thao tác phong phú liên hệ | Các hoạt động giàu liên hệ, dựa trên lực tương tác. |
+| DP | Chính sách phổ biến | Mô hình khuếch tán tạo ra chuỗi hành động; hoạt động đa phương thức thường được sử dụng. |
+| HÀNH ĐỘNG | Phân đoạn hành động với Transformers | Một trong những kiến ​​trúc học tập bắt chước để dự đoán hành động theo khối. |
+| WBC | Kiểm soát toàn thân | Nhiệm vụ vận hành ở cấp độ thấp nhất vẫn thường dựa vào khả năng điều khiển toàn thân. |
+| LoCo-Manip | Thao tác đầu máy | Hoạt động đồng thời trong khi di chuyển (đi bộ + di chuyển). |
 
-**它是什么**：手 / 末端执行器与物体的精细交互，包括抓取、放置、装配、双臂协同、接触丰富的精细操作（拧螺丝、插拔）。
+**Nó là gì**: Tương tác tinh tế giữa tay/bộ phận tác động cuối và đồ vật, bao gồm nắm, đặt, lắp ráp, phối hợp hai tay và các thao tác tinh tế có nhiều tiếp xúc (vặn, cắm và rút phích cắm).
 
-**和运动控制怎么接**：
-- 操作和 locomotion 共享 **同一套阻抗控制 / WBC / 接触建模**基础。
-- 现代 contact-rich manipulation 主流走 **模仿学习路线**（ACT / Diffusion Policy），但底层力控仍来自传统控制；这就是为什么 L4 的 WBC 在操作任务里也是基石。
+**Cách kết nối với điều khiển chuyển động**:
+- Chia sẻ hoạt động và vận động **cùng một bộ điều khiển trở kháng / WBC / mô hình tiếp xúc** thông tin cơ bản.
+- Thao tác giàu tiếp xúc hiện đại chủ yếu tuân theo **Lộ trình học giả** (ACT / Chính sách khuếch tán), nhưng việc kiểm soát công suất cơ bản vẫn đến từ điều khiển truyền thống; đây là lý do tại sao WBC của L4 cũng là nền tảng trong các nhiệm vụ vận hành.
 
-**入口页**：[Manipulation 任务地图](../wiki/tasks/manipulation.md) · [接触丰富操作纵深路线](depth-contact-manipulation.md)
+**Trang nhập**: [Bản đồ nhiệm vụ thao tác](../wiki/tasks/manipulation.md) · [Lộ trình chuyên sâu về hoạt động phong phú của liên hệ](depth-contact-manipulation.md)
 
 <a id="l7-4-system-stack"></a>
 
-### L7.4 系统与软件栈（ROS / 中间件 / 部署）
+### Ngăn xếp phần mềm và hệ thống L7.4 (ROS/middleware/triển khai)
 
-#### 英文缩写速查（L7.4）
+#### Tra cứu nhanh các từ viết tắt tiếng Anh (L7.4)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| ROS | Robot Operating System | 机器人节点、话题、服务中间件生态。 |
-| RT | Real-Time Control | 毫秒级硬实时控制循环。 |
-| CAN | Controller Area Network | 常见电机总线协议。 |
-| EtherCAT | Ethernet for Control Automation Technology | 工业实时以太网；低延迟驱动。 |
-| HAL | Hardware Abstraction Layer | 硬件抽象；统一仿真与真机接口。 |
-| Gazebo | Gazebo Simulator | 经典 ROS 配套仿真器之一。 |
+| ROS | Hệ điều hành Robot | Nút robot, chủ đề, hệ sinh thái phần mềm trung gian dịch vụ. |
+| RT | Kiểm soát thời gian thực | Vòng điều khiển thời gian thực cứng cấp độ mili giây. |
+| CAN | Mạng khu vực điều khiển | Các giao thức bus động cơ phổ biến. |
+| EtherCAT | Ethernet cho công nghệ tự động hóa điều khiển | Ethernet thời gian thực công nghiệp; trình điều khiển có độ trễ thấp. |
+| HAL | Lớp trừu tượng phần cứng | Trừu tượng hóa phần cứng; mô phỏng thống nhất và giao diện máy thực. |
+| Gazebo | Trình mô phỏng Gazebo | Một trong những trình mô phỏng hỗ trợ ROS cổ điển. |
 
-**它是什么**：把上述所有模块连起来跑在一台真机上需要的工程基础设施。
-- **ROS / ROS2**：机器人最常用的消息中间件、节点抽象、launch 系统。
-- **Real-time control loop**：低延迟（1–2 kHz）实时控制循环、与高层规划（10–100 Hz）之间的多速率通信。
-- **仿真器**：MuJoCo / Isaac Sim / Gazebo / Drake，各有适用场景。
-- **硬件抽象**：URDF / MJCF / 真实驱动器接口、CAN / EtherCAT。
+**Nó là gì**: Cơ sở hạ tầng kỹ thuật cần thiết để kết nối tất cả các mô-đun trên và chạy chúng trên máy thực.
+- **ROS / ROS2**: Phần mềm trung gian tin nhắn, hệ thống trừu tượng hóa nút và hệ thống khởi chạy được sử dụng phổ biến nhất cho robot.
+- **Vòng điều khiển thời gian thực**: Vòng điều khiển thời gian thực có độ trễ thấp (1–2 kHz), liên lạc đa tốc độ đến lập kế hoạch cấp cao (10–100 Hz).
+- **Trình giả lập**: MuJoCo / Isaac Sim / Gazebo / Drake, mỗi trình giả lập đều có kịch bản áp dụng riêng.
+- **Tóm tắt phần cứng**: URDF/MJCF/Giao diện trình điều khiển thực, CAN/EtherCAT.
 
-**和运动控制怎么接**：
-- L4 的 TSID / WBC 通常运行在 **实时进程**（1 kHz），上层 MPC 跑在 **非实时进程**（50–500 Hz），由 ROS2 / shared memory 通信。理解这层架构才能解释"为什么一个看似能跑的算法上真机就崩"。
-- L6 的 sim2real 整链路依赖 URDF / 控制器 / 通信延迟的对齐。
+**Cách kết nối với điều khiển chuyển động**:
+- TSID / WBC của L4 thường chạy trong **quy trình thời gian thực** (1 kHz) và lớp trên MPC chạy trong **quy trình phi thời gian thực** (50–500 Hz), được truyền bởi ROS2 / bộ nhớ dùng chung. Việc hiểu lớp kiến ​​trúc này có thể giải thích "tại sao một thuật toán dường như hoạt động lại gặp sự cố trên máy tính thực".
+- Toàn bộ liên kết sim2real của L6 dựa vào căn chỉnh độ trễ truyền thông/bộ điều khiển/URDF.
 
-**入口页**：[Pinocchio](../wiki/entities/pinocchio.md) · [Isaac Gym / Isaac Lab](../wiki/entities/isaac-gym-isaac-lab.md) · 策略导出到总线的完整部署链见 [L12 Deployment](#physical-ai-l12-deployment)
+**Trang nhập**: [Pinocchio](../wiki/entities/pinocchio.md) · [Isaac Gym / Isaac Lab](../wiki/entities/isaac-gym-isaac-lab.md) · Để biết chuỗi triển khai hoàn chỉnh xuất chiến lược sang xe buýt, hãy xem [Triển khai L12](#physical-ai-l12-deployment)
 
-### L7.5 2024–2026 前沿地图（你会反复看到的关键词）
+### Bản đồ biên giới L7.5 2024–2026 (từ khóa bạn sẽ thấy đi gặp lại)
 
-#### 英文缩写速查（L7.5）
+#### Tra cứu nhanh từ viết tắt tiếng Anh (L7.5)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| VLA | Vision–Language–Action | 视觉–语言条件策略；如 RT-2、π0。 |
-| WM | World Model | 学习环境动力学用于想象 rollout。 |
-| E2E | End-to-End | 传感到动作的单网络，少分层。 |
-| FM | Foundation Model | 大规模预训练后微调的通用模型。 |
-| BFM | Behavior Foundation Model | 面向机器人行为的基础模型方向。 |
-| HFM | Humanoid Foundation Model | 通用人形大模型 / 基础策略方向。 |
-| LfWM | Learning from World Models | 在世界模型中训练或规划。 |
-| Tactile | Tactile Sensing | 触觉；精细装配闭环常用。 |
+| VLA | Tầm nhìn–Ngôn ngữ–Hành động | Chiến lược có điều kiện về Ngôn ngữ-Tầm nhìn; chẳng hạn như RT-2, π0. |
+| WM | Người Mẫu Thế Giới | Động lực môi trường học tập để tưởng tượng triển khai. |
+| E2E | Từ đầu đến cuối | Mạng đơn từ cảm biến đến hành động, ít phân lớp hơn. |
+| FM | Mô Hình Nền Tảng | Một mô hình chung được tinh chỉnh sau khi đào tạo trước trên quy mô lớn. |
+| BFM | Mô hình nền tảng hành vi | Hướng mô hình cơ bản cho hành vi của robot. |
+| HFM | Mô hình Tổ chức Hình người | Mô hình lớn hình người phổ quát/hướng chiến lược cơ bản. |
+| LfWM | Học từ các Mô hình Thế giới | Đào tạo hoặc lập kế hoạch theo mô hình thế giới. |
+| Xúc giác | Cảm biến xúc giác | Xúc giác; thường được sử dụng trong các vòng khép kín lắp ráp tốt. |
 
-近三年机器人 AI 正在快速重塑，下面这几个方向并行推进；它们不是替代 L4 的传统控制，而是 **在传统控制之上叠了一层"通用化 / 端到端"**：
+Robot AI đã được định hình lại nhanh chóng trong ba năm qua và các hướng sau đây đang phát triển song song; chúng không thay thế điều khiển truyền thống của L4 mà **thêm một lớp "tổng quát hóa/từ đầu đến cuối"** bên trên điều khiển truyền thống:
 
-| 方向 | 关键问题 | 代表工作 / 关键词 | 延伸阅读 |
+| Hướng | Các vấn đề chính | Công việc đại diện / Từ khóa | Đọc mở rộng |
 |------|---------|----------------|-----------|
-| **Humanoid Foundation Model** | 一个大模型驱动多种人形机器人 | GR00T (NVIDIA), Helix (Figure), Astribot | [Locomotion 任务地图](../wiki/tasks/locomotion.md) |
-| **VLA（Vision-Language-Action）** | 用语言指令驱动机器人完成操作 | RT-2, OpenVLA, π0, Pi-0.5 | [Imitation Learning](../wiki/methods/imitation-learning.md) |
-| **World Model for Robotics** | 让机器人在"想象的世界"里训练 | Dreamer-V3, UniSim, GAIA-1 | （扩展阅读） |
-| **大规模 Teacher-Student**| 用特权 teacher 训 student，实现 sim2real | "Learning to Walk in Minutes"、ANYmal、Unitree 等 | [Sim2Real](../wiki/concepts/sim2real.md) |
-| **AMP / Motion Prior** | 用对抗式损失把 MoCap 动作蒸馏到 RL 策略 | AMP, ASE, CALM, PHC | [模仿学习纵深路线](depth-imitation-learning.md) |
-| **End-to-End Locomotion**| 视觉 + 本体观测 → 关节动作的端到端 RL | [Extreme Parkour](../wiki/entities/extreme-parkour.md), ANYmal Parkour, [DreamWaQ++](../wiki/entities/dreamwaq-plus.md) | [RL 纵深路线](depth-rl-locomotion.md) |
-| **Whole-Body Loco-Manipulation** | 走着同时操作（搬箱子、推门）| HumanPlus, OmniH2O, OKAMI | [Manipulation 任务地图](../wiki/tasks/manipulation.md) |
-| **LLM + RL 分层** | 语义/任务层大模型 + 底层 RL 力控执行 | 各类 VLA + 低层策略栈 | [VLA](../wiki/methods/vla.md) · [具身 RL 最小闭环](../wiki/concepts/embodied-rl-minimal-closed-loop.md) |
-| **Intrinsic reward 探索** | 无手工奖励时的自驱动预训练 | RND, DIAYN 等 | [Intrinsic reward 预训练](../wiki/overview/bfm-category-03-intrinsic-reward-pretraining.md) |
-| **Tactile / 力觉闭环** | 高频触觉反馈用于精细装配 | DIGIT, GelSight 系列 | （扩展阅读） |
+| **Mô hình nền tảng hình người** | Một mô hình lớn điều khiển nhiều loại robot hình người | GR00T (NVIDIA), Helix (Hình), Astribot | [Bản đồ nhiệm vụ vận động](../wiki/tasks/locomotion.md) |
+| **VLA（Tầm nhìn-Ngôn ngữ-Hành động)** | Sử dụng ngôn ngữ hướng dẫn để điều khiển robot hoàn thành các thao tác | RT-2, OpenVLA, π0, Pi-0,5 | [Học giả](../wiki/methods/imitation-learning.md) |
+| **Mô hình thế giới về robot** | Hãy để robot huấn luyện trong “thế giới tưởng tượng” | Dreamer-V3, UniSim, GAIA-1 | (Đọc mở rộng) |
+| **Giáo viên-Học sinh quy mô lớn**| Sử dụng các giáo viên có đặc quyền để đào tạo học sinh triển khai sim2real | "Học cách đi bộ trong vài phút", ANYmal, Unitree, v.v. | [Sim2Real](../wiki/concepts/sim2real.md) |
+| **AMP / Chuyển động trước** | Sử dụng tổn thất đối nghịch để chắt lọc chuyển động MoCap thành chiến lược RL | AMP, ASE, BÌNH TĨNH, PHC | [Lộ trình học sâu bắt chước](depth-imitation-learning.md) |
+| **Đầu máy từ đầu đến cuối**| Tầm nhìn + khả năng cảm nhận → Chuyển động khớp từ đầu đến cuối RL | [Parkour cực đỉnh](../wiki/entities/extreme-parkour.md), BẤT KỲ Parkour nào, [DreamWaQ++](../wiki/entities/dreamwaq-plus.md) | [Tuyến đường sâu RL](depth-rl-locomotion.md) |
+| **Thao tác định vị toàn thân** | Hoạt động đồng thời khi đi bộ (di chuyển hộp, đẩy cửa) | HumanPlus, OmniH2O, OKAMI | [Bản đồ nhiệm vụ thao tác](../wiki/tasks/manipulation.md) |
+| **Phân lớp LLM + RL** | Mô hình lớn của lớp ngữ nghĩa/tác vụ + lớp dưới cùng RL Thực thi kiểm soát lực | Nhiều loại VLA + ngăn xếp chiến lược cấp thấp | [VLA](../wiki/methods/vla.md) · [Vòng kín tối thiểu RL được thể hiện](../wiki/concepts/embodied-rl-minimal-closed-loop.md) |
+| **Khám phá phần thưởng nội tại** | Đào tạo trước tự lái mà không cần phần thưởng thủ công | RND, DIAYN, v.v. | [Đào tạo trước phần thưởng nội tại](../wiki/overview/bfm-category-03-intrinsic-reward-pretraining.md) |
+| **Vòng khép kín xúc giác / lực** | Phản hồi xúc giác tần số cao để lắp ráp tốt | Dòng DIGIT, GelSight | (Đọc mở rộng) |
 
-> 这一节不展开任何一个方向——它们随便一个都够再开一条主线。读到这里，你已经能 **听懂每一条** 在解决什么问题，这就是 L7 的目的。
+> Phần này không mở rộng theo bất kỳ hướng nào - bất kỳ hướng nào trong số đó cũng đủ để mở một tuyến chính khác. Sau khi đọc phần này, bạn có thể **hiểu từng mục** đang giải quyết vấn đề gì. Đây là mục đích của L7.
 
-> 其中 **VLA / Humanoid Foundation Model / World Model** 三个方向，在 [L8–L11](#physical-ai-l8-transformer) 按 Physical AI pipeline 拆成可学习的层；部署落地在 [L12](#physical-ai-l12-deployment)。
+> Trong số đó, ba hướng **VLA / Mô hình Tổ chức Hình người / Mô hình Thế giới** được chia thành các lớp có thể học được theo quy trình AI Vật lý trong [L8–L11](#physical-ai-l8-transformer); việc triển khai được triển khai trong [L12](#physical-ai-l12-deployment).
 
-### 学完这条路线，你能做到的事
+### Bạn có thể làm gì sau khi học lộ trình này
 
-回到 L−1 的"三种读者"视角：
+Quay lại góc nhìn “ba độc giả” của L-1:
 
-- **外行**：能在饭桌上说出"人形机器人为什么走起来这么难"、"VLA 和 PPO 是不同层的东西"、"sim2real gap 主要来自哪里"。
-- **想入行**：手上至少有一个能在仿真里跑通 PPO + WBC 的项目，可以面试机器人控制 / 仿真岗位。
-- **资深从业者**：把零散经验串成一条心智索引，知道每个新论文该挂在 L0–L12 的哪里、和你已知方法的对接点是哪里。
+- **Layman**: Có thể nói tại bàn ăn "Tại sao robot hình người lại khó đi lại", "VLA và PPO là những thứ ở các cấp độ khác nhau", "Khoảng cách sim2real chủ yếu đến từ đâu".
+- **Muốn gia nhập ngành**: Nếu bạn có ít nhất một dự án có thể chạy PPO + WBC trong mô phỏng, bạn có thể phỏng vấn các vị trí mô phỏng/điều khiển robot.
+- **Học viên cao cấp**: Hãy xâu chuỗi kinh nghiệm rải rác thành một chỉ mục tinh thần, biết mỗi tờ giấy mới nên treo ở đâu trong L0-L12 và đâu là điểm kết nối với các phương pháp đã biết của bạn.
 
 ---
 
-## L8 Transformer 与表征：从 token 到 VLM
+## Biến áp L8 và biểu diễn: từ token đến VLM
 
 <a id="physical-ai-l8-transformer"></a>
 
-**L0–L7 是运动控制主线；从这里开始的 L8–L12 是 Physical AI 全栈扩展段。L8 是从传统 robot learning 跨入 Foundation Model 的桥。**
+**L0–L7 là đường chính điều khiển chuyển động; L8–L12 bắt đầu từ đây là phân đoạn mở rộng toàn bộ ngăn xếp AI vật lý. L8 là cầu nối từ việc học robot truyền thống đến Mô hình nền tảng. **
 
-> **场景隐喻：** 图像、语言、关节角原本是三种"语言"。Transformer 先把它们都翻译成同一种"单词"（token），再让每个单词去查询其它单词和自己有多相关。
+> **Ẩn dụ cảnh:** Hình ảnh, ngôn ngữ và góc khớp vốn là ba "ngôn ngữ". Trước tiên, Transformer dịch chúng thành cùng một "từ" (mã thông báo), sau đó cho phép mỗi từ kiểm tra xem các từ khác có liên quan như thế nào với chính nó.
 
-> **上一层的局限：** L5–L6 的策略多是 MLP，输入是固定维度的本体状态向量。一旦输入里加入相机图像、语言指令、多帧历史，就需要一种能把不同模态变成同一种序列、并让它们互相"查询"的结构。
+> **Các hạn chế của lớp trước:** Các chiến lược L5–L6 chủ yếu là MLP và đầu vào là vectơ trạng thái bản thể luận có chiều cố định. Sau khi thêm hình ảnh camera, lệnh ngôn ngữ và lịch sử nhiều khung hình vào đầu vào, cần có một cấu trúc có thể biến các phương thức khác nhau thành cùng một chuỗi và cho phép chúng "truy vấn" lẫn nhau.
 
-### 英文缩写速查（L8）
+### Tra cứu nhanh từ viết tắt tiếng Anh (L8)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| Token | Token | 序列中的一个单元：一个图像 patch、一个子词或一个状态向量。 |
-| QKV | Query / Key / Value | 注意力的三组投影：用 Q 去匹配 K，按匹配度加权 V。 |
-| MHA | Multi-Head Attention | 多组 QKV 并行，各自关注不同关系后拼接。 |
-| ViT | Vision Transformer | 把图像切成 patch 当 token 送入 Transformer。 |
-| VLM | Vision-Language Model | 视觉编码器 + 语言模型；VLA 的"理解"骨干。 |
-| MLP | Multi-Layer Perceptron | Transformer block 中注意力之后的逐 token 前馈层。 |
+| Mã thông báo | Mã thông báo | Một đơn vị trong một chuỗi: một hình ảnh, một từ phụ hoặc một vectơ trạng thái. |
+| QKV | Truy vấn/Khóa/Giá trị | Ba bộ dự báo chú ý: sử dụng Q để đối sánh với K và trọng số V tùy theo mức độ phù hợp. |
+| MHA | Chú ý nhiều đầu | Nhiều nhóm QKV chạy song song, mỗi nhóm chú ý đến các mối quan hệ khác nhau và sau đó ghép chúng lại với nhau. |
+| ViT | Máy biến áp tầm nhìn | Cắt hình ảnh thành các miếng vá và gửi mã thông báo tới Transformer. |
+| VLM | Mô hình Ngôn ngữ Tầm nhìn | Bộ mã hóa tầm nhìn + mô hình ngôn ngữ; xương sống "hiểu biết" của VLA. |
+| MLP | Perceptron nhiều lớp | Lớp chuyển tiếp mã thông báo theo mã thông báo sau sự chú ý trong khối Transformer. |
 
-### 前置知识
-- L5 的神经网络训练直觉（MLP、损失函数、梯度下降）
-- 线性代数：矩阵乘法、softmax
+### Kiến thức cần thiết
+- Trực giác huấn luyện mạng nơ-ron L5 (MLP, hàm mất mát, giảm độ dốc)
+- Đại số tuyến tính: nhân ma trận, softmax
 
-### 核心结构
+### Cấu trúc cốt lõi
 
 ```mermaid
 flowchart TB
-  Img["Image"] --> Patch["Patch → Visual Token"]
-  Lang["Language"] --> Txt["Text Token"]
-  State["Robot State"] --> Emb["Embedding"]
-  Patch --> TF["Transformer<br/>Self / Cross-Attention · MLP · Residual"]
+  Img["Hình ảnh"] --> Patch["Bản vá → Mã thông báo trực quan"]
+  Lang["Ngôn ngữ"] --> Txt["Mã thông báo văn bản"]
+  State["Trạng thái robot"] --> Emb["Nhúng"]
+  Patch --> TF["Transformer<br/>Self-Attention / Cross-Attention · MLP · Kết nối dư"]
   Txt --> TF
   Emb --> TF
-  TF --> Out["上下文表征<br/>→ L9 动作头"]
+  TF --> Out["Biểu diễn ngữ cảnh <br/>→ Tiêu đề hành động L9"]
 ```
 
-一个 Transformer block：`x → LayerNorm → Multi-Head Attention → +x（residual）→ LayerNorm → MLP → +x（residual）`，其中注意力为 \(\mathrm{softmax}(QK^\top/\sqrt{d_k})\,V\)。
+Khối Máy biến áp: `x → LayerNorm → Multi-Head Attention → +x（residual）→ LayerNorm → MLP → +x（residual）`, trong đó sự chú ý là \(\mathrm{softmax}(QK^\top/\sqrt{d_k})\,V\).
 
-### 只需要真正理解以下内容
+### Chỉ cần thực sự hiểu rõ nội dung sau
 
-**不要求读完整篇论文。** 只需要真正理解：
+**Không cần đọc toàn bộ bài viết. ** Chỉ cần thực sự hiểu:
 
-- **token / embedding**：任何输入先变成一串向量
-- **QKV 与 attention matrix**：矩阵第 \(i\) 行 = 第 \(i\) 个 token 对所有 token 的关注权重
-- **self-attention vs cross-attention**：同一序列内互看 vs 一个序列（如动作 token）去查询另一个序列（如 VLM token）
+- **mã thông báo/nhúng**: Bất kỳ đầu vào nào trước tiên đều được chuyển thành một chuỗi vectơ
+- **QKV và ma trận chú ý**: Hàng ma trận \(i\) = Trọng số chú ý của mã thông báo \(i\) cho tất cả các mã thông báo
+- **tự chú ý và chú ý chéo**: Nhìn nhau trong cùng một chuỗi so với một chuỗi (chẳng hạn như mã thông báo hành động) để truy vấn một chuỗi khác (chẳng hạn như mã thông báo VLM)
 - **multi-head attention**、**residual**、**MLP**、**transformer block**
-- **ViT**：图像 patch 当 token；**VLM**：视觉 token 接入语言模型
+- **ViT**: Bản vá hình ảnh được sử dụng làm mã thông báo; **VLM**: Mã thông báo trực quan được kết nối với mô hình ngôn ngữ
 
-### 推荐读什么
-- Canonical paper：[Attention Is All You Need（arXiv:1706.03762）](https://arxiv.org/abs/1706.03762) · 站内卡片 [论文页](../wiki/entities/paper-attention-is-all-you-need.md)
-- [Transformer](../wiki/concepts/transformer.md) · [Multi-Head Attention](../wiki/concepts/multi-head-attention.md) · [跨模态注意力](../wiki/formalizations/cross-modal-attention.md)
+### Khuyến khích đọc
+- Giấy Canonical: [Chú ý là tất cả những gì bạn cần (arXiv:1706.03762)](https://arxiv.org/abs/1706.03762) · Thẻ trang web [Trang giấy](../wiki/entities/paper-attention-is-all-you-need.md)
+- [Transformer](../wiki/concepts/transformer.md) · [Chú ý nhiều đầu](../wiki/concepts/multi-head-attention.md) · [Chú ý đa phương thức](../wiki/formalizations/cross-modal-attention.md)
 - [Vision Transformer](../wiki/concepts/vision-transformer.md)（canonical：[An Image is Worth 16x16 Words（arXiv:2010.11929）](https://arxiv.org/abs/2010.11929)）
-- VLM：[PaliGemma](../wiki/entities/paper-rcl-2407-07726-paligemma-a-versatile-3b-vlm-for-transfer.md)（π0 的 VLM 骨干）· [VLM / VLA / World Model 分类对照](../wiki/comparisons/vlm-vln-vla-vlx-world-model-taxonomy.md)
-- 多模态怎么变 token：[VLA Tokenization](../wiki/formalizations/vla-tokenization.md)
-- 想系统选骨干：[模型架构纵深路线](depth-model-architecture.md)
+- VLM: [PaliGemma](../wiki/entities/paper-rcl-2407-07726-paligemma-a-versatile-3b-vlm-for-transfer.md) (VLM xương sống của π0)·[VLM / VLA / So sánh phân loại mô hình thế giới](../wiki/comparisons/vlm-vln-vla-vlx-world-model-taxonomy.md)
+- Cách thay đổi mã thông báo đa phương thức: [Mã thông báo VLA](../wiki/formalizations/vla-tokenization.md)
+- Nếu bạn muốn chọn xương sống của hệ thống: [Model Architecture Depth Route](depth-model-architecture.md)
 
-### 学完输出什么
-- 能用 ≤ 30 行 NumPy / PyTorch 手写单头 attention，并解释 attention matrix 每一行的含义
-- 能画出"图像 + 语言 + 状态 → token → Transformer"的数据流，说清每种 token 从哪来
+### Kết quả sau khi học là gì
+- Có thể viết tay một đầu chú ý sử dụng 30 dòng NumPy/PyTorch và giải thích ý nghĩa từng dòng của ma trận chú ý
+- Có thể vẽ luồng dữ liệu của "hình ảnh + ngôn ngữ + trạng thái → mã thông báo → Máy biến áp" và giải thích từng mã thông báo đến từ đâu
 
-### 自测题（学完应能答出）
-- self-attention 与 cross-attention 的 Q、K、V 分别来自哪里？VLA 的动作头为什么常用 cross-attention 读 VLM？
-- 为什么 attention 分数要除以 \(\sqrt{d_k}\)？
-- 机器人状态（关节角、IMU）通常怎么变成 token？和图像 patch token 有何不同？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Q, K, V của sự tự chú ý và chú ý chéo đến từ đâu? Tại sao đầu hành động của VLA thường được đọc là VLM nhưng lại bị nhiều người chú ý?
+- Tại sao điểm chú ý phải chia cho \(\sqrt{d_k}\)?
+- Trạng thái robot (góc khớp, IMU) thường trở thành mã thông báo như thế nào? Nó khác với mã thông báo vá hình ảnh như thế nào?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 <ol>
-<li><strong>self vs cross：</strong> self-attention 的 Q、K、V 都来自同一序列；cross-attention 的 Q 来自一个序列（如带噪动作 token），K、V 来自另一个序列（如 VLM 输出 token）。动作头用 cross-attention 读 VLM，可以让动作生成网络保持较小、单独高频运行，同时按需"查询"语义与视觉信息。</li>
-<li><strong>除以 \(\sqrt{d_k}\)：</strong> 点积的方差随维度 \(d_k\) 增长，不缩放时 softmax 容易饱和成近似 one-hot，梯度变小、训练不稳定。</li>
-<li><strong>状态 token：</strong> 通常用一个小 MLP / 线性层把整段本体状态（或每个关节）投影成与其它 token 同维的 embedding；它没有空间 patch 结构，维度低、频率高，常作为动作头的直接条件输入。</li>
+<li><strong>self vs cross: Q, K và V của sự tự chú ý của </strong> đều xuất phát từ cùng một trình tự; Q của sự chú ý chéo đến từ một chuỗi (chẳng hạn như mã thông báo hành động ồn ào) và K và V đến từ một chuỗi khác (chẳng hạn như mã thông báo đầu ra VLM). Đầu hành động sử dụng tính năng chú ý chéo để đọc VLM, cho phép mạng tạo hành động duy trì ở quy mô nhỏ và chạy độc lập ở tần số cao, đồng thời "truy vấn" thông tin ngữ nghĩa và hình ảnh theo yêu cầu. </li>
+<li><strong> chia cho \(\sqrt{d_k}\): Phương sai của sản phẩm chấm </strong> tăng theo kích thước \(d_k\). Khi không chia tỷ lệ, softmax dễ bị bão hòa đến mức xấp xỉ một điểm nóng, độ dốc trở nên nhỏ hơn và quá trình huấn luyện không ổn định. </li>
+Mã thông báo trạng thái <li><strong>: </strong> Một lớp MLP/tuyến tính nhỏ thường được sử dụng để chiếu toàn bộ trạng thái bản thể luận (hoặc từng khớp) vào một phần nhúng có cùng kích thước với các mã thông báo khác; nó không có cấu trúc vá không gian, có chiều thấp và tần số cao và thường được sử dụng làm đầu vào có điều kiện trực tiếp cho đầu hành động. </li>
 </ol>
 </details>
 
 ---
 
-## L9 动作生成：Action Chunk · Diffusion · Flow Matching · DiT
+## Tạo hành động L9: Action Chunk · Khuếch tán · Flow Matching · DiT
 
 <a id="physical-ai-l9-action-generation"></a>
 
-> **场景隐喻：** 与其每一步都问"下一步做什么"，不如一次规划接下来半秒的整段动作，再按节拍执行。
+> **Ẩn dụ cảnh:** Thay vì hỏi "phải làm gì tiếp theo" ở mỗi bước, tốt hơn hết bạn nên lập kế hoạch cho toàn bộ hành động trong nửa giây tiếp theo tại một thời điểm và sau đó thực hiện theo nhịp.
 
-> **上一层的局限：** L8 给了一个能同时理解图像、语言、状态的表征，但"怎么从表征出动作"还没解决。L5.3 的 BC 用 MSE 回归单个动作：示范是多模态时（同一场景左绕、右绕都对）会被平均成"直直撞上去"；单步输出也对推理延迟很敏感。
+> **Hạn chế của lớp trước:** L8 cung cấp một biểu diễn có thể hiểu hình ảnh, ngôn ngữ và trạng thái cùng một lúc, nhưng "làm thế nào để rút ra các hành động từ biểu diễn" vẫn chưa được giải quyết. BC của L5.3 sử dụng MSE để trả về một hành động duy nhất: khi trình diễn là đa phương thức (cảnh giống nhau diễn ra cả bên trái và bên phải), nó sẽ được tính trung bình thành một "cú đánh thẳng"; đầu ra một bước cũng rất nhạy cảm với độ trễ suy luận.
 
-### 英文缩写速查（L9）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L9)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| BC | Behavior Cloning | 监督回归专家动作；动作生成的起点。 |
-| DP | Diffusion Policy | 用去噪扩散生成一段动作序列。 |
-| FM | Flow Matching | 学速度场，把噪声沿 ODE 积分到动作。 |
-| DiT | Diffusion Transformer | 用 Transformer 做去噪 / 速度场网络。 |
-| ACT | Action Chunking with Transformers | 一次预测 H 步动作的模仿学习架构。 |
-| H | Horizon | action chunk 的长度（一次输出多少步）。 |
+| BC | Nhân bản hành vi | Hồi quy có giám sát của các hành động chuyên môn; điểm khởi đầu cho việc tạo ra hành động. |
+| DP | Chính sách phổ biến | Sử dụng khuếch tán khử nhiễu để tạo ra một chuỗi hành động. |
+| FM | Flow Matching | Tìm hiểu trường vận tốc và tích hợp tiếng ồn dọc theo ODE vào hành động. |
+| DiT | Máy biến áp khuếch tán | Sử dụng Transformer để tạo mạng trường khử nhiễu/vận tốc. |
+| HÀNH ĐỘNG | Phân đoạn hành động với Transformers | Một kiến ​​trúc học tập bắt chước dự đoán các hành động bước H cùng một lúc. |
+| H | Chân trời | Độ dài của đoạn hành động (có bao nhiêu bước được xuất ra cùng một lúc). |
 
-### 先对比：传统 policy vs 现代 VLA 动作头
-
-```mermaid
-flowchart TB
-  subgraph Old["传统 policy"]
-    O1["observation"] --> A1["one action a_t"]
-  end
-  subgraph New["现代 VLA 动作头"]
-    O2["image + language + state"] --> AC["action chunk<br/>a_t, a_t+1, …, a_t+H"]
-  end
-```
-
-### Diffusion Policy：去噪出一段动作
+### So sánh trước: chính sách truyền thống và đầu hành động VLA hiện đại
 
 ```mermaid
 flowchart TB
-  N["noisy action trajectory<br/>高斯噪声"] --> C["condition on observation<br/>图像 / 状态特征"]
-  C --> D["iterative denoising<br/>K 步"]
-  D --> S["action sequence"]
+  subgraph Old["chính sách truyền thống"]
+    O1["quan sát"] --> A1["một hành động a_t"]
+  end
+  subgraph New["Đầu hành động VLA hiện đại"]
+    O2["hình ảnh + ngôn ngữ + trạng thái"] --> AC["đoạn hành động<br/>a_t, a_t+1, …, a_t+H"]
+  end
 ```
 
-好处：能表达多模态动作分布、整段动作时序一致、训练就是去噪回归所以稳定；代价：推理要多步去噪，延迟高。
+### Chính sách phổ biến: Khử nhiễu một phần hành động
 
-### Diffusion → Flow Matching → DiT：为什么适合机器人
+```mermaid
+flowchart TB
+  N["quỹ đạo hành động ồn ào<br/> Nhiễu Gauss"] --> C["điều kiện quan sát<br/>đặc điểm hình ảnh/trạng thái"]
+  C --> D["Khử nhiễu lặp lại<br/>K bước"]
+  D --> S["trình tự hành động"]
+```
 
-- **Flow Matching**：不再模拟"加噪—去噪"的随机过程，而是直接学一个速度场，把噪声沿接近直线的 ODE 积分成动作。**对机器人的意义不在数学，而在工程**：保留扩散的多模态表达能力，但积分步数少（π0 论文用 10 步）→ 延迟低，更容易赶上控制频率；训练目标是简单的回归，便于和 VLM 骨干一起训。
-- **DiT**：把去噪网络从 U-Net 换成 Transformer。在机器人里，token 变成 action chunk 的各个时间步，观测条件通过 cross-attention / AdaLN 注入 → 可以直接接上 L8 的 VLM token。
-- **Action Expert**：π0 的叫法——在 VLM 之外单独一套较小的 Transformer 权重，专门处理状态与带噪动作 token，用 flow matching 生成 action chunk；GR00T N1 的 DiT 动作头扮演同一角色（见 L10）。
-- **Action Chunk 的代价**：chunk 内是开环执行，对突发扰动反应慢，需要 temporal ensembling 或 [Real-Time Chunking](../wiki/entities/paper-real-time-chunking.md) 这类衔接策略。
+Lợi ích: Nó có thể thể hiện sự phân bổ hành động đa phương thức, toàn bộ chuỗi hành động nhất quán và việc huấn luyện là khử nhiễu và hồi quy nên ổn định; Chi phí: Suy luận yêu cầu khử nhiễu nhiều bước và độ trễ cao.
 
-### 推荐读什么
+### Khuếch tán → Flow Matching → DiT: Tại sao nó phù hợp với robot
 
-| 概念 | Canonical paper | Project | Code | 站内卡片 |
+- **Flow Matching**: Không còn mô phỏng quá trình ngẫu nhiên "loại bỏ tiếng ồn bổ sung", mà trực tiếp tìm hiểu trường vận tốc và tích hợp tiếng ồn vào các hành động dọc theo ODE gần với một đường thẳng. **Tầm quan trọng đối với robot không phải là toán học mà là kỹ thuật**: giữ được khả năng biểu đạt đa phương thức khuếch tán, nhưng có ít bước tích hợp hơn (giấy π0 sử dụng 10 bước) → độ trễ thấp, giúp bắt kịp tần số điều khiển dễ dàng hơn; mục tiêu đào tạo là hồi quy đơn giản, dễ đào tạo với xương sống VLM.
+- **DiT**: Thay đổi mạng khử nhiễu từ U-Net sang Transformer. Trong robot, mã thông báo trở thành từng bước thời gian của đoạn hành động và các điều kiện quan sát được đưa vào thông qua chú ý chéo / AdaLN → có thể được kết nối trực tiếp với mã thông báo VLM của L8.
+- **Chuyên gia hành động**: Tên của π0 - một tập hợp riêng biệt gồm các trọng số Transformer nhỏ hơn ngoài VLM, xử lý cụ thể các mã thông báo trạng thái và hành động ồn ào, đồng thời sử dụng tính năng khớp luồng để tạo các khối hành động; đầu hành động DiT của GR00T N1 đóng vai trò tương tự (xem L10).
+- **Chi phí của phân đoạn hành động**: Phân đoạn được thực thi trong vòng lặp mở và phản ứng chậm với các nhiễu loạn đột ngột, do đó cần có chiến lược kết nối như tập hợp theo thời gian hoặc [Phân đoạn thời gian thực](../wiki/entities/paper-real-time-chunking.md).
+
+### Khuyến khích đọc
+
+| Khái niệm | Giấy Canonical | Dự án | Mã | Thẻ trang web |
 |------|----------------|---------|------|---------|
-| Diffusion Policy | [arXiv:2303.04137](https://arxiv.org/abs/2303.04137) | [项目页](https://diffusion-policy.cs.columbia.edu/) | [real-stanford/diffusion_policy](https://github.com/real-stanford/diffusion_policy) | [Diffusion Policy](../wiki/methods/diffusion-policy.md) |
+| Chính sách phổ biến | [arXiv:2303.04137](https://arxiv.org/abs/2303.04137) | [Trang dự án](https://diffusion-policy.cs.columbia.edu/) | [real-stanford/diffusion_policy](https://github.com/real-stanford/diffusion_policy) | [Chính sách phổ biến](../wiki/methods/diffusion-policy.md) |
 | Action Chunking（ACT） | [arXiv:2304.13705](https://arxiv.org/abs/2304.13705) | — | [tonyzhaozh/act](https://github.com/tonyzhaozh/act) | [Action Chunking](../wiki/methods/action-chunking.md) |
-| Flow Matching | [arXiv:2210.02747](https://arxiv.org/abs/2210.02747) | — | — | [具身策略里的流匹配](../wiki/concepts/flow-matching-embodied-policy.md) |
-| DiT | [arXiv:2212.09748](https://arxiv.org/abs/2212.09748) | — | [facebookresearch/DiT](https://github.com/facebookresearch/DiT) | [DiT 论文页](../wiki/entities/paper-dit-scalable-diffusion-transformers.md) · [Diffusion Transformer](../wiki/concepts/diffusion-transformer.md) |
+| Flow Matching | [arXiv:2210.02747](https://arxiv.org/abs/2210.02747) | — | — | [Kết hợp luồng trong chiến lược thể hiện](../wiki/concepts/flow-matching-embodied-policy.md) |
+| DiT | [arXiv:2212.09748](https://arxiv.org/abs/2212.09748) | — | [facebookresearch/DiT](https://github.com/facebookresearch/DiT) | [Trang giấy DiT](../wiki/entities/paper-dit-scalable-diffusion-transformers.md) · [Biến áp khuếch tán](../wiki/concepts/diffusion-transformer.md) |
 
-- 系统展开：[扩散与流匹配策略纵深路线](depth-robotics-diffusion-dit-flow.md) · 课程：[MIT Flow Matching & Diffusion 2026](../wiki/overview/mit-flow-matching-diffusion-2026.md)
+- Mở rộng hệ thống: [Tuyến chuyên sâu về chiến lược khuếch tán và kết hợp dòng chảy](depth-robotics-diffusion-dit-flow.md) · Khóa học: [MIT Flow Matching & Khuếch tán 2026](../wiki/overview/mit-flow-matching-diffusion-2026.md)
 
-### 学完输出什么
-- 在一个 2D 玩具任务（如 Push-T）跑通 Diffusion Policy，对比 H=1 与 H=16 的行为差异
-- 能解释为什么 MSE-BC 在多模态示范上失败，而扩散 / 流匹配不会
+### Kết quả sau khi học là gì
+- Chạy Chính sách khuếch tán trên tác vụ đồ chơi 2D (chẳng hạn như Push-T) và so sánh sự khác biệt về hành vi giữa H=1 và H=16
+- Có thể giải thích tại sao MSE-BC không thành công khi trình diễn đa phương thức nhưng kết hợp khuếch tán/dòng chảy thì không
 
-### 自测题（学完应能答出）
-- action chunk 带来了哪两个好处和一个代价？
-- 同样的多模态表达能力，为什么 flow matching 比 DDPM 式扩散更适合高频机器人控制？
-- DiT 动作头里，观测 / 语言条件可以通过哪些方式注入？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Đoạn hành động mang lại hai lợi ích và một chi phí gì?
+- Với cùng khả năng biểu đạt đa phương thức, tại sao việc khớp luồng lại phù hợp để điều khiển robot tần số cao hơn là khuếch tán kiểu DDPM?
+- DiT Có thể đưa các điều kiện quan sát/ngôn ngữ vào tiêu đề hành động theo những cách nào?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 <ol>
-<li><strong>action chunk：</strong> 好处是 ① 整段动作时序一致、减少逐步抖动和 BC 的 compounding error；② 推理可以比控制慢，低层在等待下一次推理时继续执行已有 chunk。代价是 chunk 内开环，对突发扰动反应变慢，需要 temporal ensembling / 实时 chunk 衔接。</li>
-<li><strong>flow matching 更快：</strong> 它学的是接近直线的确定性 ODE 速度场，少量积分步即可得到高质量样本；DDPM 式扩散通常需要更多去噪步。步数少 → 每次推理延迟低 → 更容易满足控制频率。</li>
-<li><strong>条件注入：</strong> 常见三种：cross-attention（动作 token 作为 Q 查询观测 / VLM token）、AdaLN（用条件向量调制 LayerNorm 的尺度和偏移，DiT 原论文做法）、直接把条件 token 拼进序列做 self-attention。</li>
+Lợi ích của đoạn hành động <li><strong>: </strong> là ① Toàn bộ chuỗi hành động nhất quán, giảm hiện tượng jitter từng bước và lỗi kết hợp của BC; ② Suy luận có thể chậm hơn so với điều khiển và lớp bên dưới tiếp tục thực thi các khối hiện có trong khi chờ lần suy luận tiếp theo. Giá là vòng lặp mở trong khối, phản ứng chậm với những xáo trộn đột ngột và nhu cầu kết nối khối thời gian/khối thời gian thực. </li>
+<li><strong>so khớp luồng Nhanh hơn: </strong> Nó tìm hiểu trường vận tốc ODE xác định gần với đường thẳng và có thể thu được các mẫu chất lượng cao chỉ với một vài bước tích hợp; Khuếch tán kiểu DDPM thường yêu cầu nhiều bước khử nhiễu hơn. Ít bước hơn → Độ trễ thấp cho mỗi suy luận → Dễ dàng đáp ứng tần số điều khiển hơn. </li>
+<li><strong>Tiêm có điều kiện:</strong>Ba loại phổ biến: chú ý chéo (mã thông báo hành động dưới dạng quan sát truy vấn Q /VLMmã thông báo), AdaLN (sử dụng vectơ điều kiện để điều chỉnh tỷ lệ và độ lệch của LayerNorm,DiTCách làm của bài gốc), đánh vần trực tiếp các câu điều kiện thành chuỗi để tự chú ý.</li>
 </ol>
 </details>
 
 ---
 
-## L10 VLA / Foundation Policy：π 系列与 GR00T
+## L10 VLA/Chính sách nền tảng: Dòng π với GR00T
 
 <a id="physical-ai-l10-vla"></a>
 
-> **场景隐喻：** 把 L8 的"眼睛 + 语言理解"和 L9 的"手上功夫"装进同一个大脑，再用许多机器人、许多任务的数据一起训练。
+> **Ẩn dụ cảnh:** Đặt "mắt + hiểu ngôn ngữ" của L8 và "kỹ năng thực hành" của L9 vào cùng một bộ não, sau đó huấn luyện chúng cùng nhau bằng dữ liệu từ nhiều robot và nhiều nhiệm vụ.
 
-> **上一层的局限：** L9 的动作头只会"根据观测生成动作"，理解能力取决于前面的编码器；单任务 Diffusion Policy 换个任务就得重新采数据重训。VLA 把预训练 VLM（带互联网规模的语义知识）和动作头拼起来，用跨任务、跨机器人数据训练。
+> **Hạn chế của lớp trước:** Đầu hành động của L9 chỉ có thể "tạo ra hành động dựa trên quan sát" và khả năng hiểu của nó phụ thuộc vào bộ mã hóa trước đó; Chính sách phổ biến một nhiệm vụ yêu cầu thu thập lại dữ liệu và đào tạo lại khi thay đổi nhiệm vụ. VLA kết hợp VLM được đào tạo trước (với kiến ​​thức ngữ nghĩa ở quy mô Internet) và các đầu hành động, đồng thời huấn luyện với dữ liệu đa nhiệm vụ và nhiều robot.
 
-**这一层只跟踪少数代表体系：Physical Intelligence 的 π 系列与 NVIDIA 的 GR00T。** 其它 VLA 先过一遍 [Signal vs Noise](#physical-ai-signal-vs-noise) 再决定是否深入；全景见 [VLA 纵深路线](depth-vla.md)。
+**Lớp này chỉ theo dõi một số hệ thống đại diện: chuỗi π của Physical Intelligence và GR00T của NVIDIA. ** Khác VLA Hãy xem qua [Tín hiệu và Nhiễu](#physical-ai-signal-vs-noise) trước khi quyết định có đi sâu hay không; xem [Tuyến đường chuyên sâu của VLA](depth-vla.md) để có chế độ xem đầy đủ.
 
-### 英文缩写速查（L10）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L10)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| VLA | Vision–Language–Action | 视觉–语言条件下直接输出动作的模型。 |
-| VLM | Vision-Language Model | VLA 的理解骨干（π0 用 PaliGemma，GR00T N1 用 Eagle-2）。 |
-| System 2 / System 1 | Dual-System | 慢速语义推理 / 快速动作生成的双系统分工。 |
-| DiT | Diffusion Transformer | GR00T N1 的动作头网络结构。 |
-| FM | Flow Matching | π0 与 GR00T N1 共同的动作生成目标。 |
-| WBC | Whole-Body Control | VLA 之下仍需要的低层全身控制。 |
+| VLA | Tầm nhìn–Ngôn ngữ–Hành động | Một mô hình trực tiếp đưa ra các hành động trong điều kiện ngôn ngữ-tầm nhìn. |
+| VLM | Mô hình Ngôn ngữ Tầm nhìn | Nền tảng hiểu biết của VLA (PaliGemma cho π0, Eagle-2 cho GR00T N1). |
+| Hệ thống 2 / Hệ thống 1 | Hệ thống kép | Phân công lao động theo hệ thống kép để suy luận ngữ nghĩa chậm/tạo hành động nhanh. |
+| DiT | Máy biến áp khuếch tán | Cấu trúc mạng đầu hành động của GR00T N1. |
+| FM | Flow Matching | Mục tiêu tạo hành động chung π0 và GR00T N1. |
+| WBC | Kiểm soát toàn thân | Vẫn cần kiểm soát toàn bộ cơ thể ở mức độ thấp trong VLA. |
 
-### π 系列：同一架构上的演进
+### π series: sự tiến hóa trên cùng một kiến ​​trúc
 
 ```mermaid
 flowchart TB
-  In["image + language + robot state"] --> VLM["VLM<br/>（PaliGemma 骨干）"]
-  VLM --> AE["Action Expert<br/>Flow Matching"]
-  AE --> AC["Action Chunk"]
+  In["hình ảnh + ngôn ngữ + trạng thái robot"] --> VLM["VLM<br/> (xương sống PaliGemma)"]
+  VLM --> AE["Chuyên gia hành động<br/>Flow Matching"]
+  AE --> AC["Đoạn hành động"]
 ```
 
 ```mermaid
 flowchart LR
-  P0["π0<br/>VLM + flow matching<br/>action expert"] --> P05["π0.5<br/>异构数据共训<br/>开放世界泛化"]
-  P05 --> PL["后续 π 模型<br/>（如 π0.7）"]
+  P0["π0<br/>VLM + khớp luồng<br/>Chuyên gia hành động"] --> P05["π0.5<br/> Đồng đào tạo dữ liệu không đồng nhất <br/> tổng quát hóa thế giới mở"]
+  P05 --> PL["Mô hình π tiếp theo <br/> (chẳng hạn như π0.7)"]
 ```
 
-- **π0**：确立"VLM + Action Expert + Flow Matching → Action Chunk"的骨架；动作 token 通过注意力读取 VLM token。
-- **π0.5**：同一骨架上加入异构数据共训（多机器人、网页数据、高层语义子任务），先出语义子任务、再高频生成动作块，目标是开放环境泛化。
-- **后续 π 模型**：继续在同一骨架上改数据对齐与提示方式（如 π0.7 的多模态提示）。**学习方式：每出一个新 π 模型，只问它改了骨架的哪一块。**
+- **π0**: Thiết lập bộ xương của "VLM + Action Expert + Flow Matching → Action Chunk"; mã thông báo hành động đọc mã thông báo VLM thông qua sự chú ý.
+- **π0,5**: Thêm đồng đào tạo dữ liệu không đồng nhất (nhiều robot, dữ liệu trang web, nhiệm vụ ngữ nghĩa cấp cao) vào cùng một khung. Các nhiệm vụ con ngữ nghĩa được tạo trước tiên, sau đó các khối hành động được tạo với tần suất cao. Mục tiêu là khái quát hóa môi trường mở.
+- **Mô hình π tiếp theo**: Tiếp tục thay đổi cách căn chỉnh dữ liệu và nhắc nhở trên cùng một khung (chẳng hạn như nhắc nhở đa phương thức của π0.7). **Phương pháp học: Mỗi khi một mô hình π mới được ra mắt, chỉ cần hỏi xem nó đã thay đổi phần nào của bộ xương. **
 
-| 模型 | Paper | Project / Blog | Code | 站内卡片 |
+| Người mẫu | Giấy | Dự án / Blog | Mã | Thẻ trang web |
 |------|-------|---------------|------|---------|
 | π0 | [arXiv:2410.24164](https://arxiv.org/abs/2410.24164) | [pi.website/blog/pi0](https://www.pi.website/blog/pi0) | [Physical-Intelligence/openpi](https://github.com/Physical-Intelligence/openpi) | [π0](../wiki/entities/paper-pi0.md) |
-| π0.5 | [arXiv:2504.16054](https://arxiv.org/abs/2504.16054) | [pi.website/blog/pi05](https://www.pi.website/blog/pi05) | openpi（同上） | [π0.5](../wiki/entities/paper-pi05-open-world-vla.md) |
+| π0,5 | [arXiv:2504.16054](https://arxiv.org/abs/2504.16054) | [pi.website/blog/pi05](https://www.pi.website/blog/pi05) | openpi (giống như trên) | [π0,5](../wiki/entities/paper-pi05-open-world-vla.md) |
 | π0.7 | [arXiv:2604.15483](https://arxiv.org/abs/2604.15483) | [pi.website/blog/pi07](https://www.pi.website/blog/pi07) | — | [π0.7](../wiki/methods/pi07-policy.md) |
 
-### GR00T：System 2 / System 1 双系统
+### GR00T: hai hệ thống System 2 / System 1
 
 ```mermaid
 flowchart TB
-  V["Vision"] --> VLM["VLM · System 2<br/>语义理解 / 推理"]
-  L["Language"] --> VLM
-  VLM --> R["representation<br/>（VLM 中间层 token）"]
-  R -->|cross-attention| DiT["DiT · System 1<br/>Flow Matching 去噪"]
-  S["Robot State"] --> DiT
-  DiT --> AC["Action Chunk"]
+  V["Tầm nhìn"] --> VLM["VLM · Hệ thống 2<br/> Hiểu/lý luận ngữ nghĩa"]
+  L["Ngôn ngữ"] --> VLM
+  VLM --> R["đại diện<br/> (Mã thông báo lớp giữa VLM)"]
+  R -->|sự chú ý chéo| DiT["DiT · Hệ thống 1<br/>Flow Matching Khử nhiễu"]
+  S["Trạng thái robot"] --> DiT
+  DiT --> AC["Đoạn hành động"]
 ```
 
-- **System 2 ≈ reasoning / semantic understanding**：VLM 看图读指令，慢但懂语义。
-- **System 1 ≈ fast motor action generation**：DiT 动作头以更高频率出 action chunk（GR00T N1 报告约 120 Hz）。
-- **五个词的关系**：VLM 产出表征 → **DiT** 是动作头的网络结构 → **Cross Attention** 是 DiT 读 VLM 表征的方式 → **Flow Matching** 是 DiT 的训练 / 采样目标 → **Action Chunk** 是输出形式。
-- **GR00T 不替代低层控制**：人形全身平衡仍交给低层控制器（如 [GR00T-WholeBodyControl](../wiki/entities/gr00t-wholebodycontrol.md)）——回到 [L3 的分层](#policy-vs-low-level-controller)。
+- **Hệ thống 2 ≈ lý luận/hiểu ngữ nghĩa**: VLM Nhìn hình và đọc hướng dẫn, chậm nhưng hiểu ngữ nghĩa.
+- **Hệ thống 1 ≈ tạo hành động động cơ nhanh**: Đầu hành động DiT tạo ra các khối hành động ở tần số cao hơn (GR00T N1 báo cáo khoảng 120 Hz).
+- **Mối quan hệ của năm từ**: Biểu diễn đầu ra VLM → **DiT** là cấu trúc mạng của đầu hành động → **Chú ý chéo** là DiT đọc biểu diễn VLM → **Flow Matching** là Mục tiêu huấn luyện/lấy mẫu của DiT → **Action Chunk** là dạng đầu ra.
+- **GR00T không thay thế điều khiển cấp thấp**: Cân bằng toàn bộ cơ thể hình người vẫn được chuyển giao cho bộ điều khiển cấp thấp (chẳng hạn như [GR00T-WholeBodyControl](../wiki/entities/gr00t-wholebodycontrol.md)) - quay lại [Phân lớp L3](#policy-vs-low-level-controller).
 
-| 条目 | Paper | Project | Code | Hugging Face | 站内卡片 |
+| Bài dự thi | Giấy | Dự án | Mã | Ôm Mặt | Thẻ trang web |
 |------|-------|---------|------|--------------|---------|
-| GR00T N1 | [arXiv:2503.14734](https://arxiv.org/abs/2503.14734) | [NVIDIA 研究页](https://research.nvidia.com/labs/lpr/publication/gr00tn1_2025/) | [NVIDIA/Isaac-GR00T](https://github.com/NVIDIA/Isaac-GR00T) | [nvidia/GR00T-N1-2B](https://huggingface.co/nvidia/GR00T-N1-2B) | [GR00T N1](../wiki/entities/paper-hrl-stack-34-gr00t_n1.md) · [Isaac GR00T 平台](../wiki/entities/isaac-gr00t.md) · [GR00T N1.5](../wiki/entities/paper-gr00t-n1-5.md) |
+| GR00T N1 | [arXiv:2503.14734](https://arxiv.org/abs/2503.14734) | [Trang nghiên cứu của NVIDIA](https://research.nvidia.com/labs/lpr/publication/gr00tn1_2025/) | [NVIDIA/Isaac-GR00T](https://github.com/NVIDIA/Isaac-GR00T) | [nvidia/GR00T-N1-2B](https://huggingface.co/nvidia/GR00T-N1-2B) | [GR00T N1](../wiki/entities/paper-hrl-stack-34-gr00t_n1.md) · [Nền tảng Isaac GR00T](../wiki/entities/isaac-gr00t.md) · [GR00T N1.5](../wiki/entities/paper-gr00t-n1-5.md) |
 
-- 概念卡片：[VLA](../wiki/methods/vla.md) · [Foundation Policy](../wiki/concepts/foundation-policy.md)
+- Thẻ khái niệm: [VLA](../wiki/methods/vla.md) · [Chính sách nền tảng](../wiki/concepts/foundation-policy.md)
 
-### 学完输出什么
-- 能画出 π0 与 GR00T N1 的数据流，并指出二者在"VLM → 动作头"接口上的异同
-- 有 GPU 时，用 openpi 或 Isaac-GR00T 的示例跑通一次离线推理，记录单次推理耗时
+### Kết quả sau khi học là gì
+- Vẽ được luồng dữ liệu của π0 và GR00T N1, đồng thời chỉ ra điểm giống và khác nhau giữa hai luồng trên giao diện "VLM → Action Head"
+- Khi có GPU, sử dụng ví dụ openpi hoặc Isaac-GR00T để chạy suy luận ngoại tuyến và ghi lại thời gian thực hiện cho một lần suy luận.
 
-### 自测题（学完应能答出）
-- π0 的 Action Expert 和 GR00T N1 的 DiT 分别怎么读取 VLM 的信息？
-- 为什么 VLA 输出动作之后，人形上仍需要 WBC / PD 这一层？
-- 一个新的 π 模型发布了，你用什么方法判断要不要深入学？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Làm thế nào để Action Expert của π0 và DiT của GR00T N1 đọc thông tin của VLM tương ứng?
+- Tại sao lớp WBC / PD vẫn cần thiết trên hình người sau khi VLA xuất hành động?
+- Một mô hình π mới đã được phát hành. Bạn đánh giá thế nào về việc có nên tìm hiểu thêm về nó hay không?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 <ol>
-<li><strong>读取方式：</strong> π0 把 VLM 和 Action Expert 放在同一个 Transformer 序列里（两套权重），动作 token 通过注意力直接看 VLM token；GR00T N1 的 DiT 是独立网络，用 cross-attention 读 VLM 中间层输出的 token。两者都用 flow matching 生成 action chunk。</li>
-<li><strong>仍需低层控制：</strong> VLA 的动作频率（几十到一百多 Hz）远低于平衡与力控需要的频率，而且它输出的是关节目标 / 末端目标，不含接触力分配和力矩饱和处理；这些仍由 WBC / PD / 驱动器电流环完成（见 L3、L4.4）。</li>
-<li><strong>判断新模型：</strong> 放回 π0 骨架（VLM / Action Expert / 数据 / 训练目标 / 推理方式）看它改了哪一块，再过 5 个 Signal-vs-Noise 问题；放不进骨架、也没有代码和 benchmark 的，先不深学。</li>
+Phương pháp đọc <li><strong>: </strong> π0 Đặt VLM và Action Expert trong cùng một chuỗi Transformer (hai bộ trọng số), mã thông báo hành động nhìn trực tiếp vào mã thông báo VLM thông qua sự chú ý; DiT của GR00T N1 Đây là một mạng độc lập và sử dụng sự chú ý chéo để đọc đầu ra mã thông báo bởi lớp giữa VLM. Cả hai đều sử dụng tính năng khớp luồng để tạo ra các khối hành động. </li>
+<li><strong> vẫn yêu cầu điều khiển mức thấp: </strong> VLA tần số hành động (hàng chục đến hơn một trăm Hz) thấp hơn nhiều so với tần số cần thiết để kiểm soát cân bằng và lực, đồng thời nó xuất ra các mục tiêu chung/mục tiêu cuối mà không phân phối lực tiếp xúc và xử lý bão hòa mô-men xoắn; những thứ này vẫn được điều khiển bởi WBC / PD / Vòng lặp hiện tại của trình điều khiển đã hoàn thành (xem L3, L4.4). </li>
+<li><strong> Xác định mô hình mới: </strong> Đặt lại bộ xương π0 (VLM / Chuyên gia hành động / Dữ liệu / Mục tiêu đào tạo / Phương pháp suy luận) để xem phần nào đã thay đổi, sau đó xem qua 5 câu hỏi Tín hiệu so với Tiếng ồn; nếu bạn không thể đặt bộ xương và không có mã và điểm chuẩn, trước tiên đừng nghiên cứu sâu về nó. </li>
 </ol>
 </details>
 
 ---
 
-## L11 World Model 与 Physical AI 平台
+## Mô hình thế giới L11 và Nền tảng AI vật lý
 
 <a id="physical-ai-l11-world-model"></a>
 
-> **场景隐喻：** 飞行员先在模拟器里飞几千小时。World Model 就是机器人的"可学习模拟器"：给定当前世界和一个动作，预测接下来会看到什么。
+> **Phép ẩn dụ kịch bản:** Phi công đầu tiên bay hàng nghìn giờ trong trình mô phỏng. Mô hình Thế giới là một "trình mô phỏng có thể học được" dành cho robot: với thế giới hiện tại và một hành động, hãy dự đoán những gì nó sẽ thấy tiếp theo.
 
-> **上一层的局限：** VLA 需要海量、多样、带动作标注的数据；真机采集贵、慢，很难覆盖长尾场景，每个 checkpoint 上真机评测也很贵。
+> **Hạn chế của lớp trước:** VLA yêu cầu dữ liệu lớn, đa dạng và có chú thích hành động; Bộ sưu tập thiết bị thực đắt tiền và chậm, gây khó khăn cho việc thực hiện các kịch bản dài hạn. Đánh giá thiết bị thực trên mỗi điểm kiểm tra cũng tốn kém.
 
-### 英文缩写速查（L11）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L11)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| WM | World Model | 学习"状态 + 动作 → 未来"的环境模型。 |
-| WFM | World Foundation Model | 大规模视频预训练、可被下游后训练的通用世界模型。 |
-| SDG | Synthetic Data Generation | 由仿真或世界模型生成训练数据。 |
-| WAM | World–Action Model | 同时预测世界变化与动作的模型。 |
-| Sim | Simulation | 基于物理引擎的仿真（如 Isaac Sim）。 |
+| WM | Người Mẫu Thế Giới | Tìm hiểu mô hình môi trường "trạng thái + hành động → tương lai". |
+| WFM | Mô hình Quỹ Thế giới | Đào tạo trước video quy mô lớn, một mô hình thế giới phổ quát có thể được đào tạo ở cấp độ tiếp theo. |
+| SDG | Tạo dữ liệu tổng hợp | Tạo dữ liệu đào tạo từ mô phỏng hoặc mô hình thế giới. |
+| WAM | Mô hình hành động thế giới | Một mô hình dự đoán đồng thời những thay đổi và hành động của thế giới. |
+| Sim | Mô phỏng | Mô phỏng dựa trên động cơ vật lý (chẳng hạn như Isaac Sim). |
 
-### 核心定义
+### Định nghĩa cốt lõi
 
 ```mermaid
 flowchart LR
-  S["current world state"] --> WM["World Model"]
-  A["action"] --> WM
-  WM --> F["predicted future<br/>视频帧 / 状态"]
+  S["tình hình thế giới hiện nay"] --> WM["Người mẫu thế giới"]
+  A["hoạt động"] --> WM
+  WM --> F["dự đoán trong tương lai<br/> khung hình/trạng thái video"]
 ```
 
-- **World Model**：学习环境动力学；**World Foundation Model**：在大规模视频上预训练的通用世界模型；**Video World Model**：以视频帧为预测对象；**Synthetic Data**：仿真或世界模型生成的数据；**Physical AI Data**：带物理交互与动作标注的真实 / 合成数据。
+- **Mô hình Thế giới**: động lực của môi trường học tập; **Mô hình Tổ chức Thế giới**: mô hình thế giới chung được đào tạo trước trên các video quy mô lớn; **Mô hình thế giới video**: sử dụng khung hình video làm đối tượng dự đoán; **Dữ liệu tổng hợp**: dữ liệu được tạo bởi mô phỏng hoặc mô hình thế giới; **Dữ liệu AI vật lý**: dữ liệu thực/tổng ​​hợp với các chú thích hành động và tương tác vật lý.
 
-### 客户为什么需要这一层
+### Tại sao khách hàng cần lớp này?
 
-World Model 不是"最新 AI"标签，它解决的是 VLA 落地时的四个具体瓶颈：
+World Model không phải là nhãn hiệu "AI mới nhất". Nó giải quyết bốn điểm nghẽn cụ thể khi VLA được triển khai:
 
-1. **数据**：真机遥操作数据是瓶颈 → 用仿真 + 世界模型扩增（换光照、纹理、场景、视角）。
-2. **评测**：每个 checkpoint 都上真机测太贵 → 先在仿真 / 世界模型里筛。
-3. **长尾**：罕见失败场景难以在现实复现 → 合成出来训练和测试。
-4. **规划**：部分方法用世界模型"想象"动作后果再选动作（见 [WAM 纵深路线](depth-wam.md)）。
+1. **Dữ liệu**: Dữ liệu vận hành từ xa của máy thực là điểm nghẽn → Sử dụng mô phỏng + tăng cường mô hình thế giới (thay đổi ánh sáng, kết cấu, cảnh, phối cảnh).
+2. **Đánh giá**: Việc kiểm tra từng điểm kiểm tra trên máy thực là quá tốn kém → Trước tiên hãy sàng lọc trong mô hình mô phỏng/thế giới.
+3. **Đuôi dài**: Các kịch bản thất bại hiếm gặp, khó tái hiện trong thực tế → được tổng hợp để đào tạo và thử nghiệm.
+4. **Lập kế hoạch**: Một số phương pháp sử dụng mô hình thế giới để "hình dung" hậu quả của các hành động trước khi chọn hành động (xem [WAM Depth Route](depth-wam.md)).
 
-### 平台分工：每个模块在 pipeline 的哪一格
+### Phân công lao động nền tảng: mỗi mô-đun nằm trong lưới quy trình nào
 
 ```mermaid
 flowchart TB
-  Cos["Cosmos<br/>World Foundation Model"] --> Data["synthetic / world data"]
-  IS["Isaac Sim<br/>物理仿真 · 渲染"] --> Data
-  IS --> IL["Isaac Lab<br/>robot learning（RL / IL）"]
-  Data --> G["GR00T<br/>foundation robot policy"]
+  Cos["Mô hình nền tảng Cosmos<br/>World"] --> Data["dữ liệu tổng hợp / thế giới"]
+  IS["Isaac Sim<br/>Mô phỏng vật lý·Kết xuất"] --> Data
+  IS --> IL["Học robot Isaac Lab<br/>robot（RL / IL）"]
+  Data --> G["GR00T<br/>chính sách nền tảng cho robot"]
   IL --> G
-  G --> J["Jetson<br/>边缘推理 · deployment"]
-  J --> R["ROS2<br/>robot integration"]
+  G --> J["Jetson<br/> suy luận biên · triển khai"]
+  J --> R["Tích hợp ROS2<br/>robot"]
 ```
 
-> 这里用 NVIDIA 栈举例，是因为它在每一格都有公开组件；**每一格都有替代品**（仿真：MuJoCo / Genesis；训练：LeRobot；策略：openpi；边缘算力：其它开发板）。要学的是"格子"，不是产品。
+> Ngăn xếp NVIDIA được sử dụng làm ví dụ ở đây vì nó có các thành phần công khai trong mỗi lưới; **Có các lựa chọn thay thế trong mỗi lưới** (mô phỏng: MuJoCo/Genesis; đào tạo: LeRobot; chiến lược: openpi; điện toán biên: các ban phát triển khác). Thứ bạn cần học là “mạng lưới” chứ không phải sản phẩm.
 
-### 推荐读什么
+### Khuyến khích đọc
 
-| 条目 | Paper | 官方 | Code | Hugging Face | 站内卡片 |
+| Nhập cảnh | Giấy | Chính thức | Mã | Ôm Mặt | Thẻ trang web |
 |------|-------|------|------|--------------|---------|
-| Cosmos | [arXiv:2501.03575](https://arxiv.org/abs/2501.03575) | [nvidia.com/ai/cosmos](https://www.nvidia.com/en-us/ai/cosmos/) | [NVIDIA/Cosmos](https://github.com/NVIDIA/Cosmos) | [Cosmos-Predict2 集合](https://huggingface.co/collections/nvidia/cosmos-predict2) | [NVIDIA Cosmos](../wiki/entities/nvidia-cosmos.md) · [论文页](../wiki/entities/paper-sa-2501-03575-cosmos-world-foundation-model-platform-for-physi.md) |
-| Isaac Lab | [arXiv:2511.04831](https://arxiv.org/abs/2511.04831) | [文档](https://isaac-sim.github.io/IsaacLab/) | [isaac-sim/IsaacLab](https://github.com/isaac-sim/IsaacLab) | — | [Isaac Lab](../wiki/entities/isaac-lab.md) |
+| Vũ trụ | [arXiv:2501.03575](https://arxiv.org/abs/2501.03575) | [nvidia.com/ai/cosmos](https://www.nvidia.com/en-us/ai/cosmos/) | [NVIDIA/Cosmos](https://github.com/NVIDIA/Cosmos) | [Bộ sưu tập Cosmos-Predict2](https://huggingface.co/collections/nvidia/cosmos-predict2) | [NVIDIA Cosmos](../wiki/entities/nvidia-cosmos.md) · [Trang giấy](../wiki/entities/paper-sa-2501-03575-cosmos-world-foundation-model-platform-for-physi.md) |
+| Isaac Lab | [arXiv:2511.04831](https://arxiv.org/abs/2511.04831) | [Tài liệu](https://isaac-sim.github.io/IsaacLab/) | [isaac-sim/IsaacLab](https://github.com/isaac-sim/IsaacLab) | — | [Isaac Lab](../wiki/entities/isaac-lab.md) |
 | Isaac Sim | — | [developer.nvidia.com/isaac/sim](https://developer.nvidia.com/isaac/sim) | — | — | [Isaac Sim](../wiki/entities/isaac-sim.md) |
 
-- 世界模型概念：[世界模型功能分类](../wiki/concepts/functional-taxonomy-world-models.md) · [生成式世界模型](../wiki/methods/generative-world-models.md) · [World Action Models](../wiki/concepts/world-action-models.md)
-- 数据侧：[Cosmos Transfer](../wiki/entities/cosmos-transfer.md) · [NVIDIA Physical AI 数据集](../wiki/entities/nvidia-physical-ai-datasets.md) · [具身数据纵深路线](depth-embodied-data.md) · [Real2Sim 纵深路线](depth-real2sim.md)
+- Khái niệm mô hình thế giới: [Phân loại chức năng mô hình thế giới](../wiki/concepts/functional-taxonomy-world-models.md) · [Mô hình thế giới sáng tạo](../wiki/methods/generative-world-models.md) ·[Mô hình hành động thế giới](../wiki/concepts/world-action-models.md)
+- Mặt dữ liệu: [Cosmos Transfer](../wiki/entities/cosmos-transfer.md) · [Bộ dữ liệu AI vật lý NVIDIA](../wiki/entities/nvidia-physical-ai-datasets.md) ·[Tuyến độ sâu dữ liệu được thể hiện](depth-embodied-data.md) ·[Tuyến độ sâu Real2Sim](depth-real2sim.md)
 
-### 学完输出什么
-- 能用一张图说明：一个 VLA 项目的数据从哪来（真机 / 仿真 / 世界模型 / 人类视频），各自解决什么问题
-- 能区分"物理仿真器"和"视频世界模型"各自的优势与不可替代之处
+### Kết quả sau khi học là gì
+- Có thể sử dụng hình ảnh để giải thích: dữ liệu của dự án VLA đến từ đâu (máy thật/mô phỏng/mô hình thế giới/video con người) và mỗi vấn đề giải quyết được vấn đề gì
+- Có thể phân biệt được những ưu điểm và tính năng tương ứng không thể thay thế của “mô phỏng vật lý” và “mô hình thế giới video”
 
-### 自测题（学完应能答出）
-- 物理仿真器（Isaac Sim / MuJoCo）和视频世界模型（Cosmos）在训练机器人时各有什么优势、各自的短板是什么？
-- 用世界模型合成数据训练策略，最大的风险是什么？怎么缓解？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Ưu nhược điểm của mô phỏng vật lý (Isaac Sim/MuJoCo) và mô hình thế giới video (Cosmos) trong huấn luyện robot là gì?
+- Rủi ro lớn nhất khi sử dụng dữ liệu tổng hợp mô hình thế giới để huấn luyện chiến lược là gì? Làm thế nào để giảm bớt nó?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 <ol>
-<li><strong>仿真器 vs 视频世界模型：</strong> 物理仿真器有显式物理、可交互、可并行 RL、能给出真值状态和接触力，但外观真实感和资产成本是短板；视频世界模型从真实视频学外观与常见物理现象，视觉真实感和场景多样性强，但物理一致性无保证、难以给出接触力等真值、推理成本高。常见做法是二者互补：仿真出结构和动作，世界模型做外观迁移与扩增。</li>
-<li><strong>合成数据的风险：</strong> 生成的未来与真实物理不一致（物体穿透、质量不守恒），策略学到"模型里的物理"。缓解：用真实数据校准和混合配比、用物理仿真生成结构再用世界模型只改外观、在真机或高保真仿真上做最终评测。</li>
+Trình mô phỏng <li><strong> so với mô hình thế giới video: Trình mô phỏng vật lý </strong> có tính chất vật lý rõ ràng, có thể tương tác và có thể song song với RL, có thể cung cấp trạng thái giá trị thực và lực tiếp xúc, nhưng hình thức hiện thực và chi phí tài sản là những thiếu sót; mô hình thế giới video tìm hiểu hình thức và các hiện tượng vật lý phổ biến từ video thực, đồng thời có tính hiện thực trực quan mạnh mẽ và sự đa dạng của cảnh, nhưng tính nhất quán vật lý không được đảm bảo, khó đưa ra giá trị thực như lực tiếp xúc và chi phí lý luận cao. Một cách tiếp cận phổ biến là cả hai bổ sung cho nhau: cấu trúc và chuyển động được mô phỏng, đồng thời mô hình thế giới được di chuyển và mở rộng về diện mạo. </li>
+<li><strong> Rủi ro của dữ liệu tổng hợp: </strong> Tương lai được tạo ra không phù hợp với vật lý thực tế (độ xuyên vật thể, khối lượng không được bảo toàn) và chiến lược học "vật lý trong mô hình". Giảm thiểu: Sử dụng dữ liệu thực để hiệu chỉnh và trộn, sử dụng mô phỏng vật lý để tạo cấu trúc, sau đó sử dụng mô hình thế giới để chỉ thay đổi diện mạo và tiến hành đánh giá cuối cùng trên máy thật hoặc mô phỏng có độ chính xác cao. </li>
 </ol>
 </details>
 
 ---
 
-## L12 Deployment：从训练好的策略到真机电机
+## Triển khai L12: Từ chiến lược được đào tạo đến động cơ máy thật
 
 <a id="physical-ai-l12-deployment"></a>
 
-> **场景隐喻：** 模型训练完只是"菜谱写好了"；部署是要在固定节拍里准时把菜端上桌——晚一拍机器人就可能摔倒。
+> **Ẩn dụ cảnh:** Sau khi huấn luyện mô hình, nó chỉ là "công thức được viết"; Việc triển khai là mang bát đĩa đến bàn đúng giờ với nhịp độ cố định - nếu muộn, robot có thể bị ngã.
 
-> **上一层的局限：** L5–L11 的训练都在 GPU 服务器上；真机上算力、内存、功耗受限，而且推理必须和实时控制循环、总线、驱动器同步。路线必须走到真实机器人，而不是停在模型。
+> **Hạn chế của lớp trước:** Quá trình đào tạo L5–L11 hoàn toàn diễn ra trên máy chủ GPU; sức mạnh tính toán, bộ nhớ và mức tiêu thụ năng lượng của máy thật bị hạn chế và suy luận phải được đồng bộ hóa với vòng điều khiển, bus và trình điều khiển thời gian thực. Lộ trình phải đi đến robot thật chứ không dừng lại ở mô hình.
 
-### 英文缩写速查（L12）
+### Kiểm tra nhanh từ viết tắt tiếng Anh (L12)
 
-| 缩写 | 英文全称 | 简要说明 |
+| Viết tắt | Tên tiếng Anh đầy đủ | Mô tả ngắn gọn |
 |------|----------|----------|
-| ONNX | Open Neural Network Exchange | 跨框架的模型交换格式。 |
-| ORT | ONNX Runtime | 跨平台 ONNX 推理引擎。 |
-| TRT | TensorRT | NVIDIA GPU 上的推理优化与运行时。 |
-| ROS 2 | Robot Operating System 2 | 机器人节点 / 话题 / 服务中间件。 |
-| RT | Real-Time | 有确定时限的执行；PREEMPT_RT 是 Linux 实时补丁。 |
-| CAN | Controller Area Network | 常见电机总线。 |
-| EtherCAT | Ethernet for Control Automation Technology | 低延迟、强同步的工业实时以太网。 |
+| ONNX | Trao đổi mạng thần kinh mở | Định dạng trao đổi mô hình đa khung. |
+| ORT | Thời gian chạy ONNX | Công cụ suy luận ONNX đa nền tảng. |
+| TRT | TensorRT | Tối ưu hóa suy luận và thời gian chạy trên GPU NVIDIA. |
+| ROS 2 | Hệ điều hành Robot 2 | Phần mềm trung gian nút/chủ đề/dịch vụ robot. |
+| RT | Thời gian thực | Thực hiện có thời hạn; PREEMPT_RT là bản vá thời gian thực của Linux. |
+| CAN | Mạng khu vực điều khiển | Xe buýt có động cơ thông thường. |
+| EtherCAT | Ethernet cho công nghệ tự động hóa điều khiển | Độ trễ thấp, đồng bộ hóa mạnh mẽ Ethernet thời gian thực công nghiệp. |
 
-### 部署主链
+### Triển khai chuỗi chính
 
 ```mermaid
 flowchart TB
-  P["trained policy<br/>PyTorch"] --> E["Policy Export"]
+  P["chính sách được đào tạo<br/>PyTorch"] --> E["Xuất chính sách"]
   E --> O["ONNX"]
-  O --> RT["TensorRT / ONNX Runtime<br/>Jetson 或 x86 GPU"]
-  RT --> N["ROS2 node<br/>观测组装 · 推理 · 动作后处理"]
-  N --> C["robot controller<br/>ros2_control / 自研实时循环<br/>Real-Time Linux（PREEMPT_RT）"]
+  O --> RT["TensorRT / ONNX Runtime<br/>Jetson hoặc GPU x86"]
+  RT --> N["Nút ROS2<br/> tập hợp quan sát · suy luận · xử lý hậu kỳ hành động"]
+  N --> C["bộ điều khiển robot<br/>ros2_control / Vòng lặp thời gian thực tự phát triển <br/>Real-Time Linux (PREEMPT_RT)"]
   C --> B["CAN / EtherCAT"]
-  B --> D["Motor Driver<br/>PD / 电流环"]
-  D --> M["Motor → Real Robot"]
+  B --> D["Trình điều khiển động cơ<br/>PD / Vòng lặp hiện tại"]
+  D --> M["Động cơ → Robot thật"]
 ```
 
-### 关键工程概念
+### Các khái niệm kỹ thuật chính
 
-| 概念 | 是什么 | 为什么会让真机失败 |
+| Khái niệm | | là gì | Tại sao máy thật lại hỏng |
 |------|-------|------------------|
-| **inference frequency** | 网络每秒推理几次 | 低于训练时的策略频率 → 动作变稀疏、行为变形 |
-| **control frequency** | 低层控制循环频率 | 与仿真 decimation 不一致 → PD 行为和训练不同 |
-| **latency** | 观测采集到力矩生效的总延迟 | 相位滞后 → 振荡（见 [L6 自测](#l6-综合实战)） |
-| **jitter** | 周期时间的抖动 | 平均延迟正常但偶发超时，更难复现、更危险 |
-| **observation delay** | 传感数据到达策略时已过时 | 训练时没建模 → 状态估计与实际不符 |
-| **action delay** | 动作从输出到驱动器生效的延迟 | 总线排队、驱动器周期叠加 |
-| **hardware synchronization** | 多驱动器 / 传感器在同一时刻采样与执行 | 各关节不同步 → 全身协调失真；EtherCAT 分布式时钟用于解决它 |
+| **tần số suy luận** | Mạng suy luận bao nhiêu lần mỗi giây | Thấp hơn tần suất chính sách trong quá trình đào tạo → Các hành động trở nên thưa thớt và biến dạng hành vi |
+| **tần số điều khiển** | Tần số vòng điều khiển mức thấp | Không nhất quán với số thập phân mô phỏng → PD Hành vi và huấn luyện là khác nhau |
+| **độ trễ** | Quan sát thu thập tổng độ trễ trước khi mô-men xoắn có hiệu lực | Độ trễ pha → dao động (xem [Tự kiểm tra L6](#l6-综合实战)) |
+| **bồn chồn** | Độ giật thời gian chu kỳ | Độ trễ trung bình là bình thường nhưng thỉnh thoảng hết thời gian chờ sẽ khó tái tạo hơn và nguy hiểm hơn |
+| **trì hoãn quan sát** | Dữ liệu cảm biến đã lỗi thời khi đạt chính sách | Không lập mô hình trong quá trình đào tạo → Ước tính trạng thái không khớp với thực tế |
+| **độ trễ hành động** | Độ trễ hành động từ đầu ra đến khi trình điều khiển có hiệu lực | Xếp hàng xe buýt, chồng chất chu kỳ tài xế |
+| **đồng bộ hóa phần cứng** | Nhiều trình điều khiển/cảm biến lấy mẫu và thực thi cùng lúc | Mỗi khớp không đồng bộ → Sự phối hợp toàn cơ thể bị biến dạng; Đồng hồ phân tán EtherCAT được sử dụng để giải quyết nó |
 
-### 推荐读什么
-- 导出与推理：[ONNX](../wiki/entities/onnx.md)（[onnx.ai](https://onnx.ai/)）· [ONNX Runtime](../wiki/entities/onnxruntime.md)（[onnxruntime.ai](https://onnxruntime.ai/)）· [TensorRT](../wiki/entities/tensorrt.md)（[官方](https://developer.nvidia.com/tensorrt)）· [推理引擎对比](../wiki/comparisons/onnxruntime-vs-mnn-vs-tensorrt.md)
-- 中间件与控制器：[ROS2 基础](../wiki/concepts/ros2-basics.md)（[ROS 2 文档](https://docs.ros.org/en/rolling/)）· [ros2_control](../wiki/entities/ros2-control.md)（[control.ros.org](https://control.ros.org/)）· [实时控制中间件指南](../wiki/queries/real-time-control-middleware-guide.md)
-- 算力：[NVIDIA Jetson](../wiki/entities/nvidia-jetson.md) · [部署开发板选型](../wiki/comparisons/robot-policy-deployment-dev-board-selection.md)
-- 实时系统：[PREEMPT_RT（Linux Foundation Realtime wiki）](https://wiki.linuxfoundation.org/realtime/start)
-- 总线与驱动：[EtherCAT](../wiki/concepts/ethercat-protocol.md) · [CAN](../wiki/concepts/can-bus-protocol.md) · [CAN vs EtherCAT](../wiki/comparisons/can-vs-ethercat-joint-bus.md) · [电机驱动固件与总线协议](../wiki/overview/motor-drive-firmware-bus-protocols.md)
-- 场景指南：[RL 策略 sim2real 部署条件](../wiki/queries/rl-sim2real-deployment-conditions.md) · [VLA 部署指南](../wiki/queries/vla-deployment-guide.md)
+### Khuyến khích đọc
+- Xuất và suy luận: [ONNX](../wiki/entities/onnx.md)([onnx.ai](https://onnx.ai/))·[ONNX Runtime](../wiki/entities/onnxruntime.md)([onnxruntime.ai](https://onnxruntime.ai/))· [TensorRT](../wiki/entities/tensorrt.md)([Chính thức](https://developer.nvidia.com/tensorrt))·[So sánh công cụ suy luận](../wiki/comparisons/onnxruntime-vs-mnn-vs-tensorrt.md)
+- Phần mềm trung gian và bộ điều khiển: [Thông tin cơ bản về ROS2](../wiki/concepts/ros2-basics.md)([Tài liệu ROS 2](https://docs.ros.org/en/rolling/))·[ros2_control](../wiki/entities/ros2-control.md)([control.ros.org](https://control.ros.org/))· [Hướng dẫn phần mềm trung gian điều khiển thời gian thực](../wiki/queries/real-time-control-middleware-guide.md)
+- Sức mạnh tính toán: [NVIDIA Jetson](../wiki/entities/nvidia-jetson.md) · [Lựa chọn bảng phát triển triển khai](../wiki/comparisons/robot-policy-deployment-dev-board-selection.md)
+- Hệ thống thời gian thực: [PREEMPT_RT (Linux Foundation Realtime wiki)](https://wiki.linuxfoundation.org/realtime/start)
+- Xe buýt và trình điều khiển: [EtherCAT](../wiki/concepts/ethercat-protocol.md) · [CAN](../wiki/concepts/can-bus-protocol.md) · [CAN vs EtherCAT](../wiki/comparisons/can-vs-ethercat-joint-bus.md) · [Phần mềm điều khiển động cơ và bus giao thức](../wiki/overview/motor-drive-firmware-bus-protocols.md)
+- Hướng dẫn kịch bản: [Điều kiện triển khai thực tế sim2 của chính sách RL](../wiki/queries/rl-sim2real-deployment-conditions.md) · [Hướng dẫn triển khai VLA](../wiki/queries/vla-deployment-guide.md)
 
-### 学完输出什么
-- 把一个 Isaac Lab 训练的策略导出为 ONNX，先在 MuJoCo sim2sim 验证，再在 ROS2 节点中以固定频率推理
-- 测出端到端延迟分布（均值 + P99）与控制周期 jitter，并写进部署记录
-- 上真机后按 [L6 Sim2Real 主链](#l6-sim2real-chain) 的失败来源表逐项排查
+### Kết quả sau khi học là gì
+- Xuất chiến lược được Isaac Lab đào tạo dưới dạng ONNX, trước tiên hãy xác minh chiến lược đó trong MuJoCo sim2sim, sau đó suy ra ở tần số cố định trong nút ROS2
+- Đo phân bố độ trễ từ đầu đến cuối (trung bình + P99) và jitter chu kỳ điều khiển và ghi chúng vào bản ghi triển khai
+- Sau khi sử dụng máy thật, nhấn [L6 Sim2Real main chain](#l6-sim2real-chain) để kiểm tra từng bảng nguồn lỗi.
 
-### 自测题（学完应能答出）
-- 推理频率低于控制频率时，动作怎么衔接？
-- 为什么 jitter 往往比平均延迟更危险？
-- 导出 ONNX / TensorRT 之后，怎么确认推理结果和 PyTorch 一致？
+### Câu hỏi tự kiểm tra (học xong có thể trả lời được)
+- Làm thế nào để kết nối các hành động khi tần số suy luận nhỏ hơn tần số điều khiển?
+- Tại sao hiện tượng giật thường nguy hiểm hơn độ trễ trung bình?
+- Sau khi xuất ONNX/TensorRT, làm cách nào để xác nhận kết quả suy luận phù hợp với PyTorch?
 
 <details class="selftest-answers">
-<summary>参考答案（点击展开）</summary>
+Câu trả lời tham khảo <summary> (bấm để mở rộng) </summary>
 
 <ol>
-<li><strong>频率衔接：</strong> 常见做法是推理线程与控制线程解耦：控制线程每周期读取最新动作，对 action chunk 按时间索引取值，或在相邻目标之间插值 / 保持；目标关节位置再由高频 PD 跟踪。</li>
-<li><strong>jitter 更危险：</strong> 固定延迟可以在训练中建模（延迟随机化）或在控制器里补偿；jitter 是随机、偶发的超时，训练时难以覆盖，一次长周期就可能让平衡控制失稳，而且难以复现和定位。</li>
-<li><strong>一致性验证：</strong> 用同一批固定输入（含边界值）分别跑 PyTorch、ONNX Runtime、TensorRT，比较输出最大绝对误差；FP16 / INT8 量化后要单独设容差，并在 sim2sim 闭环里再验证一次行为。</li>
+<li><strong> Kết nối tần số: </strong> Một cách tiếp cận phổ biến là tách luồng suy luận khỏi luồng điều khiển: luồng điều khiển đọc hành động mới nhất trong mỗi chu kỳ, lấy giá trị của đoạn hành động theo chỉ số thời gian hoặc nội suy/duy trì giữa các mục tiêu liền kề; vị trí khớp mục tiêu sau đó được theo dõi bởi PD tần số cao. </li>
+<li><strong>jitter nguy hiểm hơn: </strong> Độ trễ cố định có thể được mô hình hóa trong quá trình huấn luyện (độ trễ ngẫu nhiên) hoặc được bù trong bộ điều khiển; jitter là khoảng thời gian chờ ngẫu nhiên và rời rạc, khó có thể khắc phục được trong quá trình huấn luyện. Một thời gian dài có thể làm mất ổn định bộ điều khiển cân bằng và khó tái tạo và xác định vị trí. </li>
+Xác minh tính nhất quán của <li><strong>: </strong> sử dụng cùng một loạt đầu vào cố định (bao gồm các giá trị biên) để chạy PyTorch, ONNX Runtime và TensorRT tương ứng, đồng thời so sánh sai số tuyệt đối tối đa của đầu ra; sau khi lượng tử hóa FP16 / INT8, phải đặt một dung sai riêng và trong sim2sim Xác minh lại hành vi trong vòng lặp kín. </li>
 </ol>
 </details>
 
@@ -2099,67 +2116,67 @@ flowchart TB
 
 <a id="depth-optional-index"></a>
 
-## 可选纵深（独立路线页）
+## Độ sâu tùy chọn (trang lộ trình độc lập)
 
-主路线偏向"先稳住一条主干"，但真正做研究或做项目时，总要往某个子方向深挖。下面二十七条纵深路径**各自是独立的路线页**，从主路线的某个阶段衔接出去（按各方向起点里程碑的时间先后排列）：
+Con đường chính là “ổn định một trục chính trước”, nhưng khi thực sự nghiên cứu hay làm dự án, bạn luôn phải đào sâu hơn theo một hướng phụ nào đó. Hai mươi bảy đường dẫn chuyên sâu sau** là mỗi trang lộ trình độc lập**, được kết nối từ một giai đoạn nhất định của lộ trình chính (được sắp xếp theo thời gian của các mốc điểm xuất phát theo từng hướng):
 
-| 纵深路径 | 适合谁 | 主线衔接点 |
+| Đường dẫn sâu | Ai phù hợp với | Điểm kết nối đường chính |
 |---------|------|-----------|
-| [如果目标是遥操作（人形全身遥操作 + 手指遥操作 → 示范数据/实时接管）](depth-teleoperation.md) | 想让人实时操控人形并采集高质量示范数据 | 数据侧：L2 后可入，L5 前后串联 |
-| [如果目标是力矩控制电机设计（指标 → 电磁热 → FOC 力矩闭环 → 关节模组）](depth-torque-motor-design.md) | 想把关节电机从任务指标做到可验收的力矩闭环模组 | 硬件底座：任意阶段可入，建议 L2 前后 |
-| [如果目标是传统模型控制（LIP/ZMP → MPC → WBC）](depth-classical-control.md) | 想把 model-based 主干写成可运行的控制器 | L2 → L4 |
-| [如果目标是人形整机硬件设计（指标预算 → 机械 → 电气 → 通信 → 整机验收）](depth-humanoid-hardware-design.md) | 想把任务需求做成一台能上电、能跑控制、能交付的整机 | 整机硬件底座：任意阶段可入，建议 L2 前后 |
-| [如果目标是安全控制（CLF / CBF / Safe RL）](depth-safe-control.md) | 想给 WBC / MPC / RL 加可证明的安全约束 | L4.4 / L5 任意 |
-| [如果目标是 RSI（递归自我改进）](depth-rsi.md) | 想让「改进机制本身」被自动改进，并把闭环落到真机策略上 | L7 之外的元层面（研发流程侧，L5/L6 有评测与真机基础后再入）|
-| [如果目标是接触丰富的操作任务](depth-contact-manipulation.md) | 想做装配、插拔、双臂协同等精细接触 | L4.4 / L5.3 之后 |
-| [如果目标是导航（SLAM → Nav2 → VLN → 导航 VLA）](depth-navigation.md) | 想让机器人知道自己在哪、该往哪走 | L7.1 / L7.2 展开 |
-| [如果目标是模型架构（骨干族谱 → 感知编码 → 动作头 → 多模态基座 → 规模部署）](depth-model-architecture.md) | 想给策略挑网络结构，而不是每次照抄论文 Method | 横切 L5–L7（L5 前用小 MLP 打通即可）|
-| [如果目标是模仿学习与技能迁移](depth-imitation-learning.md) | 想从人类演示数据驱动机器人技能 | L5.3 之后 |
-| [如果目标是 RL 运动控制](depth-rl-locomotion.md) | 想用 RL 让人形走起来、不愿从头啃控制理论 | L3 → L5.2 |
-| [如果目标是 Loco-Manipulation（移动操作）](depth-loco-manipulation.md) | 想让机器人边走边动手（搬箱、开门、端托盘）| L4 + L5 之后 |
-| [如果目标是人形足球（全向行走 → 感知踢球 → 多机战术）](depth-humanoid-soccer.md) | 想让机器人追球、射门、打整场比赛 | L5 之后 |
-| [如果目标是动作重定向（人体动作 → 机器人参考轨迹）](depth-motion-retargeting.md) | 想搭"人体动作 → 机器人可执行参考"的数据管线 | L5.4 展开（L2 的 FK/IK 为前置） |
-| [如果目标是人形群控展演（群舞同步 → 编队走位 → 群体特技）](depth-humanoid-swarm-performance.md) | 想让一群人形同台跳舞、变队形、协同炫技 | L5.3 之后 |
-| [如果目标是 Sim2Real（域差画像 → 执行器对齐 → 鲁棒训练 → 真机部署）](depth-sim2real.md) | 想把仿真里训好的策略稳定搬上真机 | L5.2 → L6（L6 的展开版）|
-| [如果目标是人形拳击（动作跟踪 → 潜空间技能 → 对抗自博弈）](depth-humanoid-boxing.md) | 想让两台人形在擂台上像人一样对打 | L5.3 之后 |
-| [如果目标是 ICL（具身上下文学习）](depth-icl.md) | 想让机器人读完一条示范就会做新任务、且不动权重 | L5.3 之后（示范数据侧与遥操作纵深串联）|
-| [如果目标是 BFM（人形行为基础模型）](depth-bfm.md) | 想用一个 checkpoint 控住人形全身 | L5.3 之后 |
-| [如果目标是具身模型测评（认知 → 世界模型 → 策略成功率 → 运控指标 → sim↔real 校准）](depth-embodied-eval.md) | 想证明/证伪一个具身模型（含运控模型）到底好不好 | L2–L5 的验收侧，L6 / L7 的出具结论环节 |
-| [如果目标是感知越障（Perceptive Locomotion）](depth-perceptive-locomotion.md) | 想让机器人看着地形上楼梯、跨障碍、跑酷 | L5 之后 |
-| [如果目标是动作生成（文本/多模态 → 人形动作）](depth-motion-generation.md) | 想用生成模型造出人体/人形动作 | L5.3 之后 |
-| [如果目标是扩散与流匹配策略（Diffusion Policy → DiT → Flow Matching VLA）](depth-robotics-diffusion-dit-flow.md) | 想按动作去噪机制演进读 DP / DiT-Block / RDT / π₀ / GR00T / Dita | L5.3 之后（L9 动作生成的展开版）|
-| [如果目标是 VLA（视觉-语言-动作模型）](depth-vla.md) | 想让机器人听懂指令干活 | L5.3 之后 |
-| [如果目标是 Real2Sim（真实世界 → 可仿真资产/场景/孪生）](depth-real2sim.md) | 想把真实世界压成可训练/可评测的仿真资产 | L6 / L7（L6/L7 资产与评测的展开版）|
-| [如果目标是具身数据（金字塔分层 → 采集 → 清洗标注 → 格式聚合 → 扩增合成 → 配比飞轮）](depth-embodied-data.md) | 想为具身模型建一条可交付的数据供给管线 | L5 / L7（训练输入与数据基础设施的展开版）|
-| [如果目标是 WAM（世界–动作模型）](depth-wam.md) | 想让策略在出动作前显式预知世界会怎么变 | L5.3 之后 |
+| [Nếu mục tiêu là điều khiển từ xa (điều khiển từ xa toàn cơ thể hình người + điều khiển từ xa bằng ngón tay → dữ liệu trình diễn/tiếp quản theo thời gian thực)](depth-teleoperation.md) | Nếu bạn muốn mọi người điều khiển hình người trong thời gian thực và thu thập dữ liệu trình diễn chất lượng cao | Mặt dữ liệu: L2 có thể được nhập từ phía sau và L5 có thể được kết nối nối tiếp |
+| [Nếu mục tiêu là thiết kế động cơ điều khiển mô-men xoắn (chỉ báo → nhiệt điện từ → vòng kín mô-men xoắn FOC → mô-đun khớp)](depth-torque-motor-design.md) | Muốn đạt được mô-đun vòng kín mô-men xoắn có thể chấp nhận được cho động cơ khớp từ các chỉ báo nhiệm vụ | Cơ sở phần cứng: có thể nhập ở bất kỳ giai đoạn nào, nên nhập trước và sau L2 |
+| [Nếu mục tiêu là điều khiển mô hình truyền thống (LIP/ZMP → MPC → WBC)](depth-classical-control.md) | Muốn ghi xương sống dựa trên mô hình vào bộ điều khiển có thể chạy được | L2 → L4 |
+| [Nếu mục tiêu là thiết kế phần cứng máy hoàn chỉnh hình người (ngân sách chỉ báo → cơ khí → điện → giao tiếp → chấp nhận máy hoàn chỉnh)](depth-humanoid-hardware-design.md) | Muốn biến các yêu cầu của nhiệm vụ thành một cỗ máy hoàn chỉnh có thể bật nguồn, chạy và điều khiển và có thể được chuyển giao | Cơ sở phần cứng máy hoàn chỉnh: có thể được nhập ở bất kỳ giai đoạn nào, nên nhập trước và sau L2 |
+| [Nếu mục tiêu là kiểm soát an toàn (CLF / CBF / Safe RL)](depth-safe-control.md) | Muốn thêm các ràng buộc an toàn có thể chứng minh được vào WBC / MPC / RL | L4.4/L5 nào |
+| [Nếu mục tiêu là RSI (tự cải thiện đệ quy)](depth-rsi.md) | Tôi muốn "cơ chế cải tiến" được tự động cải tiến và vòng khép kín rơi vào chiến lược máy thật | Cấp độ meta ngoài L7 (về mặt quy trình nghiên cứu và phát triển, L5/L6 sẽ được nhập sau khi đánh giá và nền tảng máy thật) |
+| [Nếu mục tiêu là tiếp xúc với các nhiệm vụ vận hành phong phú](depth-contact-manipulation.md) | Nếu bạn muốn thực hiện các thao tác tiếp xúc tinh xảo như lắp ráp, cắm và phối hợp hai tay | Sau L4.4 / L5.3 |
+| [Nếu mục tiêu là điều hướng (SLAM → Nav2 → VLN → Điều hướng VLA)](depth-navigation.md) | Bạn muốn robot biết nó đang ở đâu và nên đi đâu | L7.1 / L7.2 Mở rộng |
+| [Nếu mục tiêu là kiến ​​trúc mô hình (cây họ xương sống → mã hóa nhận thức → đầu hành động → cơ sở đa phương thức → triển khai quy mô lớn)](depth-model-architecture.md) | Tôi muốn chọn cấu trúc mạng cho chiến lược thay vì sao chép bài báo mỗi lần Phương thức | Crosscut L5–L7 (chỉ cần sử dụng một MLP nhỏ để vượt qua trước L5) |
+| [Nếu mục tiêu là học bắt chước và chuyển giao kỹ năng](depth-imitation-learning.md) | Muốn thể hiện kỹ năng robot điều khiển dữ liệu từ con người | Sau L5.3 |
+| [Nếu mục tiêu là điều khiển chuyển động RL](depth-rl-locomotion.md) | Tôi muốn sử dụng RL để tạo ra bước đi hình người, nhưng tôi không muốn bắt đầu lại từ đầu với lý thuyết điều khiển | L3 → L5.2 |
+| [Nếu mục tiêu là Thao tác định vị (hoạt động di động)](depth-loco-manipulation.md) | Bạn muốn robot làm mọi việc trong khi đang đi bộ (di chuyển hộp, mở cửa, khiêng pallet) | Sau L4 + L5 |
+| [Nếu mục tiêu là một quả bóng đá hình người (đi đa hướng → cảm nhận cú đá → chiến thuật nhiều máy)](depth-humanoid-soccer.md) | Muốn robot đuổi bóng, bắn và chơi hết trận | Sau L5 |
+| [Nếu mục tiêu là chuyển hướng hành động (hành động của con người → quỹ đạo tham chiếu của robot)](depth-motion-retargeting.md) | Muốn xây dựng một đường dẫn dữ liệu về "hành động của con người → tham chiếu thực thi của robot" | Mở rộng L5.4 (FK/IK của L2 là giao diện người dùng) |
+| [Nếu mục tiêu là màn trình diễn điều khiển nhóm hình người (đồng bộ vũ điệu nhóm → chuyển động đội hình → các pha nguy hiểm của nhóm)](depth-humanoid-swarm-performance.md) | Nếu bạn muốn một nhóm hình người nhảy trên cùng một sân khấu, thay đổi đội hình và thực hiện các pha nguy hiểm phối hợp | Sau L5.3 |
+| [Nếu mục tiêu là Sim2Real (chân dung khác biệt miền → căn chỉnh bộ truyền động → đào tạo mạnh mẽ → triển khai máy thực)](depth-sim2real.md) | Muốn chuyển giao ổn định các chiến lược được đào tạo trong mô phỏng sang máy thật | L5.2 → L6 (phiên bản mở rộng của L6) |
+| [Nếu mục tiêu là quyền anh hình người (theo dõi chuyển động → kỹ năng không gian tiềm ẩn → tự chơi đối đầu)](depth-humanoid-boxing.md) | Tôi muốn hai người máy chiến đấu như con người trên võ đài | Sau L5.3 |
+| [Nếu mục tiêu là ICL (học tập ngữ cảnh thể hiện)](depth-icl.md) | Bạn muốn robot thực hiện một nhiệm vụ mới sau khi đọc phần trình diễn và trọng lượng sẽ không thay đổi | Sau L5.3 (phía dữ liệu trình diễn được kết nối chuyên sâu bằng thao tác từ xa) |
+| [Nếu mục tiêu là BFM (Mô hình hành vi cơ bản của hình người)](depth-bfm.md) | Muốn sử dụng trạm kiểm soát để kiểm soát toàn bộ cơ thể của hình người | Sau L5.3 |
+| [Nếu mục tiêu là đánh giá mô hình được thể hiện (nhận thức → mô hình thế giới → tỷ lệ thành công của chiến lược → chỉ số kiểm soát hoạt động → hiệu chuẩn sim↔real)](depth-embodied-eval.md) | Muốn chứng minh/sai liệu một mô hình thể hiện (bao gồm cả mô hình điều khiển vận hành) có tốt hay không | Mặt chấp nhận L2–L5, mặt kết luận L6/L7 |
+| [Nếu mục tiêu là Vận động nhận thức](depth-perceptive-locomotion.md) | Bạn muốn robot quan sát địa hình và leo cầu thang, vượt chướng ngại vật và parkour | Sau L5 |
+| [Nếu mục tiêu là tạo hành động (văn bản/đa phương thức → hành động hình người)](depth-motion-generation.md) | Muốn sử dụng mô hình tổng quát để tạo ra cơ thể con người/hành động hình người | Sau L5.3 |
+| [Nếu mục tiêu là chiến lược phù hợp với dòng chảy và khuếch tán (Chính sách khuếch tán → DiT → Flow Matching VLA)](depth-robotics-diffusion-dit-flow.md) | Muốn đọc DP/DiT-Block/RDT/π₀/GR00T/Dita | Sau L5.3 (phiên bản mở rộng của thế hệ hành động L9) |
+| [Nếu mục tiêu là VLA (mô hình hành động ngôn ngữ trực quan)](depth-vla.md) | Bạn muốn robot hiểu hướng dẫn và làm việc | Sau L5.3 |
+| [Nếu mục tiêu là Real2Sim (thế giới thực → nội dung/kịch bản/cặp song sinh có thể mô phỏng)](depth-real2sim.md) | Muốn nén thế giới thực thành tài sản mô phỏng có thể đào tạo/đánh giá được | L6/L7 (phiên bản mở rộng của tài sản L6/L7 và đánh giá) |
+| [Nếu mục tiêu là dữ liệu được thể hiện (phân lớp kim tự tháp → bộ sưu tập → chú thích làm sạch → tổng hợp định dạng → tổng hợp khuếch đại → bánh đà phù hợp)](depth-embodied-data.md) | Muốn xây dựng một đường dẫn cung cấp dữ liệu có thể cung cấp cho các mô hình được thể hiện | L5/L7 (phiên bản mở rộng của hạ tầng dữ liệu và đầu vào đào tạo) |
+| [Nếu mục tiêu là WAM (Mô hình hành động thế giới)](depth-wam.md) | Bạn muốn chiến lược dự đoán rõ ràng thế giới sẽ thay đổi như thế nào trước khi hành động | Sau L5.3 |
 
-每条纵深页都有自己的 Stage 0–N 划分，可以独立阅读；遇到理论卡点再回主路线对应章节补。
+Mỗi trang chuyên sâu có phần Giai đoạn 0–N riêng, có thể đọc độc lập; nếu gặp điểm vướng mắc về mặt lý thuyết, hãy quay lại chương tương ứng của lộ trình chính để bù đắp.
 
 
-## 常见卡点
+## Điểm kẹt thường gặp
 
-### 1. 学了一堆理论，不知道怎么串起来
-解决思路：按上面 L0 → L6 的顺序走，每个阶段都有输出物，不要只看不练。
+### 1. Tôi đã học được rất nhiều lý thuyết nhưng không biết cách kết nối chúng lại với nhau.
+Cách giải: Thực hiện theo thứ tự L0 → L6 ở trên. Mỗi giai đoạn có các đối tượng đầu ra. Đừng chỉ xem và thực hành.
 
-### 2. RL 训练不稳定，不知道怎么调
-解决思路：从 IL 初始化 RL 起步（先给一个好的 policy prior），比纯 RL 从零训稳得多。
+### 2. RL đào tạo không ổn định và tôi không biết cách điều chỉnh.
+Giải pháp: Bắt đầu từ IL và khởi tạo RL (đưa ra chính sách tốt trước), ổn định hơn nhiều so với đào tạo RL thuần túy từ đầu.
 
-### 3. 不知道自己的模型对不对
-解决思路：先用 WBC / MPC 这类 model-based 方法做 baseline，RL 结果要有对比才知道好不好。
+### 3. Không biết mô hình của bạn có đúng không?
+Giải pháp: Trước tiên, hãy sử dụng các phương pháp dựa trên mô hình như WBC / MPC làm đường cơ sở. Kết quả của RL cần được so sánh để biết nó có tốt hay không.
 
-### 4. Sim2Real 差距太大
-解决思路：先做好 System Identification，再用 Domain Randomization 扩大扰动范围，最后考虑在线自适应。
+### 4. Sim2Real Khoảng cách quá lớn
+Giải pháp: Trước tiên hãy thực hiện Nhận dạng hệ thống, sau đó sử dụng Ngẫu nhiên tên miền để mở rộng phạm vi nhiễu loạn và cuối cùng xem xét việc điều chỉnh trực tuyến.
 
-### 5. Modern Robotics 看完了，但不知道和人形控制怎么接
-解决思路：参见 [L−1 的"Modern Robotics 在本路线扮演什么角色"](#一本贯穿全程的教材modern-robotics)。MR 是数学语言 + 固定基机器人基础；真正进入人形后还要补 [Floating Base Dynamics](../wiki/concepts/floating-base-dynamics.md)、[Centroidal Dynamics](../wiki/concepts/centroidal-dynamics.md)、[Contact Dynamics](../wiki/concepts/contact-dynamics.md) 和 [Whole-Body Control](../wiki/concepts/whole-body-control.md)。
+### 5. Tôi đã đọc xong Modern Robotics nhưng không biết làm thế nào để kết nối nó với điều khiển hình người.
+Giải pháp: Xem phần "Người máy hiện đại đóng vai trò gì trong lộ trình này" của [L−1](#一本贯穿全程的教材modern-robotics). MR là ngôn ngữ toán học + nền tảng robot cơ sở cố định; sau khi nhập vào hình dạng con người, [Động lực học cơ sở nổi](../wiki/concepts/floating-base-dynamics.md), [Động lực học trung tâm](../wiki/concepts/centroidal-dynamics.md), [Động lực học tiếp xúc](../wiki/concepts/contact-dynamics.md) và [Điều khiển toàn cơ thể](../wiki/concepts/whole-body-control.md) phải được thêm vào.
 
-### 6. VLA / 世界模型新论文太多，追不过来
-解决思路：先用 [How to filter new Physical AI work](#physical-ai-signal-vs-noise) 把它放进 8 层 + 部署中的某一格；放不进去、也没有 paper / code / benchmark 的，先不深学。
+### 6. VLA / Có quá nhiều bài viết mới về mô hình thế giới nên không theo kịp.
+Giải pháp: Trước tiên hãy sử dụng [Cách lọc công việc AI vật lý mới](#physical-ai-signal-vs-noise) để đặt nó vào một lưới nhất định trong Lớp 8 + Triển khai; nếu không đưa vào được và không có giấy/mã/điểm chuẩn thì trước tiên đừng tìm hiểu thêm về nó.
 
 ---
 
-## 延伸阅读
+## Đọc thêm
 
-- 贯穿全程的教材：[Modern Robotics](../wiki/entities/modern-robotics-book.md)
-- 工程踩坑补充：[人形机器人运动控制 Know-How](../wiki/overview/humanoid-motion-control-know-how.md) — 传感器噪声、电机热管理、地形适应的真机经验
-- 想换方向深挖：见上方 [可选纵深](#depth-optional-index)
+- Tài liệu giảng dạy xuyên suốt toàn bộ quá trình: [Modern Robotics](../wiki/entities/modern-robotics-book.md)
+- Phần bổ sung về cạm bẫy kỹ thuật: [Bí quyết điều khiển chuyển động của robot hình người](../wiki/overview/humanoid-motion-control-know-how.md) - trải nghiệm máy thực tế về tiếng ồn cảm biến, quản lý nhiệt động cơ và thích ứng địa hình
+- Nếu bạn muốn đào sâu hơn theo hướng khác: xem ở trên [độ sâu tùy chọn](#depth-optional-index)
