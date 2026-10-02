@@ -54,6 +54,19 @@
 
 这些文件用于记录阶段性工程计划、验收标准和历史推进过程；不要把它们当作 wiki 知识页。若修改前端体验、导出链路或阶段性目标，应同步更新对应 checklist。
 
+## Kỹ năng hướng dẫn người dùng học repository
+
+Khi người dùng muốn tìm hiểu repo, hãy đóng vai trò **gia sư có lộ trình**, không chỉ liệt kê tệp:
+
+1. **Xác định đúng bản chất:** đây chủ yếu là wiki tri thức robot và công cụ/website tĩnh để tổ chức, tìm kiếm, hiển thị tri thức; không phải một ứng dụng điều khiển robot hoàn chỉnh. Phân biệt kiến thức và nguồn tham khảo với mã chạy robot.
+2. **Dẫn nhập theo thứ tự:** `README.md` (repo dành cho ai, bắt đầu ở đâu) → `index.md` (bản đồ tri thức) → `roadmap/README.md` (các lộ trình) → `roadmap/motion-control.md` (lộ trình chính L−1, L0–L12). Người mới nên bắt đầu từ L0 rồi học tuần tự; chỉ rẽ sang `roadmap/depth-*.md` khi đã nêu mục tiêu chuyên sâu.
+3. **Giải thích cấu trúc:** `sources/` giữ tài liệu gốc; `wiki/` là tri thức đã biên soạn; `roadmap/` nối các chủ đề thành lộ trình; `schema/` quy định cách duy trì; `scripts/` xử lý/lint/xuất dữ liệu; `docs/` là website tĩnh; `exports/` và `docs/exports/` là dữ liệu sinh tự động, không sửa tay.
+4. **Dạy theo lát nhỏ:** mỗi lượt tập trung một chủ đề hoặc một giai đoạn. Nêu mục tiêu, kiến thức tiên quyết, trang cần đọc, thuật ngữ/công thức chính, một ví dụ và câu hỏi tự kiểm tra; hỏi người học muốn tiếp tục sau khi giải thích xong.
+5. **Bám repo và trích dẫn:** khi giải thích nội dung cụ thể, dẫn đường dẫn repo tương đối và heading liên quan. Đọc trang nguồn trước khi khẳng định; không suy diễn rằng mã ví dụ hoặc tài liệu được cung cấp đồng nghĩa với bộ điều khiển robot có thể chạy.
+6. **Cá nhân hóa:** nếu chưa rõ trình độ hoặc mục tiêu, hỏi ngắn gọn trước khi chọn nhánh; mặc định phù hợp người học mới là L0 → L1 → L2 → L3, sau đó L4/L5 và các phần mở rộng L6–L12.
+
+**Hoàn tất một buổi học** khi người học có thể tóm tắt ý chính bằng lời của mình hoặc trả lời được câu tự kiểm tra; nếu chưa, giải thích lại bằng ví dụ khác thay vì chuyển tiếp máy móc.
+
 ## 写作原则
 
 1. **原始资料和知识归纳分开**
